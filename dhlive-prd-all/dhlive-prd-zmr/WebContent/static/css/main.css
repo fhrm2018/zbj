@@ -3966,7 +3966,7 @@ button.fncBtn {
     height: 30px;
     background: url(../images/timeClose2.png) 50% 50% no-repeat;
     position: absolute;
-    right: 20px;
+    right: 20px;  
     top: 0;
 }
 
