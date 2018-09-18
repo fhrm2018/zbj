@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiyou.dhlive.core.user.service.dao.UserWaterGroupMapper">
+    <resultMap id="BaseResultMap" type="com.qiyou.dhlive.core.user.outward.model.UserWaterGroup">
+        <!--
+          WARNING - @mbggenerated
+        -->
+        <id column="water_group_id" jdbcType="INTEGER" property="waterGroupId"/>
+        <result column="water_group_name" jdbcType="VARCHAR" property="waterGroupName"/>
+        <result column="is_del" jdbcType="INTEGER" property="isDel"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+    </resultMap>
+</mapper>

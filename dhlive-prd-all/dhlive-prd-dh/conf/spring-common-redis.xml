@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxTotal" value="1000" />
+		<property name="maxIdle" value="10" />
+	</bean>
+
+	<!-- 集群方式配置<bean id="commonRedisSentinel" class="redis.clients.jedis.JedisSentinelPool"> <constructor-arg index="0" value="mymaster" /> <constructor-arg index="1"> <set> <value>192.168.101.211:26379</value> </set> </constructor-arg> <constructor-arg index="2" ref="jedisPoolConfig" /> </bean> -->
+	<!-- 
+		* @author liuyuanhang
+		* @date 2018-01-20
+		*
+		* @version 1.0.0
+	-->
+	<!-- 单机方式配置 -->
+	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+		<constructor-arg index="0" ref="jedisPoolConfig" />
+		<constructor-arg index="1" value="39.108.88.133" type="java.lang.String" />
+		<constructor-arg index="2" value="6379" />
+		<constructor-arg index="3" value="3000" />
+		<constructor-arg index="4" value="qiangqiang" />
+	</bean>
+	<bean id="commonRedisManager" class="com.yaozhong.framework.base.database.redis.RedisManager">
+		<property name="jedisPool" ref="jedisPool"></property>
+	</bean>
+	
+</beans>

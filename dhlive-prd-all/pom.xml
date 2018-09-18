@@ -1,0 +1,20 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.qiyou</groupId>
+    <artifactId>dhlive-all</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>dhlive-prd-all</artifactId>
+  <packaging>pom</packaging>
+  <modules>
+  	<module>dhlive-prd-cron</module>
+  	<module>dhlive-prd-min</module>
+  	<module>dhlive-prd-www</module>
+  	<module>dhlive-prd-bms</module>
+	<module>dhlive-prd-dh</module>
+	<module>dhlive-prd-fy</module>
+	<module>dhlive-prd-qymt</module>
+	<module>dhlive-prd-zmr</module>
+  </modules>
+</project>

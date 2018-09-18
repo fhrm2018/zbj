@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiyou.dhlive.core.room.service.dao.RoomMessageBoardMapper">
+    <resultMap id="BaseResultMap" type="com.qiyou.dhlive.core.room.outward.model.RoomMessageBoard">
+        <!--
+          WARNING - @mbggenerated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="room_id" jdbcType="INTEGER" property="roomId"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="message_time" jdbcType="TIMESTAMP" property="messageTime"/>
+        <result column="m_id" jdbcType="INTEGER" property="mId"/>
+        <result column="audit_uid" jdbcType="INTEGER" property="auditUid"/>
+        <result column="audit_time" jdbcType="TIMESTAMP" property="auditTime"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="message_content" jdbcType="LONGVARCHAR" property="messageContent"/>
+    </resultMap>
+</mapper>

@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+.login-user{
+	background:url('images/login/user.png')  no-repeat right;
+}
+.login-password{
+	background:url('images/login/password.png')  no-repeat right;
+}
+.login-border{
+	/*background:url('images/login/top.png')  repeat center;style="width: 318px;"*/
+}
+.login-button{
+	background:url('images/login/button.png')  no-repeat center;
+}
+
+.login-body-background{
+	background: url('images/login/loginBackground.jpg');
+	background-size: cover;
+}

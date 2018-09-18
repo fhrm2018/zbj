@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiyou.dhlive.core.live.service.dao.LiveRoomMapper">
+    <resultMap id="BaseResultMap" type="com.qiyou.dhlive.core.live.outward.model.LiveRoom">
+        <!--
+          WARNING - @mbggenerated
+        -->
+        <id column="room_id" jdbcType="INTEGER" property="roomId"/>
+        <result column="room_group_id" jdbcType="VARCHAR" property="roomGroupId"/>
+        <result column="room_name" jdbcType="VARCHAR" property="roomName"/>
+        <result column="room_about" jdbcType="VARCHAR" property="roomAbout"/>
+        <result column="room_notice" jdbcType="VARCHAR" property="roomNotice"/>
+        <result column="room_type" jdbcType="INTEGER" property="roomType"/>
+        <result column="room_managers" jdbcType="VARCHAR" property="roomManagers"/>
+        <result column="room_pass" jdbcType="VARCHAR" property="roomPass"/>
+        <result column="room_max_num" jdbcType="INTEGER" property="roomMaxNum"/>
+        <result column="room_stream_server" jdbcType="VARCHAR" property="roomStreamServer"/>
+        <result column="room_logo" jdbcType="VARCHAR" property="roomLogo"/>
+        <result column="room_live_url" jdbcType="VARCHAR" property="roomLiveUrl"/>
+        <result column="room_tag" jdbcType="VARCHAR" property="roomTag"/>
+        <result column="room_qq" jdbcType="VARCHAR" property="roomQq"/>
+        <result column="room_start_live_time" jdbcType="TIMESTAMP" property="roomStartLiveTime"/>
+        <result column="room_end_live_time" jdbcType="TIMESTAMP" property="roomEndLiveTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="room_live_level" jdbcType="INTEGER" property="roomLiveLevel"/>
+        <result column="is_show" jdbcType="INTEGER" property="isShow"/>
+        <result column="base_num" jdbcType="INTEGER" property="baseNum"/>
+        <result column="temp_watch_time" jdbcType="INTEGER" property="tempWatchTime"/>
+    </resultMap>
+</mapper>

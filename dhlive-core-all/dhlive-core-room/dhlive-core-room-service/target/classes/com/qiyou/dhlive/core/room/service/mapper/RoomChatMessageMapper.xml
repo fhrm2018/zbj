@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiyou.dhlive.core.room.service.dao.RoomChatMessageMapper">
+    <resultMap id="BaseResultMap" type="com.qiyou.dhlive.core.room.outward.model.RoomChatMessage">
+        <!--
+          WARNING - @mbggenerated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="room_id" jdbcType="INTEGER" property="roomId"/>
+        <result column="unique_id" jdbcType="VARCHAR" property="uniqueISd"/>
+        <result column="post_uid" jdbcType="INTEGER" property="postUid"/>
+        <result column="post_nick_name" jdbcType="VARCHAR" property="postNickName"/>
+        <result column="g_uid" jdbcType="INTEGER" property="gUid"/>
+        <result column="g_nick_name" jdbcType="VARCHAR" property="gNickName"/>
+        <result column="message_time" jdbcType="TIMESTAMP" property="messageTime"/>
+        <result column="message_type" jdbcType="INTEGER" property="messageType"/>
+        <result column="is_samll" jdbcType="INTEGER" property="isSamll"/>
+        <result column="audit_uid" jdbcType="INTEGER" property="auditUid"/>
+        <result column="audit_time" jdbcType="TIMESTAMP" property="auditTime"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="content" jdbcType="LONGVARCHAR" property="content"/>
+        <result column="level" jdbcType="INTEGER" property="level"/>
+        <result column="group_id" jdbcType="INTEGER" property="groupId"/>
+    </resultMap>
+</mapper>
