@@ -668,7 +668,7 @@
 
 <c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}">
     <a class="kefu" onclick="topQQ()" href="javascript:">
-        <img src="../static/images/qqIcon.png" alt="">
+        <img src="../static/images/qqIcon.gif" alt="">
     </a>
 </c:if>
 
