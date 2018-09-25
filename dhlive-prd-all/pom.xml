@@ -10,7 +10,6 @@
   <modules>
   	<module>dhlive-prd-cron</module>
   	<module>dhlive-prd-min</module>
-  	<module>dhlive-prd-www</module>
   	<module>dhlive-prd-bms</module>
 	<module>dhlive-prd-dh</module>
 	<module>dhlive-prd-fy</module>

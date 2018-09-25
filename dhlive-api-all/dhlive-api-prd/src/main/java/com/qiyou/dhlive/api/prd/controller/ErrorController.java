@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.qiyou.dhlive.api.base.outward.service.IUserInfoApiService;
+import com.qiyou.dhlive.api.prd.mvc.UserSession;
 import com.qiyou.dhlive.api.prd.util.AddressUtils;
 import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
 import com.yaozhong.framework.base.common.utils.EmptyUtil;

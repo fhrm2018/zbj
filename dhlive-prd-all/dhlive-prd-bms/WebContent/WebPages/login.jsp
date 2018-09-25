@@ -11,7 +11,7 @@
 	<div class="posFixed" style="top:50px;width:100%;">
 	    <div class="lgWrap botLine mgAuto" style="line-height:50px;">
 	        <span class="ilblock verMid"></span>
-	        <span class="fz26 ml10">东金在线直播后台</span>
+	        <span class="fz26 ml10">管理后台</span>
 	    </div>
     </div>
     <div class="loginBox ovfHid posAbs" style="margin-top:-200px;margin-left:-175px;top:50%;left:50%;">
@@ -53,7 +53,6 @@
     </div>
     <div class="posFixed" style="bottom:50px;width:100%;">
 	    <div class="lgWrap mgAuto ptb7 topLine mt20 ac color8">
-	        	Powered by 探金科技
 	    </div>
     </div>
 	

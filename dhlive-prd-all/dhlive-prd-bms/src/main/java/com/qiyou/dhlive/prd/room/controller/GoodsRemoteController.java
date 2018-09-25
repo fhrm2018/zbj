@@ -107,19 +107,19 @@ public class GoodsRemoteController {
     public DataResponse getArticleList(RoomArticle params, HttpServletRequest request) {
         try {
             params.setStatus(0);
-            UserVipInfo vip = (UserVipInfo) request.getSession().getAttribute("USER_VIP_INFO");
+//            UserVipInfo vip = (UserVipInfo) request.getSession().getAttribute("USER_VIP_INFO");
             List<RoomArticle> result = new ArrayList<RoomArticle>();
             //登录之后查看所有
-            if (EmptyUtil.isNotEmpty(vip)) {
+//            if (EmptyUtil.isNotEmpty(vip)) {
                 SearchCondition<RoomArticle> condition = new SearchCondition<RoomArticle>(params);
                 result = this.roomArticleService.findByCondition(condition);
-            } else {
-                SearchCondition<RoomArticle> condition = new SearchCondition<RoomArticle>(params);
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-                condition.buildRangeConditions(new RangeCondition("createTime", sdf.format(new Date()), RangeConditionType.LessThan));
-                result = this.roomArticleService.findByCondition(condition);
-            }
+//            } else {
+//                SearchCondition<RoomArticle> condition = new SearchCondition<RoomArticle>(params);
+//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//
+//                condition.buildRangeConditions(new RangeCondition("createTime", sdf.format(new Date()), RangeConditionType.LessThan));
+//                result = this.roomArticleService.findByCondition(condition);
+//            }
             return new DataResponse(1000, result);
         } catch (Exception e) {
             return new DataResponse(1001, e.getMessage());

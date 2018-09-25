@@ -63,53 +63,81 @@ public class WwwSecurityInterceptor extends HandlerInterceptorAdapter {
         HttpSession httpSession = request.getSession();
         String ip = AddressUtils.getIpAddrFromRequest(request);
         String url = request.getRequestURL().toString();
-        baseLog.info(LogFormatUtil.getActionFormat("拦截器获取:" + ip + ",url:" + url));
-        String utmSource = request.getParameter("utm_source");
-        if (unSession == null) {
-            if (this.checkIpVisitService.checkCanVisit(ip, url)) {
-                if (EmptyUtil.isEmpty(userLogin)) {
-                    String userId = "";
-                    userId = getCookiesValue(request, Constants.VIP_USER_ID);
-                    if (EmptyUtil.isEmpty(userId))
-                        userId = getCookiesValue(request, Constants.USER_ID);
-                    UserInfo user = null;
-                    if (EmptyUtil.isNotEmpty(userId)) {
-                        try {
-                            Integer.parseInt(userId);
-                            user = this.userInfoService.findById(Integer.parseInt(userId));
-                        } catch (Exception e) {
-                        }
-                    }
-                    if (EmptyUtil.isEmpty(user)) {
-                        user = this.userInfoService.createNewGuestUser(AddressUtils.getIpAddrFromRequest(request), utmSource);
-                        user.setUserId(user.getUserId());
-                        UserSession userSession = HttpSessionTool.createUserSession(user);
-                        HttpSessionTool.doLoginedUser(httpSession, userSession);
-                        Cookie userIdCookie = new Cookie(Constants.USER_ID, user.getUserId().toString());
-                        userIdCookie.setMaxAge(60 * 60 * 24 * 365);
-                        response.addCookie(userIdCookie);
-                    } else {
-                        UserSession userSession = HttpSessionTool.createUserSession(user);
-                        HttpSessionTool.doLoginedUser(httpSession, userSession);
-                        Cookie userIdCookie = new Cookie(Constants.USER_ID, user.getUserId().toString());
-                        userIdCookie.setMaxAge(60 * 60 * 24 * 365);
-                        response.addCookie(userIdCookie);
-
-                        UserInfo record = new UserInfo();
-                        record.setLastLoginIp(ip);
-                        record.setUserId(user.getUserId());
-                        record.setLastLoginTime(new Date());
-                        record.setUtmSource(utmSource);
-                        this.userInfoService.modifyEntity(record);
-                    }
-                }
-                return true;
-            } else {
-                response.sendRedirect("/error/404");
-                return false;
-            }
-        } else {
-            return true;
+        if(!isAjaxRequest(request)){
+	        baseLog.info(LogFormatUtil.getActionFormat("拦截器获取:" + ip + ",url:" + url));
+	        String utmSource = request.getParameter("utm_source");
+	        if (unSession == null) {
+	            if (this.checkIpVisitService.checkCanVisit(ip, url)) {
+	                if (EmptyUtil.isEmpty(userLogin)) {
+	                    String userId = "";
+	                    userId = getCookiesValue(request, Constants.VIP_USER_ID);
+	                    if (EmptyUtil.isEmpty(userId))
+	                        userId = getCookiesValue(request, Constants.USER_ID);
+	                    UserInfo user = null;
+	                    if (EmptyUtil.isNotEmpty(userId)) {
+	                        try {
+	                            Integer.parseInt(userId);
+	                            user = this.userInfoService.findById(Integer.parseInt(userId));
+	                        } catch (Exception e) {
+	                        }
+	                    }
+	                    if (EmptyUtil.isEmpty(user)) {
+	                        user = this.userInfoService.createNewGuestUser(AddressUtils.getIpAddrFromRequest(request), utmSource);
+	                        user.setUserId(user.getUserId());
+	                        UserSession userSession = HttpSessionTool.createUserSession(user);
+	                        HttpSessionTool.doLoginedUser(httpSession, userSession);
+	                        Cookie userIdCookie = new Cookie(Constants.USER_ID, user.getUserId().toString());
+	                        userIdCookie.setMaxAge(60 * 60 * 24 * 365);
+	                        response.addCookie(userIdCookie);
+	                    } else {
+	                        UserSession userSession = HttpSessionTool.createUserSession(user);
+	                        HttpSessionTool.doLoginedUser(httpSession, userSession);
+	                        Cookie userIdCookie = new Cookie(Constants.USER_ID, user.getUserId().toString());
+	                        userIdCookie.setMaxAge(60 * 60 * 24 * 365);
+	                        response.addCookie(userIdCookie);
+	
+	                        UserInfo record = new UserInfo();
+	                        record.setLastLoginIp(ip);
+	                        record.setUserId(user.getUserId());
+	                        record.setLastLoginTime(new Date());
+	                        record.setUtmSource(utmSource);
+	                        this.userInfoService.modifyEntity(record);
+	                    }
+	                }else {
+	                	Integer userId = userLogin.getUserId();
+	                	if(EmptyUtil.isNotEmpty(userId)) {
+	                		UserInfo user = this.userInfoService.findById(userId);
+	                		if(EmptyUtil.isNotEmpty(user)) {
+		                		UserInfo record = new UserInfo();
+		                        record.setLastLoginIp(ip);
+		                        record.setUserId(userId);
+		                        record.setLastLoginTime(new Date());
+		                        this.userInfoService.modifyEntity(record);
+	                        }
+	                	}
+	                }
+	                return true;
+	            } else {
+	                response.sendRedirect("/error/404");
+	                return false;
+	            }
+	        } else {
+	            return true;
+	        }
+        }else {
+        	if (unSession == null) {
+        		if (EmptyUtil.isEmpty(userLogin)) {
+        			return false;
+        		}
+        		if (this.checkIpVisitService.checkCanVisit(ip, url)) {
+        			return true;
+        		}else {
+        			response.sendRedirect("/error/404");
+	                return false;
+        		}
+        	}else {
+        		return true;
+        	}
         }
     }
 
@@ -117,5 +145,14 @@ public class WwwSecurityInterceptor extends HandlerInterceptorAdapter {
         String requestUri = request.getRequestURI();
         String contextPath = request.getContextPath();
         return requestUri.substring(contextPath.length());
+    }
+    
+    private boolean isAjaxRequest(HttpServletRequest request) {
+        String requestedWith = request.getHeader("x-requested-with");
+        if (requestedWith != null && requestedWith.equalsIgnoreCase("XMLHttpRequest")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

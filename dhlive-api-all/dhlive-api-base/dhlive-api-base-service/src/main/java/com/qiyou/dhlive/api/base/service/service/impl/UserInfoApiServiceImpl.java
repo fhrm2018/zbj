@@ -1,26 +1,44 @@
 package com.qiyou.dhlive.api.base.service.service.impl;
 
-import cn.jpush.api.report.UsersResult;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
 import com.alibaba.fastjson.JSONArray;
 import com.google.gson.Gson;
-import com.qiyou.dhlive.api.base.outward.service.ICheckIpVisitService;
 import com.qiyou.dhlive.api.base.outward.service.IUserInfoApiService;
-import com.qiyou.dhlive.api.base.outward.util.AddressUtils;
 import com.qiyou.dhlive.api.base.outward.util.HttpUtil;
 import com.qiyou.dhlive.api.base.outward.util.NoticeUtil;
 import com.qiyou.dhlive.api.base.outward.util.TLSUtils;
 import com.qiyou.dhlive.api.base.outward.vo.AVChatRoomVO;
 import com.qiyou.dhlive.api.base.outward.vo.VipUserVO;
-import com.qiyou.dhlive.core.base.outward.model.BaseIp;
-import com.qiyou.dhlive.core.base.outward.service.IBaseIpService;
 import com.qiyou.dhlive.core.base.outward.service.IBaseSysParamService;
 import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
 import com.qiyou.dhlive.core.bms.outward.model.BmsEmployeeInfo;
 import com.qiyou.dhlive.core.bms.outward.service.IBmsEmployeeInfoService;
 import com.qiyou.dhlive.core.live.outward.model.LiveRoom;
 import com.qiyou.dhlive.core.live.outward.service.ILiveRoomService;
-import com.qiyou.dhlive.core.user.outward.model.*;
-import com.qiyou.dhlive.core.user.outward.service.*;
+import com.qiyou.dhlive.core.user.outward.model.UserGroup;
+import com.qiyou.dhlive.core.user.outward.model.UserInfo;
+import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
+import com.qiyou.dhlive.core.user.outward.model.UserSmallInfo;
+import com.qiyou.dhlive.core.user.outward.model.UserVipInfo;
+import com.qiyou.dhlive.core.user.outward.service.IUserGroupService;
+import com.qiyou.dhlive.core.user.outward.service.IUserInfoService;
+import com.qiyou.dhlive.core.user.outward.service.IUserManageInfoService;
+import com.qiyou.dhlive.core.user.outward.service.IUserSmallInfoService;
+import com.qiyou.dhlive.core.user.outward.service.IUserVipInfoService;
 import com.yaozhong.framework.base.common.utils.EmptyUtil;
 import com.yaozhong.framework.base.common.utils.LogFormatUtil;
 import com.yaozhong.framework.base.common.utils.MD5Util;
@@ -28,19 +46,9 @@ import com.yaozhong.framework.base.common.utils.MyBeanUtils;
 import com.yaozhong.framework.base.database.domain.page.PageResult;
 import com.yaozhong.framework.base.database.domain.page.PageSearch;
 import com.yaozhong.framework.base.database.domain.page.builders.PageResultBuilder;
-import com.yaozhong.framework.base.database.domain.returns.BaseResult;
 import com.yaozhong.framework.base.database.domain.returns.DataResponse;
 import com.yaozhong.framework.base.database.domain.search.SearchCondition;
 import com.yaozhong.framework.base.database.redis.RedisManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
-
-import javax.servlet.http.HttpServletRequest;
-import java.math.BigDecimal;
-import java.util.*;
 
 /**
  * describe:
@@ -100,9 +108,22 @@ public class UserInfoApiServiceImpl implements IUserInfoApiService {
     //------------------------------------------------------------------------------------------------------------------
     @Override
     public DataResponse getVipUserList(PageSearch pageSearch, UserVipInfo params) {
-        SearchCondition<UserVipInfo> condition = new SearchCondition<UserVipInfo>(params, pageSearch);
+    	UserVipInfo conParam = new UserVipInfo();
+    	
+    	if(EmptyUtil.isNotEmpty(params.getUserTel())) {
+    		conParam.setUserTel(params.getUserTel());;
+        }
+    	if(EmptyUtil.isNotEmpty(params.getLastLoginIp())) {
+    		conParam.setLastLoginIp(params.getLastLoginIp());;
+        }
+    	SearchCondition<UserVipInfo> condition = new SearchCondition<UserVipInfo>(conParam, pageSearch);
+        if(EmptyUtil.isNotEmpty(params.getUserNickName())) {
+        	condition.buildLikeConditions("userNickName", "%"+params.getUserNickName()+"%");
+        }
         condition.buildOrderByConditions("createTime", "desc");
-        List<UserVipInfo> length = this.userVipInfoService.findByCondition(condition);
+        
+        Long count = this.userVipInfoService.countByCondition(condition);
+        //List<UserVipInfo> length = this.userVipInfoService.findByCondition(condition);
         PageResult<UserVipInfo> data = this.userVipInfoService.findByPage(condition);
         List<VipUserVO> list = new ArrayList<VipUserVO>();
         for (int i = 0; i < data.getRows().size(); i++) {
@@ -113,7 +134,7 @@ public class UserInfoApiServiceImpl implements IUserInfoApiService {
                 list.add(record);
             }
         }
-        PageResult<VipUserVO> result = new PageResultBuilder<VipUserVO>().buildPageData(length.size(), list).toPageResult();
+        PageResult<VipUserVO> result = new PageResultBuilder<VipUserVO>().buildPageData(count.intValue(), list).toPageResult();
         return new DataResponse(1000, result);
     }
 

@@ -48,5 +48,5 @@
     </div>
     </c:if>
     
-    <div class="fz10 ac posAbs" style="left:0px;bottom:0px;height:20px;line-height:20px;width:120px;background:#01AB96;color:#f8f8f8;"><span>Powered by 探金</span></div>
+    <div class="fz10 ac posAbs" style="left:0px;bottom:0px;height:20px;line-height:20px;width:120px;background:#01AB96;color:#f8f8f8;"><span>Powered by</span></div>
 </div>

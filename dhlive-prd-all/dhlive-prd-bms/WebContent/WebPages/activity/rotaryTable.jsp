@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>东金在线</title>
+    <title>后台管理</title>
     <jsp:include page="../common/public.jsp"/>
     <link href="${pageContext.request.contextPath}/static/css/live.css" rel="stylesheet" type="text/css"/>
     <script src="${pageContext.request.contextPath}/static/js/lib/date/WdatePicker.js"></script>
