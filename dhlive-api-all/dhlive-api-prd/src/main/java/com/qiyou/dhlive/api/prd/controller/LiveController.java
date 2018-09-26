@@ -9,6 +9,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
+import com.qiyou.dhlive.core.room.outward.service.IRoomAutoMsgService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,6 +102,9 @@ public class LiveController {
 
     @Autowired
     private IActivityApiService activityApiService;
+
+    @Autowired
+    private IRoomAutoMsgService roomAutoMsgService;
 
     @Autowired
     private IActivityLuckyDrawWinnersService activityLuckyDrawWinnersService;
@@ -856,4 +861,21 @@ public class LiveController {
             }
         }
     }
+
+
+    /**
+     * 助理自动发言
+     *
+     * @param groupId
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/live/autoMsg")
+    @ResponseBody
+    public DataResponse autoMsg(Integer userId, Integer groupId) {
+        SearchCondition<RoomAutoMsg> condition = new SearchCondition<RoomAutoMsg>(new RoomAutoMsg());
+        List<RoomAutoMsg> msgs = this.roomAutoMsgService.findByCondition(condition);
+        return new DataResponse(1000, msgs.get(0).getMsgContent());
+    }
+
 }
