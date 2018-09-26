@@ -410,6 +410,24 @@ $(function () {
     });
 
 
+    //助理自动发言
+    setInterval(function () {
+        if (userInfo.groupId == 3) {
+            // autoMsg();
+        }
+    }, 5000);
+
+    function autoMsg() {
+        $.ajax({
+            url: ctx + "/live/autoMsg",
+            data: {"userId": userInfo.id, "groupId": userInfo.groupId},
+            success: function (data) {
+                sendAutoMsg(data.message);
+            }
+        });
+    }
+
+
     /*当前在线人记录缓存(10秒/次)*/
     setInterval(function () {
         //服务器缓存在线人数
@@ -618,8 +636,8 @@ function getOnlineUserList() {
 }
 
 //清屏
-$('.clearScreen').click(function(){
-   $('.msg').html('');
+$('.clearScreen').click(function () {
+    $('.msg').html('');
 });
 
 //保存到桌面
