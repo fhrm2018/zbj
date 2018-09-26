@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <%@page import="com.alibaba.dubbo.config.ApplicationConfig"%>
-<%@page import="com.qiyou.dhlive.api.prd.util.ProjectConfig"%>
+<%@page import="com.qiyou.dhlive.prd.components.util.ProjectConfig"%>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <%
