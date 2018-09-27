@@ -16,10 +16,10 @@
 	<!-- 单机方式配置 -->
 	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
 		<constructor-arg index="0" ref="jedisPoolConfig" />
-		<constructor-arg index="1" value="39.108.88.133" type="java.lang.String" />
+		<constructor-arg index="1" value="127.0.0.1" type="java.lang.String" />
 		<constructor-arg index="2" value="6379" />
-		<constructor-arg index="3" value="3000" />
-		<constructor-arg index="4" value="qiangqiang" />
+		<!--<constructor-arg index="3" value="3000" />-->
+		<!--<constructor-arg index="4" value="qiangqiang" />-->
 	</bean>
 	<bean id="commonRedisManager" class="com.yaozhong.framework.base.database.redis.RedisManager">
 		<property name="jedisPool" ref="jedisPool"></property>
