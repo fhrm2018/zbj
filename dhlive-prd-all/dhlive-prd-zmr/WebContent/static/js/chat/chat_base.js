@@ -863,7 +863,7 @@ function onSendMsg() {
 }
 
 
-function sendAutoMsg(content) {
+function sendAutoMsg(content, name, level) {
     if (!loginInfo.identifier) { //未登录
         if (accountMode == 1) { //托管模式
             //将account_type保存到cookie中,有效期是1天
@@ -922,9 +922,9 @@ function sendAutoMsg(content) {
     cmdJson.uniqueId = msg.uniqueId;
     cmdJson.small = 0;
 
-    cmdJson.postNickName = "test";
+    cmdJson.postNickName = name;
     cmdJson.groupId = 5;
-    cmdJson.level = 1;
+    cmdJson.level = level;
 
     cmdJson.checkStatus = true;
     cmdJson.auditTime = cmdJson.sendTime;

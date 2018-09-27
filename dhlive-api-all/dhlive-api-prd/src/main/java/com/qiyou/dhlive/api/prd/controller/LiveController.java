@@ -9,8 +9,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.qiyou.dhlive.api.prd.vo.AutoMsgVo;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
 import com.qiyou.dhlive.core.room.outward.service.IRoomAutoMsgService;
+import com.qiyou.dhlive.core.user.outward.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,11 +47,6 @@ import com.qiyou.dhlive.core.user.outward.model.UserRelation;
 import com.qiyou.dhlive.core.user.outward.model.UserSmallInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserVipInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserWaterGroup;
-import com.qiyou.dhlive.core.user.outward.service.IUserInfoService;
-import com.qiyou.dhlive.core.user.outward.service.IUserManageInfoService;
-import com.qiyou.dhlive.core.user.outward.service.IUserRelationService;
-import com.qiyou.dhlive.core.user.outward.service.IUserVipInfoService;
-import com.qiyou.dhlive.core.user.outward.service.IUserWaterGroupService;
 import com.qiyou.dhlive.core.user.outward.vo.RelationVO;
 import com.yaozhong.framework.base.common.utils.EmptyUtil;
 import com.yaozhong.framework.base.common.utils.LogFormatUtil;
@@ -105,6 +102,9 @@ public class LiveController {
 
     @Autowired
     private IRoomAutoMsgService roomAutoMsgService;
+
+    @Autowired
+    private IUserSmallInfoService userSmallInfoService;
 
     @Autowired
     private IActivityLuckyDrawWinnersService activityLuckyDrawWinnersService;
@@ -866,16 +866,28 @@ public class LiveController {
     /**
      * 助理自动发言
      *
-     * @param groupId
-     * @param request
+     * @param userId
      * @return
      */
     @RequestMapping(value = "/live/autoMsg")
     @ResponseBody
-    public DataResponse autoMsg(Integer userId, Integer groupId) {
+    public DataResponse autoMsg(Integer userId) {
         SearchCondition<RoomAutoMsg> condition = new SearchCondition<RoomAutoMsg>(new RoomAutoMsg());
         List<RoomAutoMsg> msgs = this.roomAutoMsgService.findByCondition(condition);
-        return new DataResponse(1000, msgs.get(0).getMsgContent());
+        //随机数, 随机取一条发言
+        int x = (int) (Math.random() * msgs.size());
+
+        //随机数, 随意取当前助理的一个小号
+        List<UserSmallInfo> smalls = this.userSmallInfoService.findByField("userId", userId);
+        int y = (int) (Math.random() * smalls.size());
+
+        //封装返回对象
+        AutoMsgVo result = new AutoMsgVo();
+        result.setContent(msgs.get(x).getMsgContent());
+        result.setName(smalls.get(y).getSmallName());
+        result.setLevel(smalls.get(y).getSmallLevel());
+
+        return new DataResponse(1000, result);
     }
 
 }

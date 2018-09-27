@@ -413,16 +413,16 @@ $(function () {
     //助理自动发言
     setInterval(function () {
         if (userInfo.groupId == 3) {
-            // autoMsg();
+            autoMsg();
         }
     }, 5000);
 
     function autoMsg() {
         $.ajax({
             url: ctx + "/live/autoMsg",
-            data: {"userId": userInfo.id, "groupId": userInfo.groupId},
+            data: {"userId": userInfo.id},
             success: function (data) {
-                sendAutoMsg(data.message);
+                sendAutoMsg(data.data.content, data.data.name, data.data.level);
             }
         });
     }
