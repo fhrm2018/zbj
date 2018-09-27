@@ -397,16 +397,17 @@ input::-moz-focus-inner {
     display: inline-block;
     width: 90px;
     height: 42px;
-    line-height: 42px;
-    border-radius: 5px;
-    text-align: center;
-    cursor: pointer;
-    color: #1b0a03;
-    font-size: 20px;
-    background-color: #cbd2f1;
+     line-height: 42px;
+     border-radius: 5px;
+     text-align: center;
+     cursor: pointer;
+     color: #1b0a03;
+     font-size: 20px;
+    background-color: #f9b89b;
+
 }
 .topRight a.bg12{
-    background-color: #fdbebf;
+    background-color:#c6cdee;
 }
 
 .topRight .username {
@@ -461,9 +462,9 @@ input::-moz-focus-inner {
     background-color: #7686d1;
 }
 
-.topRight .registerA {
-    border-left: 1px solid #6e7ba1;
-}
+/*.topRight .registerA {*/
+    /*border-left: 1px solid #6e7ba1;*/
+/*}*/
 
 .redDot {
     background: red;
@@ -509,18 +510,18 @@ input::-moz-focus-inner {
     width:76%;
 }
 .headBtns .a1{
-    width:9.5%;
+    width:7.5%;
     margin-top:10px;
 }
 
 .topRight {
-    /*height: 36px;*/
-    /*line-height: 36px;*/
+    height: 36px;
+    line-height: 36px;
     padding-top: 18px;
 }
 
 .header .logo02 img{
-    width: 120px;
+    width: 140px;
     height: auto;
     margin-top: 12px;
 }
@@ -561,7 +562,7 @@ input::-moz-focus-inner {
 }
 
 .content {
-    margin-top: 80px;
+    margin-top: 78px;
     font-size: 0;
 }
 
