@@ -477,7 +477,7 @@ $(function () {
         if (screenWidth <= 1600) {
             $(".topLeft").attr('class', "headBtns topLeft fl");
             $(".headBtns .collectionBtn").css('width', "7.75%");
-            $(".headBtns .downUrlBtn").css('width', "10.5%");
+            // $(".headBtns .downUrlBtn").css('width', "10.5%");
             $(".logo").addClass("logo02");
 
             $(".serviceList").attr('class', "serviceList clearfix posRel w1400");
@@ -496,7 +496,7 @@ $(function () {
             // none(num2);
             $(".topLeft").attr('class', "topLeft fl");
             $(".collectionBtn").css('width', "auto");
-            $(".downUrlBtn").css('width', "auto");
+            // $(".downUrlBtn").css('width', "auto");
             $(".logo").removeClass("logo02");
 
             $(".serviceList").attr('class', "serviceList clearfix posRel w1800");
