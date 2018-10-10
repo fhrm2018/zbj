@@ -16,7 +16,7 @@
 	<!-- 在扫描controller前扫描dubbo的service
 	<import resource="classpath:dubbo/*.xml" />-->
 	<!-- 自动扫描controller包下的所有类，使其认为spring mvc的控制器 -->
-	<context:component-scan base-package="com.qiyou.dhlive.prd.*.controller" />
+	<context:component-scan base-package="com.qiyou.dhlive.api.prd.controller" />
 
 	<task:executor id="myexecutor" pool-size="50" />
 	<task:annotation-driven executor="myexecutor"/>
@@ -83,7 +83,7 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
-			<bean class="com.qiyou.dhlive.prd.components.interceptors.WwwSecurityInterceptor">
+			<bean class="com.qiyou.dhlive.api.prd.mvc.WwwSecurityInterceptor">
 			</bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
