@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
+import com.qiyou.dhlive.api.base.outward.service.IBaseCacheService;
 import com.qiyou.dhlive.api.base.outward.service.IFileUploadRemoteService;
 import com.qiyou.dhlive.api.base.outward.service.ILiveRoomApiService;
 import com.qiyou.dhlive.api.base.outward.service.ISettingApiService;
@@ -75,6 +76,9 @@ public class RoomController {
 
     @Autowired
     private IFileUploadRemoteService fileUploadRemoteService;
+    
+    @Autowired
+    private IBaseCacheService baseCacheService;
 
     /**
      * 保存群聊消息
@@ -131,8 +135,8 @@ public class RoomController {
     @RequestMapping(value = "getChatMessageByUser")
     @ResponseBody
     public DataResponse getChatMessageByUser(RoomChatMessage params) {
-        DataResponse result = this.roomChatMessageService.getChatMessageByUser(params);
-        return result;
+        List<RoomChatMessage> data = this.baseCacheService.getChatMessageByUser(params.getRoomId());
+        return new DataResponse(1000, data);
     }
 
 

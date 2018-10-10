@@ -37,7 +37,7 @@ public class CheckIpVisitServiceImpl implements ICheckIpVisitService {
 
     private static Logger baseLog = LoggerFactory.getLogger("baseLog");
 
-    private static int limitCount = 150;
+    private static int limitCount = 20;
 
     @Autowired
     private IBaseSysParamService baseSysParamService;
@@ -65,10 +65,10 @@ public class CheckIpVisitServiceImpl implements ICheckIpVisitService {
                     baseLog.info(LogFormatUtil.getActionFormat("系统自动拉黑的用户ip:" + ip + ",url:" + url));
                     return false;
                 } else {
-                    redisManager.saveStringBySeconds(RedisKeyConstant.REIDSKEY_IP_COUNT + ip, count + 1 + "", 2);
+                    redisManager.saveStringBySeconds(RedisKeyConstant.REIDSKEY_IP_COUNT + ip, count + 1 + "", 1);
                 }
             } else {
-                redisManager.saveStringBySeconds(RedisKeyConstant.REIDSKEY_IP_COUNT + ip, "1", 2);
+                redisManager.saveStringBySeconds(RedisKeyConstant.REIDSKEY_IP_COUNT + ip, "1", 1);
             }
         }
         return true;

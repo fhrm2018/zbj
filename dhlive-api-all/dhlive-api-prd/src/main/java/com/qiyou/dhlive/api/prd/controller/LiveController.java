@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.qiyou.dhlive.api.prd.vo.AutoMsgVo;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
-import com.qiyou.dhlive.core.room.outward.service.IRoomAutoMsgService;
 import com.qiyou.dhlive.core.user.outward.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +25,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.Ordering;
 import com.google.gson.Gson;
 import com.qiyou.dhlive.api.base.outward.service.IActivityApiService;
+import com.qiyou.dhlive.api.base.outward.service.IBaseCacheService;
 import com.qiyou.dhlive.api.base.outward.service.ILiveRoomApiService;
 import com.qiyou.dhlive.api.base.outward.service.IUserInfoApiService;
 import com.qiyou.dhlive.api.base.outward.util.NoticeUtil;
@@ -100,14 +100,17 @@ public class LiveController {
     @Autowired
     private IActivityApiService activityApiService;
 
-    @Autowired
-    private IRoomAutoMsgService roomAutoMsgService;
+    //@Autowired
+    //private IRoomAutoMsgService roomAutoMsgService;
 
     @Autowired
     private IUserSmallInfoService userSmallInfoService;
 
     @Autowired
     private IActivityLuckyDrawWinnersService activityLuckyDrawWinnersService;
+    
+    @Autowired
+    private IBaseCacheService baseCacheService;
 
     @Autowired
     @Qualifier("commonRedisManager")
@@ -431,12 +434,8 @@ public class LiveController {
 
         //从缓存拿到在线的游客
         List<String> listYK = redisManager.getMapValueFromMapByStoreKey(RedisKeyConstant.YK_IDS);
-        UserManageInfo params = new UserManageInfo();
-        params.setStatus(0);
-        params.setRoomId(roomId);
-        params.setIsOnline(1);
-        DataResponse result = this.userInfoApiService.getManageUser(params);
-        List<UserManageInfo> listZL = (List<UserManageInfo>) result.getData();
+        //DataResponse result = this.baseCacheService.getManageUserList(roomId);
+        List<UserManageInfo> listZL = this.baseCacheService.getManageUserList(roomId);
 
         //从缓存拿到在线的会员
         List<String> listVIP = redisManager.getMapValueFromMapByStoreKey(RedisKeyConstant.VIP_IDS);
@@ -873,19 +872,19 @@ public class LiveController {
     @ResponseBody
     public DataResponse autoMsg(Integer userId) {
         SearchCondition<RoomAutoMsg> condition = new SearchCondition<RoomAutoMsg>(new RoomAutoMsg());
-        List<RoomAutoMsg> msgs = this.roomAutoMsgService.findByCondition(condition);
+        //List<RoomAutoMsg> msgs = this.roomAutoMsgService.findByCondition(condition);
         //随机数, 随机取一条发言
-        int x = (int) (Math.random() * msgs.size());
+        //int x = (int) (Math.random() * msgs.size());
 
         //随机数, 随意取当前助理的一个小号
-        List<UserSmallInfo> smalls = this.userSmallInfoService.findByField("userId", userId);
-        int y = (int) (Math.random() * smalls.size());
+       //List<UserSmallInfo> smalls = this.userSmallInfoService.findByField("userId", userId);
+        //int y = (int) (Math.random() * smalls.size());
 
         //封装返回对象
         AutoMsgVo result = new AutoMsgVo();
-        result.setContent(msgs.get(x).getMsgContent());
-        result.setName(smalls.get(y).getSmallName());
-        result.setLevel(smalls.get(y).getSmallLevel());
+        //result.setContent(msgs.get(x).getMsgContent());
+        //result.setName(smalls.get(y).getSmallName());
+        //result.setLevel(smalls.get(y).getSmallLevel());
 
         return new DataResponse(1000, result);
     }

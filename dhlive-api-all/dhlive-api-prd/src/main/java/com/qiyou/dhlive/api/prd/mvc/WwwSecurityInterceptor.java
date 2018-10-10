@@ -13,13 +13,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.qiyou.dhlive.api.base.outward.service.IBaseCacheService;
 import com.qiyou.dhlive.api.base.outward.service.ICheckIpVisitService;
+import com.qiyou.dhlive.api.base.outward.vo.UserInfoDTO;
 import com.qiyou.dhlive.api.prd.util.AddressUtils;
 import com.qiyou.dhlive.api.prd.util.Constants;
 import com.qiyou.dhlive.core.user.outward.model.UserInfo;
 import com.qiyou.dhlive.core.user.outward.service.IUserInfoService;
 import com.yaozhong.framework.base.common.utils.EmptyUtil;
 import com.yaozhong.framework.base.common.utils.LogFormatUtil;
+import com.yaozhong.framework.base.common.utils.MyBeanUtils;
 import com.yaozhong.framework.web.annotation.session.UnSession;
 
 
@@ -32,6 +35,9 @@ public class WwwSecurityInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
     private ICheckIpVisitService checkIpVisitService;
+    
+    @Autowired
+    private IBaseCacheService baseCacheService;
 
     private String getCookiesValue(HttpServletRequest request, String cookieName) {
         String rs = "";
@@ -64,7 +70,7 @@ public class WwwSecurityInterceptor extends HandlerInterceptorAdapter {
         String ip = AddressUtils.getIpAddrFromRequest(request);
         String url = request.getRequestURL().toString();
         if(!isAjaxRequest(request)){
-	        baseLog.info(LogFormatUtil.getActionFormat("拦截器获取:" + ip + ",url:" + url));
+	        baseLog.info(LogFormatUtil.getActionFormat("拦截器获取页面:" + ip + ",url:" + url));
 	        String utmSource = request.getParameter("utm_source");
 	        if (unSession == null) {
 	            if (this.checkIpVisitService.checkCanVisit(ip, url)) {
@@ -77,7 +83,8 @@ public class WwwSecurityInterceptor extends HandlerInterceptorAdapter {
 	                    if (EmptyUtil.isNotEmpty(userId)) {
 	                        try {
 	                            Integer.parseInt(userId);
-	                            user = this.userInfoService.findById(Integer.parseInt(userId));
+	                            UserInfoDTO userDto = this.baseCacheService.getUserInfo(Integer.parseInt(userId));
+	                            user = MyBeanUtils.copyBean(userDto, UserInfo.class);
 	                        } catch (Exception e) {
 	                        }
 	                    }
@@ -125,6 +132,7 @@ public class WwwSecurityInterceptor extends HandlerInterceptorAdapter {
 	            return true;
 	        }
         }else {
+        	baseLog.info(LogFormatUtil.getActionFormat("拦截器获取ajax:" + ip + ",url:" + url));
         	if (unSession == null) {
         		if (EmptyUtil.isEmpty(userLogin)) {
         			return false;
