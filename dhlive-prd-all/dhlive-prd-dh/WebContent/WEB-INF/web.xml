@@ -52,7 +52,7 @@
     <!-- user session thread local -->
     <filter>
         <filter-name>SessionFilter</filter-name>
-        <filter-class>com.qiyou.dhlive.prd.components.filter.SessionFilter</filter-class>
+        <filter-class>com.qiyou.dhlive.api.prd.mvc.SessionFilter</filter-class>
         <init-param>
             <description>session的类型:前台会员(userSession)还是后台用户(employeeSession)</description>
             <param-name>sessionType</param-name>

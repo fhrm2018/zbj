@@ -63,3 +63,43 @@
 2018-09-18 14:38:05,476 (WwwSecurityInterceptor.java:66) INFO [qtp1206051975-18] *****[拦截器获取:0:0:0:0:0:0:0:1,url:http://localhost:8006/live/initRedisUser]*****
 2018-09-18 14:38:05,476 (WwwSecurityInterceptor.java:66) INFO [qtp1206051975-15] *****[拦截器获取:0:0:0:0:0:0:0:1,url:http://localhost:8006/live/checkCanWatch]*****
 2018-09-18 14:38:05,476 (WwwSecurityInterceptor.java:66) INFO [qtp1206051975-20] *****[拦截器获取:0:0:0:0:0:0:0:1,url:http://localhost:8006/live/getOnlineUserList]*****
+2018-10-10 15:12:45,005 (CronController.java:63) INFO [pool-1-thread-1] *****[定时任务清理下线VIP开始]*****
+2018-10-10 15:12:45,066 (CronController.java:72) INFO [pool-1-thread-1] *****[定时任务清理下线VIP结束]*****
+2018-10-10 15:12:45,066 (CronController.java:31) INFO [pool-1-thread-1] *****[定时任务清理下线游客开始]*****
+2018-10-10 15:12:45,067 (CronController.java:40) INFO [pool-1-thread-1] *****[定时任务清理下线游客结束]*****
+2018-10-10 15:12:59,119 (WwwSecurityInterceptor.java:67) INFO [qtp272678513-19] *****[拦截器获取:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-10-10 15:13:00,001 (CronController.java:31) INFO [pool-1-thread-1] *****[定时任务清理下线游客开始]*****
+2018-10-10 15:13:00,002 (CronController.java:40) INFO [pool-1-thread-1] *****[定时任务清理下线游客结束]*****
+2018-10-10 15:13:00,002 (CronController.java:63) INFO [pool-1-thread-1] *****[定时任务清理下线VIP开始]*****
+2018-10-10 15:13:00,005 (CronController.java:72) INFO [pool-1-thread-1] *****[定时任务清理下线VIP结束]*****
+2018-10-10 15:13:00,240 (LiveController.java:193) INFO [qtp272678513-19] *****[从缓存取到游客关系结果:{"userId":1,"groupId":3,"userPass":"e10adc3949ba59abbe56e057f20f883e","userPhoto":"201805101320075af3d687e4b0686aa390ce34.png","userQrcode":"201805101320075af3d687e4b0686aa390ce33.png","userNickName":"助理盼盼","userRealName":"助理盼盼","userSex":0,"userQq":"3003319710","userTel":"111111","lastLoginTime":"Sep 27, 2018 3:07:01 PM","lastLoginIp":"127.0.0.1","status":0,"createTime":"Jul 6, 2018 10:35:58 AM","groupName":"助理","roomId":4,"roomName":"东金在线俱乐部","userSpecialty":"","userIntroduction":"煞笔盼盼","praise":0}]*****
+2018-10-10 15:13:03,117 (WwwSecurityInterceptor.java:67) INFO [qtp272678513-22] *****[拦截器获取:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-10-10 15:13:03,228 (LiveController.java:193) INFO [qtp272678513-22] *****[从缓存取到游客关系结果:{"userId":1,"groupId":3,"userPass":"e10adc3949ba59abbe56e057f20f883e","userPhoto":"201805101320075af3d687e4b0686aa390ce34.png","userQrcode":"201805101320075af3d687e4b0686aa390ce33.png","userNickName":"助理盼盼","userRealName":"助理盼盼","userSex":0,"userQq":"3003319710","userTel":"111111","lastLoginTime":"Sep 27, 2018 3:07:01 PM","lastLoginIp":"127.0.0.1","status":0,"createTime":"Jul 6, 2018 10:35:58 AM","groupName":"助理","roomId":4,"roomName":"东金在线俱乐部","userSpecialty":"","userIntroduction":"煞笔盼盼","praise":0}]*****
+2018-10-10 15:13:15,006 (CronController.java:63) INFO [pool-1-thread-1] *****[定时任务清理下线VIP开始]*****
+2018-10-10 15:13:15,012 (CronController.java:72) INFO [pool-1-thread-1] *****[定时任务清理下线VIP结束]*****
+2018-10-10 15:13:15,014 (CronController.java:31) INFO [pool-1-thread-1] *****[定时任务清理下线游客开始]*****
+2018-10-10 15:13:15,018 (CronController.java:40) INFO [pool-1-thread-1] *****[定时任务清理下线游客结束]*****
+2018-10-10 15:13:15,097 (WwwSecurityInterceptor.java:67) INFO [qtp272678513-22] *****[拦截器获取:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-10-10 15:13:15,214 (LiveController.java:193) INFO [qtp272678513-22] *****[从缓存取到游客关系结果:{"userId":1,"groupId":3,"userPass":"e10adc3949ba59abbe56e057f20f883e","userPhoto":"201805101320075af3d687e4b0686aa390ce34.png","userQrcode":"201805101320075af3d687e4b0686aa390ce33.png","userNickName":"助理盼盼","userRealName":"助理盼盼","userSex":0,"userQq":"3003319710","userTel":"111111","lastLoginTime":"Sep 27, 2018 3:07:01 PM","lastLoginIp":"127.0.0.1","status":0,"createTime":"Jul 6, 2018 10:35:58 AM","groupName":"助理","roomId":4,"roomName":"东金在线俱乐部","userSpecialty":"","userIntroduction":"煞笔盼盼","praise":0}]*****
+2018-10-10 15:13:15,722 (RoomChatMessageServiceImpl.java:121) INFO [qtp272678513-36] *****[用户获取聊天记录返回结果数量:77]*****
+2018-10-10 15:13:18,051 (WwwSecurityInterceptor.java:67) INFO [qtp272678513-22] *****[拦截器获取:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-10-10 15:13:18,173 (LiveController.java:193) INFO [qtp272678513-22] *****[从缓存取到游客关系结果:{"userId":1,"groupId":3,"userPass":"e10adc3949ba59abbe56e057f20f883e","userPhoto":"201805101320075af3d687e4b0686aa390ce34.png","userQrcode":"201805101320075af3d687e4b0686aa390ce33.png","userNickName":"助理盼盼","userRealName":"助理盼盼","userSex":0,"userQq":"3003319710","userTel":"111111","lastLoginTime":"Sep 27, 2018 3:07:01 PM","lastLoginIp":"127.0.0.1","status":0,"createTime":"Jul 6, 2018 10:35:58 AM","groupName":"助理","roomId":4,"roomName":"东金在线俱乐部","userSpecialty":"","userIntroduction":"煞笔盼盼","praise":0}]*****
+2018-10-10 15:13:18,531 (RoomChatMessageServiceImpl.java:121) INFO [qtp272678513-36] *****[用户获取聊天记录返回结果数量:77]*****
+2018-10-10 15:13:19,036 (WwwSecurityInterceptor.java:67) INFO [qtp272678513-37] *****[拦截器获取:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-10-10 15:13:19,135 (LiveController.java:193) INFO [qtp272678513-37] *****[从缓存取到游客关系结果:{"userId":1,"groupId":3,"userPass":"e10adc3949ba59abbe56e057f20f883e","userPhoto":"201805101320075af3d687e4b0686aa390ce34.png","userQrcode":"201805101320075af3d687e4b0686aa390ce33.png","userNickName":"助理盼盼","userRealName":"助理盼盼","userSex":0,"userQq":"3003319710","userTel":"111111","lastLoginTime":"Sep 27, 2018 3:07:01 PM","lastLoginIp":"127.0.0.1","status":0,"createTime":"Jul 6, 2018 10:35:58 AM","groupName":"助理","roomId":4,"roomName":"东金在线俱乐部","userSpecialty":"","userIntroduction":"煞笔盼盼","praise":0}]*****
+2018-10-10 15:13:19,386 (RoomChatMessageServiceImpl.java:121) INFO [qtp272678513-36] *****[用户获取聊天记录返回结果数量:77]*****
+2018-10-10 15:13:19,731 (WwwSecurityInterceptor.java:67) INFO [qtp272678513-19] *****[拦截器获取:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-10-10 15:13:19,842 (LiveController.java:193) INFO [qtp272678513-19] *****[从缓存取到游客关系结果:{"userId":1,"groupId":3,"userPass":"e10adc3949ba59abbe56e057f20f883e","userPhoto":"201805101320075af3d687e4b0686aa390ce34.png","userQrcode":"201805101320075af3d687e4b0686aa390ce33.png","userNickName":"助理盼盼","userRealName":"助理盼盼","userSex":0,"userQq":"3003319710","userTel":"111111","lastLoginTime":"Sep 27, 2018 3:07:01 PM","lastLoginIp":"127.0.0.1","status":0,"createTime":"Jul 6, 2018 10:35:58 AM","groupName":"助理","roomId":4,"roomName":"东金在线俱乐部","userSpecialty":"","userIntroduction":"煞笔盼盼","praise":0}]*****
+2018-10-10 15:13:20,199 (RoomChatMessageServiceImpl.java:121) INFO [qtp272678513-36] *****[用户获取聊天记录返回结果数量:77]*****
+2018-10-10 15:13:20,334 (WwwSecurityInterceptor.java:67) INFO [qtp272678513-16] *****[拦截器获取:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-10-10 15:13:20,431 (LiveController.java:193) INFO [qtp272678513-16] *****[从缓存取到游客关系结果:{"userId":1,"groupId":3,"userPass":"e10adc3949ba59abbe56e057f20f883e","userPhoto":"201805101320075af3d687e4b0686aa390ce34.png","userQrcode":"201805101320075af3d687e4b0686aa390ce33.png","userNickName":"助理盼盼","userRealName":"助理盼盼","userSex":0,"userQq":"3003319710","userTel":"111111","lastLoginTime":"Sep 27, 2018 3:07:01 PM","lastLoginIp":"127.0.0.1","status":0,"createTime":"Jul 6, 2018 10:35:58 AM","groupName":"助理","roomId":4,"roomName":"东金在线俱乐部","userSpecialty":"","userIntroduction":"煞笔盼盼","praise":0}]*****
+2018-10-10 15:13:20,697 (RoomChatMessageServiceImpl.java:121) INFO [qtp272678513-22] *****[用户获取聊天记录返回结果数量:77]*****
+2018-10-10 15:13:27,886 (UserController.java:391) INFO [qtp272678513-16] *****[key:dhlive-cachedata-tourists-1597,value:{"userId":1597,"groupId":1,"groupName":"游客","userNickName":"游客MYR48U4V","lastLoginTime":"Oct 10, 2018 3:12:49 PM","lastLoginIp":"127.0.0.1","isFirstLogin":1,"isBlack":0,"isGag":0,"isOnline":1,"status":0,"lookTime":0,"createTime":"May 31, 2018 2:21:14 AM"}]*****
+2018-10-10 15:13:30,005 (CronController.java:31) INFO [pool-1-thread-1] *****[定时任务清理下线游客开始]*****
+2018-10-10 15:13:30,006 (CronController.java:40) INFO [pool-1-thread-1] *****[定时任务清理下线游客结束]*****
+2018-10-10 15:13:30,007 (CronController.java:63) INFO [pool-1-thread-1] *****[定时任务清理下线VIP开始]*****
+2018-10-10 15:13:30,008 (CronController.java:72) INFO [pool-1-thread-1] *****[定时任务清理下线VIP结束]*****
+2018-10-10 15:13:45,001 (CronController.java:31) INFO [pool-1-thread-1] *****[定时任务清理下线游客开始]*****
+2018-10-10 15:13:45,004 (CronController.java:40) INFO [pool-1-thread-1] *****[定时任务清理下线游客结束]*****
+2018-10-10 15:13:45,005 (CronController.java:63) INFO [pool-1-thread-1] *****[定时任务清理下线VIP开始]*****
+2018-10-10 15:13:45,007 (CronController.java:72) INFO [pool-1-thread-1] *****[定时任务清理下线VIP结束]*****
