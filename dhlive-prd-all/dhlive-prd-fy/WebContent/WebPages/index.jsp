@@ -153,7 +153,7 @@
             <%--<a class="shareBtn colorF fz16" href="javascript:">--%>
             <%--<i><img src="../static/images/shareIcon.png" alt=""></i>--%>
             <%--<span>分享</span>--%>
-            <%--</a>--%>
+            <%--</a>--%> 
             <a class="downUrl colorF fz16" href="javascript:" onclick="downUrl()">
                 <span>保存到桌面</span>
             </a>
