@@ -19,9 +19,9 @@
     })(window, document, 'script', 'dataLayer', 'GTM-M9GCDTQ');</script>
     <!-- End Google Tag Manager -->
 
-    <title>牛津商学院-期货入门知识_农产品期货开户_期货课堂</title>
-    <meta name="keywords" content="牛津商学院,牛津商学院直播间,牛津商学院研究所,期货入门,期货知识,农产品期货开户"/>
-    <meta name="description" content="牛津商学院提供专家内盘期货入门指导，专业分析师在线进行指导教学,牛津商学院研究所提供炒期货投资入门、农产品期货行情,金融期货投资、期货经济数据、期货模拟交易等,牛津商学院是您身边值得信赖的期货直播平台!"/>
+    <title>牛金商学院-期货入门知识_农产品期货开户_期货课堂</title>
+    <meta name="keywords" content="牛金商学院,牛金商学院直播间,牛金商学院研究所,期货入门,期货知识,农产品期货开户"/>
+    <meta name="description" content="牛金商学院提供专家内盘期货入门指导，专业分析师在线进行指导教学,牛金商学院研究所提供炒期货投资入门、农产品期货行情,金融期货投资、期货经济数据、期货模拟交易等,牛金商学院是您身边值得信赖的期货直播平台!"/>
     <link rel="shortcut icon" href="/static/images/favicon.png" type="image/x-icon"/>
     <jsp:include page="common/public.jsp"/>
     <script type="text/javascript">
@@ -137,15 +137,15 @@
             <a class="a1" onclick="qqCustomer(${relation.userQq})">
                 <img src="../static/images/a3.png" alt="">
             </a>
-            <a class="a1" target="_blank" href="http://www.xiaobaicj.com/">
+            <a class="a1" target="_blank" href="javascript:">
                 <img src="../static/images/a4.png" alt="">
             </a>
             <a class="a1" onclick="qqCustomer(${relation.userQq})">
                 <img src="../static/images/a5.png" alt="">
             </a>
-            <a class="a1 activityBtn" onclick="qqCustomer(${relation.userQq})">
-                <img src="../static/images/a6.png" alt="">
-            </a>
+            <%--<a class="a1 activityBtn" onclick="qqCustomer(${relation.userQq})">--%>
+                <%--<img src="../static/images/a6.png" alt="">--%>
+            <%--</a>--%>
 
         </div>
         <div class="topRight fr">
@@ -265,26 +265,26 @@
                 <div class="left_left">
                     <c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}">
                         <div class="leftBtn">
-                                <%--<a href="javascript:">--%>
-                                <%--<i><img src="../static/images/icon1.png" alt=""></i>--%>
-                                <%--<span>盈利榜</span>--%>
-                                <%--</a>--%>
-                                <%--<a href="javascript:">--%>
-                                <%--<i><img src="../static/images/icon2.png" alt=""></i>--%>
-                                <%--<span>实时策略</span>--%>
-                                <%--</a>--%>
-                                <%--<a href="javascript:">--%>
-                                <%--<i><img src="../static/images/icon3.png" alt=""></i>--%>
-                                <%--<span>早晚评</span>--%>
-                                <%--</a>--%>
+                            <a href="javascript:" onclick="qqCustomer(${relation.userQq})">
+                                <i><img src="../static/images/icon1.png" alt=""></i>
+                                <span>盈利榜</span>
+                            </a>
+                            <a href="javascript:" onclick="qqCustomer(${relation.userQq})">
+                                <i><img src="../static/images/icon2.png" alt=""></i>
+                                <span>实时策略</span>
+                            </a>
+                            <a href="javascript:" onclick="qqCustomer(${relation.userQq})">
+                                <i><img src="../static/images/icon3.png" alt=""></i>
+                                <span>早晚评</span>
+                            </a>
                             <a href="javascript:" onclick="classShow()">
                                 <i><img src="../static/images/icon4.png" alt=""></i>
                                 <span>课程表</span>
                             </a>
-                                <%--<a href="javascript:">--%>
-                                <%--<i><img src="../static/images/icon5.png" alt=""></i>--%>
-                                <%--<span>财经资讯</span>--%>
-                                <%--</a>--%>
+                            <a href="javascript:">
+                                <i><img src="../static/images/icon5.png" alt=""></i>
+                                <span>财经资讯</span>
+                            </a>
                             <a class="service" href="javascript:">
                                 <i><img src="../static/images/icon6.png" alt=""></i>
                                 <span>专属客服</span>
@@ -324,29 +324,45 @@
                             </div>
                         </div>
                         <div class="toLogin posRel">
-                            <div class="freeTipBox hide">
-                                <div class="loginOrReg">
-                                    <a href="javascript:" class="registerBtn" onclick="qqCustomer(${relation.userQq})">
-                                        <img src="../static/images/time_out_01.png" alt="">
-                                    </a>
-                                </div>
-                            </div>
+                            <a href="javascript:" class="registerBtn" onclick="qqCustomer(${relation.userQq})">
+                                <div class="freeTipBox hide"></div>
+                            </a>
                             <div class="videoBox" id="play-container" style="width:100%; height:100%"></div>
-                        </div>
-                        <div class="zpBtn hide">
-                            <img src="../static/images/rotaryTable.gif" onclick="zpShow()">
                         </div>
                     </div>
                     <div class="movieBot mt10">
-                        <div id="relativediv">
+                        <div id="relativediv" class="clearfix">
                             <div class="bannerImg">
-                                <a id="img4" href="javascript:" onclick="qqCustomer(${relation.userQq})">
-                                    <img src="../static/images/b1.jpg" alt="">
-                                </a>
-                                <a id="img5" href="javascript:" onclick="qqCustomer(${relation.userQq})">
-                                    <img src="../static/images/b2.jpg" alt="">
-                                </a>
+                                <div class="activityBtn clearfix">
+                                    <a class="btn1 cur" href="javascript:">精彩活动</a>
+                                    <a class="btn1" href="javascript:">老师介绍</a>
+                                </div>
+                                <div class="activityImg">
+                                    <div class="img1">
+                                        <img src="../static/images/b1.jpg" alt="">
+                                    </div>
+                                    <%--<div class="img1">--%>
+                                        <%--<div class="lsBtn">--%>
+                                            <%--<a href="javascript:">哈哈老师</a>--%>
+                                            <%--<a href="javascript:">哼哼老师</a>--%>
+                                        <%--</div>--%>
+                                        <%--<div class="lsCon">--%>
+                                            <%--<div class="lsImg">--%>
+                                                <%--<img src="" alt="">--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
+                                </div>
                             </div>
+                            
+                            <div class="jinShi">
+                                <h3>实时新闻动态</h3>
+                                <div class="jinShiNews">
+                                    <iframe frameborder="0" width="100%" height="2100" scrolling="no" src="https://www.jin10.com/example/jin10.com.html?messageNum=50&fontSize=14px&theme=black"></iframe>
+                                </div>
+                            </div>
+                            
+                            
                         </div>
                         <div class="otherMenu hide">
                             <ul>
@@ -450,6 +466,7 @@
                                         <a class="file" href="javascript:">
                                             <input type="file" id="msgImage" name="chatImage" value="发送图片" accept="image/*"/>
                                         </a>
+                                        <a class="clearScreen"><i style="display: none"></i></a>
                                     </form>
                                 </div>
                             </div>
@@ -534,7 +551,7 @@
                                 <span>${relation.userNickName}</span>
                             </div>
                             <div class="txt">
-                                <p>您好，欢迎您来到《牛津商学院》直播间！</p><br/>
+                                <p>您好，欢迎您来到《牛金商学院》直播间！</p><br/>
                                 <p>【0元开户】请回复：1</p>
                                 <p>【领取课件】请回复：2</p>
                                 <p>【操作策略】请回复：3</p>
@@ -719,25 +736,22 @@
 </div>
 <div class="worning hide"></div>
 
-<div class="popMask">
-    <div class="popImg">
-        <a href="javascript:" id="g15" onclick="qqCustomer(${relation.userQq})">
-            <img src="../static/images/img.jpg" alt="">
-        </a>
-        <a class="closeImg" style="" href="javascript:"></a>
-    </div>
-</div>
+<%--<div class="popMask">--%>
+    <%--<div class="popImg">--%>
+        <%--<a href="javascript:" id="g15" onclick="qqCustomer(${relation.userQq})">--%>
+            <%--<img src="../static/images/img.jpg" alt="">--%>
+        <%--</a>--%>
+        <%--<a class="closeImg" style="" href="javascript:"></a>--%>
+    <%--</div>--%>
+<%--</div>--%>
 
 <%--听课时长--%>
 <div class="tkTimePopMask hide">
     <div class="tkTime">
-        <h3>恭喜您! 收看超过3分钟免费获得VIP</h3>
+        <%--<h3>恭喜您! 收看超过3分钟免费获得VIP</h3>--%>
         <div class="tkBg">
             <div class="tkBtn">
                 <a class="lxQQ" id="g6" href="javascript:" onclick="qqCustomer(${relation.userQq})"></a>
-                <a class="tkLogin" id="g7" href="javascript:" onclick="toShow('login', 'register');">
-                    <img src="../static/images/time_out_02.png" alt="">
-                </a>
             </div>
             <a class="tkClose" href="javascript:"></a>
         </div>

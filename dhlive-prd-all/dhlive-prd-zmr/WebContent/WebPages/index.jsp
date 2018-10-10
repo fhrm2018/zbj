@@ -82,11 +82,12 @@
             <%--<a class="a1 collectionBtn" id="Collection01" onclick="collection(document.title,window.location)">--%>
                 <%--<img src="../static/images/a7.png" alt="">--%>
             <%--</a>--%>
+
+            <a class="a1" onclick="classShow()">
+                <img src="../static/images/a9.png" alt="">
+            </a>
             <a class="a1" target="_blank" href="http://www.zhongyangkg.com/zm.html">
                 <img src="../static/images/a10.png" alt="">
-            </a>
-            <a class="a1 downUrlBtn" onclick="downUrl()">
-                <img src="../static/images/a3.png" alt="">
             </a>
             <a class="a1" onclick="qqCustomer(${relation.userQq})">
                 <img src="../static/images/a1.png" alt="">
@@ -95,12 +96,15 @@
                 <img src="../static/images/a4.png" alt="">
             </a>
             <a class="a1" onclick="qqCustomer(${relation.userQq})">
+                <img src="../static/images/a5.png" alt="">
+            </a>
+            <a class="a1" onclick="qqCustomer(${relation.userQq})">
                 <img src="../static/images/a6.png" alt="">
             </a>
-            <a class="a1" onclick="classShow()">
-                <img src="../static/images/a9.png" alt="">
-            </a>
 
+            <a class="a1 downUrlBtn" onclick="downUrl()">
+                <img src="../static/images/a3.png" alt="">
+            </a>
 
             <c:if test="${loginedUserLogin.groupId == 1}">
                 <a class="a1 service">
@@ -108,9 +112,9 @@
                 </a>
             </c:if>
 
-            <a class="a1" onclick="teacherJs()">
-                <img src="../static/images/a2.png" alt="">
-            </a>
+            <%--<a class="a1" onclick="teacherJs()">--%>
+                <%--<img src="../static/images/a2.png" alt="">--%>
+            <%--</a>--%>
 
 
         </div>
@@ -191,8 +195,8 @@
 
             <c:if test="${loginedUserLogin.groupId == 1}">
                 <%--<span class="username colorF" id="username"></span>--%>
-                <a class="loginA colorF fz16 bg12" id="g10" onclick="toShow('login', 'register');">登录</a>
-                <a class="registerA colorF fz16" id="g11" onclick="toShow('register','login');">注册</a>
+                <a href="javascript:" class="loginA colorF fz16 bg12" id="g10" onclick="toShow('login', 'register');">登录</a>
+                <a herf="javascript:" class="registerA colorF fz16" id="g11" onclick="toShow('register','login');">注册</a>
             </c:if>
 
             <c:if test="${loginedUserLogin.groupId != 1}">

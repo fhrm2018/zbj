@@ -630,6 +630,7 @@
             <a href="javascript:">东华老师</a>
             <a href="javascript:">泰山老师</a>
             <a href="javascript:">慧谨老师</a>
+            <a href="javascript:">子夜老师</a>
         </div>
         <div class="tCon">
             <div class="imgList">
@@ -639,11 +640,15 @@
                 <img src="../static/images/t2.png" alt="">
             </div>
             <div class="imgList hide">
+                <img src="../static/images/t3.png" alt="">
+            </div>
+            <div class="imgList hide">
                 <img src="../static/images/t4.png" alt="">
             </div>
             <div class="imgList hide">
-                <img src="../static/images/t3.png" alt="">
+                <img src="../static/images/t5.png" alt="">
             </div>
+
         </div>
         <a class="teacherJsClose" href="javascript:"></a>
     </div>

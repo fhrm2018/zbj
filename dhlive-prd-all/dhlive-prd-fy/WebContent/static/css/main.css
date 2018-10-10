@@ -1078,26 +1078,79 @@ input::-moz-focus-inner {
     }
 }
 
+#relativediv{
+    width:100%;
+}
 .bannerImg {
-    width: 100%;
+    width: 50%;
     font-size: 0;
-    background:url("../images/visrtorsBg.png") left top repeat;
+    float:left;
+    /*background:url("../images/visrtorsBg.png") left top repeat;*/
 }
-
-.bannerImg a {
-    display: inline-block;
-    width: 49.5%;
-    height: 140px;
-}
-
-.bannerImg a:first-child {
-    margin-right: 1%;
-}
-
-.bannerImg a img {
+.activityBtn{
     width: 100%;
-    /*height:100%;*/
 }
+
+.activityBtn a{
+    display: block;
+    width: 50%;
+    float: left;
+    text-align: center;
+    font-size: 18px;
+    color: #c5b989;
+    border-right: 1px solid #000000;
+    box-sizing: border-box;
+}
+.activityBtn a:last-child{
+    border:none;
+}
+.activityBtn a.cur{
+    background: rgba(0,0,0,0.2);
+}
+
+.activityImg img{
+    width:100%;
+}
+
+.jinShi{
+    width:49%;
+    float:right;
+}
+.jinShi h3{
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    color: #c5b989;
+    background: rgba(0,0,0,0.2);
+}
+.jinShi .jinShiNews{
+    height:154px;
+    overflow: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .serviceList .more i {
     display: block;
@@ -1149,6 +1202,9 @@ input::-moz-focus-inner {
 
 .contentRight .messageBox .emoticonIcon .roseF1 {
     background: url('../images/face2.png') no-repeat;
+}
+.contentRight .messageBox .emoticonIcon .clearScreen{
+    background: url('../images/face5.png') no-repeat;
 }
 
 .contentRight .messageBox .emoticonIcon a i {
@@ -1212,6 +1268,7 @@ input::-moz-focus-inner {
     border-bottom-left-radius: 5px;
     box-sizing: border-box;
     background-color:#654d32;
+    color: #ffffff;
 }
 
 .contentRight .sendMsg .allbutton {
@@ -2481,10 +2538,9 @@ input::-moz-focus-inner {
 }
 
 .tkTime {
-    width: 620px;
-    height: 400px;
+    width: 760px;
+    height: 475px;
     margin: 10% auto 0;
-    background-color: #ffffff;
     position: relative;
 }
 
@@ -2499,7 +2555,7 @@ input::-moz-focus-inner {
 }
 
 .tkBg {
-    height: 310px;
+    height: 475px;
     background: url("../images/tk_03.png") 50% 50% no-repeat;
 }
 
@@ -2509,9 +2565,9 @@ input::-moz-focus-inner {
 
 .tkBtn .lxQQ {
     display: block;
-    width: 250px;
-    height: 62px;
-    margin: 0 auto;
+    width: 300px;
+    height: 68px;
+    margin: 152px auto 0;
     background: url("../images/tk.png");
 }
 
@@ -2529,10 +2585,10 @@ input::-moz-focus-inner {
     display: block;
     width: 30px;
     height: 30px;
-    background: url("../images/tkClose.png") 50% 50% no-repeat;
+    background: url(../images/tkClose.png) 50% 50% no-repeat;
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 78px;
+    top: 53px;
 }
 
 /*******课程安排*******/
@@ -5689,9 +5745,9 @@ button.swiper-pagination-bullet {
     left: 50%;
     top: 50%;
     width: 30%;
-    max-width: 484px;
-    min-width: 360px;
-    margin: -280px 0 0 -242px;
+    max-width: 480px;
+    min-width: 320px;
+    margin: -330px 0 0 -242px;
 }
 
 .techer_class .class_inside img:last-child {
@@ -5700,11 +5756,12 @@ button.swiper-pagination-bullet {
 
 .techer_class .pop-close {
     display: block;
-    width: 44px;
-    height: 44px;
+    width: 46px;
+    height: 46px;
     position: absolute;
-    top: -12px;
-    right: -10px;
+    top: 0;
+    right: 0;
+    cursor:pointer;
 }
 
 /*客服切换*/

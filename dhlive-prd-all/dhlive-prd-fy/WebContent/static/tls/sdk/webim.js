@@ -1729,7 +1729,6 @@ var webim = { // namespace object webim
         downloadMap: {}
     };
 
-    /*
     //表情标识字符和索引映射关系对象，用户可以自定义
     var emotionDataIndexs = {
         "[惊讶]": 0,
@@ -1807,94 +1806,6 @@ var webim = { // namespace object webim
         "33": ["[嘘]", "data:image/gif;base64,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"],
         "34": ["[晕]", "data:image/gif;base64,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"]
     };
-    */
-
-
-    //表情标识字符和索引映射关系对象，用户可以自定义
-    var emotionDataIndexs = {
-        "[呵呵]": 0,
-        "[妈爱你]": 1,
-        "[亲亲]": 2,
-        "[太开心]": 3,
-        "[给力]": 4,
-        "[威武]": 5,
-        "[兔子]": 6,
-        "[囧]": 7,
-        "[ok]": 8,
-        "[goo]": 9,
-        "[话筒]": 10,
-        "[转发]": 11,
-
-        "[鼓掌]": 12,
-        "[抠鼻子]": 13,
-        "[头疼]": 14,
-        "[饿了]": 15,
-        "[好的]": 16,
-        "[奋斗]": 17,
-        "[亲]": 18,
-        "[强]": 19,
-        "[大笑]": 20,
-        "[调皮]": 21,
-        "[色]": 22,
-        "[抛媚眼]": 23,
-        "[休息]": 24,
-
-        "[好累]": 40,
-        "[赞]": 41,
-        "[hi]": 42,
-        "[鼓励]": 43,
-        "[开心]": 44,
-        "[笑死了]": 45,
-        "[努力]": 46,
-        "[别潜水]": 47,
-        "[么么哒]": 48,
-
-        "[花]": 49,
-        "[红包]": 50
-    };
-
-    var emotions = {
-        "0": ["[呵呵]", "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/ac/smilea_org.gif"],
-        "1": ["[妈爱你]", "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/6d/lovea_org.gif"],
-        "2": ["[亲亲]", "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/8f/qq_org.gif"],
-        "3": ["[太开心]", "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/58/mb_org.gif"],
-        "4": ["[给力]", "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/c9/geili_org.gif"],
-        "5": ["[威武]", "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/70/vw_org.gif"],
-        "6": ["[兔子]", "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/81/rabbit_org.gif"],
-        "7": ["[囧]", "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/15/j_org.gif"],
-        "8": ["[ok]", "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/d6/ok_org.gif"],
-        "9": ["[goo]", "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/d8/good_org.gif"],
-        "10": ["[话筒]", "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/1b/m_org.gif"],
-        "11": ["[转发]", "http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/02/lxhzhuanfa_org.gif"],
-
-        "12": ["[鼓掌]", "http://onlinelivefile.rssdio.com/images/icon/s_1.gif"],
-        "13": ["[抠鼻子]", "http://onlinelivefile.rssdio.com/images/icon/s_2.gif"],
-        "14": ["[头疼]", "http://onlinelivefile.rssdio.com/images/icon/s_3.gif"],
-        "15": ["[饿了]", "http://onlinelivefile.rssdio.com/images/icon/s_4.gif"],
-        "16": ["[好的]", "http://onlinelivefile.rssdio.com/images/icon/s_5.gif"],
-        "17": ["[奋斗]", "http://onlinelivefile.rssdio.com/images/icon/s_6.gif"],
-        "18": ["[亲]", "http://onlinelivefile.rssdio.com/images/icon/s_7.gif"],
-        "19": ["[强]", "http://onlinelivefile.rssdio.com/images/icon/s_8.gif"],
-        "20": ["[大笑]", "http://onlinelivefile.rssdio.com/images/icon/s_9.gif"],
-        "21": ["[调皮]", "http://onlinelivefile.rssdio.com/images/icon/s_10.gif"],
-        "22": ["[色]", "http://onlinelivefile.rssdio.com/images/icon/s_11.gif"],
-        "23": ["[抛媚眼]", "http://onlinelivefile.rssdio.com/images/icon/s_12.gif"],
-        "24": ["[休息]", "http://onlinelivefile.rssdio.com/images/icon/s_13.gif"],
-
-        "40": ["[好累]", "http://onlinelivefile.rssdio.com/images/icon/b_16.gif"],
-        "41": ["[赞]", "http://onlinelivefile.rssdio.com/images/icon/b_17.gif"],
-        "42": ["[hi]", "http://onlinelivefile.rssdio.com/images/icon/b_18.gif"],
-        "43": ["[鼓励]", "http://onlinelivefile.rssdio.com/images/icon/b_19.gif"],
-        "44": ["[开心]", "http://onlinelivefile.rssdio.com/images/icon/b_20.gif"],
-        "45": ["[笑死了]", "http://onlinelivefile.rssdio.com/images/icon/b_21.gif"],
-        "46": ["[努力]", "http://onlinelivefile.rssdio.com/images/icon/b_22.gif"],
-        "47": ["[别潜水]", "http://onlinelivefile.rssdio.com/images/icon/b_23.gif"],
-        "48": ["[么么哒]", "http://onlinelivefile.rssdio.com/images/icon/b_24.gif"],
-
-        "49":["[花]", "http://onlinelivefile.rssdio.com/images/icon/flower.png"],
-        "50":["[红包]", "http://onlinelivefile.rssdio.com/images/icon/red_pack.png"]
-    }
-
     //工具类
     var tool = new function() {
 

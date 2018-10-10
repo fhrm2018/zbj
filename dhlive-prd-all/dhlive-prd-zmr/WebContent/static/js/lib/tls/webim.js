@@ -1825,7 +1825,7 @@ var webim = { // namespace object webim
         "[挖鼻]": 9,
         "[鼓掌]": 10 ,
         // "[坏笑]": 11 ,
-        "[玫瑰]": 12,
+        // "[玫瑰]": 12,
         "[拥抱]": 13,
         "[强]": 14,
         "[佩服]": 15,
@@ -1866,10 +1866,11 @@ var webim = { // namespace object webim
         "[吓]": 48,
         "[笑哭]": 49,
         "[晕]": 50,
+        "[玫瑰]": 51,
 
 
-        "[花]": 51,
-        "[红包]": 52,
+        "[花]": 52,
+        "[红包]": 53,
     };
 
     var emotions = {
@@ -1886,7 +1887,7 @@ var webim = { // namespace object webim
         "9": ["[挖鼻]", 'http://image.xunbaoqu.com/images/icon/wabi.gif'],
         "10": ["[鼓掌]", 'http://image.xunbaoqu.com/images/icon/guzhang.gif'],
         // "11": ["[坏笑]", 'http://image.xunbaoqu.com/images/icon/huaixiao.gif'],
-        "12": ["[玫瑰]", 'http://image.xunbaoqu.com/images/icon/hua.gif'],
+        // "12": ["[玫瑰]", 'http://image.xunbaoqu.com/images/icon/hua.gif'],
         "13": ["[拥抱]", 'http://image.xunbaoqu.com/images/icon/yongbao.gif'],
         "14": ["[强]", 'http://image.xunbaoqu.com/images/icon/qiang.gif'],
         "15": ["[佩服]", 'http://image.xunbaoqu.com/images/icon/peifu.gif'],
@@ -1931,10 +1932,11 @@ var webim = { // namespace object webim
         "48": ["[吓]", 'http://image.xunbaoqu.com/images/icon/xia.gif'],
         "49": ["[笑哭]", 'http://image.xunbaoqu.com/images/icon/xiaoku.gif'],
         "50": ["[晕]", 'http://image.xunbaoqu.com/images/icon/yun.gif'],
+        "51": ["[玫瑰]", 'http://image.xunbaoqu.com/images/icon/hua.gif'],
 
 
-        "51":["[花]", "http://image.xunbaoqu.com/images/icon/flower.png"],
-        "52":["[红包]", "http://image.xunbaoqu.com/images/icon/red_pack.png"]
+        "52":["[花]", "http://image.xunbaoqu.com/images/icon/flower.png"],
+        "53":["[红包]", "http://image.xunbaoqu.com/images/icon/red_pack.png"]
 
     }
 

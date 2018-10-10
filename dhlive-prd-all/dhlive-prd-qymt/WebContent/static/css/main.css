@@ -3473,14 +3473,15 @@ button.fncBtn {
     float:left;
 }
 .teacherJs .tBtn a{
-    display:block;
-    width:32px;
-    height:102px;
-    padding:16px 8px;
-    box-sizing:border-box;
-    font-size:16px;
-    color:#442b08;
-    line-height:18px;
+    display: block;
+    width: 32px;
+    height: 80px;
+    padding: 8px 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-weight: 500;
+    color: #442b08;
+    line-height: 16px;
     background:url("../images/t_btn2.png") 50% 50% no-repeat;
 }
 .teacherJs .tBtn a.cur{
@@ -3542,7 +3543,7 @@ button.fncBtn {
 
 .timeBg .timeTxt {
     width: 548px;
-    heoght: 48px;
+    height: 48px;
     margin: 0 auto 50px;
 }
 

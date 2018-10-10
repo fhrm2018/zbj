@@ -475,7 +475,7 @@ $(function () {
         var serviceListHeight = $('.contentRight .serviceList').outerHeight(true);
         var messageBoxHeight = $('.contentRight .messageBox').outerHeight(true);
         var tishiHeight = $('.tishi').outerHeight(true);
-        var videoHeight = winHeight - 40 - 150 - 80 - 52;        // 40 footer; 150 banner margin; 80 header margin; 44 viewTime;
+        var videoHeight = winHeight - 40 - 180 - 80 - 52;        // 40 footer; 150 banner margin; 80 header margin; 44 viewTime;
         var contentRightMsg = winHeight - 80 - serviceListHeight - messageBoxHeight - 40 - 32 - tishiHeight;
         var newLeft = winHeight - 70 - 40;
 
@@ -531,14 +531,21 @@ function openRedPack() {
 }
 
 /****水滴tab切换****/
-var btns = $(".tabBtns .btn");
-var child = $(".tabCon .tab_title");
-btns.each(function (index) {
+$(".tabBtns .btn").each(function (index) {
     $(this).click(function () {
-        $(btns).removeClass("cur");
-        $(child).hide()
+        $(".tabBtns .btn").removeClass("cur");
+        $(".tabCon .tab_title").hide();
         $(this).addClass('cur');
-        $(child).eq(index).show()
+        $(".tabCon .tab_title").eq(index).show()
+    })
+});
+/****活动老师介绍切换****/
+$(".activityBtn  .btn1").each(function (index) {
+    $(this).click(function () {
+        $(".activityBtn  .btn1").removeClass("cur");
+        $(".activityImg .img1").hide();
+        $(this).addClass('cur');
+        $(".activityImg .img1").eq(index).show()
     })
 });
 
@@ -630,6 +637,11 @@ function getOnlineUserList() {
         }
     });
 }
+
+//清屏
+$('.clearScreen').click(function () {
+    $('.msg').html('');
+});
 
 
 //保存到桌面
