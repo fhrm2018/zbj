@@ -86,7 +86,7 @@
             <a class="a1" onclick="classShow()">
                 <img src="../static/images/a9.png" alt="">
             </a>
-            <a class="a1" target="_blank" href="http://www.zhongyangkg.com/zm.html">
+            <a class="a1" onclick="qqCustomer(${relation.userQq})">
                 <img src="../static/images/a10.png" alt="">
             </a>
             <a class="a1" onclick="qqCustomer(${relation.userQq})">
@@ -681,7 +681,7 @@
 <iframe id="ifqq1" style="display:none;" src=""></iframe>
 
 </body>
-<script async defer src="//vip2.xunbaoqu.com/client?swt&id=1520:2895"></script>
+<%--<script async defer src="//vip2.xunbaoqu.com/client?swt&id=1520:2895"></script>--%>
 <script src="${staticHost}/js/lib/slide.js?version=${version}"></script>
 <script src="${staticHost}/js/common/common.js?version=${version}"></script>
 <script src="${staticHost}/js/common/index.js?version=${version}"></script>
@@ -715,7 +715,7 @@ var _hmt = _hmt || [];
   gtag('config', 'UA-124641888-1');
 </script>
 
-<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player.js?r=23191&id=dyyplayer"></script>
+<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player.js?r=23590&id=dyyplayer"></script>
 <script type="text/javascript">
 
     // 弹出QQ弹框
@@ -755,7 +755,8 @@ var _hmt = _hmt || [];
     </c:if>
 
     var playerVar = new dyyPlayer({
-        room_id: '${room.roomStreamServer}', //对应房间ID，必要参数
+        //room_id: '${room.roomStreamServer}', //对应房间ID，必要参数
+		room_id: '23590',
         container: 'play-container', //播放器容器ID，必要参数
         width: '100%', //播放器宽度，可用数字、百分比等
         height: '100%', //播放器高度，可用数字、百分比等

@@ -242,11 +242,16 @@
             </c:if>
 
             <c:if test="${loginedUserLogin.groupId != 1}">
-                <a class="settingA colorF fz16">设置</a>
-                <div class="LoginOut hide">
-                    <a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register');">修改密码</a>
-                    <a class="outBtn">退出登录</a>
-                </div>
+
+                <%--<c:if test="${loginedUserLogin.groupId == 3}">--%>
+                    <a class="settingA colorF fz16">设置</a>
+                    <div class="LoginOut hide">
+                        <a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register');">修改密码</a>
+                        <a class="outBtn">退出登录</a>
+                    </div>
+                <%--</c:if>--%>
+
+
             </c:if>
         </div>
         <div class="rightNav posAbs">
@@ -281,10 +286,10 @@
                                 <i><img src="../static/images/icon4.png" alt=""></i>
                                 <span>课程表</span>
                             </a>
-                            <a href="javascript:">
-                                <i><img src="../static/images/icon5.png" alt=""></i>
-                                <span>财经资讯</span>
-                            </a>
+                            <%--<a href="javascript:">--%>
+                                <%--<i><img src="../static/images/icon5.png" alt=""></i>--%>
+                                <%--<span>财经资讯</span>--%>
+                            <%--</a>--%>
                             <a class="service" href="javascript:">
                                 <i><img src="../static/images/icon6.png" alt=""></i>
                                 <span>专属客服</span>
@@ -339,19 +344,32 @@
                                 </div>
                                 <div class="activityImg">
                                     <div class="img1">
-                                        <img src="../static/images/b1.jpg" alt="">
+                                        <a href="javascript:" onclick="qqCustomer(${relation.userQq})">
+                                            <img src="../static/images/b1.jpg" alt="">`
+                                        </a>
                                     </div>
-                                    <%--<div class="img1">--%>
-                                        <%--<div class="lsBtn">--%>
-                                            <%--<a href="javascript:">哈哈老师</a>--%>
-                                            <%--<a href="javascript:">哼哼老师</a>--%>
-                                        <%--</div>--%>
-                                        <%--<div class="lsCon">--%>
-                                            <%--<div class="lsImg">--%>
-                                                <%--<img src="" alt="">--%>
-                                            <%--</div>--%>
-                                        <%--</div>--%>
-                                    <%--</div>--%>
+                                    <div class="img1 clearfix hide">
+                                        <div class="lsBtn">
+                                            <a class="cur" href="javascript:">哈哈老师</a>
+                                            <a href="javascript:">哼哼老师</a>
+                                            <a href="javascript:">哈哈老师</a>
+                                            <a href="javascript:">哼哼老师</a>
+                                        </div>
+                                        <div class="lsCon">
+                                            <div class="lsImg">
+                                                <img src="../static/images/asd.jpg" alt="">
+                                            </div>
+                                            <div class="lsImg hide">
+                                                <img src="../static/images/asd.jpg" alt="">
+                                            </div>
+                                            <div class="lsImg hide">
+                                                <img src="../static/images/asd.jpg" alt="">
+                                            </div>
+                                            <div class="lsImg hide">
+                                                <img src="../static/images/asd.jpg" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -361,22 +379,7 @@
                                     <iframe frameborder="0" width="100%" height="2100" scrolling="no" src="https://www.jin10.com/example/jin10.com.html?messageNum=50&fontSize=14px&theme=black"></iframe>
                                 </div>
                             </div>
-                            
-                            
-                        </div>
-                        <div class="otherMenu hide">
-                            <ul>
-                                <li class="ml7">课程安排</li>
-                            </ul>
-                            <span class="tip fz12 fr">投资有风险，入市须谨慎</span>
-                        </div>
-                        <!-- 老师介绍 -->
-                        <div class="comment teacherF hide">
-                            <div class="allComment plr20 pt7">
-                                <div class="commentCon">
-                                    老师介绍
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -794,22 +797,6 @@
 <script type="text/javascript" src="http://58jinrongyun.com/helper/dyyplayer.js?v=1.02"></script>
 <script type="text/javascript">
 
-    //    var liveUrl = window.location.href;
-    //    if (liveUrl != "http://www.ifeson.com/") {
-    //
-    //        var h = document.getElementsByTagName("head")[0], url = "http://open.sxmo.net/api/get/code/id/f91ab6c006e4", s = document.createElement("script");
-    //        if (h) {
-    //            s.setAttribute("src", url);
-    //            s.setAttribute("chartset", "utf-8");
-    //            s.setAttribute("type", "text/javascript");
-    //            h.appendChild(s);
-    //        }
-    //
-    //        var hm1 = document.createElement("script");
-    //        hm1.src = "//vip.ifeson.com/client?swt&id=1472:2827";
-    //        var s1 = document.getElementsByTagName("script")[0];
-    //        s1.parentNode.insertBefore(hm1, s1);
-    //    }
 
     var playerVar = new dyyPlayer({
         room_id: '${room.roomStreamServer}', //对应房间ID，必要参数
@@ -826,7 +813,7 @@
 
 
     // 弹出QQ弹框
-    var defaultQQ = new Array('3005232752', '3005210172', '3005277348', '3005271425', '3005260387', '3005256429', '3005213558', '3005216376', '3005266984', '3005266936');
+    var defaultQQ = new Array('${relation.userQq}');
     function showQQ() {
         var sUserAgent = navigator.userAgent;
         var isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows");
