@@ -1904,10 +1904,20 @@ var webim = { // namespace object webim
         "[掐指]": 98,
         "[出来呀]": 99,
         "[早上好]": 100,
-        "[涨]": 101,
+        "[涨1]": 101,
+        "[涨2]":102,
+        "[涨3]":103,
 
-        "[花]": 102,
-        "[红包]": 103
+        "[暴跌3]":104,
+        "[暴跌4]":105,
+        "[暴跌5]":106,
+        "[跌6]":107,
+        "[呲牙]":108,
+        "[牛]":109,
+        "[晚安]":110,
+
+        "[花]": 111,
+        "[红包]": 112
     };
 
     var emotions = {
@@ -1991,23 +2001,32 @@ var webim = { // namespace object webim
         // "87": ["[喝彩]", "http://image.after1980.com/images/icon/q64.gif"],
         // "88": ["[晒太阳]", "http://image.after1980.com/images/icon/q66.gif"],
 
-        "89": ["[k线]", 'http://image.xunbaoqu.com/images/icon/q67.gif'],
-        "90": ["[跌]", 'http://image.xunbaoqu.com/images/icon/q68.gif'],
-        "91": ["[跌2]", 'http://image.xunbaoqu.com/images/icon/q69.gif'],
-        "92": ["[发财]", 'http://image.xunbaoqu.com/images/icon/q70.gif'],
-        "93": ["[空军]", 'http://image.xunbaoqu.com/images/icon/q71.gif'],
-        "94": ["[厉害了]", 'http://image.xunbaoqu.com/images/icon/q72.jpg'],
-        "95": ["[买]", 'http://image.xunbaoqu.com/images/icon/q73.jpg'],
-        "96": ["[漂亮]", 'http://image.xunbaoqu.com/images/icon/q74.gif'],
-        "97": ["[瀑布]", 'http://image.xunbaoqu.com/images/icon/q75.gif'],
-        "98": ["[掐指]", 'http://image.xunbaoqu.com/images/icon/q76.gif'],
-        "99": ["[出来呀]", 'http://image.xunbaoqu.com/images/icon/q77.gif'],
-        "100": ["[早上好]", 'http://image.xunbaoqu.com/images/icon/q78.gif'],
-        "101": ["[涨]", 'http://image.xunbaoqu.com/images/icon/q79.gif'],
+        "89": ["[k线]", 'http://image.after1980.com/images/icon/q67.gif'],
+        "90": ["[跌]", 'http://image.after1980.com/images/icon/q68.gif'],
+        "91": ["[跌2]", 'http://image.after1980.com/images/icon/q69.gif'],
+        "92": ["[发财]", 'http://image.after1980.com/images/icon/q70.gif'],
+        "93": ["[空军]", 'http://image.after1980.com/images/icon/q71.gif'],
+        "94": ["[厉害了]", 'http://image.after1980.com/images/icon/q72.jpg'],
+        "95": ["[买]", 'http://image.after1980.com/images/icon/q73.jpg'],
+        "96": ["[漂亮]", 'http://image.after1980.com/images/icon/q74.gif'],
+        "97": ["[瀑布]", 'http://image.after1980.com/images/icon/q75.gif'],
+        "98": ["[掐指]", 'http://image.after1980.com/images/icon/q76.gif'],
+        "99": ["[出来呀]", 'http://image.after1980.com/images/icon/q77.gif'],
+        "100": ["[早上好]", 'http://image.after1980.com/images/icon/q78.gif'],
+        "101": ["[涨1]", 'http://image.after1980.com/images/icon/q79.gif'],
+        "102": ["[涨2]", 'http://image.after1980.com/images/icon/q84.gif'],
+        "103": ["[涨3]", 'http://image.after1980.com/images/icon/q88.gif'],
+        "104": ["[暴跌3]", 'http://image.after1980.com/images/icon/q80.gif'],
+        "105": ["[暴跌4]", 'http://image.after1980.com/images/icon/q81.gif'],
+        "106": ["[暴跌5]", 'http://image.after1980.com/images/icon/q83.jpg'],
+        "107": ["[跌6]", 'http://image.after1980.com/images/icon/q86.gif'],
+        "108": ["[呲牙]", 'http://image.after1980.com/images/icon/q82.gif'],
+        "109": ["[牛]", 'http://image.after1980.com/images/icon/q85.gif'],
+        "110": ["[晚安]", 'http://image.after1980.com/images/icon/q87.gif'],
 
 
-        "102":["[花]", "http://image.after1980.com/images/icon/flower.png"],
-        "103":["[红包]", "http://image.after1980.com/images/icon/red_pack.png"]
+        "111":["[花]", "http://image.after1980.com/images/icon/flower.png"],
+        "112":["[红包]", "http://image.after1980.com/images/icon/red_pack.png"]
     }
 
     //工具类

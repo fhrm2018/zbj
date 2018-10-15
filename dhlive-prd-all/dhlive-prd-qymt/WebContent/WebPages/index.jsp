@@ -84,7 +84,7 @@
             <%--<a class="a1" id="Collection01" onclick="collection(document.title,window.location)">--%>
                 <%--<img src="../static/images/a7.png" alt="">--%>
             <%--</a>--%>
-            <a class="a1 gwLink" target="_blank" href="http://www.zhongyangkg.com/qy.html">
+            <a class="a1 gwLink" onclick="qqCustomer(${relation.userQq})">
                 <img src="../static/images/a10.png" alt="">
             </a>
             <a class="a1" onclick="downUrl()">
@@ -678,7 +678,7 @@
 <iframe id="ifqq1" style="display:none;" src=""></iframe>
 
 </body>
-<script async defer src="//vip.after1980.com/client?swt&id=1519:2894"></script>
+<%--<script async defer src="//vip.after1980.com/client?swt&id=1519:2894"></script>--%>
 <script src="${staticHost}/js/lib/slide.js?version=${version}"></script>
 <script src="${staticHost}/js/common/common.js?version=${version}"></script>
 <script src="${staticHost}/js/common/index.js?version=${version}"></script>
