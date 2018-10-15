@@ -21,6 +21,7 @@ import com.qiyou.dhlive.prd.component.annotation.UnSecurity;
 import com.yaozhong.framework.base.common.utils.EmptyUtil;
 import com.yaozhong.framework.base.database.domain.page.PageResult;
 import com.yaozhong.framework.base.database.domain.returns.DataResponse;
+import com.yaozhong.framework.base.database.domain.search.SearchCondition;
 import com.yaozhong.framework.web.annotation.session.NeedSession;
 import com.yaozhong.framework.web.annotation.session.UnSession;
 
@@ -169,5 +170,39 @@ public class DutyController {
     		this.roomDutyService.modifyEntity(upDuty);
     		return new DataResponse();
     	}
+    }
+    
+    /**
+     * 查询客服列表
+     *
+     * @param pageSearch
+     * @return
+     */
+    @NeedSession("/duty/allManageList")
+    @UnSecurity
+    @RequestMapping("/allManageList")
+    @ResponseBody
+    public DataResponse allManageList() {
+    	List<Map<String,Object>> rows = Lists.newArrayList();
+    	PageResult<Map<String,Object>> result = new PageResult<Map<String,Object>>();
+    	result.setRows(rows);
+    	
+    	UserManageInfo param = new UserManageInfo();
+    	param.setStatus(0);
+    	param.setGroupId(3);
+    	List<UserManageInfo> manageList = this.userManageInfoService.findByCondition(new SearchCondition<UserManageInfo>(param));
+    	
+    	if(EmptyUtil.isEmpty(manageList)) {
+    		return new DataResponse(1000,result);
+    	}
+    	
+    	for(int i=0;i<manageList.size();i++) {
+    			Map<String,Object> row = Maps.newHashMap();
+            	row.put("manageId", manageList.get(i).getUserId());
+            	row.put("manageName", manageList.get(i).getUserNickName());
+            	rows.add(row);
+    	}
+    	result.setTotal(manageList.size());
+        return new DataResponse(1000,result);
     }
 }
