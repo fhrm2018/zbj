@@ -19,6 +19,7 @@ import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
 import com.qiyou.dhlive.core.user.outward.service.IUserManageInfoService;
 import com.qiyou.dhlive.prd.component.annotation.UnSecurity;
 import com.yaozhong.framework.base.common.utils.EmptyUtil;
+import com.yaozhong.framework.base.database.domain.page.PageResult;
 import com.yaozhong.framework.base.database.domain.returns.DataResponse;
 import com.yaozhong.framework.web.annotation.session.NeedSession;
 import com.yaozhong.framework.web.annotation.session.UnSession;
@@ -62,6 +63,8 @@ public class DutyController {
     	}
     	RoomDuty duty = this.roomDutyService.findById(id);
     	List<Map<String,Object>> rows = Lists.newArrayList();
+    	PageResult<Map<String,Object>> result = new PageResult<Map<String,Object>>();
+    	result.setRows(rows);
     	if(EmptyUtil.isEmpty(duty) || EmptyUtil.isEmpty(duty.getManageIds())) {
     		return new DataResponse(1000,rows);
     	}
@@ -76,7 +79,8 @@ public class DutyController {
             	rows.add(row);
     		}
     	}
-        return new DataResponse(1000,rows);
+    	result.setTotal(ids.length);
+        return new DataResponse(1000,result);
     }
     
     /**
