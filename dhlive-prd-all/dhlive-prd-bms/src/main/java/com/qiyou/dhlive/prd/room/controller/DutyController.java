@@ -58,15 +58,16 @@ public class DutyController {
     @RequestMapping("/manageList")
     @ResponseBody
     public DataResponse manageList(Integer id) {
-    	if(EmptyUtil.isEmpty(id)) {
-    		return new DataResponse(1001,"参数错误");
-    	}
-    	RoomDuty duty = this.roomDutyService.findById(id);
     	List<Map<String,Object>> rows = Lists.newArrayList();
     	PageResult<Map<String,Object>> result = new PageResult<Map<String,Object>>();
     	result.setRows(rows);
+    	if(EmptyUtil.isEmpty(id)) {
+    		return new DataResponse(1000,result);
+    	}
+    	RoomDuty duty = this.roomDutyService.findById(id);
+    	
     	if(EmptyUtil.isEmpty(duty) || EmptyUtil.isEmpty(duty.getManageIds())) {
-    		return new DataResponse(1000,rows);
+    		return new DataResponse(1000,result);
     	}
     	String[] ids = duty.getManageIds().split(",");
     	String[] names = duty.getManageNames().split(",");
