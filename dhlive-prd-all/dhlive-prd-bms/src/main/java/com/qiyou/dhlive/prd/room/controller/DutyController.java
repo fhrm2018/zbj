@@ -54,7 +54,7 @@ public class DutyController {
      */
     @NeedSession("/duty/manageList")
     @UnSecurity
-    @RequestMapping("/duty/manageList")
+    @RequestMapping("/manageList")
     @ResponseBody
     public DataResponse manageList(Integer id) {
     	if(EmptyUtil.isEmpty(id)) {
@@ -87,7 +87,7 @@ public class DutyController {
      */
     @NeedSession("/duty/addManage")
     @UnSecurity
-    @RequestMapping("/duty/addManage")
+    @RequestMapping("/addManage")
     @ResponseBody
     public DataResponse addManage(Integer id,Integer manageId) {
     	if(EmptyUtil.isEmpty(id)) {
@@ -131,7 +131,7 @@ public class DutyController {
      */
     @NeedSession("/duty/delManage")
     @UnSecurity
-    @RequestMapping("/duty/delManage")
+    @RequestMapping("/delManage")
     @ResponseBody
     public DataResponse delManage(Integer id,Integer manageId) {
     	if(EmptyUtil.isEmpty(id)) {
