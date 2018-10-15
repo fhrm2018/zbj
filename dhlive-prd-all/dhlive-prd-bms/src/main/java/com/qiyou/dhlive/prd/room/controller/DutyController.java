@@ -75,6 +75,7 @@ public class DutyController {
     	for(int i=0;i<ids.length;i++) {
     		if(EmptyUtil.isNotEmpty(ids[i])) {
     			Map<String,Object> row = Maps.newHashMap();
+    			row.put("id", id);
             	row.put("manageId", ids[i]);
             	row.put("manageName", names[i]);
             	rows.add(row);
