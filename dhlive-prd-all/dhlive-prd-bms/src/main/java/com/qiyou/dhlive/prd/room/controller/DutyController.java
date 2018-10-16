@@ -103,7 +103,7 @@ public class DutyController {
     	if(EmptyUtil.isEmpty(manageId)) {
     		return new DataResponse(1001,"参数错误");
     	}
-    	UserManageInfo manage = this.userManageInfoService.findById(id);
+    	UserManageInfo manage = this.userManageInfoService.findById(manageId);
     	if(EmptyUtil.isEmpty(manage)) {
     		return new DataResponse(1001,"客服不存在");
     	}
