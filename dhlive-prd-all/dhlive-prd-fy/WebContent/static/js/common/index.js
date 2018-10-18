@@ -549,6 +549,18 @@ $(".activityBtn  .btn1").each(function (index) {
     })
 });
 
+/****活动老师介绍切换****/
+$(".lsBtn  a").each(function (index) {
+    $(this).click(function () {
+        $(".lsBtn a").removeClass("cur");
+        $(".lsCon .lsImg").hide();
+        $(this).addClass('cur');
+        $(".lsCon .lsImg").eq(index).show()
+    })
+});
+
+
+
 /****拼接喊单****/
 function appendHD(content, time) {
     var html = '';

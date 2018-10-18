@@ -137,9 +137,9 @@
             <a class="a1" onclick="qqCustomer(${relation.userQq})">
                 <img src="../static/images/a3.png" alt="">
             </a>
-            <a class="a1" target="_blank" href="javascript:">
-                <img src="../static/images/a4.png" alt="">
-            </a>
+            <%--<a class="a1" target="_blank" href="javascript:">--%>
+                <%--<img src="../static/images/a4.png" alt="">--%>
+            <%--</a>--%>
             <a class="a1" onclick="qqCustomer(${relation.userQq})">
                 <img src="../static/images/a5.png" alt="">
             </a>
@@ -374,7 +374,7 @@
                             </div>
                             
                             <div class="jinShi">
-                                <h3>实时新闻动态</h3>
+                                <h3>实时财经资讯</h3>
                                 <div class="jinShiNews">
                                     <iframe frameborder="0" width="100%" height="2100" scrolling="no" src="https://www.jin10.com/example/jin10.com.html?messageNum=50&fontSize=14px&theme=black"></iframe>
                                 </div>
@@ -779,7 +779,7 @@
 
 <script src="${staticHost}/js/common/ifeson.js"></script>
 
-<script async defer src="//vip.cesairfin.com/client?swt&id=1472:2828"></script>
+<%--<script async defer src="//vip.cesairfin.com/client?swt&id=1472:2828"></script>--%>
 
 <script src="${staticHost}/js/lib/slide.js?version=${version}"></script>
 <script src="${staticHost}/js/common/common.js?version=${version}"></script>
@@ -798,19 +798,11 @@
 <script type="text/javascript">
 
 
-    var playerVar = new dyyPlayer({
-        room_id: '${room.roomStreamServer}', //对应房间ID，必要参数
-        container: 'play-container', //播放器容器ID，必要参数
-        width: '100%', //播放器宽度，可用数字、百分比等
-        height: '100%', //播放器高度，可用数字、百分比等
-        autostart: true, //是否自动播放，默认为false
-        controlbardisplay: 'enable' //是否显示控制栏，值为：disable、enable默认为disable
-    });
 
-    $(function () {
-        $('#FontScroll').FontScroll({time: 3000, num: 1});
-    });
-
+//    $(function () {
+//        $('#FontScroll').FontScroll({time: 3000, num: 1});
+//    });
+//
 
     // 弹出QQ弹框
     var defaultQQ = new Array('${relation.userQq}');
@@ -843,6 +835,18 @@
     setTimeout(function () {
         topQQ();
     }, 5000)
+
+
+    var playerVar = new dyyPlayer({
+        //room_id: '${room.roomStreamServer}', //对应房间ID，必要参数
+        room_id: '23695',
+        container: 'play-container', //播放器容器ID，必要参数
+        width: '100%', //播放器宽度，可用数字、百分比等
+        height: '100%', //播放器高度，可用数字、百分比等
+        autostart: true, //是否自动播放，默认为false
+        controlbardisplay: 'enable' //是否显示控制栏，值为：disable、enable默认为disable
+    });
+
 
 
 </script>

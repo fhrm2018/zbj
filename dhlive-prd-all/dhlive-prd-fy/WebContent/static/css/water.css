@@ -19,8 +19,8 @@
 
 .logo img {
     display: block;
-    width: 178px;
-    height: 66px;
+    width: 224px;
+    height: 60px;
     float: left;
     margin: -5px 0px 0 10px;
 }
@@ -394,7 +394,7 @@
     display: block;
     width: 102px;
     height: 102px;
-    margin: 102px auto 0;
+    margin: 120px auto 0;
 }
 
 .tabBtns {

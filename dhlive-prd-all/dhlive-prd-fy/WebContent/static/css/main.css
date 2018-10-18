@@ -689,6 +689,22 @@ input::-moz-focus-inner {
     box-sizing: border-box;
     background: rgba(0,0,0,0.1)
 }
+.contentRight .msg::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+.contentRight .msg::-webkit-scrollbar
+{
+    width: 6px;
+    background-color: #F5F5F5;
+}
+.contentRight .msg::-webkit-scrollbar-thumb
+{
+    background-color: #999999;
+    border-radius: 5px;
+}
+
 
 .contentRight .msg:hover {
     padding-right: 0;
@@ -1108,7 +1124,7 @@ input::-moz-focus-inner {
     background: rgba(0,0,0,0.2);
 }
 
-.activityImg img{
+.activityImg .img1 img{
     width:100%;
 }
 
@@ -1129,8 +1145,32 @@ input::-moz-focus-inner {
     overflow: auto;
 }
 
+.lsBtn{
+    width:20%;
+    padding:20px;
+    background: rgba(0,0,0,0.5);
+    box-sizing: border-box;
+    float:left;
+}
 
-
+.lsBtn a{
+    display:block;
+    width:100%;
+    height:24px;
+    line-height: 24px;
+    text-align: center;
+    font-size: 12px;
+    margin:4px 0;
+    color:#080602;
+    background-color: #715d20;
+}
+.lsBtn a.cur{
+    background-color: #f8c837;
+}
+.lsCon{
+    width:80%;
+    float:left;
+}
 
 
 

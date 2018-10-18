@@ -11,23 +11,21 @@
 
 <style>
     .errorContent {
-        position: absolute;
-        top: 25%;
-        left: 50%;
-        margin-left: -401px;
-        margin-top: -80px;
-        height: 588px;
-        width: 802px;
-        background: url("../static/images/404.png") 50% 50% no-repeat;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background: url("../static/images/404.jpg") 50% 50% no-repeat;
+        background-size: cover;
     }
 
     .errorContent .errorBtn {
-        margin: 490px auto 0;
+        width: 1080px;
+        margin: 28% auto 0;
         text-align: center;
     }
     .errorContent .errorBtn span{
         display: block;
-        padding-bottom: 10px;
+        padding-bottom: 5%;
         color: #b1b1b1;
     }
 
@@ -39,9 +37,8 @@
         line-height: 34px;
         text-align: center;
         font-size: 14px;
-        color: #ffffff;
-        background-color: #3b7ef5;
-        border-radius: 5px;
+        color: #f5a100;
+        background-color: #ffffff;
     }
 </style>
 
@@ -72,7 +69,7 @@
     });
 
     function goHome(){
-        window.location.href = "http://www.ifeson.com/";
+        window.location.href = "http://www.oeo2.com/";
     }
 
     function clearCookie() {

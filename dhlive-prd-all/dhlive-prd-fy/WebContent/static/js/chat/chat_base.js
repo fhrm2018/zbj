@@ -1188,8 +1188,8 @@ function sendFlowerMsg() {
         if (userInfo.groupId == 1 || userInfo.groupId == 5) {
             countDownSendMsgBtn();
         }
-        // 发送鲜花后20s倒计时可再次发送
-        var i = 20;
+        // 发送鲜花后5s倒计时可再次发送
+        var i = 5;
         var roseInt = setInterval(function () {
             if (i == 1) {
                 $('.roseF').bind('click', sendFlowerMsg);
@@ -1336,8 +1336,8 @@ function sendRedBagMsg() {
             countDownSendMsgBtn();
         }
 
-        // 发送红包后20s可以继续发送
-        var i = 20;
+        // 发送红包后5s可以继续发送
+        var i = 5;
         var roseInt = setInterval(function () {
             if (i == 1) {
                 $('.redBagF').bind('click', sendRedBagMsg);
