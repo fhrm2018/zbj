@@ -10,15 +10,20 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.base.Function;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
 import com.qiyou.dhlive.api.base.outward.service.IBaseCacheService;
 import com.qiyou.dhlive.api.base.outward.vo.UserInfoDTO;
 import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
 import com.qiyou.dhlive.core.room.outward.model.RoomChatMessage;
+import com.qiyou.dhlive.core.room.outward.model.RoomDuty;
+import com.qiyou.dhlive.core.room.outward.service.IRoomDutyService;
 import com.qiyou.dhlive.core.user.outward.model.UserInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
+import com.qiyou.dhlive.core.user.outward.model.UserRelation;
 import com.qiyou.dhlive.core.user.outward.service.IUserInfoService;
 import com.qiyou.dhlive.core.user.outward.service.IUserManageInfoService;
+import com.qiyou.dhlive.core.user.outward.service.IUserRelationService;
 import com.yaozhong.framework.base.common.utils.EmptyUtil;
 import com.yaozhong.framework.base.common.utils.MyBeanUtils;
 import com.yaozhong.framework.base.database.domain.search.SearchCondition;
@@ -35,7 +40,13 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	private IUserManageInfoService userManageInfoService;
 	
 	@Autowired
+	private IRoomDutyService roomDutyService;
+	
+	@Autowired
 	private IUserInfoService userInfoService;
+	
+	@Autowired
+	private IUserRelationService userRelationService;
 	
 	public static final String USER_INFO = "dhlive-basedata-userinfo-";
 	
@@ -45,6 +56,12 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	
 
 	public static final String MESSAGE_LIST = "dhlive-basedata-messagelist";
+	
+	public static final String DUTY_USER_LIST = "dhlive-basedata-dutyuserlist";
+	
+	public static final String RELATION = "dhlive-cachedata-room-relation-";
+	
+	public static final String DAY_RELATION = "dhlive-cachedata-dayrelation-";
 
 	@Override
 	public UserInfoDTO getUserInfo(Integer userId) {
@@ -91,7 +108,7 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 		UserManageInfo params = new UserManageInfo();
         params.setStatus(0);
         params.setRoomId(roomId);
-        params.setIsOnline(1);
+        //params.setIsOnline(1);
 		SearchCondition<UserManageInfo> condition = new SearchCondition<UserManageInfo>(params);
         List<UserManageInfo> data = this.userManageInfoService.findByCondition(condition);
 		if(EmptyUtil.isEmpty(data)) {
@@ -145,6 +162,121 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
         String dataJson = JSON.toJSONString(data);
 		redisManager.saveStringBySeconds(MESSAGE_LIST+roomId, dataJson, 60*60*5);
 		return data;
+	}
+
+	@Override
+	public List<UserManageInfo> getDutyUserByWeek(Integer roomId,Integer weekId) {
+		String dataJson = redisManager.getStringValueByKey(DUTY_USER_LIST+weekId);
+		if(EmptyUtil.isEmpty(dataJson)) {
+			return updateDutyUserByWeek(roomId,weekId);
+		}
+		List<UserManageInfo> data = JSON.parseArray(dataJson,UserManageInfo.class);
+		return data;
+	}
+
+	@Override
+	public List<UserManageInfo> updateDutyUserByWeek(Integer roomId,Integer weekId) {
+		UserManageInfo params = new UserManageInfo();
+        params.setStatus(0);
+        params.setRoomId(roomId);
+		SearchCondition<UserManageInfo> condition = new SearchCondition<UserManageInfo>(params);
+        List<UserManageInfo> managerList = this.userManageInfoService.findByCondition(condition);
+
+        List<UserManageInfo> data = Lists.newArrayList();
+        
+        RoomDuty duty = roomDutyService.findById(weekId);
+        if(EmptyUtil.isEmpty(duty) || EmptyUtil.isEmpty(duty.getManageIds())) {
+        	data = managerList;
+        }else {
+        	String[] ids = duty.getManageIds().split(",");
+        	for(int i=0;i<ids.length;i++) {
+        		if(EmptyUtil.isNotEmpty(ids[i])) {
+        			for(UserManageInfo user:managerList) {
+        				try {
+            				Integer idNum = Integer.parseInt(ids[i]);
+            				if(idNum.intValue() == user.getUserId().intValue()) {
+            					data.add(user);
+            				}
+            			}catch(Exception e) {
+            				
+            			}
+        			}
+        		}
+        		
+        	}
+        }
+		if(EmptyUtil.isEmpty(data)) {
+			return null;
+		}
+		String dataJson = JSON.toJSONString(data);
+		redisManager.saveStringBySeconds(ONLINEMANAGER_LIST+roomId, dataJson, 60*60*24);
+		return data;
+	}
+
+	@Override
+	public String getYkKefuId(Integer userId) {
+		String data = this.redisManager.getStringValueByKey(RELATION + "1-" + userId);
+		if(EmptyUtil.isEmpty(data)) {
+			return updateYkKefuId(userId);
+		}
+		return data;
+	}
+
+	@Override
+	public String updateYkKefuId(Integer userId) {
+		UserRelation params = new UserRelation();
+        params.setUserId(userId);
+        params.setGroupId(1);
+        params.setStatus(0);
+        SearchCondition<UserRelation> condition = new SearchCondition<UserRelation>(params);
+        UserRelation relation = this.userRelationService.findOneByCondition(condition);
+        if(EmptyUtil.isEmpty(relation) || EmptyUtil.isEmpty(relation.getRelationUserId())) {
+        	return null;
+        }
+        redisManager.saveStringBySeconds(RELATION + "1-" + userId, relation.getRelationUserId()+"", 60*60*24);
+		return relation.getRelationUserId()+"";
+	}
+	
+	@Override
+	public String updateYkKefuId(Integer userId, Integer kefuId) {
+		redisManager.saveStringBySeconds(RELATION + "1-" + userId, kefuId+"", 60*60*24);
+		return kefuId+"";
+	}
+
+	@Override
+	public String getVipKefuId(Integer userId) {
+		String data = this.redisManager.getStringValueByKey(RedisKeyConstant.RELATION + "5-" + userId);
+		if(EmptyUtil.isEmpty(data)) {
+			return updateVipKefuId(userId);
+		}
+		return data;
+	}
+
+	@Override
+	public String updateVipKefuId(Integer userId) {
+		UserRelation params = new UserRelation();
+        params.setUserId(userId);
+        params.setGroupId(5);
+        params.setStatus(0);
+        SearchCondition<UserRelation> condition = new SearchCondition<UserRelation>(params);
+        UserRelation relation = this.userRelationService.findOneByCondition(condition);
+        if(EmptyUtil.isEmpty(relation) || EmptyUtil.isEmpty(relation.getRelationUserId())) {
+        	return null;
+        }
+        redisManager.saveStringBySeconds(RELATION + "1-" + userId, relation.getRelationUserId()+"", 60*60*24);
+		return relation.getRelationUserId()+"";
+	}
+
+	@Override
+	public String getYkKefuIdByDay(Integer userId, String day) {
+		return redisManager.getStringValueByKey(DAY_RELATION+day+"-"+userId);
+	}
+
+	@Override
+	public String updateYkKefuIdByDay(Integer userId, String day, Integer kefuId) {
+		// TODO Auto-generated method stub
+		redisManager.saveStringBySeconds(DAY_RELATION+day+"-"+userId, kefuId+"", 60*60*24);
+		return kefuId+"";
 	}
 
 }

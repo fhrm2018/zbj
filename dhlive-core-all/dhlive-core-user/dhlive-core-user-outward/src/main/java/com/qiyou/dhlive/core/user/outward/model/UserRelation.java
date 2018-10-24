@@ -24,6 +24,11 @@ public class UserRelation implements Serializable {
     private Date createTime;
 
     private Integer waterGroupId;
+    
+    /**
+     * 状态
+     */
+    private Integer status;
 
     public Integer getId() {
         return id;
@@ -33,7 +38,15 @@ public class UserRelation implements Serializable {
         this.id = id;
     }
 
-    public Integer getGroupId() {
+    public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public Integer getGroupId() {
         return groupId;
     }
 

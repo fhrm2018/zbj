@@ -21,5 +21,23 @@ public interface IBaseCacheService {
 	List<RoomChatMessage> getChatMessageByUser(Integer roomId);
 	
 	List<RoomChatMessage> updateChatMessageByUser(Integer roomId);
+	
+	List<UserManageInfo> getDutyUserByWeek(Integer roomId,Integer weekId);
+	
+	List<UserManageInfo> updateDutyUserByWeek(Integer roomId,Integer weekId);
+	
+	String getYkKefuId(Integer userId);
+	
+	String updateYkKefuId(Integer userId);
+	
+	String updateYkKefuId(Integer userId,Integer kefuId);
+	
+	String getVipKefuId(Integer userId);
+	
+	String updateVipKefuId(Integer userId);
+	
+	String getYkKefuIdByDay(Integer userId,String day);
+	
+	String updateYkKefuIdByDay(Integer userId,String day,Integer kefuId);
 
 }

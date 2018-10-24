@@ -9,9 +9,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.qiyou.dhlive.api.prd.vo.AutoMsgVo;
-import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
-import com.qiyou.dhlive.core.user.outward.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +25,14 @@ import com.qiyou.dhlive.api.base.outward.service.IActivityApiService;
 import com.qiyou.dhlive.api.base.outward.service.IBaseCacheService;
 import com.qiyou.dhlive.api.base.outward.service.ILiveRoomApiService;
 import com.qiyou.dhlive.api.base.outward.service.IUserInfoApiService;
+import com.qiyou.dhlive.api.base.outward.service.IWaterService;
 import com.qiyou.dhlive.api.base.outward.util.NoticeUtil;
 import com.qiyou.dhlive.api.base.outward.vo.UserVO;
 import com.qiyou.dhlive.api.prd.mvc.UserSession;
 import com.qiyou.dhlive.api.prd.util.AddressUtils;
 import com.qiyou.dhlive.api.prd.util.CheckMobileUtil;
 import com.qiyou.dhlive.api.prd.util.TLSUtils;
+import com.qiyou.dhlive.api.prd.vo.AutoMsgVo;
 import com.qiyou.dhlive.core.activity.outward.service.IActivityLuckyDrawWinnersService;
 import com.qiyou.dhlive.core.base.outward.service.IBaseSysParamService;
 import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
@@ -41,12 +40,19 @@ import com.qiyou.dhlive.core.live.outward.model.LiveC2CMessage;
 import com.qiyou.dhlive.core.live.outward.model.LiveRoom;
 import com.qiyou.dhlive.core.live.outward.service.ILiveC2CMessageService;
 import com.qiyou.dhlive.core.live.outward.service.ILiveRoomService;
+import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
 import com.qiyou.dhlive.core.user.outward.model.UserInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserRelation;
 import com.qiyou.dhlive.core.user.outward.model.UserSmallInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserVipInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserWaterGroup;
+import com.qiyou.dhlive.core.user.outward.service.IUserInfoService;
+import com.qiyou.dhlive.core.user.outward.service.IUserManageInfoService;
+import com.qiyou.dhlive.core.user.outward.service.IUserRelationService;
+import com.qiyou.dhlive.core.user.outward.service.IUserSmallInfoService;
+import com.qiyou.dhlive.core.user.outward.service.IUserVipInfoService;
+import com.qiyou.dhlive.core.user.outward.service.IUserWaterGroupService;
 import com.qiyou.dhlive.core.user.outward.vo.RelationVO;
 import com.yaozhong.framework.base.common.utils.EmptyUtil;
 import com.yaozhong.framework.base.common.utils.LogFormatUtil;
@@ -111,6 +117,9 @@ public class LiveController {
     
     @Autowired
     private IBaseCacheService baseCacheService;
+    
+    @Autowired
+    private IWaterService waterService;
 
     @Autowired
     @Qualifier("commonRedisManager")
@@ -149,6 +158,7 @@ public class LiveController {
             room.setBaseNum(room.getBaseNum() + Integer.parseInt(onLineNum));
         }
         model.addAttribute("room", room);
+        
         //在线助理列表
         List<UserManageInfo> onLineAssistant = this.userInfoApiService.getAssistantList(room.getRoomId());
         //所有的助理
@@ -168,6 +178,8 @@ public class LiveController {
         if (EmptyUtil.isEmpty(onLineAssistant)) {
             onLineAssistant = unLineAssistant;
         }
+        
+        
         int x = (int) (Math.random() * onLineAssistant.size());//随机数, 用于选择一个助理进行关联
 
         UserSession session = UserSession.getUserSession();
@@ -192,62 +204,8 @@ public class LiveController {
             }
 
             //从缓存拉取助理关系, 判断是否存在已经关联的助理, 如果没有进行关联(60s会失效)
-            String relationStr = this.redisManager.getStringValueByKey(RedisKeyConstant.RELATION + user.getGroupId() + "-" + user.getUserId());
-            baseLog.info(LogFormatUtil.getActionFormat("从缓存取到游客关系结果:" + relationStr));
-            if (EmptyUtil.isEmpty(relationStr) || relationStr.equals("null")) {
-                //根据用户名和角色查询关联关系表.
-                UserRelation params = new UserRelation();
-                params.setUserId(user.getUserId());
-                params.setGroupId(user.getGroupId());
-                SearchCondition<UserRelation> condition = new SearchCondition<UserRelation>(params);
-                UserRelation relation = this.userRelationService.findOneByCondition(condition);
-                //没有助理关系
-                if (EmptyUtil.isEmpty(relation)) {
-                    relation = new UserRelation();
-                    relation.setUserId(user.getUserId());
-                    relation.setGroupId(user.getGroupId());
-                    //在线的助理缓存
-                    List<String> listJson = redisManager.getMapValueFromMapByStoreKey(RedisKeyConstant.ZL_IDS);
-                    //当前没有在线的助理, 就从所有的助理中随机一个, 并写入缓存
-                    if (EmptyUtil.isEmpty(listJson)) {
-                        relation.setRelationUserId(onLineAssistant.get(x).getUserId());
-                        relation.setCreateTime(new Date());
-                        this.userRelationService.save(relation);
-                        model.addAttribute("relation", onLineAssistant.get(x));
-                        this.redisManager.saveStringBySeconds(RedisKeyConstant.RELATION + user.getGroupId() + "-" + user.getUserId(), new Gson().toJson(onLineAssistant.get(x)), CACHE_TIME);
-                    } else {
-                        //如果有在线的助理
-                        List<Integer> ids = new ArrayList<Integer>();
-                        for (int i = 0; i < listJson.size(); i++) {
-                            String str[] = listJson.get(i).split("-");
-                            ids.add(Integer.parseInt(str[1]));
-                        }
-                        //从当前在线的助理中随机一个关联, 并写入缓存
-                        int y = (int) (Math.random() * ids.size());
-                        relation.setRelationUserId(ids.get(y));
-                        relation.setCreateTime(new Date());
-                        this.userRelationService.save(relation);
-                        String onLineZLStr = redisManager.getStringValueByKey(RedisKeyConstant.MANAGE + relation.getRelationUserId());
-                        UserManageInfo onLineZL = new UserManageInfo();
-                        if (EmptyUtil.isEmpty(onLineZLStr)) {
-                            onLineZL = this.userManageInfoService.findById(relation.getRelationUserId());
-                        } else {
-                            onLineZL = new Gson().fromJson(redisManager.getStringValueByKey(RedisKeyConstant.MANAGE + relation.getRelationUserId()), UserManageInfo.class);
-                        }
-                        model.addAttribute("relation", onLineZL);
-                        this.redisManager.saveStringBySeconds(RedisKeyConstant.RELATION + user.getGroupId() + "-" + user.getUserId(), new Gson().toJson(onLineZL), CACHE_TIME);
-                    }
-                } else {
-                    //存在助理关系, 直接获取
-                    UserManageInfo manageInfo = this.userManageInfoService.findById(relation.getRelationUserId());
-                    model.addAttribute("relation", manageInfo);
-                    this.redisManager.saveStringBySeconds(RedisKeyConstant.RELATION + user.getGroupId() + "-" + user.getUserId(), new Gson().toJson(manageInfo), CACHE_TIME);
-                }
-            } else {
-                UserManageInfo manageInfo = new Gson().fromJson(relationStr, UserManageInfo.class);
-                model.addAttribute("relation", manageInfo);
-                this.redisManager.saveStringBySeconds(RedisKeyConstant.RELATION + user.getGroupId() + "-" + user.getUserId(), new Gson().toJson(manageInfo), CACHE_TIME);
-            }
+            UserManageInfo onLineZL =waterService.initYkKefu(session.getUserId());
+            model.addAttribute("relation", onLineZL);
             model.addAttribute("user", user);
         } else if (session.getGroupId().intValue() == 2 || session.getGroupId().intValue() == 3 || session.getGroupId().intValue() == 4) {
             String value = this.redisManager.getStringValueByKey(RedisKeyConstant.MANAGE + session.getUserId());
@@ -287,49 +245,8 @@ public class LiveController {
             }
 
             //从缓存拉取助理关系, 判断是否存在已经关联的助理, 如果没有进行关联(60s会失效)
-            String relationStr = this.redisManager.getStringValueByKey(RedisKeyConstant.RELATION + vip.getGroupId() + "-" + vip.getUserId());
-            if (EmptyUtil.isEmpty(relationStr)) {
-                UserRelation params = new UserRelation();
-                params.setUserId(vip.getUserId());
-                params.setGroupId(vip.getGroupId());
-                SearchCondition<UserRelation> condition = new SearchCondition<UserRelation>(params);
-                UserRelation relation = this.userRelationService.findOneByCondition(condition);
-                if (EmptyUtil.isEmpty(relation)) {
-                    relation = new UserRelation();
-                    relation.setUserId(vip.getUserId());
-                    relation.setGroupId(vip.getGroupId());
-                    List<String> listJson = redisManager.getMapValueFromMapByStoreKey(RedisKeyConstant.ZL_IDS);
-                    if (EmptyUtil.isEmpty(listJson)) {//没有在线的助理
-                        relation.setRelationUserId(onLineAssistant.get(x).getUserId());
-                        relation.setCreateTime(new Date());
-                        this.userRelationService.save(relation);
-                        model.addAttribute("relation", onLineAssistant.get(x));
-                        this.redisManager.saveStringBySeconds(RedisKeyConstant.RELATION + vip.getGroupId() + "-" + vip.getUserId(), new Gson().toJson(onLineAssistant.get(x)), CACHE_TIME);
-                    } else {
-                        relation.setRelationUserId(onLineAssistant.get(x).getUserId());
-                        relation.setCreateTime(new Date());
-                        this.userRelationService.save(relation);
-                        String onLineZLStr = redisManager.getStringValueByKey(RedisKeyConstant.MANAGE + relation.getRelationUserId());
-                        UserManageInfo onLineZL = new UserManageInfo();
-                        if (EmptyUtil.isEmpty(onLineZLStr)) {
-                            onLineZL = this.userManageInfoService.findById(relation.getRelationUserId());
-                        } else {
-                            onLineZL = new Gson().fromJson(redisManager.getStringValueByKey(RedisKeyConstant.MANAGE + relation.getRelationUserId()), UserManageInfo.class);
-                        }
-                        model.addAttribute("relation", onLineZL);
-                        this.redisManager.saveStringBySeconds(RedisKeyConstant.RELATION + vip.getGroupId() + "-" + vip.getUserId(), new Gson().toJson(onLineZL), CACHE_TIME);
-                    }
-                } else {
-                    UserManageInfo manageInfo = this.userManageInfoService.findById(relation.getRelationUserId());
-                    this.redisManager.saveStringBySeconds(RedisKeyConstant.RELATION + vip.getGroupId() + "-" + vip.getUserId(), new Gson().toJson(manageInfo), CACHE_TIME);
-                    model.addAttribute("relation", manageInfo);
-                }
-            } else {
-                UserManageInfo manageInfo = new Gson().fromJson(relationStr, UserManageInfo.class);
-                this.redisManager.saveStringBySeconds(RedisKeyConstant.RELATION + vip.getGroupId() + "-" + vip.getUserId(), new Gson().toJson(manageInfo), CACHE_TIME);
-                model.addAttribute("relation", manageInfo);
-            }
-
+            UserManageInfo onLineZL =waterService.initVipKefu(session.getUserId());
+            model.addAttribute("relation", onLineZL);
 //            ActivityLuckyDrawWinners winner = new ActivityLuckyDrawWinners();
 //            winner.setConfigId(1);
 //            winner.setUserId(vip.getUserId());
