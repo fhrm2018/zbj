@@ -411,21 +411,21 @@ $(function () {
 
 
     //助理自动发言
-    setInterval(function () {
-        if (userInfo.groupId == 3) {
-            autoMsg();
-        }
-    }, 5000);
-
-    function autoMsg() {
-        $.ajax({
-            url: ctx + "/live/autoMsg",
-            data: {"userId": userInfo.id},
-            success: function (data) {
-                sendAutoMsg(data.data.content, data.data.name, data.data.level);
-            }
-        });
-    }
+//    setInterval(function () {
+//        if (userInfo.groupId == 3) {
+//            autoMsg();
+//        }
+//    }, 5000);
+//
+//    function autoMsg() {
+//        $.ajax({
+//            url: ctx + "/live/autoMsg",
+//            data: {"userId": userInfo.id},
+//            success: function (data) {
+//                sendAutoMsg(data.data.content, data.data.name, data.data.level);
+//            }
+//        });
+//    }
 
 
     /*当前在线人记录缓存(10秒/次)*/

@@ -41,6 +41,7 @@ import com.qiyou.dhlive.core.live.outward.model.LiveRoom;
 import com.qiyou.dhlive.core.live.outward.service.ILiveC2CMessageService;
 import com.qiyou.dhlive.core.live.outward.service.ILiveRoomService;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
+import com.qiyou.dhlive.core.room.outward.service.IRoomAutoMsgService;
 import com.qiyou.dhlive.core.user.outward.model.UserInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserRelation;
@@ -106,8 +107,8 @@ public class LiveController {
     @Autowired
     private IActivityApiService activityApiService;
 
-    //@Autowired
-    //private IRoomAutoMsgService roomAutoMsgService;
+    @Autowired
+    private IRoomAutoMsgService roomAutoMsgService;
 
     @Autowired
     private IUserSmallInfoService userSmallInfoService;
@@ -787,21 +788,35 @@ public class LiveController {
      */
     @RequestMapping(value = "/live/autoMsg")
     @ResponseBody
-    public DataResponse autoMsg(Integer userId) {
+    public DataResponse autoMsg() {
+    	UserSession session = UserSession.getUserSession();
+    	if(EmptyUtil.isEmpty(session)) {
+    		return new DataResponse(1001,"未登陆");
+    	}
+    	if(session.getGroupId().intValue() != 3) {
+    		return new DataResponse(1001,"没有权限");
+    	}
         SearchCondition<RoomAutoMsg> condition = new SearchCondition<RoomAutoMsg>(new RoomAutoMsg());
-        //List<RoomAutoMsg> msgs = this.roomAutoMsgService.findByCondition(condition);
+        List<RoomAutoMsg> msgs = this.roomAutoMsgService.findByCondition(condition);
+        
+        if(EmptyUtil.isEmpty(msgs)) {
+        	return new DataResponse(1001,"没有数据");
+        }
         //随机数, 随机取一条发言
-        //int x = (int) (Math.random() * msgs.size());
+        int x = (int) (Math.random() * msgs.size());
 
         //随机数, 随意取当前助理的一个小号
-       //List<UserSmallInfo> smalls = this.userSmallInfoService.findByField("userId", userId);
-        //int y = (int) (Math.random() * smalls.size());
+        List<UserSmallInfo> smalls = this.userSmallInfoService.findByField("userId", session.getUserId());
+        if(EmptyUtil.isEmpty(smalls)) {
+        	return new DataResponse(1001,"没有小号");
+        }
+        int y = (int) (Math.random() * smalls.size());
 
         //封装返回对象
         AutoMsgVo result = new AutoMsgVo();
-        //result.setContent(msgs.get(x).getMsgContent());
-        //result.setName(smalls.get(y).getSmallName());
-        //result.setLevel(smalls.get(y).getSmallLevel());
+        result.setContent(msgs.get(x).getMsgContent());
+        result.setName(smalls.get(y).getSmallName());
+        result.setLevel(smalls.get(y).getSmallLevel());
 
         return new DataResponse(1000, result);
     }

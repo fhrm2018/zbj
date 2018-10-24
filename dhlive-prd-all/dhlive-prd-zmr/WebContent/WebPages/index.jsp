@@ -42,7 +42,6 @@
             },
             msgIdMap = {},
             selSess,//聊天session
-
             accountMode = 0;//帐号模式，0-表示独立模式，1-表示托管模式
         if (groupId == '1') {
             loginInfo.identifier = 'yk-' + loginInfo.identifier;
@@ -54,6 +53,7 @@
             loginInfo.identifier = 'vip-' + loginInfo.identifier;
             userInfo.level = '${vip.userLevel}';
         }
+        var auto_chat_time = 1000*60;
     </script>
 
 </head>
@@ -695,6 +695,7 @@
 <script src="${staticHost}/js/common/awardRotate.js?version=${version}"></script>
 <script src="${staticHost}/js/chat/chat_base.js?version=${version}"></script>
 <script src="${staticHost}/js/chat/chat.js?version=${version}"></script>
+<script src="${staticHost}/js/chat/auto_chat.js?version=${version}"></script>
 <!-- baidu -->
 <script>
 var _hmt = _hmt || [];
