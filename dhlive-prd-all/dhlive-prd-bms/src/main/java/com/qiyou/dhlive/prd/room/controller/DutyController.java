@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.qiyou.dhlive.api.base.outward.service.IBaseCacheService;
 import com.qiyou.dhlive.core.room.outward.model.RoomDuty;
 import com.qiyou.dhlive.core.room.outward.service.IRoomDutyService;
 import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
@@ -39,6 +40,9 @@ public class DutyController {
     
     @Autowired
     private IUserManageInfoService userManageInfoService;
+    
+    @Autowired
+    private IBaseCacheService baseCacheService;
 
     @UnSession
     @UnSecurity
@@ -116,6 +120,7 @@ public class DutyController {
     		upDuty.setManageNames(manage.getUserNickName()+",");
     		upDuty.setModifyTime(new Date());
     		this.roomDutyService.modifyEntity(upDuty);
+    		baseCacheService.updateDutyUserByWeek(4,id);
     		return new DataResponse();
     	}else {
     		RoomDuty upDuty = new RoomDuty();
@@ -126,6 +131,7 @@ public class DutyController {
     		upDuty.setManageNames(names+manage.getUserNickName()+",");
     		upDuty.setModifyTime(new Date());
     		this.roomDutyService.modifyEntity(upDuty);
+    		baseCacheService.updateDutyUserByWeek(4,id);
     		return new DataResponse();
     	}
     }
