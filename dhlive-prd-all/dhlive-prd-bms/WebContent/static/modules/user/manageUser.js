@@ -169,12 +169,12 @@ function editManageUserWin(obj) {
                 $('#userQq').val(data.data.userQq);
                 $('#groupId').val(data.data.groupId);
                 if (data.data.groupId == 3) {
-                    $('.userIntroduction').removeClass('hide');
+                    //$('.userIntroduction').removeClass('hide');
                     $('.praise').addClass('hide');
                     $('#userIntroduction').val(data.data.userIntroduction);
                 } else {
                     $('.praise').removeClass('hide');
-                    $('.userIntroduction').addClass('hide');
+                    //$('.userIntroduction').addClass('hide');
                     $('.praise').val(data.data.praise);
                 }
                 $('.groupName').html(data.data.groupName);
@@ -326,10 +326,10 @@ function deleteSmall(obj) {
 function showHideField() {
     var groupId = $('#groupId').val();
     if (groupId == 3) {
-        $('.userIntroduction').removeClass('hide');
+        //$('.userIntroduction').removeClass('hide');
         $('.praise').addClass('hide');
     } else {
         $('.praise').removeClass('hide');
-        $('.userIntroduction').addClass('hide');
+        //$('.userIntroduction').addClass('hide');
     }
 }
