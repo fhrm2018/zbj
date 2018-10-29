@@ -32,44 +32,44 @@ public class ResourceBaseController extends BaseController implements Initializi
 
     private List<Method> registResource(List<Method> methods) {
         List needRetryMethods = Lists.newArrayList();
-        for (Method method : methods) {
-            ResourceAnnotation resourceAnnotation = (ResourceAnnotation) method.getAnnotation(ResourceAnnotation.class);
-            RequestMapping requestMapping = (RequestMapping) method.getAnnotation(RequestMapping.class);
-            if ((EmptyUtil.isNotEmpty(requestMapping)) && (EmptyUtil.isNotEmpty(resourceAnnotation))) {
-                BmsResource existResource = this.bmsResourceService.getResourceByName(resourceAnnotation.name(), resourceAnnotation.type());
-                if (EmptyUtil.isEmpty(existResource)) {
-                    BmsResource resource = new BmsResource();
-                    resource.setUrl(resourceAnnotation.url());
-                    resource.setName(resourceAnnotation.name());
-                    resource.setType(resourceAnnotation.type());
-                    resource.setIcon(resourceAnnotation.icon());
-                    resource.setRemark(resourceAnnotation.remark());
-                    if (EmptyUtil.isNotEmpty(resourceAnnotation.pName())) {
-                        BmsResource parentResource = this.bmsResourceService.getResourceByName(resourceAnnotation.pName(), 1);
-                        if (EmptyUtil.isEmpty(parentResource)) {
-                            parentResource = new BmsResource();
-                            parentResource.setName(resourceAnnotation.pName());
-                            parentResource.setType(1);
-                            parentResource = this.bmsResourceService.saveResource(parentResource);
-                            resource.setParentId(parentResource.getId());
-                            resource.setParentName(resourceAnnotation.pName());
-                        } else {
-                            resource.setParentId(parentResource.getId());
-                            resource.setParentName(parentResource.getName());
-                        }
-                    }
-                    this.bmsResourceService.saveResource(resource);
-                } else {
-                    existResource.setUrl(resourceAnnotation.url());
-                    existResource.setName(resourceAnnotation.name());
-                    existResource.setType(resourceAnnotation.type());
-                    existResource.setRemark(resourceAnnotation.remark());
-                    //existResource.setGroupName(resourceAnnotation.group());
-                    existResource.setIcon(resourceAnnotation.icon());
-                    this.bmsResourceService.saveResource(existResource);
-                }
-            }
-        }
+//        for (Method method : methods) {
+//            ResourceAnnotation resourceAnnotation = (ResourceAnnotation) method.getAnnotation(ResourceAnnotation.class);
+//            RequestMapping requestMapping = (RequestMapping) method.getAnnotation(RequestMapping.class);
+//            if ((EmptyUtil.isNotEmpty(requestMapping)) && (EmptyUtil.isNotEmpty(resourceAnnotation))) {
+//                BmsResource existResource = this.bmsResourceService.getResourceByName(resourceAnnotation.name(), resourceAnnotation.type());
+//                if (EmptyUtil.isEmpty(existResource)) {
+//                    BmsResource resource = new BmsResource();
+//                    resource.setUrl(resourceAnnotation.url());
+//                    resource.setName(resourceAnnotation.name());
+//                    resource.setType(resourceAnnotation.type());
+//                    resource.setIcon(resourceAnnotation.icon());
+//                    resource.setRemark(resourceAnnotation.remark());
+//                    if (EmptyUtil.isNotEmpty(resourceAnnotation.pName())) {
+//                        BmsResource parentResource = this.bmsResourceService.getResourceByName(resourceAnnotation.pName(), 1);
+//                        if (EmptyUtil.isEmpty(parentResource)) {
+//                            parentResource = new BmsResource();
+//                            parentResource.setName(resourceAnnotation.pName());
+//                            parentResource.setType(1);
+//                            parentResource = this.bmsResourceService.saveResource(parentResource);
+//                            resource.setParentId(parentResource.getId());
+//                            resource.setParentName(resourceAnnotation.pName());
+//                        } else {
+//                            resource.setParentId(parentResource.getId());
+//                            resource.setParentName(parentResource.getName());
+//                        }
+//                    }
+//                    this.bmsResourceService.saveResource(resource);
+//                } else {
+//                    existResource.setUrl(resourceAnnotation.url());
+//                    existResource.setName(resourceAnnotation.name());
+//                    existResource.setType(resourceAnnotation.type());
+//                    existResource.setRemark(resourceAnnotation.remark());
+//                    //existResource.setGroupName(resourceAnnotation.group());
+//                    existResource.setIcon(resourceAnnotation.icon());
+//                    this.bmsResourceService.saveResource(existResource);
+//                }
+//            }
+//        }
         return needRetryMethods;
     }
 }

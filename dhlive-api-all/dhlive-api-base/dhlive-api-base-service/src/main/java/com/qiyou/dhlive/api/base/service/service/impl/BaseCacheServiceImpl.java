@@ -52,16 +52,17 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	
 	public static final String NEWUSER_LIST = "dhlive-basedata-newuserlist";
 	
-	public static final String ONLINEMANAGER_LIST = "dhlive-basedata-newuserlist";
+	public static final String MANAGER_LIST = "dhlive-basedata-managelist";
 	
-
-	public static final String MESSAGE_LIST = "dhlive-basedata-messagelist";
+	public static final String DUTYMANAGER_LIST = "dhlive-basedata-dutymanagelist";
 	
 	public static final String DUTY_USER_LIST = "dhlive-basedata-dutyuserlist";
 	
 	public static final String RELATION = "dhlive-cachedata-room-relation-";
 	
 	public static final String DAY_RELATION = "dhlive-cachedata-dayrelation-";
+
+	public static final String MESSAGE_LIST = "dhlive-basedata-messagelist";
 
 	@Override
 	public UserInfoDTO getUserInfo(Integer userId) {
@@ -95,7 +96,7 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	
 	@Override
 	public List<UserManageInfo> getManageUserList(Integer roomId) {
-		String dataJson = redisManager.getStringValueByKey(ONLINEMANAGER_LIST+roomId);
+		String dataJson = redisManager.getStringValueByKey(MANAGER_LIST+roomId);
 		if(EmptyUtil.isEmpty(dataJson)) {
 			return updateManageUserList(roomId);
 		}
@@ -115,7 +116,7 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 			return null;
 		}
 		String dataJson = JSON.toJSONString(data);
-		redisManager.saveStringBySeconds(ONLINEMANAGER_LIST+roomId, dataJson, 60*60*24);
+		redisManager.saveStringBySeconds(MANAGER_LIST+roomId, dataJson, 60*60*24);
 		return data;
 	}
 	
@@ -166,7 +167,7 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 
 	@Override
 	public List<UserManageInfo> getDutyUserByWeek(Integer roomId,Integer weekId) {
-		String dataJson = redisManager.getStringValueByKey(DUTY_USER_LIST+weekId);
+		String dataJson = redisManager.getStringValueByKey(DUTYMANAGER_LIST+weekId);
 		if(EmptyUtil.isEmpty(dataJson)) {
 			return updateDutyUserByWeek(roomId,weekId);
 		}
@@ -209,7 +210,7 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 			return null;
 		}
 		String dataJson = JSON.toJSONString(data);
-		redisManager.saveStringBySeconds(ONLINEMANAGER_LIST+roomId, dataJson, 60*60*24);
+		redisManager.saveStringBySeconds(DUTYMANAGER_LIST+roomId, dataJson, 60*60*24);
 		return data;
 	}
 

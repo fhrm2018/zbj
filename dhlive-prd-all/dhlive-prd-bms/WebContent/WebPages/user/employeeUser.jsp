@@ -113,6 +113,20 @@
             <span class="formLabel ar mr10">登录密码</span>
             <input type="password" class="serIpt" id="password" name="password"/>
         </div>
+        
+        <div class="clearfix ptb10" style="position:relative;z-index:210;">
+            <div tabindex="0" class="serSelect fl posRel">
+                <span class="formLabel ar mr10" style="width: 157px">角色</span>
+            </div>
+            <div tabindex="0" id="selectRoleId" class="serSelect fl posRel mr10" data-default="客服" data-defval="2">
+                <div class="text posRel wtBg plr10 serIpt isShow roleId" style="line-height: 23px"></div>
+                <ul tabindex="0" class="posAbs wtBg ovfHid serIpt">
+                    <li data-value="1">管理员</li>
+                    <li data-value="2">客服</li>
+                </ul>
+                <input type="hidden" id="roleId" name="roleId" value="2"/>
+            </div>
+        </div>
 
         <div style="text-align: center" class="pt20">
             <button id="submitBtn" type="submit" class="pageBtn popFormBtn">确定</button>

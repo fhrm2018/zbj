@@ -534,7 +534,7 @@ public class UserInfoApiServiceImpl implements IUserInfoApiService {
 
     @Override
     public DataResponse saveEmployee(BmsEmployeeInfo params) {
-        if (EmptyUtil.isNotEmpty(params.getPassword())) {
+        if (EmptyUtil.isEmpty(params.getId()) && EmptyUtil.isNotEmpty(params.getPassword())) {
             params.setPassword(MD5Util.MD5Encode(params.getPassword(), "utf-8"));
         }
         params.setCreateTime(new Date());

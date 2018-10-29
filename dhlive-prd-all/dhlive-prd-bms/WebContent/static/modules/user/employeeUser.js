@@ -117,11 +117,29 @@ function editEmployeeUserWin(obj) {
         },
         success: function (data) {
             if (data.code == 1000) {
-                openPopForm('#addWin');
+            	if(data.data.roleId && data.data.roleId != ''){
+                	var roleName = '';
+                	if(data.data.roleId == 1){
+                		roleName = '管理员';
+                	}
+                	if(data.data.roleId == 2){
+                		roleName = '客服';
+                	}
+                	$('#selectRoleId').data('default',roleName);
+                	$('#selectRoleId').data('defval',data.data.roleId);
+                }else{
+                	$('#selectRoleId').data('default','');
+                	$('#selectRoleId').data('defval','');
+                }
+            	openPopForm('#addWin');
                 $('#employeeId').val(data.data.id);
                 $('#mobile').val(data.data.mobile);
                 $('#name').val(data.data.name);
                 $('#password').val(data.data.password);
+                
+                
+               
+                
             } else {
                 popLayer(data.message);
             }
