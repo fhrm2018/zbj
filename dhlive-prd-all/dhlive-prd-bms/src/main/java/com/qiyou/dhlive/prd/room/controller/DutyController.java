@@ -116,8 +116,8 @@ public class DutyController {
     	if(EmptyUtil.isEmpty(duty) || EmptyUtil.isEmpty(duty.getManageIds())) {
     		RoomDuty upDuty = new RoomDuty();
     		upDuty.setId(id);
-    		upDuty.setManageIds(manage.getUserId()+",");
-    		upDuty.setManageNames(manage.getUserNickName()+",");
+    		upDuty.setManageIds(","+manage.getUserId()+",");
+    		upDuty.setManageNames(","+manage.getUserNickName()+",");
     		upDuty.setModifyTime(new Date());
     		this.roomDutyService.modifyEntity(upDuty);
     		baseCacheService.updateDutyUserByWeek(4,id);
@@ -168,7 +168,7 @@ public class DutyController {
     		String ids = duty.getManageIds();
     		String names = duty.getManageNames();
     		
-    		String newIds = ids.replace(manageId+",", "");
+    		String newIds = ids.replace(","+manageId+",", ",");
     		String newNames = names.replace(manage.getUserNickName()+",", "");
     		upDuty.setId(id);
     		upDuty.setManageIds(newIds);
