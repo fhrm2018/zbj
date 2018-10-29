@@ -37,7 +37,7 @@ import java.util.*;
  */
 @Controller
 @RequestMapping(value = "activity")
-public class ActivityController extends ResourceBaseController {
+public class ActivityController {
 
     @Autowired
     private IActivityLuckyDrawWinnersService activityLuckyDrawWinnersService;
@@ -51,21 +51,18 @@ public class ActivityController extends ResourceBaseController {
 
     @NeedSession
     @RequestMapping("")
-    @ResourceAnnotation(name = "活动", type = 1, url = "/activity/", remark = "活动", icon = "order")
     public String index(Model model) {
         return "activity/redPack";
     }
 
     @NeedSession
     @RequestMapping(value = "redPack")
-    @ResourceAnnotation(name = "红包", pName = "活动", type = 2, url = "/activity/redPack", remark = "红包", icon = "order")
     public String redPack(Model model) {
         return "activity/redPack";
     }
 
     @NeedSession
     @RequestMapping(value = "rotaryTable")
-    @ResourceAnnotation(name = "转盘", pName = "活动", type = 2, url = "/activity/rotaryTable", remark = "转盘", icon = "order")
     public String rotaryTable(Model model) {
         return "activity/rotaryTable";
     }

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.common.base.Function;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
 import com.google.gson.Gson;
 import com.qiyou.dhlive.api.base.outward.service.IActivityApiService;
@@ -160,7 +161,7 @@ public class LiveController {
         }
         model.addAttribute("room", room);
         
-        //在线助理列表
+/*        //在线助理列表
         List<UserManageInfo> onLineAssistant = this.userInfoApiService.getAssistantList(room.getRoomId());
         //所有的助理
         List<UserManageInfo> unLineAssistant = this.userInfoApiService.getAssistantList(room.getRoomId());
@@ -172,14 +173,21 @@ public class LiveController {
             DataResponse manages = this.userInfoApiService.getManageUser(params);
             unLineAssistant = (List<UserManageInfo>) manages.getData();
         }
-        Collections.shuffle(onLineAssistant);
+        Collections.shuffle(onLineAssistant);*/
+       List<UserManageInfo> onLineAssistant=Lists.newArrayList();
+       List<UserManageInfo>  assistantList=this.baseCacheService.getManageUserList(room.getRoomId());
+       for(UserManageInfo m:assistantList) {
+    	   if(m.getGroupId().intValue()==3) {
+    		   onLineAssistant.add(m);
+    	   }
+       }
         model.addAttribute("assistant", onLineAssistant);
 
-        //如果没有在线的助理, 取所有的助理
+  /*      //如果没有在线的助理, 取所有的助理
         if (EmptyUtil.isEmpty(onLineAssistant)) {
             onLineAssistant = unLineAssistant;
         }
-        
+        */
         
         int x = (int) (Math.random() * onLineAssistant.size());//随机数, 用于选择一个助理进行关联
 

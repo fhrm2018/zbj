@@ -82,7 +82,11 @@ public class DutyController {
     			Map<String,Object> row = Maps.newHashMap();
     			row.put("id", id);
             	row.put("manageId", ids[i]);
-            	row.put("manageName", names[i]);
+//            	row.put("manageName", names[i]);
+            	UserManageInfo manage=this.userManageInfoService.findById(Integer.parseInt(ids[i]));
+            	if(EmptyUtil.isEmpty(manage))
+            		continue;
+            	row.put("manageName", manage.getUserNickName());
             	rows.add(row);
     		}
     	}
@@ -169,7 +173,7 @@ public class DutyController {
     		String names = duty.getManageNames();
     		
     		String newIds = ids.replace(","+manageId+",", ",");
-    		String newNames = names.replace(manage.getUserNickName()+",", "");
+    		String newNames = names.replace(","+manage.getUserNickName()+",", ",");
     		upDuty.setId(id);
     		upDuty.setManageIds(newIds);
     		upDuty.setManageNames(newNames);

@@ -61,7 +61,7 @@ import java.util.*;
  */
 @Controller
 @RequestMapping(value = "live")
-public class LiveController extends ResourceBaseController {
+public class LiveController {
 
     private static Logger baseLog = LoggerFactory.getLogger("baseLog");
 
@@ -87,7 +87,6 @@ public class LiveController extends ResourceBaseController {
     @NeedSession
     @UnSecurity
     @RequestMapping("")
-    @ResourceAnnotation(name = "直播室", type = 1, url = "/live/", remark = "直播室", icon = "order")
     public String index(Model model) {
         EmployeeSession eSession = EmployeeSession.getEmployeeSession();
         if (eSession.getMobile().equals("18851029897")) {
@@ -100,7 +99,6 @@ public class LiveController extends ResourceBaseController {
     @NeedSession
     @UnSecurity
     @RequestMapping("room")
-    @ResourceAnnotation(name = "直播室", type = 2, pName = "直播室", url = "/live/room", remark = "直播室", icon = "order")
     public String room(Model model) {
         EmployeeSession eSession = EmployeeSession.getEmployeeSession();
         if (eSession.getMobile().equals("18851029897")) {

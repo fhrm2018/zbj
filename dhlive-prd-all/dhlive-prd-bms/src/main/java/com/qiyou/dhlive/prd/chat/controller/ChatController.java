@@ -35,7 +35,7 @@ import com.yaozhong.framework.web.annotation.session.NeedSession;
  */
 @Controller
 @RequestMapping(value = "chat")
-public class ChatController extends ResourceBaseController {
+public class ChatController {
 
     private static Logger baseLog = LoggerFactory.getLogger("baseLog");
 
@@ -48,7 +48,6 @@ public class ChatController extends ResourceBaseController {
     @NeedSession
     @UnSecurity
     @RequestMapping("")
-    @ResourceAnnotation(name = "聊天审核", type = 2, url = "/chat/", remark = "聊天审核", icon = "order")
     public String index(Model model) {
         return "chat/chatAudit";
     }
