@@ -1,5 +1,6 @@
 package com.qiyou.dhlive.prd.user.controller;
 
+import com.qiyou.dhlive.api.base.outward.service.IBaseCacheService;
 import com.qiyou.dhlive.api.base.outward.service.IFileUploadRemoteService;
 import com.qiyou.dhlive.api.base.outward.service.ILiveRoomApiService;
 import com.qiyou.dhlive.api.base.outward.service.IUserInfoApiService;
@@ -39,7 +40,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "user")
-public class UserController extends ResourceBaseController {
+public class UserController {
 
     private static Logger baseLog = LoggerFactory.getLogger("baseLog");
 
@@ -54,11 +55,13 @@ public class UserController extends ResourceBaseController {
 
     @Autowired
     private IBaseOptLogService baseOptLogService;
+    
+    @Autowired
+    private IBaseCacheService baseCacheService;
 
     @NeedSession
     @UnSecurity
     @RequestMapping("")
-    @ResourceAnnotation(name = "用户", type = 1, url = "/user/", remark = "用户", icon = "order")
     public String index(Model model) {
         return "user/touristsUser";
     }
@@ -66,7 +69,6 @@ public class UserController extends ResourceBaseController {
     @NeedSession
     @UnSecurity
     @RequestMapping("touristsUser")
-    @ResourceAnnotation(name = "游客", type = 2, pName = "用户", url = "/user/touristsUser", remark = "游客", icon = "order")
     public String touristsUser(Model model) {
         return "user/touristsUser";
     }
@@ -74,7 +76,6 @@ public class UserController extends ResourceBaseController {
     @NeedSession
     @UnSecurity
     @RequestMapping("vipUser")
-    @ResourceAnnotation(name = "VIP", type = 2, pName = "用户", url = "/user/vipUser", remark = "VIP", icon = "order")
     public String vipUser(Model model) {
         //角色: 会员
         Object[] ids = {5};
@@ -89,7 +90,6 @@ public class UserController extends ResourceBaseController {
     @NeedSession("/user/manageUser")
     @UnSecurity
     @RequestMapping("manageUser")
-    @ResourceAnnotation(name = "管理用户", type = 2, pName = "用户", url = "/user/manageUser", remark = "管理用户", icon = "order")
     public String manageCus(Model model) {
         //角色:助理,老师
         Object[] ids = {3, 4};
@@ -104,7 +104,6 @@ public class UserController extends ResourceBaseController {
     @NeedSession
     @UnSecurity
     @RequestMapping("employeeUser")
-    @ResourceAnnotation(name = "后台用户", type = 2, pName = "用户", url = "/user/employeeUser", remark = "后台用户", icon = "order")
     public String manageEmp(Model model) {
         return "user/employeeUser";
     }
@@ -373,7 +372,9 @@ public class UserController extends ResourceBaseController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return this.userInfoApiService.saveManageUser(params);
+        DataResponse dr= this.userInfoApiService.saveManageUser(params);
+        this.baseCacheService.updateManageUserList(4);
+        return dr;
     }
 
 
@@ -388,7 +389,9 @@ public class UserController extends ResourceBaseController {
     @RequestMapping(value = "deleteManageUser")
     @ResponseBody
     public DataResponse deleteManageUser(UserManageInfo params) {
-        return this.userInfoApiService.deleteManageUser(params);
+        DataResponse dr = this.userInfoApiService.deleteManageUser(params);
+        this.baseCacheService.updateManageUserList(4);
+        return dr;
     }
 
     /**

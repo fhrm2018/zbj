@@ -32,7 +32,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "setting")
-public class SettingController extends ResourceBaseController {
+public class SettingController {
 
     @Autowired
     private ILiveRoomApiService liveRoomApiService;
@@ -52,7 +52,6 @@ public class SettingController extends ResourceBaseController {
     @NeedSession
     @RequestMapping("")
     @UnSecurity
-    @ResourceAnnotation(name = "运营设置", type = 1, url = "/setting/", remark = "运营设置", icon = "order")
     public String index(Model model) {
         //直播间
         List<LiveRoom> rooms = this.liveRoomApiService.getLiveRoom(new LiveRoom());
@@ -63,7 +62,6 @@ public class SettingController extends ResourceBaseController {
     @NeedSession
     @UnSecurity
     @RequestMapping("timingSpeak")
-    @ResourceAnnotation(name = "定时发言", pName = "运营设置", type = 2, url = "/setting/timingSpeak", remark = "定时发言", icon = "order")
     public String timingSpeak(Model model) {
         //直播间
         List<LiveRoom> rooms = this.liveRoomApiService.getLiveRoom(new LiveRoom());
@@ -74,7 +72,6 @@ public class SettingController extends ResourceBaseController {
     @NeedSession
     @UnSecurity
     @RequestMapping("setIps")
-    @ResourceAnnotation(name = "IP黑白名单", pName = "运营设置", type = 2, url = "/setting/setIps", remark = "IP黑白名单", icon = "order")
     public String setBlackOrWhiteIp(Model model) {
         return "setting/ip";
     }
@@ -82,7 +79,6 @@ public class SettingController extends ResourceBaseController {
     @NeedSession
     @UnSecurity
     @RequestMapping("setWords")
-    @ResourceAnnotation(name = "敏感词", pName = "运营设置", type = 2, url = "/setting/setWords", remark = "敏感词黑白名单", icon = "order")
     public String setSensitiveWords(Model model) {
         return "setting/word";
     }
