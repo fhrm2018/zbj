@@ -168,7 +168,7 @@ public class DutyController {
     		String ids = duty.getManageIds();
     		String names = duty.getManageNames();
     		
-    		String newIds = ids.replace(id+",", "");
+    		String newIds = ids.replace(manageId+",", "");
     		String newNames = names.replace(manage.getUserNickName()+",", "");
     		upDuty.setId(id);
     		upDuty.setManageIds(newIds);
