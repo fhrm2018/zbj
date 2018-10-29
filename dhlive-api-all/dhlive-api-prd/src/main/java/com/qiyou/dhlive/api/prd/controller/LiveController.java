@@ -280,7 +280,8 @@ public class LiveController {
         //老师列表
         List<UserManageInfo> teacher = this.userInfoApiService.getTeacherList(roomId);
         model.addAttribute("teacher", teacher);
-
+        String roomSyllabusUrl  = baseSysParamService.updateValueByKey("roomSyllabus");
+        model.addAttribute("roomSyllabusUrl", roomSyllabusUrl);
         /**
          * 判断当前登陆人是否可以观看视频
          */

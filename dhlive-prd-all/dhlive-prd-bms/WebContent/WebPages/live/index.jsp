@@ -29,6 +29,7 @@
             <div style="right: 10px; top: 20px">
                 <button type="button" class="pageBtn addBtn">创建直播间</button>
                 <button type="button" class="pageBtn searchBtn">查询</button>
+                <button type="button" class="pageBtn uploadBtn">更新课程表</button>
                 <button type="button" class="pageBtn refBtn">刷新</button>
                 <c:if test="${!empty fish}">
                     <button type="button" class="pageBtn extXls" style="width: 150px;">导出聊天消息</button>
@@ -173,6 +174,31 @@
     </form>
 </div>
 
+
+<!-- 上传课程表 -->
+<div id="uploadWin" class="popForm popFormWide wtBg posFixed hide">
+    <form id="uploadForm" action="${pageContext.request.contextPath}/live/uploadRoomSyllabus" method="post">
+        <div class="title flexWrap ">
+            <div class="flexCon fz16 liveTitle">上传/更新课程表</div>
+            <div class="pt5"><a href="" onclick="closePopForm(this);return !1;" class="close block">
+                <span class="icon block"></span></a>
+            </div>
+        </div>
+
+
+        <div class="wtBg ptb10 ac">
+            <span class="formLabel ar mr10">课程表</span>
+            <input type="file" class="serIpt" name="file" accept="image/*"/>
+        </div>
+
+
+
+        <div style="text-align: center" class="pt20">
+            <button id="uploadBtn" type="submit" class="pageBtn popFormBtn">确定</button>
+            <button class="pageBtn popFormBtn" onclick="closePopForm(this);return !1;">取消</button>
+        </div>
+    </form>
+</div>
 
 <!-- 导出聊天消息 -->
 <form id="exportDataForm" action="${pageContext.request.contextPath}/live/exportChatMsg" method="post"></form>

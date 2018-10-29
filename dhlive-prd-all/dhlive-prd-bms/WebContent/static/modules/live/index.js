@@ -1,6 +1,7 @@
 var getDataList;
 $(function () {
-    var $tableForm = $('#tableForm');
+    var $tableForm = $('#tableForm'),
+    	$uploadForm = $('#uploadForm');
     var prame = {};
     // 列表
     var fnData = function (obj, pageIndex, recordsNum, pages) {
@@ -66,7 +67,10 @@ $(function () {
     $('.addBtn').on('click', function () {
         openPopForm('#addWin');
     });
-
+    //打开上传课程表窗口
+    $('.uploadBtn').on('click', function () {
+        openPopForm('#uploadWin');
+    });
     //导出聊天消息
     $('.extXls').on('click', function () {
         $('#exportDataForm').submit();
@@ -96,6 +100,30 @@ $(function () {
         }
     });
 
+    /**
+     * 增加客户表单提交
+     */
+    $uploadForm.validate({
+        submitHandler: function () {
+            formSubmit("#uploadBtn", true, "保存中...");
+            var options = {
+                success: function (data) {
+                    if (data.code == '1000') {
+                    	popLayer("更新成功");
+                    } else {
+                        popLayer(data.message);
+                    }
+                    formSubmit("#uploadBtn", false, "保存");
+                },
+                error: function (data) {
+                    popLayer(stringMsg.serverErr);
+                    formSubmit("#uploadBtn", false, "保存");
+                }
+            };
+            $uploadForm.ajaxSubmit(options);
+        }
+    });
+    
     $('.refBtn').on('click', function () {
         prame = {};
         getDataList();
