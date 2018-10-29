@@ -157,7 +157,7 @@ function editManageUserWin(obj) {
                 $('#userId').val(data.data.userId);
                 $('#userNickName').val(data.data.userNickName);
                 $('#userTel').val(data.data.userTel);
-                $('#userTel').attr("readonly", true);
+//                $('#userTel').attr("readonly", true);
                 $('#userRealName').val(data.data.userRealName);
                 var sex = data.data.userSex;
                 $('#userSex').val(sex);
