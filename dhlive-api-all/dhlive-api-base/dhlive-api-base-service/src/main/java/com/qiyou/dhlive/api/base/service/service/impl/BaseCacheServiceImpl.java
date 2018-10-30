@@ -15,8 +15,10 @@ import com.google.common.collect.Ordering;
 import com.qiyou.dhlive.api.base.outward.service.IBaseCacheService;
 import com.qiyou.dhlive.api.base.outward.vo.UserInfoDTO;
 import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
+import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
 import com.qiyou.dhlive.core.room.outward.model.RoomChatMessage;
 import com.qiyou.dhlive.core.room.outward.model.RoomDuty;
+import com.qiyou.dhlive.core.room.outward.service.IRoomAutoMsgService;
 import com.qiyou.dhlive.core.room.outward.service.IRoomDutyService;
 import com.qiyou.dhlive.core.user.outward.model.UserInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
@@ -48,6 +50,9 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	@Autowired
 	private IUserRelationService userRelationService;
 	
+	@Autowired
+	private IRoomAutoMsgService roomAutoMsgService;
+	
 	public static final String USER_INFO = "dhlive-basedata-userinfo-";
 	
 	public static final String NEWUSER_LIST = "dhlive-basedata-newuserlist";
@@ -63,6 +68,8 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	public static final String DAY_RELATION = "dhlive-cachedata-dayrelation-";
 
 	public static final String MESSAGE_LIST = "dhlive-basedata-messagelist";
+	
+	public static final String AUTO_MESSAGE_LIST = "dhlive-basedata-automessagelist";
 
 	@Override
 	public UserInfoDTO getUserInfo(Integer userId) {
@@ -280,4 +287,22 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 		return kefuId+"";
 	}
 
+	@Override
+	public List<RoomAutoMsg> getAllRoomAutoMsg(){
+		String json=this.redisManager.getStringValueByKey(AUTO_MESSAGE_LIST);
+		if(EmptyUtil.isEmpty(json)) {
+			return updateAllRoomAutoMsg();
+		}
+		return JSON.parseArray(json, RoomAutoMsg.class);
+	}
+	
+	@Override
+	public List<RoomAutoMsg> updateAllRoomAutoMsg(){
+		List<RoomAutoMsg> msgList=this.roomAutoMsgService.findByCondition(new SearchCondition<RoomAutoMsg>(new RoomAutoMsg()));
+		if(EmptyUtil.isEmpty(msgList)) {
+			return Lists.newArrayList();
+		}
+		this.redisManager.saveString(AUTO_MESSAGE_LIST,JSON.toJSONString(msgList));
+		return msgList;
+	}
 }

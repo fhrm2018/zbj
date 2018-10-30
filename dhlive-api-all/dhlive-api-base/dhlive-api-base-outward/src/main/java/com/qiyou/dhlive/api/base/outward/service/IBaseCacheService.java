@@ -3,6 +3,7 @@ package com.qiyou.dhlive.api.base.outward.service;
 import java.util.List;
 
 import com.qiyou.dhlive.api.base.outward.vo.UserInfoDTO;
+import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
 import com.qiyou.dhlive.core.room.outward.model.RoomChatMessage;
 import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
 
@@ -39,5 +40,9 @@ public interface IBaseCacheService {
 	String getYkKefuIdByDay(Integer userId,String day);
 	
 	String updateYkKefuIdByDay(Integer userId,String day,Integer kefuId);
+	
+	List<RoomAutoMsg> getAllRoomAutoMsg();
+	
+	List<RoomAutoMsg> updateAllRoomAutoMsg();
 
 }

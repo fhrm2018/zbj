@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.common.base.Function;
 import com.google.common.collect.Ordering;
 import com.google.gson.Gson;
+import com.qiyou.dhlive.api.base.outward.service.IBaseCacheService;
 import com.qiyou.dhlive.api.base.outward.service.IFileUploadRemoteService;
 import com.qiyou.dhlive.api.base.outward.service.ILiveRoomApiService;
 import com.qiyou.dhlive.api.base.outward.service.IUserInfoApiService;
@@ -31,8 +32,10 @@ import com.qiyou.dhlive.core.base.outward.model.BaseSysParam;
 import com.qiyou.dhlive.core.base.outward.service.IBaseSysParamService;
 import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
 import com.qiyou.dhlive.core.live.outward.model.LiveRoom;
+import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
 import com.qiyou.dhlive.core.room.outward.model.RoomClass;
 import com.qiyou.dhlive.core.room.outward.model.RoomFile;
+import com.qiyou.dhlive.core.room.outward.service.IRoomAutoMsgService;
 import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
 import com.qiyou.dhlive.core.user.outward.service.IUserGroupService;
 import com.qiyou.dhlive.core.user.outward.service.IUserManageInfoService;
@@ -83,6 +86,12 @@ public class LiveController {
 
 	@Autowired
 	private IBaseSysParamService baseSysParamService;
+	
+	@Autowired
+	private IRoomAutoMsgService roomAutoMsgService;
+	
+	@Autowired
+	private IBaseCacheService baseCacheService;
 
 	@NeedSession
 	@UnSecurity
@@ -514,6 +523,34 @@ public class LiveController {
 			e.printStackTrace();
 		}
 		return new DataResponse();
+	}
+	
+	@RequestMapping("/autoMsg")
+	public String autoMsg(Model model) {
+		return "autoMsg";
+	}
+	
+	@RequestMapping("/autoMsg")
+	@ResponseBody
+	public DataResponse getMsg(Integer msgId) {
+		RoomAutoMsg autoMsg=roomAutoMsgService.findById(msgId);
+		return new DataResponse(1000,autoMsg);
+	}
+	
+	@RequestMapping("/saveMsg")
+	@ResponseBody
+	public DataResponse saveMsg(RoomAutoMsg msg) {
+		if(EmptyUtil.isEmpty(msg.getMsgContent())) {
+			return new DataResponse(1001,"消息内容不能为空");
+		}
+		if(EmptyUtil.isEmpty(msg.getMsgId())) {
+			this.roomAutoMsgService.save(msg);
+		}else {
+			this.roomAutoMsgService.modifyEntity(msg);
+		}
+		this.baseCacheService.updateAllRoomAutoMsg();
+		return new DataResponse();
+		
 	}
 
 }
