@@ -805,8 +805,9 @@ public class LiveController {
     	if(session.getGroupId().intValue() != 3) {
     		return new DataResponse(1001,"没有权限");
     	}
-        SearchCondition<RoomAutoMsg> condition = new SearchCondition<RoomAutoMsg>(new RoomAutoMsg());
-        List<RoomAutoMsg> msgs = this.roomAutoMsgService.findByCondition(condition);
+//        SearchCondition<RoomAutoMsg> condition = new SearchCondition<RoomAutoMsg>(new RoomAutoMsg());
+//        List<RoomAutoMsg> msgs = this.roomAutoMsgService.findByCondition(condition);
+    	List<RoomAutoMsg> msgs = this.baseCacheService.getAllRoomAutoMsg();
         
         if(EmptyUtil.isEmpty(msgs)) {
         	return new DataResponse(1001,"没有数据");

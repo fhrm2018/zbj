@@ -46,6 +46,7 @@ import com.qiyou.dhlive.prd.live.vo.ContentVO;
 import com.qiyou.dhlive.prd.live.vo.DataVO;
 import com.yaozhong.framework.base.common.utils.EmptyUtil;
 import com.yaozhong.framework.base.common.utils.LogFormatUtil;
+import com.yaozhong.framework.base.database.domain.page.PageResult;
 import com.yaozhong.framework.base.database.domain.page.PageSearch;
 import com.yaozhong.framework.base.database.domain.returns.DataResponse;
 import com.yaozhong.framework.base.database.domain.search.SearchCondition;
@@ -527,16 +528,31 @@ public class LiveController {
 	
 	@RequestMapping("/autoMsg")
 	public String autoMsg(Model model) {
-		return "autoMsg";
+		return "msg/index";
 	}
 	
-	@RequestMapping("/autoMsg")
+	@NeedSession
+	@UnSecurity
+	@RequestMapping("/getMsgList")
+	@ResponseBody
+	public DataResponse getMsgList(PageSearch ps) {
+		SearchCondition<RoomAutoMsg> condition=new SearchCondition<RoomAutoMsg>(new RoomAutoMsg(),ps);
+		condition.buildOrderByConditions("msgId", "desc");
+		PageResult<RoomAutoMsg> pr=this.roomAutoMsgService.findByPage(condition);
+		return new DataResponse(1000,pr);
+	}
+	
+	@NeedSession
+	@UnSecurity
+	@RequestMapping("/getAutoMsg")
 	@ResponseBody
 	public DataResponse getMsg(Integer msgId) {
 		RoomAutoMsg autoMsg=roomAutoMsgService.findById(msgId);
 		return new DataResponse(1000,autoMsg);
 	}
 	
+	@NeedSession
+	@UnSecurity
 	@RequestMapping("/saveMsg")
 	@ResponseBody
 	public DataResponse saveMsg(RoomAutoMsg msg) {
@@ -550,7 +566,16 @@ public class LiveController {
 		}
 		this.baseCacheService.updateAllRoomAutoMsg();
 		return new DataResponse();
-		
 	}
 
+	@NeedSession
+	@UnSecurity
+	@RequestMapping("/removeMsg")
+	@ResponseBody
+	public DataResponse removeMsg(Integer msgId) {
+		this.roomAutoMsgService.removeById(msgId);
+		this.baseCacheService.updateAllRoomAutoMsg();
+		return new DataResponse();
+	}
+	
 }
