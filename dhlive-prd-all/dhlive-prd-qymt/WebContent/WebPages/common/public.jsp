@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <%
-	//	application.setAttribute("staticHost","http://static.rssdio.com");
+//	application.setAttribute("staticHost","http://static.rssdio.com");
 	if (application.getAttribute("version") == null) {
 		application.setAttribute("version", "1.5.7");
 	}
@@ -34,9 +34,9 @@
 <link href="${staticHost}/css/water.css?v=${version}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="${staticHost}/css/ui-dialog.css">
 <script type="text/javascript">
-    //全局变量
-    var g_requestContextPath = "${pageContext.request.contextPath}",
-        ctx	 = "${pageContext.request.contextPath}";
+	//全局变量
+	var g_requestContextPath = "${pageContext.request.contextPath}",
+		ctx	 = "${pageContext.request.contextPath}";
 </script>
 <script src="${staticHost}/js/lib/jquery.min.js"></script>
 <script src="${staticHost}/js/lib/jquery.validate.min.js"></script>

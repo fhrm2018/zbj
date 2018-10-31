@@ -84,7 +84,7 @@
             <%--<a class="a1" id="Collection01" onclick="collection(document.title,window.location)">--%>
                 <%--<img src="../static/images/a7.png" alt="">--%>
             <%--</a>--%>
-            <a class="a1 gwLink" onclick="qqCustomer(${relation.userQq})">
+            <a class="a1 gwLink" target="_blank" href="http://www.ditan666.com/qy.html">
                 <img src="../static/images/a10.png" alt="">
             </a>
             <a class="a1" onclick="downUrl()">

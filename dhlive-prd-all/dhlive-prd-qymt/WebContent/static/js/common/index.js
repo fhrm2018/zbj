@@ -792,5 +792,3 @@ function checkTourseIsBlack(userId) {
         }
     });
 }
-
-
