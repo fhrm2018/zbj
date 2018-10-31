@@ -475,7 +475,7 @@ input::-moz-focus-inner {
 .topLeft .a1 {
     display: block;
     float: left;
-    margin: 22px 30px 0 0;
+    margin: 0 12px 0 0;
     height: 36px;
     text-align: center;
     color: #FFF;
@@ -1286,7 +1286,7 @@ input::-moz-focus-inner {
     background:rgba(255,255,255,0.1);
 }
 
-.contentRight .messageBox .emoticonIcon a {
+.contentRight .messageBox .emoticonIcon a{
     display: inline-block;
     cursor: pointer;
     width: 40px;
@@ -1329,7 +1329,27 @@ input::-moz-focus-inner {
     right: 0;
     top: 0;
 }
-
+.contentRight .messageBox .emoticonIcon label {
+     display: inline-block;
+     cursor: pointer;
+     height: 40px;
+     margin-right: 10px;
+     vertical-align: middle;
+     position: relative
+ }
+.contentRight .messageBox .emoticonIcon label input{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 12px auto;
+    vertical-align: middle;
+}
+.contentRight .messageBox .emoticonIcon label span{
+    display: inline-block;
+   font-size:16px;
+    color:#ffffff;
+    vertical-align: middle;
+}
 .contentRight .sendMsg {
     width: 100%;
     padding-right: 100px;
@@ -3741,6 +3761,27 @@ button.fncBtn {
     color:#e1d0ad;
     text-align:center;
 }
+
+.leftBtn .ewm{
+    display: block;
+    padding-top:20px;
+    padding-right: 10px;
+    margin-bottom: 20px;
+}
+.leftBtn .ewm img{
+    display:block;
+    width:52px;
+    height:52px;
+    margin:0 auto 10px;
+}
+.leftBtn .ewm span{
+    display:block;
+    font-size:16px;
+    color:#e1d0ad;
+    text-align:center;
+}
+
+
 
 
 

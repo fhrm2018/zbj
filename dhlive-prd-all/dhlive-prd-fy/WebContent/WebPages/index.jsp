@@ -74,21 +74,6 @@
     <div class="wrap mgAuto posRel">
         <div class="topLeft fl">
             <a class="logo"><img src="../static/images/logo.png"></a>
-            <%--<a class="a1" id="Collection01" onclick="collection(document.title,window.location)">--%>
-            <%--<img src="../static/images/a7.png" alt="">--%>
-            <%--</a>--%>
-            <%--<a class="a1 goo2" id="g3" onclick="downUrl()">--%>
-            <%--<img src="../static/images/a3.png" alt="">--%>
-            <%--</a>--%>
-            <%--<a class="a1 goo1" id="g4" onclick="qqCustomer(${relation.userQq})">--%>
-            <%--<img src="../static/images/a1.gif" alt="">--%>
-            <%--</a>--%>
-            <%--<a class="a1 goo3" id="g5" onclick="qqCustomer(${relation.userQq})">--%>
-            <%--<img src="../static/images/a4.gif" alt="">--%>
-            <%--</a>--%>
-            <%--<a class="a1 goo5" id="g2" onclick="qqCustomer(${relation.userQq})">--%>
-            <%--<img src="../static/images/a6.gif" alt="">--%>
-            <%--</a>--%>
 
             <a class="a1" onclick="qqCustomer(${relation.userQq})">
                 <img src="../static/images/a1.png" alt="">
@@ -99,15 +84,14 @@
             <a class="a1" onclick="qqCustomer(${relation.userQq})">
                 <img src="../static/images/a3.png" alt="">
             </a>
-            <%--<a class="a1" target="_blank" href="javascript:">--%>
-                <%--<img src="../static/images/a4.png" alt="">--%>
-            <%--</a>--%>
-            <a class="a1" onclick="qqCustomer(${relation.userQq})">
+            <a class="a1" target="_blank" href="http://www.oeo2.com/">
                 <img src="../static/images/a5.png" alt="">
             </a>
-            <%--<a class="a1 activityBtn" onclick="qqCustomer(${relation.userQq})">--%>
-                <%--<img src="../static/images/a6.png" alt="">--%>
-            <%--</a>--%>
+
+            <a class="a1" onclick="qqCustomer(${relation.userQq})" style="margin-top:11px;">
+                <img src="../static/images/zxzx.gif" alt="">
+            </a>
+
 
         </div>
         <div class="topRight fr">
@@ -256,6 +240,11 @@
                                 <i><img src="../static/images/icon6.png" alt=""></i>
                                 <span>专属客服</span>
                             </a>
+                            <div class="ewm">
+                                <img src="../static/images/ewm.png" alt=""></i>
+                                <span>扫一扫</span>
+                                <span>看直播</span>
+                            </div>
                         </div>
                     </c:if>
 
@@ -475,6 +464,14 @@
                                             <input type="file" id="msgImage" name="chatImage" value="发送图片" accept="image/*"/>
                                         </a>
                                         <a class="clearScreen"><i style="display: none"></i></a>
+
+                                        <c:if test="${manage.groupId == 3 || manage.groupId == 4}">
+                                            <label>
+                                                <input type="checkbox">
+                                                <span>小号群发</span>
+                                            </label>
+                                        </c:if>
+
                                     </form>
                                 </div>
                             </div>

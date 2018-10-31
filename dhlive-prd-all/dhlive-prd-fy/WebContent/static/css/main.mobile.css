@@ -1,6 +1,6 @@
 @charset "utf-8";
 html{font-size:62.5%;overflow-y:scroll;-webkit-overflow-scrolling:touch;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
-body{font-size:1.4rem;lcolor:#666;margin:0;-webkit-tap-highlight-color:rgba(0,0,0,0);background:#eee;-webkit-text-size-adjust: none;}
+body{font-size:1.4rem;lcolor:#666;margin:0;-webkit-tap-highlight-color:rgba(0,0,0,0);background:url("../images/zb_bg.jpg") 95% -25% no-repeat;}
 ::-moz-selection{background:#b3d4fc;text-shadow:none}
 ::selection{background:#b3d4fc;text-shadow:none}
 img{border:0 none;vertical-align:middle}
@@ -94,10 +94,10 @@ html[xmlns] .clearfix {display: block;}
 	background:rgba(0,0,0,0.4);
 }
 
-.header{height:5rem;border-bottom:#C5C8D7 1px solid;color:#fff;background-color:#3D4A82;}
+.header{height:5rem;border-bottom:#C5C8D7 1px solid;color:#fff;background-color:#553815;}
 /*.content{min-width:1280px;max-width:1280px;min-height:1560px;width:1280px;height:1560px;}*/
 .content{min-width:1280px;width:99%;}
-.footer{position:fixed;bottom:0px;left:0px;right:0px;z-index: 18;}
+.footer{position:fixed;bottom:0px;left:0px;right:0px;z-index: 18;background-color: #654d32;}
 .footer .mgAuto{height:30px;line-height:30px;background-color:#3D4A82;}
 
 /**content**************/
@@ -109,7 +109,7 @@ html[xmlns] .clearfix {display: block;}
 .topRight{}
 .topRight a{padding: 0px 2rem 0 2rem;cursor:pointer;}
 .topRight .username{}
-.topRight .username img{display:inline-block;width:4.33rem;height:1.6rem;padding-right:5px;}
+.topRight .username img{display: inline-block;width: 5.5rem;height: 1.66rem;padding-right: 0.5rem;}
 .topRight .message{width:3rem;height:3.6rem;}
 .topRight .message .redDot{top:-.2rem;right:1.8rem;}
 
@@ -123,8 +123,8 @@ html[xmlns] .clearfix {display: block;}
 
 .allbutton{display:block;width:100px; height:36px;line-height:36px;text-align:center;color:#FFF; font-size:16px; cursor:pointer;position:relative;}
 .allbutton:first-child,.allbutton2{color:#facd4b;}
-.allbutton3{background-color:#7686d1;border-radius:5px;}
-.loginOrReg  .allbutton4{background-color:#7686d1;color:#ffffff;}
+.allbutton3{background-color:#fb403c;border-radius:5px;}
+.loginOrReg  .allbutton4{background-color:#553815;color:#ffe165;}
 .loginOrReg  .allbutton4:after{display:none;}
 .allbutton:after{display:block;content:"";width:1px;height:22px;background-color:#6e7ba1;position:absolute;right:-10px;top:7px;cursor:pointer;}
 .allbutton:last-child:after{display:none;}
@@ -153,14 +153,14 @@ html[xmlns] .clearfix {display: block;}
 .content .share .onlineNum{color: #ffffff;font-size: 14px;}
 
 
-.contentRight .notice{height:3.6rem;background:#3D4A82;}
-.contentRight .trumpet{ display: block;  background:#2f3b70;width:4rem; height:.36rem;}
+.contentRight .notice{height:3.6rem;background:#5e472b;}
+.contentRight .trumpet{ display: block; width:4rem; height:.36rem;}
 .contentRight .trumpet img{margin:.8rem  .6rem 0 .1rem;width: 2.2rem;height: 2rem;}
 .contentRight .notice .noticeMsg{   display:inline-block;  width: 80%;   }
 .contentRight .notice .msgTime,.notice .noticeMsg{ float: left;   height:36px; line-height:36px; font-size: 16px;    color: #fefefe;}
 .contentRight .notice .trig{display:block;width:36px;height:36px;background:#2f3b70;}
 .contentRight .notice .trig img{margin:12px 0 0 10px;}
-.contentRight .notice .noticeList{background: #3D4A82;color: #fff;width: 90%;top: 0;left: 40px;z-index: 99;position: absolute;}
+.contentRight .notice .noticeList{background: #5e472b;color: #fff;width: 90%;top: 0;left: 40px;z-index: 99;position: absolute;}
 .contentRight .notice .noticeList p{  height:30px;line-height:30px;font-size:14px;color:#fff;border-bottom:1px solid black;}
 
 .contentRight .moreNotice {}
@@ -172,6 +172,10 @@ html[xmlns] .clearfix {display: block;}
 .contentRight .msg{height:320px;padding:20px 17px 12px 20px;overflow-y: auto;box-sizing:border-box;}
 
 /*.msg .info{width:362px;}*/
+.msgLine{
+    display:inline-block;
+    vertical-align: middle;
+}
 .msg .info{width:100%;padding-top:5px;}
 .info .visit{background:#7686d1;}
 .info .vip{background:#fca429;}
@@ -182,9 +186,9 @@ html[xmlns] .clearfix {display: block;}
 .load{ width:300px;height:520px;}
 .load img{ margin-top:200px;margin-left:150px;}
 
-.msg .info .msgName,.msg .info .msgTime{color:#333333;font-size:12px;}
+.msg .info .msgName,.msg .info .msgTime{display: inline-block;border-radius: 5px;padding: 4px 10px;color: #ffdd71;background-color: #ca314f;vertical-align: middle;}
 .msg .info .msgTime{top:6px;right: 14px;}
-.msg .info .msgInfo{max-width:350px;margin-left:37px; margin-right: 10px;line-height:24px;font-size:12px;color:#676767;}
+.msg .info .msgInfo{display:inline-block;max-width:350px;margin:10px 0;line-height:24px;font-size:12px;color:#676767;border-bottom-left-radius: 10px;border-top-right-radius: 10px;border-bottom-right-radius: 10px;vertical-align: middle;}
 .msg .info .msgInfo2{line-height:22px;}
 .msg .info .check{width:130px;height:24px; bottom: 5px; right: 31px;}
 .msg .info .check button{width:40px;height:24px;border-radius:5px;border:none;}
@@ -196,10 +200,24 @@ html[xmlns] .clearfix {display: block;}
 .msg .selectBtn{width:114px;padding:10px 0;position:relative;z-index:10; background-color: #fff3cf}
 .msg .selectBtn a{display:block;width:100%;height:26px;line-height:26px;margin-bottom:5px;background-color:#ee1c59;text-align:center;color:#ffffff;}
 
+.msg .info .greenFont{
+    color: #163557;
+    background-color: #edd27c;
+}
+
+
 .serviceList, .messageBox{
     width:100%;
     padding: 0 15px;
     box-sizing:border-box;
+}
+.serviceList, .messageBox input{
+    display:block;
+    width:100%;
+    padding:0 0.5rem;
+    line-height: 36px;
+    box-sizing: border-box;
+    border: 1px solid #a9a9a9;
 }
 /*.serviceList a{display: block;float: left;width: 82px;text-align: center;margin: 0 5px 10px;border-bottom: 1px solid #FFFFFF;color: #ffffff;border-right: 1px solid #FFFFFF;border-radius: 5px;height: 32px;line-height: 32px;position:relative;cursor: pointer;background: #7686d1;}*/
 .serviceList a{display: block;float: left;width: 100%;text-align: center;margin: 0 1% 10px 0;border-bottom: 1px solid #FFFFFF;color: #ffffff;border-right: 1px solid #FFFFFF;border-radius: 5px;height: 32px;line-height: 32px;position:relative;cursor: pointer;background: #7686d1;}
@@ -320,17 +338,17 @@ html[xmlns] .clearfix {display: block;}
 .video-emotion-pane ul li img { width: 24px;height: 24px;vertical-align: middle}
 
 
-.yk{background-image: url(../images/yk.png); display: inline-block; width: 61px; height: 26px; vertical-align: middle}
-.zl{background-image: url(../images/zl.png); display: inline-block; width: 61px; height: 26px; vertical-align: middle}
-.vip1{background-image: url(../images/VIP1.png); display: inline-block; width: 61px; height: 26px; vertical-align: middle}
-.vip2{background-image: url(../images/VIP2.png); display: inline-block; width: 61px; height: 26px; vertical-align: middle}
-.vip3{background-image: url(../images/VIP3.png); display: inline-block; width: 61px; height: 26px; vertical-align: middle}
-.vip4{background-image: url(../images/VIP4.png); display: inline-block; width: 61px; height: 26px; vertical-align: middle}
-.vip5{background-image: url(../images/VIP5.png); display: inline-block; width: 61px; height: 26px; vertical-align: middle}
-.vip6{background-image: url(../images/VIP6.png); display: inline-block; width: 61px; height: 26px; vertical-align: middle}
-.vip7{background-image: url(../images/VIP7.png); display: inline-block; width: 61px; height: 26px; vertical-align: middle}
-.vip8{background-image: url(../images/VIP8.png); display: inline-block; width: 61px; height: 26px; vertical-align: middle}
-.info .teacher{display:inline-block;width:44px;height: 22px;background-image: url(../images/icon_teacher.png); background-repeat: no-repeat; display: inline-block; width: 61px; height: 26px; vertical-align: middle;}
+.yk{background-image: url(../images/yk.gif); display: inline-block; width:78px;height:20px; vertical-align: middle}
+.zl{background-image: url(../images/zl.gif); display: inline-block; width:78px;height:20px; vertical-align: middle}
+.vip1{background-image: url(../images/VIP1.gif); display: inline-block; width:78px;height:20px; vertical-align: middle}
+.vip2{background-image: url(../images/VIP2.gif); display: inline-block; width:78px;height:20px; vertical-align: middle}
+.vip3{background-image: url(../images/VIP3.gif); display: inline-block; width:78px;height:20px; vertical-align: middle}
+.vip4{background-image: url(../images/VIP4.gif); display: inline-block; width:78px;height:20px; vertical-align: middle}
+.vip5{background-image: url(../images/VIP5.gif); display: inline-block; width:78px;height:20px; vertical-align: middle}
+.vip6{background-image: url(../images/VIP6.gif); display: inline-block; width:78px;height:20px; vertical-align: middle}
+.vip7{background-image: url(../images/VIP7.gif); display: inline-block; width:78px;height:20px; vertical-align: middle}
+.vip8{background-image: url(../images/VIP8.gif); display: inline-block; width:78px;height:20px; vertical-align: middle}
+.info .teacher{display:inline-block;width:44px;height: 22px;background-image: url(../images/icon_teacher.gif); background-repeat: no-repeat; display: inline-block; width:78px;height:20px; vertical-align: middle;}
 
 
 .swiper-container{margin-left:auto;margin-right:auto;position:relative;overflow:hidden;z-index:1}

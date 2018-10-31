@@ -82,7 +82,7 @@
     <div class="flexCon topRight ac">
         <c:if test="${loginedUserLogin.groupId == 1}">
             <p class="username colorF fz12" id="username">
-                <img src="../static/images/yk.png" alt="">${loginedUserLogin.userNickName}
+                <img src="../static/images/yk.gif" alt="">${loginedUserLogin.userNickName}
             </p>
         </c:if>
 
@@ -94,7 +94,7 @@
 
         <c:if test="${loginedUserLogin.groupId == 3}">
             <p class="username colorF fz12" id="username">
-                <img src="../static/images/zl.png" alt="">${loginedUserLogin.userNickName}
+                <img src="../static/images/zl.gif" alt="">${loginedUserLogin.userNickName}
             </p>
         </c:if>
 
@@ -107,31 +107,43 @@
         <c:if test="${loginedUserLogin.groupId == 5}">
             <c:if test="${vip.userLevel == 1}">
                 <p class="username colorF fz12" id="username">
-                    <img src="../static/images/VIP1.png" alt="">${loginedUserLogin.userNickName}
+                    <img src="../static/images/VIP1.gif" alt="">${loginedUserLogin.userNickName}
                 </p>
             </c:if>
 
             <c:if test="${vip.userLevel == 2}">
                 <p class="username colorF fz12" id="username">
-                    <img src="../static/images/VIP2.png" alt="">${loginedUserLogin.userNickName}
+                    <img src="../static/images/VIP2.gif" alt="">${loginedUserLogin.userNickName}
                 </p>
             </c:if>
 
             <c:if test="${vip.userLevel == 3}">
                 <p class="username colorF fz12" id="username">
-                    <img src="../static/images/VIP3.png" alt="">${loginedUserLogin.userNickName}
+                    <img src="../static/images/VIP3.gif" alt="">${loginedUserLogin.userNickName}
                 </p>
             </c:if>
 
             <c:if test="${vip.userLevel == 4}">
                 <p class="username colorF fz12" id="username">
-                    <img src="../static/images/VIP4.png" alt="">${loginedUserLogin.userNickName}
+                    <img src="../static/images/VIP4.gif" alt="">${loginedUserLogin.userNickName}
                 </p>
             </c:if>
 
             <c:if test="${vip.userLevel == 5}">
                 <p class="username colorF fz12" id="username">
-                    <img src="../static/images/VIP5.png" alt="">${loginedUserLogin.userNickName}
+                    <img src="../static/images/VIP5.gif" alt="">${loginedUserLogin.userNickName}
+                </p>
+            </c:if>
+
+            <c:if test="${vip.userLevel == 6}">
+                <p class="username colorF fz12" id="username">
+                    <img src="../static/images/VIP6.gif" alt="">${loginedUserLogin.userNickName}
+                </p>
+            </c:if>
+
+            <c:if test="${vip.userLevel == 7}">
+                <p class="username colorF fz12" id="username">
+                    <img src="../static/images/VIP7.gif" alt="">${loginedUserLogin.userNickName}
                 </p>
             </c:if>
         </c:if>
@@ -188,13 +200,13 @@
 </div>
 
 <div class="flexWrap flexAgCen">
-    <div class="flexCon contentRight wtBg">
+    <div class="flexCon contentRight">
         <div class="notice posRel">
             <p class="trumpet fl"><img src="../static/images/notice.png"/></p>
             <p class="msgTime fl">
             </p>
             <marquee onmouseover="this.stop()" class="noticeMsg noticeList" onmouseout="this.start()"
-                     scrollamount="5" direction="left"></marquee>
+                     scrollamount="5" direction="left">直播为嘉宾的个人观点，不可作为您的交易依据与参考，交易有风险，请谨慎交易！</marquee>
         </div>
         <div class="msg" id="msgBox">
             <div class="load">
@@ -205,7 +217,7 @@
 </div>
 
 <div style="height:5.3rem;"></div>
-<div class="footer ltGreyBg pt5 pb5">
+<div class="footer pt5 pb5">
     <div class="flexWrap flexAgCen sendMsg posRel">
         <div class="expressionT posAbs hide" style="bottom:15rem;left:0;right:0;background-color: white;z-index: 1000;">
             <div class="video-discuss-emotion" id="video-discuss-emotion">
