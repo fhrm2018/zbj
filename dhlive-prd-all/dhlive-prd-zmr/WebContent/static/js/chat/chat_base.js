@@ -862,121 +862,6 @@ function onSendMsg() {
     });
 }
 
-
-function sendAutoMsg(content, name, level) {
-    if (!loginInfo.identifier) { //未登录
-        if (accountMode == 1) { //托管模式
-            //将account_type保存到cookie中,有效期是1天
-            webim.Tool.setCookie('accountType', loginInfo.accountType, 3600 * 24);
-            //调用tls登录服务
-            tlsLogin();
-        } else { //独立模式
-            alert('请填写帐号和票据');
-            $('#login_dialog').show();
-        }
-        return;
-    }
-
-    if (!selToID) {
-        alert("您还没有进入房间，暂不能聊天");
-        $("#" + send_msg_text_id).val('');
-        return;
-    }
-
-    //获取消息内容
-    var msgtosend = content;
-    var selType = webim.SESSION_TYPE.GROUP;
-    selSess = new webim.Session(selType, selToID, selToID, '', Math.round(new Date().getTime() / 1000));
-    var isSend = true; //是否为自己发送
-    var seq = -1; //消息序列，-1表示sdk自动生成，用于去重
-    var random = Math.round(Math.random() * 4294967296); //消息随机数，用于去重
-    var msgTime = Math.round(new Date().getTime() / 1000); //消息时间戳
-    var subType; //消息子类型
-    if (selType == webim.SESSION_TYPE.GROUP) {
-        //群消息子类型如下：
-        //webim.GROUP_MSG_SUB_TYPE.COMMON-普通消息,
-        //webim.GROUP_MSG_SUB_TYPE.LOVEMSG-点赞消息，优先级最低
-        //webim.GROUP_MSG_SUB_TYPE.TIP-提示消息(不支持发送，用于区分群消息子类型)，
-        //webim.GROUP_MSG_SUB_TYPE.REDPACKET-红包消息，优先级最高
-        subType = webim.GROUP_MSG_SUB_TYPE.COMMON;
-    } else {
-        //C2C消息子类型如下：
-        //webim.C2C_MSG_SUB_TYPE.COMMON-普通消息,
-        subType = webim.C2C_MSG_SUB_TYPE.COMMON;
-    }
-    var msg = new webim.Msg(selSess, isSend, seq, random, msgTime, loginInfo.identifier, subType, loginInfo.identifierNick);
-    //msg.ext='abcd';
-    //解析文本和表情
-
-    var expr = /\[[^[\]]{1,3}\]/mg;
-    var emotions = msgtosend.match(expr);
-    var text_obj, face_obj, tmsg, emotionIndex, emotion, restMsgIndex;
-    var cmdJson = {};
-    cmdJson.code = '0000';
-    cmdJson.postUid = userInfo.id;
-    cmdJson.level = userInfo.level;
-    cmdJson.sendTime = new Date();
-    cmdJson.auditUid = '';
-    cmdJson.auditTime = '';
-    cmdJson.isAuditMsg = 0;
-    cmdJson.uniqueId = msg.uniqueId;
-    cmdJson.small = 0;
-
-    cmdJson.postNickName = name;
-    cmdJson.groupId = 5;
-    cmdJson.level = level;
-
-    cmdJson.checkStatus = true;
-    cmdJson.auditTime = cmdJson.sendTime;
-    var cmd_obj = new webim.Msg.Elem.Custom(JSON.stringify(cmdJson));
-    msg.addCustom(cmd_obj);
-
-    if (!emotions || emotions.length < 1) {
-        text_obj = new webim.Msg.Elem.Text(msgtosend);
-        msg.addText(text_obj);
-    } else { //有表情
-        for (var i = 0; i < emotions.length; i++) {
-            tmsg = msgtosend.substring(0, msgtosend.indexOf(emotions[i]));
-            if (tmsg) {
-                text_obj = new webim.Msg.Elem.Text(tmsg);
-                msg.addText(text_obj);
-            }
-            emotionIndex = webim.EmotionDataIndexs[emotions[i]];
-            emotion = webim.Emotions[emotionIndex];
-            if (emotion) {
-                face_obj = new webim.Msg.Elem.Face(emotionIndex, emotions[i]);
-                msg.addFace(face_obj);
-            } else {
-                text_obj = new webim.Msg.Elem.Text(emotions[i]);
-                msg.addText(text_obj);
-            }
-            restMsgIndex = msgtosend.indexOf(emotions[i]) + emotions[i].length;
-            msgtosend = msgtosend.substring(restMsgIndex);
-
-        }
-        if (msgtosend) {
-            text_obj = new webim.Msg.Elem.Text(msgtosend);
-            msg.addText(text_obj);
-        }
-    }
-
-
-    webim.sendMsg(msg, function (resp) {
-        if (selType == webim.SESSION_TYPE.C2C) { //私聊时，在聊天窗口手动添加一条发的消息，群聊时，长轮询接口会返回自己发的消息
-            showMsg(msg);
-        }
-        saveGroupMsg(msg);
-        webim.Log.info("发消息成功");
-
-    }, function (err) {
-        if (err.ErrorCode == 10017) {
-            alert('当前无法发言，如有疑问，请联系客服。');
-        }
-    });
-
-}
-
-
 function sendImgMsg(imageUrl) {
     var selType = webim.SESSION_TYPE.GROUP;
     var msgtosend = "<i></i><img class='img_big' style='max-width: 200px;max-height: 200px;' src='" + imgPath + "chat/" + imageUrl + "'/>";
@@ -1305,7 +1190,7 @@ function sendFlowerMsg() {
         if (userInfo.groupId == 1 || userInfo.groupId == 5) {
             countDownSendMsgBtn();
         }
-        // 发送鲜花后3s倒计时可再次发送
+        // 发送鲜花后20s倒计时可再次发送
         var i = 3;
         var roseInt = setInterval(function () {
             if (i == 1) {
@@ -1453,7 +1338,7 @@ function sendRedBagMsg() {
             countDownSendMsgBtn();
         }
 
-        // 发送红包后3s可以继续发送
+        // 发送红包后20s可以继续发送
         var i = 3;
         var roseInt = setInterval(function () {
             if (i == 1) {
@@ -2255,6 +2140,7 @@ function getRoomMsgHtml(msg, cmdJson) {
 
 
                 '  <span> </span> <img src="../static/images/small_flower.png" alt="">',
+
 
 
                 '</div></div></div></div>'].join('');

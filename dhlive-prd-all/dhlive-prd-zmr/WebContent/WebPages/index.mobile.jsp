@@ -274,11 +274,12 @@
 <script src="${staticHost}/js/common/jquery.endless-scroll-1.3.js"></script>
 <script src="${staticHost}/js/consult/consult.js?version=${version}"></script>
 <script src="${staticHost}/js/common/interval.js?version=${version}"></script>
-<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player.js?r=23191&id=dyyplayer"></script>
+<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player.js?r=23590&id=dyyplayer"></script>
 <script type="text/javascript">
     if(isOver == 0){
         var playerVar = new dyyPlayer({
-            room_id: '${room.roomStreamServer}', //对应房间ID，必要参数
+            //room_id: '${room.roomStreamServer}', //对应房间ID，必要参数
+			room_id:'23590',
             container: 'play-container', //播放器容器ID，必要参数
             width: '100%', //播放器宽度，可用数字、百分比等
             height: '100%', //播放器高度，可用数字、百分比等
