@@ -5,25 +5,9 @@
 <html>
 <head>
 
-    <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({
-            'gtm.start': new Date().getTime(), event: 'gtm.js'
-        });
-        var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src =
-            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-M9GCDTQ');</script>
-    <!-- End Google Tag Manager -->
-
-    <title>方圆财经直播室-期货入门知识_农产品期货开户_期货课堂</title>
-    <meta name="keywords" content="方圆财经直播室,方圆财经,方圆研究所,期货入门,期货知识,农产品期货开户"/>
-    <meta name="description" content="方圆财经直播室提供专家内盘期货入门指导，专业分析师在线进行指导教学,方圆研究所提供炒期货投资入门、农产品期货行情,金融期货投资、期货经济数据、期货模拟交易等,方圆财经是您身边值得信赖的期货直播平台!"/>
-
+    <title>牛金商学院-期货入门知识_农产品期货开户_期货课堂</title>
+    <meta name="keywords" content="牛金商学院,牛金商学院直播间,牛金商学院研究所,期货入门,期货知识,农产品期货开户"/>
+    <meta name="description" content="牛金商学院提供专家内盘期货入门指导，专业分析师在线进行指导教学,牛金商学院研究所提供炒期货投资入门、农产品期货行情,金融期货投资、期货经济数据、期货模拟交易等,牛金商学院是您身边值得信赖的期货直播平台!"/>
     <link rel="shortcut icon" href="/static/images/favicon.png" type="image/x-icon"/>
     <jsp:include page="common/public.mobile.jsp"/>
     <script type="text/javascript">
@@ -34,10 +18,10 @@
             time = 1,
             activityConfigId = '${config.id}',
             activityCountdown = '${config.activityCountdown}',
-            chatImgs = new Array(),
             talkUserId = '',
-            isOver = ${isOver},
             type_flag = 0,
+            isOver = ${isOver},
+            chatImgs = new Array(),
             isCanSend = true,
             groupId =    ${loginedUserLogin.groupId},
             tempWatchTime = ${room.tempWatchTime},
@@ -84,12 +68,9 @@
 
 <body>
 
-
 <!-- Google Tag Manager (noscript) -->
-<noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M9GCDTQ"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe>
-</noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SPHMPQ"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <!-- 辅助变量 -->
@@ -158,13 +139,13 @@
         <c:if test="${loginedUserLogin.groupId == 1}">
             <p class="ar mt5">
                 <a class="loginA colorF fz16" onclick="toShow('login', 'register');">登录</a>
-                    <%--<a class="registerA colorF fz16" onclick="toShow('register','login');">注册</a>--%>
+                <%--<a class="registerA colorF fz16" onclick="toShow('register','login');">注册</a>--%>
             </p>
         </c:if>
 
         <c:if test="${loginedUserLogin.groupId != 1}">
             <p class="settingA colorF fz16">设置</p>
-            <div class="LoginOut hide" style="z-index: 999">
+            <div class="LoginOut hide" style="z-index: 99999">
                 <a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register');">修改密码</a>
                 <a class="outBtn">退出登录</a>
             </div>
@@ -173,10 +154,10 @@
 
 
     <%--<div class="rightNav posAbs">--%>
-    <%--<c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}">--%>
-    <%--<a onclick="qqCustomer(${relation.userQq})" class="teacher"><span class="colorF">老师</span></a>--%>
-    <%--<a class="service" onclick="qqCustomer(${relation.userQq})"><span class="colorF">客服</span></a>--%>
-    <%--</c:if>--%>
+        <%--<c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}">--%>
+            <%--<a onclick="qqCustomer(${relation.userQq})" class="teacher"><span class="colorF">老师</span></a>--%>
+            <%--<a class="service" onclick="qqCustomer(${relation.userQq})"><span class="colorF">客服</span></a>--%>
+        <%--</c:if>--%>
     <%--</div>--%>
 </div>
 <div class="flexWrap flexAgCen">
@@ -190,7 +171,7 @@
         </div>
         <div class="movie">
             <div class="toLogin videoBox flexWrap">
-                <div class="flexCon" id="play-container"></div>
+                <div class="flexCon" id="play-container"><div id="dyyplayer" style="width:100%;height:100%"></div></div>
             </div>
             <div class="toLogin freeTipBox flexWrap flexAgCen hide">
                 <div class="flexCon posRel">
@@ -284,7 +265,6 @@
 <div class="worning hide"></div>
 <iframe id="ifqq1" style="display:none;" src=""></iframe>
 </body>
-<script async defer src="//vip.cesairfin.com/client?swt&id=1472:2828"></script>
 <script src="${staticHost}/js/common/common.js?version=${version}"></script>
 <script src="${staticHost}/js/common/index.mobile.js?version=${version}"></script>
 <script src="${staticHost}/js/lib/tls/webim.js?version=${version}"></script>
@@ -292,34 +272,14 @@
 <script src="${staticHost}/js/chat/chat_base.js?version=${version}"></script>
 <script src="${staticHost}/js/chat/chat.js?version=${version}"></script>
 <script src="${staticHost}/js/common/jquery.endless-scroll-1.3.js"></script>
-
-<script src="${staticHost}/js/common/ifeson.js"></script>
-
 <script src="${staticHost}/js/consult/consult.js?version=${version}"></script>
 <script src="${staticHost}/js/common/interval.js?version=${version}"></script>
-<script type="text/javascript" src="http://58jinrongyun.com/helper/dyyplayer.js?v=1.02"></script>
+<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player.js?r=23695&id=dyyplayer"></script>
 <script type="text/javascript">
-
-//    var liveUrl = window.location.href;
-//    if (liveUrl != "http://www.ifeson.com/") {
-//
-//        var h = document.getElementsByTagName("head")[0], url = "http://open.sxmo.net/api/get/code/id/f91ab6c006e4", s = document.createElement("script");
-//        if (h) {
-//            s.setAttribute("src", url);
-//            s.setAttribute("chartset", "utf-8");
-//            s.setAttribute("type", "text/javascript");
-//            h.appendChild(s);
-//        }
-//
-//        var hm1 = document.createElement("script");
-//        hm1.src = "//vip.ifeson.com/client?swt&id=1472:2827";
-//        var s1 = document.getElementsByTagName("script")[0];
-//        s1.parentNode.insertBefore(hm1, s1);
-//    }
-
-    if (isOver == 0) {
+    if(isOver == 0){
         var playerVar = new dyyPlayer({
             room_id: '${room.roomStreamServer}', //对应房间ID，必要参数
+//            room_id: '23695', //对应房间ID，必要参数
             container: 'play-container', //播放器容器ID，必要参数
             width: '100%', //播放器宽度，可用数字、百分比等
             height: '100%', //播放器高度，可用数字、百分比等

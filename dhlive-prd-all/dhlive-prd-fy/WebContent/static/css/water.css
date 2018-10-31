@@ -12,7 +12,7 @@
 .logo {
     width: 100%;
     height: 56px;
-    background-color: #3598db;
+    background-color: #624827;
     position: relative;
     overflow: hidden;
 }
@@ -182,8 +182,17 @@
 }
 
 .list_chat .text01 .txt p {
-    color: #8ea1b4;
+    color: #000000;
+    font-size: 14px;
 }
+.list_chat .text01 .txt p i{
+    display:inline-block;
+    width:23px;
+    height:23px;
+    background: url("../images/icon.jpg") 50% 50% no-repeat;
+    vertical-align: middle;
+}
+
 
 .list_chat .text01 strong {
     line-height: 16px;
@@ -332,7 +341,7 @@
     color: #ffffff;
     text-align: center;
     border: none;
-    background-color: #3598db;
+    background-color: #402d15;
     vertical-align: middle;
 }
 

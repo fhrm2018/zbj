@@ -1,23 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html>
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({
-            'gtm.start': new Date().getTime(), event: 'gtm.js'
-        });
-        var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src =
-            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-M9GCDTQ');</script>
-    <!-- End Google Tag Manager -->
 
     <title>牛金商学院-期货入门知识_农产品期货开户_期货课堂</title>
     <meta name="keywords" content="牛金商学院,牛金商学院直播间,牛金商学院研究所,期货入门,期货知识,农产品期货开户"/>
@@ -70,34 +56,10 @@
         }
     </script>
 
-    <script>
-        var _hmt = _hmt || [];
-        (function () {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?0a9afb7e1cea3661acfd21423337f31b";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
-
-
 </head>
 
 <body class="changeBg1">
 
-
-<!-- Google Tag Manager (noscript) -->
-<noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M9GCDTQ"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe>
-</noscript>
-<!-- End Google Tag Manager (noscript) -->
-
-<c:if test="${loginedUserLogin.groupId == 1}">
-    <!-- WPA Button Begin -->
-    <script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzgwMDg1MjcxOF80ODU0NDBfODAwODUyNzE4Xw"></script>
-    <!-- WPA Button End -->
-</c:if>
 
 
 <!-- 辅助变量 -->
@@ -153,7 +115,7 @@
             <%--<a class="shareBtn colorF fz16" href="javascript:">--%>
             <%--<i><img src="../static/images/shareIcon.png" alt=""></i>--%>
             <%--<span>分享</span>--%>
-            <%--</a>--%> 
+            <%--</a>--%>
             <a class="downUrl colorF fz16" href="javascript:" onclick="downUrl()">
                 <span>保存到桌面</span>
             </a>
@@ -270,10 +232,10 @@
                 <div class="left_left">
                     <c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}">
                         <div class="leftBtn">
-                            <a href="javascript:" onclick="qqCustomer(${relation.userQq})">
-                                <i><img src="../static/images/icon1.png" alt=""></i>
-                                <span>盈利榜</span>
-                            </a>
+                            <%--<a href="javascript:" onclick="qqCustomer(${relation.userQq})">--%>
+                                <%--<i><img src="../static/images/icon1.png" alt=""></i>--%>
+                                <%--<span>盈利榜</span>--%>
+                            <%--</a>--%>
                             <a href="javascript:" onclick="qqCustomer(${relation.userQq})">
                                 <i><img src="../static/images/icon2.png" alt=""></i>
                                 <span>实时策略</span>
@@ -345,34 +307,77 @@
                                 <div class="activityImg">
                                     <div class="img1">
                                         <a href="javascript:" onclick="qqCustomer(${relation.userQq})">
-                                            <img src="../static/images/b1.jpg" alt="">`
+                                            <img class='b1' src="../static/images/b1.jpg" alt="">`
                                         </a>
                                     </div>
                                     <div class="img1 clearfix hide">
-                                        <div class="lsBtn">
-                                            <a class="cur" href="javascript:">哈哈老师</a>
-                                            <a href="javascript:">哼哼老师</a>
-                                            <a href="javascript:">哈哈老师</a>
-                                            <a href="javascript:">哼哼老师</a>
-                                        </div>
-                                        <div class="lsCon">
-                                            <div class="lsImg">
-                                                <img src="../static/images/asd.jpg" alt="">
-                                            </div>
-                                            <div class="lsImg hide">
-                                                <img src="../static/images/asd.jpg" alt="">
-                                            </div>
-                                            <div class="lsImg hide">
-                                                <img src="../static/images/asd.jpg" alt="">
-                                            </div>
-                                            <div class="lsImg hide">
-                                                <img src="../static/images/asd.jpg" alt="">
-                                            </div>
-                                        </div>
+                                        <ul class="hoverImg clearfix">
+                                            <li>
+                                              <a href="javascript:">
+                                                  <img src="../static/images/sl.png" alt="">
+                                              </a>
+                                              <div class="teacherImg hide">
+                                                  <img src="../static/images/sld.png" alt="">
+                                              </div>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:">
+                                                    <img src="../static/images/hy.png" alt="">
+                                                </a>
+                                                <div class="teacherImg hide">
+                                                    <img src="../static/images/hyd.png" alt="">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:">
+                                                    <img src="../static/images/jj.png" alt="">
+                                                </a>
+                                                <div class="teacherImg hide">
+                                                    <img src="../static/images/jjd.png" alt="">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:">
+                                                    <img src="../static/images/sg.png" alt="">
+                                                </a>
+                                                <div class="teacherImg hide">
+                                                    <img src="../static/images/sgd.png" alt="">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:">
+                                                    <img src="../static/images/qk.png" alt="">
+                                                </a>
+                                                <div class="teacherImg hide">
+                                                    <img src="../static/images/qkd.png" alt="">
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                        <%--<div class="lsBtn">--%>
+                                            <%--<a class="cur" href="javascript:">哈哈老师</a>--%>
+                                            <%--<a href="javascript:">哼哼老师</a>--%>
+                                            <%--<a href="javascript:">哈哈老师</a>--%>
+                                            <%--<a href="javascript:">哼哼老师</a>--%>
+                                        <%--</div>--%>
+                                        <%--<div class="lsCon">--%>
+                                            <%--<div class="lsImg">--%>
+                                                <%--<img src="../static/images/asd.jpg" alt="">--%>
+                                            <%--</div>--%>
+                                            <%--<div class="lsImg hide">--%>
+                                                <%--<img src="../static/images/asd.jpg" alt="">--%>
+                                            <%--</div>--%>
+                                            <%--<div class="lsImg hide">--%>
+                                                <%--<img src="../static/images/asd.jpg" alt="">--%>
+                                            <%--</div>--%>
+                                            <%--<div class="lsImg hide">--%>
+                                                <%--<img src="../static/images/asd.jpg" alt="">--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="jinShi">
                                 <h3>实时财经资讯</h3>
                                 <div class="jinShiNews">
@@ -441,7 +446,7 @@
                         <div class="messageBox">
                             <div class="inputTxt clearfix">
                                 <!-- 选择小号 -->
-                                <c:if test="${manage.groupId == 3}">
+                                <c:if test="${manage.groupId == 3 || manage.groupId == 4}">
                                     <div class="assistantList" style="float: right">
                                         <select id="small">
                                             <option value="0">${loginedUserLogin.userNickName}</option>
@@ -554,15 +559,15 @@
                                 <span>${relation.userNickName}</span>
                             </div>
                             <div class="txt">
-                                <p>您好，欢迎您来到《牛金商学院》直播间！</p><br/>
-                                <p>【0元开户】请回复：1</p>
-                                <p>【领取课件】请回复：2</p>
-                                <p>【操作策略】请回复：3</p>
-                                <p>【仓单诊断】请回复：5</p>
-                                <p>【名师一对一】请回复：6</p>
-                                <p>【注册会员】请回复：7</p>
-                                <p>【其他】请回复：888</p>
-                                <p>如有其它问题或不便打字，可留下电话/QQ/微信或扫一扫【二维码】添加小秘书微信哦！</p>
+                                <p>您好，我是《牛金商学院》高级助理，很高兴为您服务。</p><br/>
+                                <p><i></i>申请策略体验 <i></i> 回复1</p>
+                                <p><i></i>持仓诊断分析 <i></i> 回复2</p>
+                                <p><i></i>平台资料详解 <i></i> 回复3</p>
+                                <p><i></i>分析师一对一 <i></i> 回复4</p>
+                                <p><i></i>会员课件布局 <i></i> 回复5</p>
+                                <p><i></i>开户转户入金 <i></i> 回复6</p>
+                                <p><i></i>升级马甲会员 <i></i> 回复7</p>
+                                <p>牛金商学院，专业的理财交易平台，国内顶级分析师团队，主讲产品：恒指、德指、美原油、美黄金、美铜。可添加QQ或扫描二维码添加助理小秘书哦！</p>
                             </div>
                         </div>
                     </div>
@@ -775,11 +780,6 @@
 <iframe id="ifqq1" style="display:none;" src=""></iframe>
 
 </body>
-<!--<script src="//vip.e7890.com/?js&c=qqtip&i=2311"></script>-->
-
-<script src="${staticHost}/js/common/ifeson.js"></script>
-
-<%--<script async defer src="//vip.cesairfin.com/client?swt&id=1472:2828"></script>--%>
 
 <script src="${staticHost}/js/lib/slide.js?version=${version}"></script>
 <script src="${staticHost}/js/common/common.js?version=${version}"></script>
@@ -794,9 +794,32 @@
 <script src="${staticHost}/js/consult/consult.js?version=${version}"></script>
 <script src="${staticHost}/js/common/interval.js?version=${version}"></script>
 <script src="${staticHost}/js/common/awardRotate.js?version=${version}"></script>
+
+<!--百度统计-->
+<script>
+
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?52a8650a332af0c0ecd048ac4aa3ce48";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127711063-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-127711063-1');
+</script>
+
+
 <script type="text/javascript" src="http://58jinrongyun.com/helper/dyyplayer.js?v=1.02"></script>
 <script type="text/javascript">
-
 
 
 //    $(function () {
@@ -834,7 +857,7 @@
     }
     setTimeout(function () {
         topQQ();
-    }, 5000)
+    }, 10000)
 
 
     var playerVar = new dyyPlayer({
@@ -846,7 +869,6 @@
         autostart: true, //是否自动播放，默认为false
         controlbardisplay: 'enable' //是否显示控制栏，值为：disable、enable默认为disable
     });
-
 
 
 </script>

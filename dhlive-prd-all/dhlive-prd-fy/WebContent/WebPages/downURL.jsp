@@ -1,4 +1,4 @@
-<%@page import="com.itextpdf.text.log.SysoCounter" %>
+﻿<%@page import="com.itextpdf.text.log.SysoCounter" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@page import="java.io.*" %>
 <%@page import="javax.swing.filechooser.*" %>
@@ -13,7 +13,7 @@
 <%
     File desktopDir = FileSystemView.getFileSystemView().getHomeDirectory();
     String desktopPath = desktopDir.getAbsolutePath();
-    String templateContent = "[InternetShortcut]" + "\n" + "URL= http://www.oeo2.com/";
+    String templateContent = "[InternetShortcut]" + "\n" + "URL= http://nj.oeo2.com/";
     String realfilename = "牛金商学院" + ".url";
     String upurl = desktopPath;
     String filename = upurl + "/" + realfilename;

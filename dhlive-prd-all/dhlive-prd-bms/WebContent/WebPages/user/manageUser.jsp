@@ -237,7 +237,7 @@
             <div tabindex="0" class="serSelect fl posRel mr10">
                 <div class="text posRel wtBg plr10 serIpt levelName" style="line-height: 23px;">VIP 2（地主）</div>
                 <ul tabindex="0" class="posAbs wtBg ovfHid serIpt">
-                    <%--<li data-value="1">VIP 1（试用）</li>--%>
+                    <li data-value="1">VIP 1（小兵）</li>
                     <li data-value="2">VIP 2（地主）</li>
                     <li data-value="3">VIP 3（县令）</li>
                     <li data-value="4">VIP 4（丞相）</li>

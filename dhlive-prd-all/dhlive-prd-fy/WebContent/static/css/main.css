@@ -679,15 +679,15 @@ input::-moz-focus-inner {
 }
 
 /*.contentRight .msg{width: 362px;height:320px;padding:20px 12px 12px 20px;max-height:500px;overflow-y: hidden;  overflow-x:hidden}*/
+
 .contentRight .msg {
     width: 100%;
     height: 320px;
     min-height: 100px;
-    padding: 12px 10px 12px 14px;
+    padding: 10px 10px 0px 14px;
     overflow-y: hidden;
     overflow-x: hidden;
     box-sizing: border-box;
-    background: rgba(0,0,0,0.1)
 }
 .contentRight .msg::-webkit-scrollbar-track
 {
@@ -705,11 +705,11 @@ input::-moz-focus-inner {
     border-radius: 5px;
 }
 
-
 .contentRight .msg:hover {
-    padding-right: 0;
+    /*padding-right: 0;*/
     overflow-y: auto;
 }
+
 .chat .tishi{
     width: 100%;
     height: 36px;
@@ -789,7 +789,7 @@ input::-moz-focus-inner {
 }
 
 .msg .info .msgName, .msg .info .msgTime {
-    padding: 4px 10px;
+    padding: 2px 10px 3px 10px;
     border-radius: 5px;
     color: #163557;
     font-size: 14px;
@@ -809,7 +809,8 @@ input::-moz-focus-inner {
 }
 
 .msg .info .msgName.redFont {
-    background-color: #7a391d;
+    color: #ffdd71;
+    background-color: #ca314f;
 }
 
 .msg .info .msgTime {
@@ -820,14 +821,14 @@ input::-moz-focus-inner {
 .msg .info .msgInfo {
     min-width: 20px;
     display: inline-block;
-    margin: 0 10px 14px 0;
+    margin: 0 10px 10px 0;
     line-height: 24px;
     font-size: 14px;
     color: #3d506e;
     border-bottom-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-    padding: 3px 10px;
+    padding: 3px;
     position: relative;
 }
 .msg .info .msgInfo i{
@@ -953,6 +954,7 @@ input::-moz-focus-inner {
     width: 10%;
     color:#723517;
     background:#ffa839;
+    z-index: 99999;
 }
 
 /*.serviceList a.open {*/
@@ -1124,9 +1126,75 @@ input::-moz-focus-inner {
     background: rgba(0,0,0,0.2);
 }
 
-.activityImg .img1 img{
+.activityImg .img1 .b1{
     width:100%;
 }
+
+
+
+
+
+
+.hoverImg{
+    width:100%;
+    position:relative;
+}
+
+.hoverImg li{
+    float:left;
+    width:20%;
+}
+.hoverImg li a{
+    display:block;
+    opacity: 0.6;
+}
+.hoverImg li:hover a{
+    opacity: 1;
+    transition:all 0.5s linear;
+}
+.hoverImg li img{
+    display:block;
+    width:100%;
+}
+.teacherImg{
+    position: absolute;
+    left:0;
+    top:-160%;
+    z-index: 9;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .jinShi{
     width:49%;
@@ -5666,105 +5734,217 @@ button.swiper-pagination-bullet {
 }
 
 .yk {
-    background-image: url(../images/yk.png);
-    background-repeat: no-repeat;
     display: inline-block;
-    width: 64px;
-    height: 26px;
-    vertical-align: middle
+    width: 78px;
+    height: 20px;
+    background: url(../images/yk.gif) 50% 50% no-repeat;
+    overflow: hidden;
+    vertical-align: text-top;
 }
+
+/*.yk:after{*/
+    /*display: block;*/
+    /*content: '';*/
+    /*width: 70px;*/
+    /*height: 4px;*/
+    /*border-radius:5px;*/
+    /*background: rgba(255,255,255,0.5);*/
+    /*position: relative;*/
+    /*top: 0;*/
+    /*transform: rotate(-50deg);*/
+    /*animation: demo 1s infinite;*/
+/*}*/
+
+@keyframes demo{
+    0% {left:-30px;}
+    100% {left:45px;}
+}
+
 
 .zl {
-    background-image: url(../images/zl.png);
-    background-repeat: no-repeat;
     display: inline-block;
-    width: 64px;
-    height: 26px;
-    vertical-align: middle
+    width: 78px;
+    height: 20px;
+    background: url(../images/zl.gif) 50% 50% no-repeat;
+    overflow: hidden;
+    vertical-align: text-top;
 }
+/*.zl:after{*/
+    /*display: block;*/
+    /*content: '';*/
+    /*width: 70px;*/
+    /*height: 4px;*/
+    /*border-radius:5px;*/
+    /*background: rgba(255,255,255,0.5);*/
+    /*position: relative;*/
+    /*top: 0;*/
+    /*transform: rotate(-50deg);*/
+    /*animation: demo 1s infinite;*/
+/*}*/
+
 
 .vip1 {
-    background-image: url(../images/VIP1.png);
-    background-repeat: no-repeat;
     display: inline-block;
-    width: 64px;
-    height: 26px;
-    vertical-align: middle
+    width: 78px;
+    height: 20px;
+    background: url(../images/VIP1.gif) 50% 50% no-repeat;
+    overflow: hidden;
+    vertical-align: text-top;
 }
+/*.vip1:after{*/
+    /*display: block;*/
+    /*content: '';*/
+    /*width: 70px;*/
+    /*height: 4px;*/
+    /*border-radius:5px;*/
+    /*background: rgba(255,255,255,0.5);*/
+    /*position: relative;*/
+    /*top: 0;*/
+    /*transform: rotate(-50deg);*/
+    /*animation: demo 1s infinite;*/
+/*}*/
+
 
 .vip2 {
-    background-image: url(../images/VIP2.png);
-    background-repeat: no-repeat;
     display: inline-block;
-    width: 64px;
-    height: 26px;
-    vertical-align: middle
+    width: 78px;
+    height: 20px;
+    background: url(../images/VIP2.gif) 50% 50% no-repeat;
+    overflow: hidden;
+    vertical-align: text-top;
 }
+/*.vip2:after{*/
+    /*display: block;*/
+    /*content: '';*/
+    /*width: 70px;*/
+    /*height: 4px;*/
+    /*border-radius:5px;*/
+    /*background: rgba(255,255,255,0.5);*/
+    /*position: relative;*/
+    /*top: 0;*/
+    /*transform: rotate(-50deg);*/
+    /*animation: demo 1s infinite;*/
+/*}*/
+
 
 .vip3 {
-    background-image: url(../images/VIP3.png);
-    background-repeat: no-repeat;
     display: inline-block;
-    width: 64px;
-    height: 26px;
-    vertical-align: middle
+    width: 78px;
+    height: 20px;
+    background: url(../images/VIP3.gif) 50% 50% no-repeat;
+    overflow: hidden;
+    vertical-align: text-top;
 }
+/*.vip3:after{*/
+    /*display: block;*/
+    /*content: '';*/
+    /*width: 70px;*/
+    /*height: 4px;*/
+    /*border-radius:26px;*/
+    /*background: rgba(255,255,255,0.5);*/
+    /*position: relative;*/
+    /*top: 0;*/
+    /*transform: rotate(-50deg);*/
+    /*animation: demo 1s infinite;*/
+/*}*/
+
 
 .vip4 {
-    background-image: url(../images/VIP4.png);
-    background-repeat: no-repeat;
     display: inline-block;
-    width: 64px;
-    height: 26px;
-    vertical-align: middle
+    width: 78px;
+    height: 20px;
+    background: url(../images/VIP4.gif) 50% 50% no-repeat;
+    overflow: hidden;
+    vertical-align: text-top;
 }
+/*.vip4:after{*/
+    /*display: block;*/
+    /*content: '';*/
+    /*width: 70px;*/
+    /*height: 4px;*/
+    /*border-radius:5px;*/
+    /*background: rgba(255,255,255,0.5);*/
+    /*position: relative;*/
+    /*top: 0;*/
+    /*transform: rotate(-50deg);*/
+    /*animation: demo 1s infinite;*/
+/*}*/
+
 
 .vip5 {
-    background-image: url(../images/VIP5.png);
-    background-repeat: no-repeat;
     display: inline-block;
-    width: 64px;
-    height: 26px;
-    vertical-align: middle
+    width: 78px;
+    height: 20px;
+    background: url(../images/VIP5.gif) 50% 50% no-repeat;
+    overflow: hidden;
+    vertical-align: text-top;
 }
+/*.vip5:after{*/
+    /*display: block;*/
+    /*content: '';*/
+    /*width: 70px;*/
+    /*height: 4px;*/
+    /*border-radius:5px;*/
+    /*background: rgba(255,255,255,0.5);*/
+    /*position: relative;*/
+    /*top: 0;*/
+    /*transform: rotate(-50deg);*/
+    /*animation: demo 1s infinite;*/
+/*}*/
+
 
 .vip6 {
-    background-image: url(../images/VIP6.png);
-    background-repeat: no-repeat;
     display: inline-block;
-    width: 64px;
-    height: 26px;
-    vertical-align: middle
+    width: 78px;
+    height: 20px;
+    background: url(../images/VIP6.gif) 50% 50% no-repeat;
+    overflow: hidden;
+    vertical-align: text-top;
 }
+/*.vip6:after{*/
+    /*display: block;*/
+    /*content: '';*/
+    /*width: 70px;*/
+    /*height: 4px;*/
+    /*border-radius:5px;*/
+    /*background: rgba(255,255,255,0.5);*/
+    /*position: relative;*/
+    /*top: 0;*/
+    /*transform: rotate(-50deg);*/
+    /*animation: demo 1s infinite;*/
+/*}*/
+
 
 .vip7 {
-    background-image: url(../images/VIP7.png);
-    background-repeat: no-repeat;
     display: inline-block;
-    width: 64px;
-    height: 26px;
-    vertical-align: middle
+    width: 78px;
+    height: 20px;
+    background: url(../images/VIP7.gif) 50% 50% no-repeat;
+    overflow: hidden;
+    vertical-align: text-top;
 }
+/*.vip7:after{*/
+    /*display: block;*/
+    /*content: '';*/
+    /*width: 70px;*/
+    /*height: 4px;*/
+    /*border-radius:5px;*/
+    /*background: rgba(255,255,255,0.5);*/
+    /*position: relative;*/
+    /*top: 0;*/
+    /*transform: rotate(-50deg);*/
+    /*animation: demo 1s infinite;*/
+/*}*/
 
-.vip8 {
-    background-image: url(../images/VIP8.png);
-    background-repeat: no-repeat;
-    display: inline-block;
-    width: 64px;
-    height: 26px;
-    vertical-align: middle
-}
 
 .info .teacher {
     display: inline-block;
-    width: 44px;
-    height: 22px;
-    background-image: url(../images/icon_teacher.png);
-    background-repeat: no-repeat;
-    display: inline-block;
     width: 64px;
     height: 26px;
-    vertical-align: middle;
+    border-right:26px;
+    background: url(../images/icon_teacher.gif) 50% 50% no-repeat;
+    overflow: hidden;
+    vertical-align: text-top;
 }
 
 .techer_class {

@@ -294,12 +294,12 @@ function convertMsgtoHtml(msg) {
             for (var i = 1; i < text.length; i++) {
                 other += " " + text[i];
             }
-            return webim.Tool.formatHtml2Text("<image src='../static/images/whosaid.png' /><span class='msgName ml10 mr10 greenFont'>" + text[0] + "</span><span style='display: inline-block; color: red;font-weight: 700;font-size:16px; background-color: #e9edf8;border-bottom-left-radius: 10px;border-top-right-radius: 10px;border-bottom-right-radius: 10px;padding: 3px 10px;'> " + other + "</span>");
+            return webim.Tool.formatHtml2Text("<image src='../static/images/whosaid.png' /><span class='msgName ml10 mr10 greenFont'>" + text[0] + "</span><span style='display: inline-block; color: red;font-weight: 700;font-size:16px; background-color: #e9edf8;border-bottom-left-radius: 10px;border-top-right-radius: 10px;border-bottom-right-radius: 10px;padding: 2px 8px;'> " + other + "</span>");
         } else {
-            return webim.Tool.formatHtml2Text("<span style='color: red; display: inline-block; background-color: #e9edf8; font-weight: 700; font-size:16px;border-bottom-left-radius: 10px;border-top-right-radius: 10px;border-bottom-right-radius: 10px;padding: 3px 10px;'>" + html + "</span>");
+            return webim.Tool.formatHtml2Text("<span style='color: red; display: inline-block; background-color: #e9edf8; font-weight: 700; font-size:16px;border-bottom-left-radius: 10px;border-top-right-radius: 10px;border-bottom-right-radius: 10px;padding: 2px 8px;'>" + html + "</span>");
         }
     } else {
-        return webim.Tool.formatHtml2Text("<span style='background-color: #e9edf8; display: inline-block; border-bottom-left-radius: 10px;border-top-right-radius: 10px;border-bottom-right-radius: 10px;padding: 3px 10px;'>" + html + "</span>");
+        return webim.Tool.formatHtml2Text("<span style='background-color: #e9edf8; display: inline-block; border-bottom-left-radius: 10px;border-top-right-radius: 10px;border-bottom-right-radius: 10px;padding: 2px 8px;'>" + html + "</span>");
     }
 }
 
@@ -1517,6 +1517,7 @@ function showC2CMsg(data) {
                     var htmls = $('.messageTip').html();
                     htmls += getHtmls(groupId, data);
                     $('.waterPersionChatMessageList').html(htmls);
+                    $('#waterPersionChatBox').scrollTop($('#waterPersionChatBox')[0].scrollHeight);//滚动条到最底部
                 }
             });
         } else {
@@ -2120,7 +2121,7 @@ function getRoomMsgHtml(msg, cmdJson) {
                 getHeaderHtml(cmdJson.groupId, cmdJson.level, cmdJson.small),
                 '<span class="msgName ml10 ' + (cmdJson.groupId == 1 ? 'greenFont' : '') + ' ' + (cmdJson.groupId == 3 ? 'yellowFont' : '') + ' ' + (cmdJson.groupId == 4 ? 'redFont' : '') + ' ' + (cmdJson.groupId == 5 ? 'greenFont' : '') + '">' + cmdJson.postNickName + '</span>',
                 '<div class="ilblock posRel ml10">',
-                '<div class="msgInfo" style="background-color: #5a95f0;margin-bottom:4px;">',
+                '<div class="msgInfo" style="background-color: #5a95f0;margin:0 0 4px 4px;padding: 3px 10px;">',
                 '<span></span> <img src="../static/images/small_redpack.png" alt="">',
                 '</div></div></div></div>'].join('');
         } else {
@@ -2130,7 +2131,7 @@ function getRoomMsgHtml(msg, cmdJson) {
                 getHeaderHtml(cmdJson.groupId, cmdJson.level, cmdJson.small),
                 '<span class="msgName ml10 ' + (cmdJson.groupId == 1 ? 'greenFont' : '') + ' ' + (cmdJson.groupId == 3 ? 'yellowFont' : '') + ' ' + (cmdJson.groupId == 4 ? 'redFont' : '') + ' ' + (cmdJson.groupId == 5 ? 'greenFont' : '') + '">' + cmdJson.postNickName + '</span>',
                 '<div class="ilblock posRel ml10">',
-                '<div class="msgInfo" style="background-color: #5a95f0;margin-bottom:4px;">',
+                '<div class="msgInfo" style="background-color: #5a95f0;margin:0 0 4px 4px;padding: 3px 10px;">',
                 '  <span> </span> <img src="../static/images/small_flower.png" alt="">',
                 '</div></div></div></div>'].join('');
         }

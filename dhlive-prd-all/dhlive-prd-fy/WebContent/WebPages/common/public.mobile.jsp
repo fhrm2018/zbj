@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <%@page import="com.alibaba.dubbo.config.ApplicationConfig"%>
-<%@page import="com.qiyou.dhlive.prd.components.util.ProjectConfig"%>
+<%@page import="com.qiyou.dhlive.api.prd.util.ProjectConfig"%>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,6 +32,7 @@
 	}
 %>
 
+<title>直播间</title>
 <link href="/static/css/main.mobile.css?v=${version}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/ui-dialog.css">
 <script type="text/javascript">

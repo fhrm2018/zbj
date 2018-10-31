@@ -3,6 +3,7 @@ $(function () {
     if (userInfo.groupId == 1) {
         setTimeout(function () {
             $(".waterPersionBox").removeClass('hide');
+            $('#waterPersionChatBox').scrollTop($('#waterPersionChatBox')[0].scrollHeight);//滚动条到最底部
         }, 15000)
     }
     // 游客听课3分钟后弹出
@@ -476,7 +477,7 @@ $(function () {
         var messageBoxHeight = $('.contentRight .messageBox').outerHeight(true);
         var tishiHeight = $('.tishi').outerHeight(true);
         var videoHeight = winHeight - 40 - 180 - 80 - 52;        // 40 footer; 150 banner margin; 80 header margin; 44 viewTime;
-        var contentRightMsg = winHeight - 80 - serviceListHeight - messageBoxHeight - 40 - 32 - tishiHeight;
+        var contentRightMsg = winHeight - 80 - serviceListHeight - messageBoxHeight - 26 - 30 - tishiHeight;
         var newLeft = winHeight - 70 - 40;
 
         if (winHeight < 800) {
@@ -654,6 +655,12 @@ function getOnlineUserList() {
 $('.clearScreen').click(function () {
     $('.msg').html('');
 });
+
+$('.hoverImg a').hover(function(){
+    $(this).next('.teacherImg').show();
+},function () {
+    $(this).next('.teacherImg').hide();
+})
 
 
 //保存到桌面
