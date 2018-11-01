@@ -1217,6 +1217,28 @@ input::-moz-focus-inner {
     top: 0;
 }
 
+.contentRight .messageBox .emoticonIcon label {
+    display: inline-block;
+    cursor: pointer;
+    height: 40px;
+    margin-right: 10px;
+    vertical-align: middle;
+    position: relative
+}
+.contentRight .messageBox .emoticonIcon label input{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 12px auto;
+    vertical-align: middle;
+}
+.contentRight .messageBox .emoticonIcon label span{
+    display: inline-block;
+    font-size:16px;
+    color:#ffffff;
+    vertical-align: middle;
+}
+
 .contentRight .sendMsg {
     width: 100%;
     padding-right: 100px;

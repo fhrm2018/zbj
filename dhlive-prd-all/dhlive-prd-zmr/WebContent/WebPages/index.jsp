@@ -374,6 +374,14 @@
                                             <input type="file" id="msgImage" name="chatImage" accept="image/*"/>
                                         </a>
                                         <a class="clearScreen"><i style="display: none"></i></a>
+
+                                        <c:if test="${manage.groupId == 3 || manage.groupId == 4}">
+                                            <label>
+                                                <input type="checkbox">
+                                                <span>小号群发</span>
+                                            </label>
+                                        </c:if>
+
                                     </form>
                                 </div>
 
