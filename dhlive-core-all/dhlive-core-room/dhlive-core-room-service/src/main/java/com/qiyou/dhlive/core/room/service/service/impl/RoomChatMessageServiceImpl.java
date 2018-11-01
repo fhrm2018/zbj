@@ -2,6 +2,7 @@ package com.qiyou.dhlive.core.room.service.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.base.Function;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
 import com.google.gson.Gson;
 import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
@@ -61,7 +62,7 @@ public class RoomChatMessageServiceImpl extends BaseMyBatisService<RoomChatMessa
             }
         }
         //管理员发送不用审核
-        if (message.getStatus().intValue() == 1) {
+        if (message.getStatus().intValue() == 1) {  
             message.setAuditTime(new Date());
         }
         message.setCreateTime(new Date());
@@ -69,6 +70,23 @@ public class RoomChatMessageServiceImpl extends BaseMyBatisService<RoomChatMessa
         message.setSendTime(sdf.format(new Date()));
         String itemJson = JSON.toJSONString(message);
         redisManager.saveHash(RedisKeyConstant.MESSAGE_INFO, message.getUniqueId(), itemJson);
+        List<String> uuidList=redisManager.getAllValuesFromListByStoreKey(RedisKeyConstant.MESSAGE_INFO_LIST);
+        List<String> removeUuidList=Lists.newArrayList();
+        if(uuidList.size()>15) {
+        	for(int i=5;i<uuidList.size();i++) {
+        		removeUuidList.add(uuidList.get(i));
+        		this.redisManager.deleteFromListByByStoreKeyAndValue(RedisKeyConstant.MESSAGE_INFO_LIST, uuidList.get(i));
+        	}
+        }
+        if(EmptyUtil.isNotEmpty(removeUuidList)) {
+        	for(String key:removeUuidList) {
+//        		redisManager.deleteFromHashByStoreKeyAndMapKey(RedisKeyConstant.MESSAGE_INFO, key);
+        	}
+        }
+        
+        List<String> messageList=Lists.newArrayList();
+        messageList.add(message.getUniqueId());
+        redisManager.saveList(RedisKeyConstant.MESSAGE_INFO_LIST, messageList);
         return new DataResponse(1000, "保存成功.");
     }
 

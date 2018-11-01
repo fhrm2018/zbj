@@ -610,15 +610,28 @@ function getCmdFromMsg(msg) {
     return cmdObj;
 }
 
-function createNewMsg(selSess,msgtosend,cmdJson){
-    var selType = webim.SESSION_TYPE.GROUP;
+function sleep(numberMillis) { 
+	var now = new Date(); 
+	var exitTime = now.getTime() + numberMillis; 
+	while (true) { 
+		now = new Date(); 
+		if (now.getTime() > exitTime) 
+			return; 
+	} 
+}
+
+function createNewMsg(msgtosend,cmdJson){
+	sleep(1000);
+	var selType = webim.SESSION_TYPE.GROUP;
+	selSess = new webim.Session(selType, selToID, selToID, '', Math.round(new Date().getTime() / 1000));
+    
     var isSend = true; //是否为自己发送
     var seq = -1; //消息序列，-1表示sdk自动生成，用于去重
     var random = Math.round(Math.random() * 4294967296); //消息随机数，用于去重
     var msgTime = Math.round(new Date().getTime() / 1000); //消息时间戳
     var subType; //消息子类型
     if (selType == webim.SESSION_TYPE.GROUP) {
-        //群消息子类型如下：
+        //群消息子类型如下：  
         //webim.GROUP_MSG_SUB_TYPE.COMMON-普通消息,
         //webim.GROUP_MSG_SUB_TYPE.LOVEMSG-点赞消息，优先级最低
         //webim.GROUP_MSG_SUB_TYPE.TIP-提示消息(不支持发送，用于区分群消息子类型)，
@@ -733,7 +746,7 @@ function onSendMsg() {
     } 
     
     var selType = webim.SESSION_TYPE.GROUP;
-    selSess = new webim.Session(selType, selToID, selToID, '', Math.round(new Date().getTime() / 1000));
+    
     var $smallGroupType = $('#smallGroupType') ;
     if(isAdmin == '1' && $smallGroupType && $smallGroupType.prop("checked")){//如果启用小号群发
     	var smallList = [];
@@ -752,7 +765,7 @@ function onSendMsg() {
     	if(smallList.length>0){
     		smallList = randomSort(smallList);
     		for(var i=0;i<smallList.length;i++){
-				var cmdJson = {};
+    			var cmdJson = {};
 			    cmdJson.code = '0000';
 			    cmdJson.postUid = userInfo.id;
 			    cmdJson.postNickName = userInfo.nickName;
@@ -770,7 +783,7 @@ function onSendMsg() {
                 cmdJson.level = smallList[i].level;
                 cmdJson.checkStatus = true;
                 cmdJson.auditTime = cmdJson.sendTime;
-    			var msg = createNewMsg(selSess,msgtosend,cmdJson);
+    			var msg = createNewMsg(msgtosend,cmdJson);
     			webim.sendMsg(msg, function (resp) {
                     saveGroupMsg(msg);
                 }, function (err) {
@@ -795,7 +808,7 @@ function onSendMsg() {
     	if (isAdmin == '1') {
             var smallName = $("#small").find("option:selected").text();
             var smallLevel = $('#small').val();
-            var smallLevel = 0;
+//            var smallLevel = 0;
             if (typeof(smallLevel) == 'undefined') {
                 smallLevel = 0;
             }
@@ -811,7 +824,7 @@ function onSendMsg() {
         if (flag == 1) {//敏感词白名单消息        
             cmdJson.checkStatus = true;
         }
-        var msg = createNewMsg(selSess,msgtosend,cmdJson);
+        var msg = createNewMsg(msgtosend,cmdJson);
         webim.sendMsg(msg, function (resp) {
             if (selType == webim.SESSION_TYPE.C2C) { //私聊时，在聊天窗口手动添加一条发的消息，群聊时，长轮询接口会返回自己发的消息
                 showMsg(msg);
@@ -2033,7 +2046,9 @@ function getHeaderHtml(groupId, level, small) {
             htmls = '<i class="teacher ac"></i>';
             break;
         case 5:
-            if (level == 1) {
+        	if (level == -1) {
+                htmls = '<span class="ac yk"></span>';
+            }else if (level == 1) {
                 htmls = '<span class="ac vip1"></span>';
             } else if (level == 2) {
                 htmls = '<span class="ac vip2"></span>';
