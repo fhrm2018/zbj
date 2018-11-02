@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -829,6 +830,13 @@ public class LiveController {
         result.setLevel(smalls.get(y).getSmallLevel());
 
         return new DataResponse(1000, result);
+    }
+    
+    @RequestMapping(value="/live/getUUID")
+    @ResponseBody
+    public DataResponse getUUid() {
+	    String uuid=UUID.randomUUID().toString();
+	    return new DataResponse(1000,"",uuid);
     }
 
 }

@@ -1,8 +1,23 @@
 package com.qiyou.dhlive.core.room.service.service.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
 import com.alibaba.fastjson.JSON;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Ordering;
 import com.google.gson.Gson;
 import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
@@ -13,20 +28,8 @@ import com.qiyou.dhlive.core.user.outward.service.IUserVipInfoService;
 import com.yaozhong.framework.base.common.utils.EmptyUtil;
 import com.yaozhong.framework.base.common.utils.LogFormatUtil;
 import com.yaozhong.framework.base.database.domain.returns.DataResponse;
-import com.yaozhong.framework.base.database.redis.RedisManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
 import com.yaozhong.framework.base.database.mysql.service.impl.BaseMyBatisService;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import com.yaozhong.framework.base.database.redis.RedisManager;
 
 /**
  * @author liuyuanhang
@@ -72,15 +75,15 @@ public class RoomChatMessageServiceImpl extends BaseMyBatisService<RoomChatMessa
         redisManager.saveHash(RedisKeyConstant.MESSAGE_INFO, message.getUniqueId(), itemJson);
         List<String> uuidList=redisManager.getAllValuesFromListByStoreKey(RedisKeyConstant.MESSAGE_INFO_LIST);
         List<String> removeUuidList=Lists.newArrayList();
-        if(uuidList.size()>15) {
-        	for(int i=5;i<uuidList.size();i++) {
+        if(uuidList.size()>500) {
+        	for(int i=500;i<uuidList.size();i++) {
         		removeUuidList.add(uuidList.get(i));
         		this.redisManager.deleteFromListByByStoreKeyAndValue(RedisKeyConstant.MESSAGE_INFO_LIST, uuidList.get(i));
         	}
         }
         if(EmptyUtil.isNotEmpty(removeUuidList)) {
         	for(String key:removeUuidList) {
-//        		redisManager.deleteFromHashByStoreKeyAndMapKey(RedisKeyConstant.MESSAGE_INFO, key);
+        		redisManager.deleteFromHashByStoreKeyAndMapKey(RedisKeyConstant.MESSAGE_INFO, key);
         	}
         }
         
@@ -202,4 +205,21 @@ public class RoomChatMessageServiceImpl extends BaseMyBatisService<RoomChatMessa
         }
         return new DataResponse(1001, "该消息未找到.", params.getUniqueId());
     }
+    
+    @Override
+    public DataResponse getMessageList() {
+    	List<String> msgList=redisManager.getMapValueFromMapByStoreKey(RedisKeyConstant.MESSAGE_INFO);
+    	List<String> msgUUidList=this.redisManager.getAllValuesFromListByStoreKey(RedisKeyConstant.MESSAGE_INFO_LIST);
+    	Map<String,RoomChatMessage> msgDetailMap=Maps.newHashMap();
+    	for(String json:msgList) {
+    		RoomChatMessage msg=JSON.parseObject(json, RoomChatMessage.class);
+    		msgDetailMap.put(msg.getUniqueId(), msg);
+    	}
+    	List<RoomChatMessage> msgDataList=Lists.newArrayList();
+    	for(int i=msgUUidList.size()-1;i<msgUUidList.size();i--) {
+    		msgDataList.add(msgDetailMap.get(msgUUidList.get(i)));
+    	}
+    	return new DataResponse(1000,msgDataList);
+    }
+    
 }
