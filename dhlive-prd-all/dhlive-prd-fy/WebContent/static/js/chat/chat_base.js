@@ -621,13 +621,13 @@ function sleep(numberMillis) {
 }
 
 function createNewMsg(msgtosend,cmdJson){
-	sleep(1000);
 	var selType = webim.SESSION_TYPE.GROUP;
 	selSess = new webim.Session(selType, selToID, selToID, '', Math.round(new Date().getTime() / 1000));
     
     var isSend = true; //是否为自己发送
     var seq = -1; //消息序列，-1表示sdk自动生成，用于去重
     var random = Math.round(Math.random() * 4294967296); //消息随机数，用于去重
+    console.log(random);
     var msgTime = Math.round(new Date().getTime() / 1000); //消息时间戳
     var subType; //消息子类型
     if (selType == webim.SESSION_TYPE.GROUP) {
