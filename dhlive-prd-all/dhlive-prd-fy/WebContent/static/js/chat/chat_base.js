@@ -784,10 +784,12 @@ function onSendMsg() {
                 cmdJson.checkStatus = true;
                 cmdJson.auditTime = cmdJson.sendTime;
     			var msg = createNewMsg(msgtosend,cmdJson);
+    			var result = clone( msg);
     			webim.sendMsg(msg, function (resp) {
-                    saveGroupMsg(msg);
+                    
                 }, function (err) {
                 });
+    			saveGroupMsg(result);
     		}
     	}
     	$('#atHeInput').val("");
@@ -825,11 +827,12 @@ function onSendMsg() {
             cmdJson.checkStatus = true;
         }
         var msg = createNewMsg(msgtosend,cmdJson);
+        var result = clone( msg);
         webim.sendMsg(msg, function (resp) {
             if (selType == webim.SESSION_TYPE.C2C) { //私聊时，在聊天窗口手动添加一条发的消息，群聊时，长轮询接口会返回自己发的消息
                 showMsg(msg);
             }
-            saveGroupMsg(msg);
+//            saveGroupMsg(msg);
             webim.Log.info("发消息成功");
             $('#atHeInput').val("");
             $("#" + send_msg_text_id).val('');
@@ -843,8 +846,17 @@ function onSendMsg() {
                 alert('当前无法发言，如有疑问，请联系客服。');
             }
         });
+        saveGroupMsg(result);
     }
     
+}
+
+function clone(obj){
+    var result={};
+    for(key in obj){
+        result[key]=obj[key];
+    }
+    return result;
 }
 
 function sendImgMsg(imageUrl) {
@@ -911,14 +923,16 @@ function sendImgMsg(imageUrl) {
         text_obj = new webim.Msg.Elem.Text(msgtosend);
         msg.addText(text_obj);
     }
+    var result = clone(msg);
     webim.sendMsg(msg, function (resp) {
         webim.Log.info("发消息成功");
-        saveGroupMsg(msg);
+        
     }, function (err) {
         if (err.ErrorCode == 10017) {
             alert('当前无法发言，如有疑问，请联系客服。');
         }
     });
+    saveGroupMsg(result);
 }
 
 //发送消息(普通消息)
@@ -1163,12 +1177,12 @@ function sendFlowerMsg() {
             msg.addText(text_obj);
         }
     }
-
+    var result = clone(msg);
     webim.sendMsg(msg, function (resp) {
         if (selType == webim.SESSION_TYPE.C2C) { //私聊时，在聊天窗口手动添加一条发的消息，群聊时，长轮询接口会返回自己发的消息
             showMsg(msg);
         }
-        saveGroupMsg(msg);
+       
         webim.Log.info("发消息成功");
         sendRoseMsg();
         //vip/游客发送成功之后禁用按钮, 3秒后解除禁用
@@ -1193,6 +1207,7 @@ function sendFlowerMsg() {
             alert('当前无法发言，如有疑问，请联系客服。');
         }
     });
+    saveGroupMsg(result);
 }
 
 //发送红包(普通消息)
@@ -1308,12 +1323,11 @@ function sendRedBagMsg() {
         }
     }
 
-
+    var result = clone(msg);
     webim.sendMsg(msg, function (resp) {
         if (selType == webim.SESSION_TYPE.C2C) { //私聊时，在聊天窗口手动添加一条发的消息，群聊时，长轮询接口会返回自己发的消息
             showMsg(msg);
         }
-        saveGroupMsg(msg);
         webim.Log.info("发消息成功");
 
         sendRedPackMsg();
@@ -1342,6 +1356,7 @@ function sendRedBagMsg() {
             alert('当前无法发言，如有疑问，请联系客服。');
         }
     });
+    saveGroupMsg(result);
 }
 
 //发送C2C消息(文本或者表情)
