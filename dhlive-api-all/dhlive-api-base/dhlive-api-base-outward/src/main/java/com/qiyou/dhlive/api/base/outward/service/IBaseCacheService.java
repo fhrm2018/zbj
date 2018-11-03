@@ -44,5 +44,9 @@ public interface IBaseCacheService {
 	List<RoomAutoMsg> getAllRoomAutoMsg();
 	
 	List<RoomAutoMsg> updateAllRoomAutoMsg();
+	
+	int getAutoPersonCount();
+	
+	int updateAutoPersonCount(int count);
 
 }

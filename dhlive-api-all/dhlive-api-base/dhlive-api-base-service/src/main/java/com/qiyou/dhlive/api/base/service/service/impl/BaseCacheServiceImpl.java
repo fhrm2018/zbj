@@ -70,6 +70,8 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	public static final String MESSAGE_LIST = "dhlive-basedata-messagelist";
 	
 	public static final String AUTO_MESSAGE_LIST = "dhlive-basedata-automessagelist";
+	
+	public static final String AUTO_PERSON_COUNT = "dhlive-basedata-autopersoncount";
 
 	@Override
 	public UserInfoDTO getUserInfo(Integer userId) {
@@ -304,5 +306,24 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 		}
 		this.redisManager.saveString(AUTO_MESSAGE_LIST,JSON.toJSONString(msgList));
 		return msgList;
+	}
+
+	@Override
+	public int getAutoPersonCount() {
+		String autoCount=this.redisManager.getStringValueByKey(AUTO_PERSON_COUNT);
+		if(EmptyUtil.isNotEmpty(autoCount))
+			return Integer.parseInt(autoCount);
+		return 0;
+	}
+
+	@Override
+	public int updateAutoPersonCount(int count) {
+		String autoCount=this.redisManager.getStringValueByKey(AUTO_PERSON_COUNT);
+		if(EmptyUtil.isEmpty(autoCount)) {
+			this.redisManager.saveString(AUTO_PERSON_COUNT,count+"");
+		}
+		int sumCount=Integer.parseInt(autoCount)+count;
+		this.redisManager.saveString(AUTO_PERSON_COUNT,sumCount+"");
+		return sumCount;
 	}
 }

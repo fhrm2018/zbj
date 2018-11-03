@@ -6,6 +6,7 @@ import com.qiyou.dhlive.api.base.outward.service.ILiveRoomApiService;
 import com.qiyou.dhlive.api.base.outward.service.IUserInfoApiService;
 import com.qiyou.dhlive.core.base.outward.model.BaseOptLog;
 import com.qiyou.dhlive.core.base.outward.service.IBaseOptLogService;
+import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
 import com.qiyou.dhlive.core.bms.outward.model.BmsEmployeeInfo;
 import com.qiyou.dhlive.core.live.outward.model.LiveRoom;
 import com.qiyou.dhlive.core.user.outward.model.*;
@@ -17,10 +18,12 @@ import com.yaozhong.framework.base.common.utils.EmptyUtil;
 import com.yaozhong.framework.base.common.utils.LogFormatUtil;
 import com.yaozhong.framework.base.database.domain.page.PageSearch;
 import com.yaozhong.framework.base.database.domain.returns.DataResponse;
+import com.yaozhong.framework.base.database.redis.RedisManager;
 import com.yaozhong.framework.web.annotation.session.NeedSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,11 +61,17 @@ public class UserController {
     
     @Autowired
     private IBaseCacheService baseCacheService;
+    
+    @Autowired
+    @Qualifier("commonRedisManager")
+    private RedisManager redisManager;
 
     @NeedSession
     @UnSecurity
     @RequestMapping("")
     public String index(Model model) {
+    	String onlinenum=this.redisManager.getStringValueByKey(RedisKeyConstant.ONLINENUM + 4);
+    	model.addAttribute("onlineNum",onlinenum );
         return "user/touristsUser";
     }
 
@@ -70,9 +79,21 @@ public class UserController {
     @UnSecurity
     @RequestMapping("touristsUser")
     public String touristsUser(Model model) {
+    	String onlinenum=this.redisManager.getStringValueByKey(RedisKeyConstant.ONLINENUM + 4);
+    	model.addAttribute("onlineNum",onlinenum );
         return "user/touristsUser";
     }
 
+    @NeedSession
+    @UnSecurity
+    @RequestMapping("onlineUser")
+    @ResponseBody
+    public DataResponse onlineUser(Model model) {
+    	String onlinenum=this.redisManager.getStringValueByKey(RedisKeyConstant.ONLINENUM + 4);
+    	model.addAttribute("onlineNum",onlinenum );
+        return new DataResponse(1000,onlinenum);
+    }
+    
     @NeedSession
     @UnSecurity
     @RequestMapping("vipUser")

@@ -185,6 +185,7 @@ public class RoomChatMessageServiceImpl extends BaseMyBatisService<RoomChatMessa
                 String msgJson = JSON.toJSONString(msg);
                 redisManager.saveHash(RedisKeyConstant.MESSAGE_INFO, params.getUniqueId(), msgJson);
                 postUid = msg.getPostUid();
+                this.redisManager.deleteFromListByByStoreKeyAndValue(RedisKeyConstant.MESSAGE_INFO_LIST,params.getUniqueId());
             }
         }
 

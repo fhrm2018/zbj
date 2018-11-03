@@ -170,6 +170,20 @@ function setBlack(obj) {
     d.show();
 }
 
+setInterval(function () {
+    getOnlineUser();
+}, 30000);
+function getOnlineUser(roomId) {
+    $.ajax({
+        url: g_requestContextPath + "/user/onlineUser",
+        data: { },
+        success: function (data) {
+            if (data.code == '1000') {
+                $('#onlineNum').html(data.message);
+            }
+        }
+    });
+}
 //禁言
 function setGag(obj) {
     var groupId = $(obj).data("gid");
