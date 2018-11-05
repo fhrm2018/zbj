@@ -323,6 +323,9 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 			this.redisManager.saveString(AUTO_PERSON_COUNT,count+"");
 		}
 		int sumCount=Integer.parseInt(autoCount)+count;
+		if(sumCount<=0) {
+			sumCount=0;
+		}
 		this.redisManager.saveString(AUTO_PERSON_COUNT,sumCount+"");
 		return sumCount;
 	}

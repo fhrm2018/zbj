@@ -612,6 +612,79 @@ function getCmdFromMsg(msg) {
     return cmdObj;
 }
 
+function createNewMsg(msgtosend,cmdJson){
+	var selType = webim.SESSION_TYPE.GROUP;
+	selSess = new webim.Session(selType, selToID, selToID, '', Math.round(new Date().getTime() / 1000));
+    
+    var isSend = true; //是否为自己发送
+    var seq = -1; //消息序列，-1表示sdk自动生成，用于去重
+    var random = Math.round(Math.random() * 4294967296); //消息随机数，用于去重
+    console.log(random);
+    var msgTime = Math.round(new Date().getTime() / 1000); //消息时间戳
+    var subType; //消息子类型
+    if (selType == webim.SESSION_TYPE.GROUP) {
+        //群消息子类型如下：  
+        //webim.GROUP_MSG_SUB_TYPE.COMMON-普通消息,
+        //webim.GROUP_MSG_SUB_TYPE.LOVEMSG-点赞消息，优先级最低
+        //webim.GROUP_MSG_SUB_TYPE.TIP-提示消息(不支持发送，用于区分群消息子类型)，
+        //webim.GROUP_MSG_SUB_TYPE.REDPACKET-红包消息，优先级最高
+        subType = webim.GROUP_MSG_SUB_TYPE.COMMON;
+    } else {
+        //C2C消息子类型如下：
+        //webim.C2C_MSG_SUB_TYPE.COMMON-普通消息,
+        subType = webim.C2C_MSG_SUB_TYPE.COMMON;
+    }
+    var msg = new webim.Msg(selSess, isSend, seq, random, msgTime, loginInfo.identifier, subType, loginInfo.identifierNick);
+    
+    //解析文本和表情
+    cmdJson.uniqueId = msg.uniqueId;
+    var cmd_obj = new webim.Msg.Elem.Custom(JSON.stringify(cmdJson));
+    msg.addCustom(cmd_obj);
+    
+    var expr = /\[[^[\]]{1,3}\]/mg;
+    var emotions = msgtosend.match(expr);
+    var text_obj, face_obj, tmsg, emotionIndex, emotion, restMsgIndex;
+    if (!emotions || emotions.length < 1) {
+        text_obj = new webim.Msg.Elem.Text(msgtosend);
+        msg.addText(text_obj);
+    } else { //有表情
+        for (var i = 0; i < emotions.length; i++) {
+            tmsg = msgtosend.substring(0, msgtosend.indexOf(emotions[i]));
+            if (tmsg) {
+                text_obj = new webim.Msg.Elem.Text(tmsg);
+                msg.addText(text_obj);
+            }
+            emotionIndex = webim.EmotionDataIndexs[emotions[i]];
+            emotion = webim.Emotions[emotionIndex];
+            if (emotion) {
+                face_obj = new webim.Msg.Elem.Face(emotionIndex, emotions[i]);
+                msg.addFace(face_obj);
+            } else {
+                text_obj = new webim.Msg.Elem.Text(emotions[i]);
+                msg.addText(text_obj);
+            }
+            restMsgIndex = msgtosend.indexOf(emotions[i]) + emotions[i].length;
+            msgtosend = msgtosend.substring(restMsgIndex);
+        }
+        if (msgtosend) {
+            text_obj = new webim.Msg.Elem.Text(msgtosend);
+            msg.addText(text_obj);
+        }
+    }
+    
+    return msg;
+}
+
+var randomSort = function(list) {
+	var input = list;
+	for (var i = input.length-1; i >=0; i--) {
+		var randomIndex = Math.floor(Math.random()*(i+1)); 
+		var itemAtIndex = input[randomIndex]; 
+		input[randomIndex] = input[i]; 
+		input[i] = itemAtIndex;
+	}
+	return input;
+}
 //发送消息(普通消息)
 function onSendMsg() {
     if (!loginInfo.identifier) { //未登录
@@ -650,17 +723,9 @@ function onSendMsg() {
         isAt = 1;
     }
 
-    var maxLen, errInfo;
-    var selType = webim.SESSION_TYPE.GROUP;
-    if (selType == webim.SESSION_TYPE.GROUP) {
-        maxLen = 500;
-        errInfo = "消息长度超出限制(最多" + Math.round(maxLen / 3) + "汉字)";
-    } else {
-        maxLen = 500;
-        errInfo = "消息长度超出限制(最多" + Math.round(maxLen / 3) + "汉字)";
-    }
+    var maxLen = 500, errInfo;
     if (msgLen > maxLen) {
-        alert(errInfo);
+        alert("消息长度超出限制(最多" + Math.round(maxLen / 3) + "汉字)");
         return;
     }
 
@@ -668,199 +733,124 @@ function onSendMsg() {
     if (flag == 0) {//敏感词黑名单消息
         errInfo = "消息内容含有非法字符, 请重新编辑.";
         alert(errInfo);
-        return;
-    } else if (flag == 1) {//敏感词白名单消息
-        selSess = new webim.Session(selType, selToID, selToID, '', Math.round(new Date().getTime() / 1000));
-        var isSend = true; //是否为自己发送
-        var seq = -1; //消息序列，-1表示sdk自动生成，用于去重
-        var random = Math.round(Math.random() * 4294967296); //消息随机数，用于去重
-        var msgTime = Math.round(new Date().getTime() / 1000); //消息时间戳
-        var subType; //消息子类型
-        if (selType == webim.SESSION_TYPE.GROUP) {
-            //群消息子类型如下：
-            //webim.GROUP_MSG_SUB_TYPE.COMMON-普通消息,
-            //webim.GROUP_MSG_SUB_TYPE.LOVEMSG-点赞消息，优先级最低
-            //webim.GROUP_MSG_SUB_TYPE.TIP-提示消息(不支持发送，用于区分群消息子类型)，
-            //webim.GROUP_MSG_SUB_TYPE.REDPACKET-红包消息，优先级最高
-            subType = webim.GROUP_MSG_SUB_TYPE.COMMON;
-        } else {
-            //C2C消息子类型如下：
-            //webim.C2C_MSG_SUB_TYPE.COMMON-普通消息,
-            subType = webim.C2C_MSG_SUB_TYPE.COMMON;
-        }
-        var msg = new webim.Msg(selSess, isSend, seq, random, msgTime, loginInfo.identifier, subType, loginInfo.identifierNick);
-        //msg.ext='abcd';
-        //解析文本和表情
-
-        var expr = /\[[^[\]]{1,3}\]/mg;
-        var emotions = msgtosend.match(expr);
-        var text_obj, face_obj, tmsg, emotionIndex, emotion, restMsgIndex;
-        var cmdJson = {};
-        cmdJson.code = '0000';
-        cmdJson.postUid = userInfo.id;
-        cmdJson.postNickName = userInfo.nickName;
-        cmdJson.groupId = userInfo.groupId;
-        cmdJson.level = userInfo.level;
-        cmdJson.sendTime = new Date();
-        cmdJson.checkStatus = false;
-        cmdJson.auditUid = '';
-        cmdJson.auditTime = '';
-        cmdJson.isAuditMsg = 0;
-        cmdJson.uniqueId = msg.uniqueId;
-        cmdJson.isAt = isAt;
-        if (isAdmin == '1') {
-            var smallName = $("#small").find("option:selected").text();
-            var smallLevel = $('#small').val();
-            if (typeof(smallLevel) == 'undefined') {
+        return false;
+    } 
+    
+    var selType = webim.SESSION_TYPE.GROUP;
+    
+    var $smallGroupType = $('#smallGroupType') ;
+    if(isAdmin == '1' && $smallGroupType && $smallGroupType.prop("checked")){//如果启用小号群发
+    	var smallList = [];
+    	$("#small").find("option").each(function(){
+    		var smallData = {};
+    		smallData.level = $(this).val();
+    		smallData.name = $(this).text();
+    		var smallLevel = 0;
+    		if (typeof(smallData.level) == 'undefined') {
                 smallLevel = 0;
             }
-            if (smallLevel != 0) {
+    		if(smallData.level != 0) {
+    			smallList.push(smallData);
+    		}
+    	});
+    	if(smallList.length>0){
+    		smallList = randomSort(smallList);
+    		for(var i=0;i<smallList.length;i++){
+    			var cmdJson = {};
+			    cmdJson.code = '0000';
+			    cmdJson.postUid = userInfo.id;
+			    cmdJson.postNickName = userInfo.nickName;
+			    cmdJson.groupId = userInfo.groupId;
+			    cmdJson.level = userInfo.level;
+			    cmdJson.sendTime = new Date();
+			    cmdJson.checkStatus = false;
+			    cmdJson.auditUid = '';
+			    cmdJson.auditTime = '';
+			    cmdJson.isAuditMsg = 0;
+			    cmdJson.isAt = isAt;
                 cmdJson.small = 0;
-                cmdJson.postNickName = smallName;
+                cmdJson.postNickName = smallList[i].name;
                 cmdJson.groupId = 5;
-                cmdJson.level = smallLevel;
-            }
-            cmdJson.checkStatus = true;
-            cmdJson.auditTime = cmdJson.sendTime;
-        }
-        cmdJson.checkStatus = true;
-        cmdJson.auditTime = cmdJson.sendTime;
-        var cmd_obj = new webim.Msg.Elem.Custom(JSON.stringify(cmdJson));
-        msg.addCustom(cmd_obj);
-
-        if (!emotions || emotions.length < 1) {
-            text_obj = new webim.Msg.Elem.Text(msgtosend);
-            msg.addText(text_obj);
-        } else { //有表情
-            for (var i = 0; i < emotions.length; i++) {
-                tmsg = msgtosend.substring(0, msgtosend.indexOf(emotions[i]));
-                if (tmsg) {
-                    text_obj = new webim.Msg.Elem.Text(tmsg);
-                    msg.addText(text_obj);
-                }
-                emotionIndex = webim.EmotionDataIndexs[emotions[i]];
-                emotion = webim.Emotions[emotionIndex];
-                if (emotion) {
-                    face_obj = new webim.Msg.Elem.Face(emotionIndex, emotions[i]);
-                    msg.addFace(face_obj);
-                } else {
-                    text_obj = new webim.Msg.Elem.Text(emotions[i]);
-                    msg.addText(text_obj);
-                }
-                restMsgIndex = msgtosend.indexOf(emotions[i]) + emotions[i].length;
-                msgtosend = msgtosend.substring(restMsgIndex);
-            }
-            if (msgtosend) {
-                text_obj = new webim.Msg.Elem.Text(msgtosend);
-                msg.addText(text_obj);
-            }
-        }
-    } else {//正常消息
-        selSess = new webim.Session(selType, selToID, selToID, '', Math.round(new Date().getTime() / 1000));
-        var isSend = true; //是否为自己发送
-        var seq = -1; //消息序列，-1表示sdk自动生成，用于去重
-        var random = Math.round(Math.random() * 4294967296); //消息随机数，用于去重
-        var msgTime = Math.round(new Date().getTime() / 1000); //消息时间戳
-        var subType; //消息子类型
-        if (selType == webim.SESSION_TYPE.GROUP) {
-            //群消息子类型如下：
-            //webim.GROUP_MSG_SUB_TYPE.COMMON-普通消息,
-            //webim.GROUP_MSG_SUB_TYPE.LOVEMSG-点赞消息，优先级最低
-            //webim.GROUP_MSG_SUB_TYPE.TIP-提示消息(不支持发送，用于区分群消息子类型)，
-            //webim.GROUP_MSG_SUB_TYPE.REDPACKET-红包消息，优先级最高
-            subType = webim.GROUP_MSG_SUB_TYPE.COMMON;
-
-        } else {
-            //C2C消息子类型如下：
-            //webim.C2C_MSG_SUB_TYPE.COMMON-普通消息,
-            subType = webim.C2C_MSG_SUB_TYPE.COMMON;
-        }
-        var msg = new webim.Msg(selSess, isSend, seq, random, msgTime, loginInfo.identifier, subType, loginInfo.identifierNick);
-        //msg.ext='abcd';
-        //解析文本和表情
-
-        var expr = /\[[^[\]]{1,3}\]/mg;
-        var emotions = msgtosend.match(expr);
-        var text_obj, face_obj, tmsg, emotionIndex, emotion, restMsgIndex;
-        var cmdJson = {};
-        cmdJson.code = '0000';
-        cmdJson.postUid = userInfo.id;
-        cmdJson.postNickName = userInfo.nickName;
-        cmdJson.groupId = userInfo.groupId;
-        cmdJson.level = userInfo.level;
-        cmdJson.sendTime = new Date();
-        cmdJson.checkStatus = false;
-        cmdJson.auditUid = '';
-        cmdJson.auditTime = '';
-        cmdJson.isAuditMsg = 0;
-        cmdJson.uniqueId = msg.uniqueId;
-        cmdJson.isAt = isAt;
-        if (isAdmin == '1') {
-            var smallName = $("#small").find("option:selected").text();
-            var smallLevel = $('#small').val();
-            if (typeof(smallLevel) == 'undefined') {
-                smallLevel = 0;
-            }
-            if (smallLevel != 0) {
-                cmdJson.small = 0;
-                cmdJson.postNickName = smallName;
-                cmdJson.groupId = 5;
-                cmdJson.level = smallLevel;
-            }
-            cmdJson.checkStatus = true;
-            cmdJson.auditUid = userInfo.id;
-            cmdJson.auditTime = cmdJson.sendTime;
-        }
-        var cmd_obj = new webim.Msg.Elem.Custom(JSON.stringify(cmdJson));
-        msg.addCustom(cmd_obj);
-
-        if (!emotions || emotions.length < 1) {
-            text_obj = new webim.Msg.Elem.Text(msgtosend);
-            msg.addText(text_obj);
-        } else { //有表情
-            for (var i = 0; i < emotions.length; i++) {
-                tmsg = msgtosend.substring(0, msgtosend.indexOf(emotions[i]));
-                if (tmsg) {
-                    text_obj = new webim.Msg.Elem.Text(tmsg);
-                    msg.addText(text_obj);
-                }
-                emotionIndex = webim.EmotionDataIndexs[emotions[i]];
-                emotion = webim.Emotions[emotionIndex];
-                if (emotion) {
-                    face_obj = new webim.Msg.Elem.Face(emotionIndex, emotions[i]);
-                    msg.addFace(face_obj);
-                } else {
-                    text_obj = new webim.Msg.Elem.Text(emotions[i]);
-                    msg.addText(text_obj);
-                }
-                restMsgIndex = msgtosend.indexOf(emotions[i]) + emotions[i].length;
-                msgtosend = msgtosend.substring(restMsgIndex);
-            }
-            if (msgtosend) {
-                text_obj = new webim.Msg.Elem.Text(msgtosend);
-                msg.addText(text_obj);
-            }
-        }
-    }
-    webim.sendMsg(msg, function (resp) {
-        if (selType == webim.SESSION_TYPE.C2C) { //私聊时，在聊天窗口手动添加一条发的消息，群聊时，长轮询接口会返回自己发的消息
-            showMsg(msg);
-        }
-        saveGroupMsg(msg);
-        webim.Log.info("发消息成功");
-        $('#atHeInput').val("");
+                cmdJson.level = smallList[i].level;
+                cmdJson.checkStatus = true;
+                cmdJson.auditTime = cmdJson.sendTime;
+    			var msg = createNewMsg(msgtosend,cmdJson);
+    			var result = clone( msg);
+    			webim.sendMsg(msg, function (resp) {
+                    
+                }, function (err) {
+                });
+    			saveGroupMsg(result);
+    		}
+    	}
+    	$('#atHeInput').val("");
         $("#" + send_msg_text_id).val('');
-
-        //vip/游客发送成功之后禁用按钮, 3秒后解除禁用
-        if (userInfo.groupId == 1 || userInfo.groupId == 5) {
-            countDownSendMsgBtn();
+    }else{
+	    var cmdJson = {};
+	    cmdJson.code = '0000';
+	    cmdJson.postUid = userInfo.id;
+	    cmdJson.postNickName = userInfo.nickName;
+	    cmdJson.groupId = userInfo.groupId;
+	    cmdJson.level = userInfo.level;
+	    cmdJson.sendTime = new Date();
+	    cmdJson.checkStatus = false;
+	    cmdJson.auditUid = '';
+	    cmdJson.auditTime = '';
+	    cmdJson.isAuditMsg = 0;
+	    cmdJson.isAt = isAt;
+    	if (isAdmin == '1') {
+            var smallName = $("#small").find("option:selected").text();
+            var smallLevel = $('#small').val();
+//            var smallLevel = 0;
+            if (typeof(smallLevel) == 'undefined') {
+                smallLevel = 0;
+            }
+            if (smallLevel != 0) {
+                cmdJson.small = 0;
+                cmdJson.postNickName = smallName;
+                cmdJson.groupId = 5;
+                cmdJson.level = smallLevel;
+            }
+            cmdJson.checkStatus = true;
+            cmdJson.auditTime = cmdJson.sendTime;
         }
-    }, function (err) {
-        if (err.ErrorCode == 10017) {
-            alert('当前无法发言，如有疑问，请联系客服。');
+        if (flag == 1) {//敏感词白名单消息        
+            cmdJson.checkStatus = true;
         }
-    });
+        var msg = createNewMsg(msgtosend,cmdJson);
+        var result = clone( msg);
+        webim.sendMsg(msg, function (resp) {
+            if (selType == webim.SESSION_TYPE.C2C) { //私聊时，在聊天窗口手动添加一条发的消息，群聊时，长轮询接口会返回自己发的消息
+                showMsg(msg);
+            }
+//            saveGroupMsg(msg);
+            webim.Log.info("发消息成功");
+            $('#atHeInput').val("");
+            $("#" + send_msg_text_id).val('');
+            //vip/游客发送成功之后禁用按钮, 3秒后解除禁用
+            if (userInfo.groupId == 1 || userInfo.groupId == 5) {
+                countDownSendMsgBtn();
+            }
+        }, function (err) {
+        	webim.Log.info("发消息失败");
+            if (err.ErrorCode == 10017) {
+                alert('当前无法发言，如有疑问，请联系客服。');
+            }
+        });
+        saveGroupMsg(result);
+    }
+    
 }
+
+function clone(obj){
+    var result={};
+    for(key in obj){
+        result[key]=obj[key];
+    }
+    return result;
+}
+
+
 
 function sendImgMsg(imageUrl) {
     var selType = webim.SESSION_TYPE.GROUP;
@@ -928,12 +918,13 @@ function sendImgMsg(imageUrl) {
     }
     webim.sendMsg(msg, function (resp) {
         webim.Log.info("发消息成功");
-        saveGroupMsg(msg);
+//        saveGroupMsg(msg);
     }, function (err) {
         if (err.ErrorCode == 10017) {
             alert('当前无法发言，如有疑问，请联系客服。');
         }
     });
+    saveGroupMsg(msg);
 }
 
 //发送消息(普通消息)
@@ -1183,7 +1174,7 @@ function sendFlowerMsg() {
         if (selType == webim.SESSION_TYPE.C2C) { //私聊时，在聊天窗口手动添加一条发的消息，群聊时，长轮询接口会返回自己发的消息
             showMsg(msg);
         }
-        saveGroupMsg(msg);
+//        saveGroupMsg(msg);
         webim.Log.info("发消息成功");
         sendRoseMsg();
         //vip/游客发送成功之后禁用按钮, 3秒后解除禁用
@@ -1208,6 +1199,7 @@ function sendFlowerMsg() {
             alert('当前无法发言，如有疑问，请联系客服。');
         }
     });
+    saveGroupMsg(msg);
 }
 
 //发送红包(普通消息)
@@ -1328,7 +1320,7 @@ function sendRedBagMsg() {
         if (selType == webim.SESSION_TYPE.C2C) { //私聊时，在聊天窗口手动添加一条发的消息，群聊时，长轮询接口会返回自己发的消息
             showMsg(msg);
         }
-        saveGroupMsg(msg);
+//        saveGroupMsg(msg);
         webim.Log.info("发消息成功");
 
         sendRedPackMsg();
@@ -1357,6 +1349,7 @@ function sendRedBagMsg() {
             alert('当前无法发言，如有疑问，请联系客服。');
         }
     });
+    saveGroupMsg(msg);
 }
 
 //发送C2C消息(文本或者表情)
