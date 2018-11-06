@@ -17,9 +17,11 @@ import com.qiyou.dhlive.api.base.outward.service.IBaseCacheService;
 import com.qiyou.dhlive.api.base.outward.vo.UserInfoDTO;
 import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
+import com.qiyou.dhlive.core.room.outward.model.RoomAutoUser;
 import com.qiyou.dhlive.core.room.outward.model.RoomChatMessage;
 import com.qiyou.dhlive.core.room.outward.model.RoomDuty;
 import com.qiyou.dhlive.core.room.outward.service.IRoomAutoMsgService;
+import com.qiyou.dhlive.core.room.outward.service.IRoomAutoUserService;
 import com.qiyou.dhlive.core.room.outward.service.IRoomDutyService;
 import com.qiyou.dhlive.core.user.outward.model.UserInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
@@ -54,6 +56,9 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	@Autowired
 	private IRoomAutoMsgService roomAutoMsgService;
 	
+	@Autowired
+	private IRoomAutoUserService roomAutoUserService;
+	
 	public static final String USER_INFO = "dhlive-basedata-userinfo-";
 	
 	public static final String NEWUSER_LIST = "dhlive-basedata-newuserlist";
@@ -75,6 +80,9 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	public static final String AUTO_PERSON_COUNT = "dhlive-basedata-autopersoncount";
 	
 	public static final String AUTO_SENDUSER_COUNT = "dhlive-basedata-autosendUserCount";
+	
+	public static final String AUTO_SENDUSER_LIST = "dhlive-basedata-autosendUserList";
+
 
 	@Override
 	public UserInfoDTO getUserInfo(Integer userId) {
@@ -360,6 +368,22 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	public List<String> addAutoMsgUser() {
 		
 		return null;
+	}
+	
+	
+	public List<RoomAutoUser> getAllRoomAutoUserList(){
+		String json=this.redisManager.getStringValueByKey(AUTO_SENDUSER_LIST);
+		if(EmptyUtil.isEmpty(json)) {
+			return updateAllRoomAutoUser();
+		}
+		return JSON.parseArray(json,RoomAutoUser.class);
+	}
+	
+	public List<RoomAutoUser> updateAllRoomAutoUser(){
+		SearchCondition<RoomAutoUser> condition=new SearchCondition<RoomAutoUser>(new RoomAutoUser());
+		List<RoomAutoUser> userList=this.roomAutoUserService.findByCondition(condition);
+		redisManager.saveString(AUTO_SENDUSER_LIST, JSON.toJSONString(userList));
+		return userList;
 	}
 	
     public String getRandomString(long length) {
