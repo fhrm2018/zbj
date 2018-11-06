@@ -48,5 +48,9 @@ public interface IBaseCacheService {
 	int getAutoPersonCount();
 	
 	int updateAutoPersonCount(int count);
+	
+	List<String> getAutoMsgUser();
+	
+	List<String> addAutoMsgUser();
 
 }

@@ -1,16 +1,25 @@
 package com.qiyou.dhlive.api.base.outward.util;
 
-import com.google.gson.Gson;
-import com.qiyou.dhlive.api.base.outward.vo.GroupMessage;
-import com.qiyou.dhlive.api.base.outward.vo.Message;
-import com.qiyou.dhlive.api.base.outward.vo.MsgBody;
-import com.qiyou.dhlive.api.base.outward.vo.MsgContent;
-import com.yaozhong.framework.base.common.utils.LogFormatUtil;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.gson.Gson;
+import com.qiyou.dhlive.api.base.outward.vo.Message;
+import com.qiyou.dhlive.api.base.outward.vo.MsgBody;
+import com.qiyou.dhlive.api.base.outward.vo.MsgContent;
+import com.qiyou.dhlive.core.room.outward.model.RoomChatMessage;
+import com.yaozhong.framework.base.common.utils.DateStyle;
+import com.yaozhong.framework.base.common.utils.DateUtil;
+import com.yaozhong.framework.base.common.utils.LogFormatUtil;
+import com.yaozhong.framework.base.common.utils.OrderNoUtil;
 
 /**
  * describe:
@@ -159,6 +168,84 @@ public class NoticeUtil {
         String url = "https://console.tim.qq.com/v4/openim/sendmsg?usersig=" + userSig + "&identifier=" + identifier + "&sdkappid=" + sdkAppId + "&random=" + TLSUtils.getRandom() + "&contenttype=json";
         String result = HttpUtil.httpRequest(url, method, new Gson().toJson(message));
         baseLog.info(LogFormatUtil.getActionFormat("批量发送消息结果" + result));
+    }
+    
+    
+    public static RoomChatMessage sendAutoGroupMsg(String fromAcc,String content,String userSig, String identifier, String sdkAppId) {
+    	
+    	Integer random=TLSUtils.getRandom();
+    	String url="https://console.tim.qq.com/v4/group_open_http_svc/send_group_msg?usersig="+userSig+"&identifier="+identifier+"&sdkappid="+sdkAppId+"&random="+random+"&contenttype=json";
+    	 Message message = new Message();
+         message.setGroupId("@TGS#aKXIZMHFS");
+         message.setMsgRandom(random);
+         message.setUniqueId(OrderNoUtil.get18OrderNumber());
+         List<MsgBody> MsgBody = new ArrayList<MsgBody>();
+         MsgBody body = new MsgBody();
+         body.setMsgType("TIMCustomElem");
+         MsgContent msg = new MsgContent();
+         Map<String,Object> data=Maps.newHashMap();
+         data.put("code", "0000");
+         data.put("groupId", 1);
+         data.put("postNickName", fromAcc);
+         data.put("uniqueId",message.getUniqueId());
+         data.put("type", 0);
+         data.put("isSpecial", 1);
+         data.put("checkStatus", 1);
+         data.put("level", 1);
+         msg.setData(JSON.toJSONString(data));
+         body.setMsgContent(msg);
+         MsgBody.add(body);
+         MsgBody body1 = new MsgBody();
+         body1.setMsgType("TIMTextElem");
+         MsgContent msg1 = new MsgContent();
+         msg1.setText(content);
+         body1.setMsgContent(msg1);
+         MsgBody.add(body1);
+         
+         message.setMsgBody(MsgBody);
+         System.out.println(message.getUniqueId());
+         
+    	String result = HttpUtil.httpRequest(url, "POST", new Gson().toJson(message));
+    	List<Map<String,Object>> mapList=Lists.newArrayList();
+    	//指令json
+    	Map<String,Object> map1=Maps.newHashMap();
+    	map1.put("type", "TIMCustomElem");
+    	Map<String,Object> contentMapData=Maps.newHashMap();
+    	Map<String,Object> mapData=Maps.newHashMap();
+    	mapData.put("data",JSON.toJSONString(data));
+    	map1.put("content", mapData);
+    	mapList.add(map1);
+    	
+    	//发送内容JSON
+    	Map<String,Object> mapText=Maps.newHashMap();
+    	mapText.put("type", "TIMTextElem");
+    	
+    	Map<String,Object> mapTextData=Maps.newHashMap();
+    	mapTextData.put("text",content);
+    	mapText.put("content", mapTextData);
+    	mapList.add(mapText);
+    	RoomChatMessage roomMsg=new RoomChatMessage();
+    	roomMsg.setAuditTime(new Date());
+    	roomMsg.setIsDelete(0);
+    	roomMsg.setCreateTime(new Date());
+    	roomMsg.setGroupId(1);
+    	roomMsg.setLevel(0);
+    	roomMsg.setIsSamll(0);
+    	roomMsg.setStatus(1);
+    	roomMsg.setUniqueId(message.getUniqueId());
+    	roomMsg.setRoomId(4);
+    	roomMsg.setPostNickName(fromAcc);
+    	roomMsg.setMessageTime(new Date());
+    	roomMsg.setSendTime(DateUtil.DateToString(new Date(), DateStyle.MM_DD_HH_MM_SS));
+    	Map<String,Object> contentJson=Maps.newHashMap();
+    	contentJson.put("uniqueId", message.getUniqueId());
+    	contentJson.put("elems", mapList);
+    	roomMsg.setContent(JSON.toJSONString(contentJson));
+    	System.out.println(result);
+    	return roomMsg;
+    	
+//    	{"ActionStatus":"OK","ErrorCode":0,"MsgSeq":4340,"MsgTime":1541412489}
+    	
     }
 
 }

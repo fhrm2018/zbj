@@ -10,73 +10,93 @@ import java.util.List;
  */
 public class Message {
 
-    private String GroupId;
+	private String GroupId;
 
-    private Integer Random;
+	private Integer Random;
 
-    private Integer SyncOtherMachine;
+	private Integer SyncOtherMachine;
 
-    private String From_Account;
+	private String From_Account;
 
-    private String To_Account;
+	private String To_Account;
 
-    private Integer MsgRandom;
+	private Integer MsgRandom;
 
-    private List<MsgBody> MsgBody;
+	private String UniqueId;
 
-    public Integer getSyncOtherMachine() {
-        return SyncOtherMachine;
-    }
+	private Integer isAudit;
 
-    public void setSyncOtherMachine(Integer syncOtherMachine) {
-        SyncOtherMachine = syncOtherMachine;
-    }
+	public Integer getIsAudit() {
+		return isAudit;
+	}
 
-    public String getFrom_Account() {
-        return From_Account;
-    }
+	public void setIsAudit(Integer isAudit) {
+		this.isAudit = isAudit;
+	}
 
-    public void setFrom_Account(String from_Account) {
-        From_Account = from_Account;
-    }
+	public String getUniqueId() {
+		return UniqueId;
+	}
 
-    public String getTo_Account() {
-        return To_Account;
-    }
+	public void setUniqueId(String uniqueId) {
+		UniqueId = uniqueId;
+	}
 
-    public void setTo_Account(String to_Account) {
-        To_Account = to_Account;
-    }
+	private List<MsgBody> MsgBody;
 
-    public Integer getMsgRandom() {
-        return MsgRandom;
-    }
+	public Integer getSyncOtherMachine() {
+		return SyncOtherMachine;
+	}
 
-    public void setMsgRandom(Integer msgRandom) {
-        MsgRandom = msgRandom;
-    }
+	public void setSyncOtherMachine(Integer syncOtherMachine) {
+		SyncOtherMachine = syncOtherMachine;
+	}
 
-    public List<com.qiyou.dhlive.api.base.outward.vo.MsgBody> getMsgBody() {
-        return MsgBody;
-    }
+	public String getFrom_Account() {
+		return From_Account;
+	}
 
-    public void setMsgBody(List<com.qiyou.dhlive.api.base.outward.vo.MsgBody> msgBody) {
-        MsgBody = msgBody;
-    }
+	public void setFrom_Account(String from_Account) {
+		From_Account = from_Account;
+	}
 
-    public String getGroupId() {
-        return GroupId;
-    }
+	public String getTo_Account() {
+		return To_Account;
+	}
 
-    public void setGroupId(String groupId) {
-        GroupId = groupId;
-    }
+	public void setTo_Account(String to_Account) {
+		To_Account = to_Account;
+	}
 
-    public Integer getRandom() {
-        return Random;
-    }
+	public Integer getMsgRandom() {
+		return MsgRandom;
+	}
 
-    public void setRandom(Integer random) {
-        Random = random;
-    }
+	public void setMsgRandom(Integer msgRandom) {
+		MsgRandom = msgRandom;
+	}
+
+	public List<com.qiyou.dhlive.api.base.outward.vo.MsgBody> getMsgBody() {
+		return MsgBody;
+	}
+
+	public void setMsgBody(List<com.qiyou.dhlive.api.base.outward.vo.MsgBody> msgBody) {
+		MsgBody = msgBody;
+	}
+
+	public String getGroupId() {
+		return GroupId;
+	}
+
+	public void setGroupId(String groupId) {
+		GroupId = groupId;
+	}
+
+	public Integer getRandom() {
+		return Random;
+	}
+
+	public void setRandom(Integer random) {
+		Random = random;
+	}
 }

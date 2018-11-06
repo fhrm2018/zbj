@@ -1,11 +1,8 @@
 package com.qiyou.dhlive.api.prd.controller;
 
-import com.qiyou.dhlive.api.base.outward.service.IBaseCacheService;
-import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
-import com.yaozhong.framework.base.common.utils.DateStyle;
-import com.yaozhong.framework.base.common.utils.DateUtil;
-import com.yaozhong.framework.base.common.utils.LogFormatUtil;
-import com.yaozhong.framework.base.database.redis.RedisManager;
+import java.util.Date;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +10,19 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 
-import java.util.Date;
-import java.util.List;
+import com.qiyou.dhlive.api.base.outward.service.IBaseCacheService;
+import com.qiyou.dhlive.api.base.outward.util.NoticeUtil;
+import com.qiyou.dhlive.api.base.outward.util.TLSUtils;
+import com.qiyou.dhlive.core.base.outward.service.IBaseSysParamService;
+import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
+import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
+import com.qiyou.dhlive.core.room.outward.model.RoomChatMessage;
+import com.qiyou.dhlive.core.room.outward.service.IRoomChatMessageService;
+import com.yaozhong.framework.base.common.utils.DateStyle;
+import com.yaozhong.framework.base.common.utils.DateUtil;
+import com.yaozhong.framework.base.common.utils.EmptyUtil;
+import com.yaozhong.framework.base.common.utils.LogFormatUtil;
+import com.yaozhong.framework.base.database.redis.RedisManager;
 
 /**
  * Created by ThinkPad on 2018/3/24.
@@ -26,6 +34,12 @@ public class CronController {
 
     @Autowired
     private IBaseCacheService baseCacheService;
+    
+    @Autowired
+    private IBaseSysParamService baseSysParamService;
+    
+    @Autowired
+    private IRoomChatMessageService roomChatMessageService;
     
     @Autowired
     @Qualifier("commonRedisManager")
@@ -207,5 +221,21 @@ public class CronController {
     	if(a==0)
     		return ;
     	baseCacheService.updateAutoPersonCount(0-count);
+    }
+    
+    @Scheduled(cron = "0/10 * * * * ? ")
+    public void sendAutoMsg() {
+    	List<RoomAutoMsg> msgList=this.baseCacheService.getAllRoomAutoMsg();
+    	if(EmptyUtil.isEmpty(msgList))
+    		return ;
+    	String privateKey = this.baseSysParamService.getValueByKey("private_key");
+    	String identifier = this.baseSysParamService.getValueByKey("identifier");
+    	String appKey = this.baseSysParamService.getValueByKey("sdk_app_id");
+    	String userKey=TLSUtils.getUserSig(Integer.parseInt(appKey), identifier, privateKey);
+    	List<String> youkeList=this.baseCacheService.getAutoMsgUser();
+    	int youkeIndex = (int)(0+Math.random()*(youkeList.size()-1));
+    	int msgIndex = (int)(0+Math.random()*(msgList.size()-1));
+    	RoomChatMessage chatMsg=NoticeUtil.sendAutoGroupMsg(youkeList.get(youkeIndex), msgList.get(msgIndex).getMsgContent(), userKey, identifier, appKey);
+    	this.roomChatMessageService.saveChatMessage(chatMsg);
     }
 }

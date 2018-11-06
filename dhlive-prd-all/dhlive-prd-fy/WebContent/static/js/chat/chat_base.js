@@ -197,7 +197,9 @@ window.onresize = function () {
 
 //显示消息（群普通+点赞+提示+红包）
 function showMsg(msg) {
+	console.log(msg);
     var cmdObj = getCmdFromMsg(msg);
+    console.log(cmdObj);
     if (!cmdObj) {
         return false;
     }
@@ -643,7 +645,7 @@ function createNewMsg(msgtosend,cmdJson){
         subType = webim.C2C_MSG_SUB_TYPE.COMMON;
     }
     var msg = new webim.Msg(selSess, isSend, seq, random, msgTime, loginInfo.identifier, subType, loginInfo.identifierNick);
-    
+    console.log(msg);
     //解析文本和表情
     cmdJson.uniqueId = msg.uniqueId;
     var cmd_obj = new webim.Msg.Elem.Custom(JSON.stringify(cmdJson));
