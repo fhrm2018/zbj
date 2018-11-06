@@ -1,4 +1,4 @@
-package com.qiyou.dhlive.api.prd.controller;
+package com.qiyou.dhlive.prd.cron.controller;
 
 import java.util.Date;
 import java.util.List;
@@ -10,11 +10,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 
+import com.alibaba.fastjson.JSON;
+import com.google.gson.Gson;
 import com.qiyou.dhlive.api.base.outward.service.IBaseCacheService;
 import com.qiyou.dhlive.api.base.outward.util.NoticeUtil;
 import com.qiyou.dhlive.api.base.outward.util.TLSUtils;
 import com.qiyou.dhlive.core.base.outward.service.IBaseSysParamService;
 import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
+import com.qiyou.dhlive.core.live.outward.model.LiveRoom;
+import com.qiyou.dhlive.core.live.outward.service.ILiveRoomService;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
 import com.qiyou.dhlive.core.room.outward.model.RoomChatMessage;
 import com.qiyou.dhlive.core.room.outward.service.IRoomChatMessageService;
@@ -40,6 +44,9 @@ public class CronController {
     
     @Autowired
     private IRoomChatMessageService roomChatMessageService;
+    
+    @Autowired
+    private ILiveRoomService liveRoomService;
     
     @Autowired
     @Qualifier("commonRedisManager")
@@ -228,6 +235,14 @@ public class CronController {
     	List<RoomAutoMsg> msgList=this.baseCacheService.getAllRoomAutoMsg();
     	if(EmptyUtil.isEmpty(msgList))
     		return ;
+        String roomStr = this.redisManager.getStringValueByKey(RedisKeyConstant.ROOM + 4);
+        LiveRoom room = new LiveRoom();
+        if (EmptyUtil.isEmpty(roomStr)) {
+            room = this.liveRoomService.findById(4);
+            this.redisManager.saveString(RedisKeyConstant.ROOM + 4, new Gson().toJson(room));
+        } else {
+        	room=JSON.parseObject(roomStr, LiveRoom.class);
+        }
     	String privateKey = this.baseSysParamService.getValueByKey("private_key");
     	String identifier = this.baseSysParamService.getValueByKey("identifier");
     	String appKey = this.baseSysParamService.getValueByKey("sdk_app_id");
@@ -235,7 +250,7 @@ public class CronController {
     	List<String> youkeList=this.baseCacheService.getAutoMsgUser();
     	int youkeIndex = (int)(0+Math.random()*(youkeList.size()-1));
     	int msgIndex = (int)(0+Math.random()*(msgList.size()-1));
-    	RoomChatMessage chatMsg=NoticeUtil.sendAutoGroupMsg(youkeList.get(youkeIndex), msgList.get(msgIndex).getMsgContent(), userKey, identifier, appKey);
+    	RoomChatMessage chatMsg=NoticeUtil.sendAutoGroupMsg(youkeList.get(youkeIndex), msgList.get(msgIndex).getMsgContent(), userKey, identifier, appKey,room.getRoomGroupId());
     	this.roomChatMessageService.saveChatMessage(chatMsg);
     }
 }

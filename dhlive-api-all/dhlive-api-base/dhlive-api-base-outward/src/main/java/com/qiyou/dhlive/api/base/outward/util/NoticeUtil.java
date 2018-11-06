@@ -171,12 +171,12 @@ public class NoticeUtil {
     }
     
     
-    public static RoomChatMessage sendAutoGroupMsg(String fromAcc,String content,String userSig, String identifier, String sdkAppId) {
+    public static RoomChatMessage sendAutoGroupMsg(String fromAcc,String content,String userSig, String identifier, String sdkAppId,String groupId) {
     	
     	Integer random=TLSUtils.getRandom();
     	String url="https://console.tim.qq.com/v4/group_open_http_svc/send_group_msg?usersig="+userSig+"&identifier="+identifier+"&sdkappid="+sdkAppId+"&random="+random+"&contenttype=json";
     	 Message message = new Message();
-         message.setGroupId("@TGS#aKXIZMHFS");
+         message.setGroupId(groupId);
          message.setMsgRandom(random);
          message.setUniqueId(OrderNoUtil.get18OrderNumber());
          List<MsgBody> MsgBody = new ArrayList<MsgBody>();
