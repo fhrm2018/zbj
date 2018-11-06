@@ -171,12 +171,12 @@ public class NoticeUtil {
     }
     
     
-    public static RoomChatMessage sendAutoGroupMsg(String fromAcc,String content,String userSig, String identifier, String sdkAppId,String groupId) {
+    public static RoomChatMessage sendAutoGroupMsg(String fromAcc,String content,String userSig, String identifier, String sdkAppId,String roomGroupId,Integer groupId,Integer level) {
     	
     	Integer random=TLSUtils.getRandom();
     	String url="https://console.tim.qq.com/v4/group_open_http_svc/send_group_msg?usersig="+userSig+"&identifier="+identifier+"&sdkappid="+sdkAppId+"&random="+random+"&contenttype=json";
     	 Message message = new Message();
-         message.setGroupId(groupId);
+         message.setGroupId(roomGroupId);
          message.setMsgRandom(random);
          message.setUniqueId(OrderNoUtil.get18OrderNumber());
          List<MsgBody> MsgBody = new ArrayList<MsgBody>();
@@ -185,13 +185,14 @@ public class NoticeUtil {
          MsgContent msg = new MsgContent();
          Map<String,Object> data=Maps.newHashMap();
          data.put("code", "0000");
-         data.put("groupId", 1);
+         data.put("groupId", groupId);
          data.put("postNickName", fromAcc);
+         data.put("postUid", -1);
          data.put("uniqueId",message.getUniqueId());
          data.put("type", 0);
          data.put("isSpecial", 1);
          data.put("checkStatus", 1);
-         data.put("level", 1);
+         data.put("level", level);
          msg.setData(JSON.toJSONString(data));
          body.setMsgContent(msg);
          MsgBody.add(body);
@@ -234,6 +235,7 @@ public class NoticeUtil {
     	roomMsg.setStatus(1);
     	roomMsg.setUniqueId(message.getUniqueId());
     	roomMsg.setRoomId(4);
+    	roomMsg.setPostUid(-1);
     	roomMsg.setPostNickName(fromAcc);
     	roomMsg.setMessageTime(new Date());
     	roomMsg.setSendTime(DateUtil.DateToString(new Date(), DateStyle.MM_DD_HH_MM_SS));

@@ -27,9 +27,8 @@
     <div class="mainBox flexCon">
         <div class="mainSearch">
             <div style="right: 10px; top: 20px">
-                <button type="button" class="pageBtn addBtn">新增发言</button>
-                <button type="button" class="pageBtn userBtn">机器人管理</button>
-                <button type="button" class="pageBtn settingBtn">发言设置</button>
+            	<button type="button" class="pageBtn backBtn">返回机器发言</button>
+                <button type="button" class="pageBtn addBtn">新增机器人</button>
                 <button type="button" class="pageBtn refBtn">刷新</button>
             </div>
         </div>
@@ -50,7 +49,8 @@
 
             <div class="tableTitle flexWrap ac">
                 <div style="width: 16%">序号</div>
-                <div style="width: 50%">发言内容</div>
+                <div style="width: 16%">vip等级</div>
+                <div style="width: 50%">机器人昵称</div>
                 <div style="width: 16%">操作</div>
             </div>
 
@@ -85,52 +85,39 @@
 
 <!-- 添加窗口 -->
 <div id="addWin" class="popForm popFormWide wtBg posFixed hide">
-    <form id="tableForm" action="${pageContext.request.contextPath}/live/saveMsg" method="post">
+    <form id="tableForm" action="${pageContext.request.contextPath}/live/saveAutoUser" method="post">
         <div class="title flexWrap ">
-            <div class="flexCon fz16 liveTitle">机器发言内容</div>
+            <div class="flexCon fz16 liveTitle">机器人用户</div>
             <div class="pt5"><a href="" onclick="closePopForm(this);return !1;" class="close block">
                 <span class="icon block"></span></a>
             </div>
         </div>
-
-        <div class="wtBg ptb10 ac">
-            <span class="formLabel ar mr10">发言内容</span>
-            <input type="hidden"  id="msgId" name="msgId"/>
-            <input type="text" class="serIpt" id="msgContent" name="msgContent"/>
+		<div class="clearfix ptb10">
+	        <div class="wtBg ptb10 ac">
+	            <span class="formLabel ar mr10">机器人昵称</span>
+	            <input type="hidden"  id="id" name="id"/>
+	            <input type="text" class="serIpt" id="autoUserName" name="autoUserName"/>
+	        </div>
         </div>
-
+        <div class="clearfix ptb10">
+       		 <div class="wtBg ptb10 ac">
+	            <span class="formLabel ar mr10">机器人vip等级</span>
+	            <select id="level" class="serIpt" name="level">
+	            	<option value="1">VIP 1（小兵）</option>
+	                <option value="2">VIP 2（地主）</option>
+	                <option value="3">VIP 3（县令）</option>
+	                <option value="4">VIP 4（丞相）</option>
+	                <option value="5">VIP 5（皇帝）</option>
+	            </select>
+	        </div>
+		</div>
         <div style="text-align: center" class="pt20">
             <button id="submitBtn" type="submit" class="pageBtn popFormBtn">确定</button>
             <button class="pageBtn popFormBtn" onclick="closePopForm(this);return !1;">取消</button>
         </div>
     </form>
 </div>
-
-<!-- 添加窗口 -->
-<div id="settingWin" class="popForm popFormWide wtBg posFixed hide">
-    <form id="settingForm" action="${pageContext.request.contextPath}/live/settingAutoMessage" method="post">
-        <div class="title flexWrap ">
-            <div class="flexCon fz16 liveTitle">机器自动发言设置</div>
-            <div class="pt5"><a href="" onclick="closePopForm(this);return !1;" class="close block">
-                <span class="icon block"></span></a>
-            </div>
-        </div>
-
-        <div class="wtBg ptb10 ac">
-            <span class="formLabel ar mr10">是否自动发言</span>
-            <select  class="serIpt" id="paramValue" name="paramValue">
-            	<option value="0">否</option>
-            	<option value="1">是</option>
-            </select>
-        </div>
-
-        <div style="text-align: center" class="pt20">
-            <button id="submitSetBtn" type="submit" class="pageBtn popFormBtn">确定</button>
-            <button class="pageBtn popFormBtn" onclick="closePopForm(this);return !1;">取消</button>
-        </div>
-    </form>
-</div>
 </body>
 <script src="${pageContext.request.contextPath}/static/js/lib/artDialog/dialog-min.js"></script>
-<script src="${pageContext.request.contextPath}/static/modules/msg/index.js"></script>
+<script src="${pageContext.request.contextPath}/static/modules/msg/user.js"></script>
 </html>

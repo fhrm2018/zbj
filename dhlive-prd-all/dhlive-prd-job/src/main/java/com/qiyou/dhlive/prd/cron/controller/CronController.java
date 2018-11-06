@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 
+import com.alibaba.dubbo.common.json.JSONObject;
 import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 import com.qiyou.dhlive.api.base.outward.service.IBaseCacheService;
 import com.qiyou.dhlive.api.base.outward.util.NoticeUtil;
@@ -20,6 +22,7 @@ import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
 import com.qiyou.dhlive.core.live.outward.model.LiveRoom;
 import com.qiyou.dhlive.core.live.outward.service.ILiveRoomService;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
+import com.qiyou.dhlive.core.room.outward.model.RoomAutoUser;
 import com.qiyou.dhlive.core.room.outward.model.RoomChatMessage;
 import com.qiyou.dhlive.core.room.outward.service.IRoomChatMessageService;
 import com.yaozhong.framework.base.common.utils.DateStyle;
@@ -230,8 +233,11 @@ public class CronController {
     	baseCacheService.updateAutoPersonCount(0-count);
     }
     
-    @Scheduled(cron = "0/10 * * * * ? ")
+    @Scheduled(cron = "0/55 * * * * ? ")
     public void sendAutoMsg() {
+    	String value=this.baseSysParamService.getValueByKey("auto_send_msg");
+    	if(!value.equals("1"))
+    		return ;
     	List<RoomAutoMsg> msgList=this.baseCacheService.getAllRoomAutoMsg();
     	if(EmptyUtil.isEmpty(msgList))
     		return ;
@@ -241,16 +247,38 @@ public class CronController {
             room = this.liveRoomService.findById(4);
             this.redisManager.saveString(RedisKeyConstant.ROOM + 4, new Gson().toJson(room));
         } else {
-        	room=JSON.parseObject(roomStr, LiveRoom.class);
+        	room=new Gson().fromJson(roomStr, LiveRoom.class);
         }
     	String privateKey = this.baseSysParamService.getValueByKey("private_key");
     	String identifier = this.baseSysParamService.getValueByKey("identifier");
     	String appKey = this.baseSysParamService.getValueByKey("sdk_app_id");
     	String userKey=TLSUtils.getUserSig(Integer.parseInt(appKey), identifier, privateKey);
     	List<String> youkeList=this.baseCacheService.getAutoMsgUser();
-    	int youkeIndex = (int)(0+Math.random()*(youkeList.size()-1));
+    	List<RoomAutoUser> autoUserList=this.baseCacheService.getAllRoomAutoUserList();
+    	if(EmptyUtil.isEmpty(autoUserList)) {
+    		autoUserList=Lists.newArrayList();
+    	}
+    	for(String y:youkeList) {
+    		RoomAutoUser autoUser=new RoomAutoUser();
+    		autoUser.setLevel(0);
+    		autoUser.setAutoUserName(y);
+    		autoUserList.add(autoUser);
+    	}
+    	int youkeIndex = (int)(0+Math.random()*(autoUserList.size()-1));
     	int msgIndex = (int)(0+Math.random()*(msgList.size()-1));
-    	RoomChatMessage chatMsg=NoticeUtil.sendAutoGroupMsg(youkeList.get(youkeIndex), msgList.get(msgIndex).getMsgContent(), userKey, identifier, appKey,room.getRoomGroupId());
+    	Integer level=autoUserList.get(youkeIndex).getLevel();
+    	Integer groupId = level.intValue()==0?1:5;
+    	RoomChatMessage chatMsg=NoticeUtil.sendAutoGroupMsg(
+    			autoUserList.get(youkeIndex).getAutoUserName(), 
+    			msgList.get(msgIndex).getMsgContent(), 
+    			userKey, 
+    			identifier, 
+    			appKey,
+    			room.getRoomGroupId(),
+    			groupId,
+    			level
+    			
+    			);
     	this.roomChatMessageService.saveChatMessage(chatMsg);
     }
 }
