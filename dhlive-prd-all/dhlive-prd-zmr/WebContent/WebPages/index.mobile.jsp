@@ -75,91 +75,7 @@
 
 <!-- 辅助变量 -->
 
-<div class="flexWrap flexAgCen header">
-    <div class="flexCon">
-        <a class="logo"><img src="../static/images/logo.png"></a>
-    </div>
-    <div class="flexCon topRight ac">
-        <c:if test="${loginedUserLogin.groupId == 1}">
-            <p class="username colorF fz12" id="username">
-                <img src="../static/images/yk.png" alt="">${loginedUserLogin.userNickName}
-            </p>
-        </c:if>
 
-        <c:if test="${loginedUserLogin.groupId == 2}">
-            <p class="username colorF fz12" id="username">
-                <img src="../static/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
-            </p>
-        </c:if>
-
-        <c:if test="${loginedUserLogin.groupId == 3}">
-            <p class="username colorF fz12" id="username">
-                <img src="../static/images/zl.png" alt="">${loginedUserLogin.userNickName}
-            </p>
-        </c:if>
-
-        <c:if test="${loginedUserLogin.groupId == 4}">
-            <p class="username colorF fz12" id="username">
-                <img src="../static/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
-            </p>
-        </c:if>
-
-        <c:if test="${loginedUserLogin.groupId == 5}">
-            <c:if test="${vip.userLevel == 1}">
-                <p class="username colorF fz12" id="username">
-                    <img src="../static/images/VIP1.png" alt="">${loginedUserLogin.userNickName}
-                </p>
-            </c:if>
-
-            <c:if test="${vip.userLevel == 2}">
-                <p class="username colorF fz12" id="username">
-                    <img src="../static/images/VIP2.png" alt="">${loginedUserLogin.userNickName}
-                </p>
-            </c:if>
-
-            <c:if test="${vip.userLevel == 3}">
-                <p class="username colorF fz12" id="username">
-                    <img src="../static/images/VIP3.png" alt="">${loginedUserLogin.userNickName}
-                </p>
-            </c:if>
-
-            <c:if test="${vip.userLevel == 4}">
-                <p class="username colorF fz12" id="username">
-                    <img src="../static/images/VIP4.png" alt="">${loginedUserLogin.userNickName}
-                </p>
-            </c:if>
-
-            <c:if test="${vip.userLevel == 5}">
-                <p class="username colorF fz12" id="username">
-                    <img src="../static/images/VIP5.png" alt="">${loginedUserLogin.userNickName}
-                </p>
-            </c:if>
-        </c:if>
-
-        <c:if test="${loginedUserLogin.groupId == 1}">
-            <p class="ar mt5">
-                <a class="loginA colorF fz16" onclick="toShow('login', 'register');">登录</a>
-                <%--<a class="registerA colorF fz16" onclick="toShow('register','login');">注册</a>--%>
-            </p>
-        </c:if>
-
-        <c:if test="${loginedUserLogin.groupId != 1}">
-            <p class="settingA colorF fz16">设置</p>
-            <div class="LoginOut hide" style="z-index: 999">
-                <a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register');">修改密码</a>
-                <a class="outBtn">退出登录</a>
-            </div>
-        </c:if>
-    </div>
-
-
-    <%--<div class="rightNav posAbs">--%>
-        <%--<c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}">--%>
-            <%--<a onclick="qqCustomer(${relation.userQq})" class="teacher"><span class="colorF">老师</span></a>--%>
-            <%--<a class="service" onclick="qqCustomer(${relation.userQq})"><span class="colorF">客服</span></a>--%>
-        <%--</c:if>--%>
-    <%--</div>--%>
-</div>
 <div class="flexWrap flexAgCen">
     <div class="flexCon contentLeft">
         <div class="movieTop clearfix">
@@ -179,7 +95,7 @@
                     <p class="colorF fz16 ac mt10">登录后可免费观看</p>
                     <div class="loginOrReg ac mt10">
                         <a class="allbutton allbutton4 ilblock mr20" onclick="toShow('login', 'register');">登录</a>
-                        <a class="allbutton allbutton4 ilblock" onclick="toShow('register', 'login');">注册</a>
+                        <a class="allbutton allbutton4 ilblock" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">注册</a>
                     </div>
                 </div>
             </div>
@@ -187,14 +103,99 @@
     </div>
 </div>
 
+<div class="header clearfix">
+    <div class="fl">
+        <a class="logo"><img src="../static/images/logo.png"></a>
+    </div>
+    <div class="fr topRight">
+        <c:if test="${loginedUserLogin.groupId == 1}">
+            <p class="username fz12" id="username">
+                <img src="../static/images/yk.png" alt="">${loginedUserLogin.userNickName}
+            </p>
+        </c:if>
+
+        <c:if test="${loginedUserLogin.groupId == 2}">
+            <p class="username fz12" id="username">
+                <img src="../static/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
+            </p>
+        </c:if>
+
+        <c:if test="${loginedUserLogin.groupId == 3}">
+            <p class="username fz12" id="username">
+                <img src="../static/images/zl.png" alt="">${loginedUserLogin.userNickName}
+            </p>
+        </c:if>
+
+        <c:if test="${loginedUserLogin.groupId == 4}">
+            <p class="username fz12" id="username">
+                <img src="../static/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
+            </p>
+        </c:if>
+
+        <c:if test="${loginedUserLogin.groupId == 5}">
+            <c:if test="${vip.userLevel == 1}">
+                <p class="username fz12" id="username">
+                    <img src="../static/images/VIP1.png" alt="">${loginedUserLogin.userNickName}
+                </p>
+            </c:if>
+
+            <c:if test="${vip.userLevel == 2}">
+                <p class="username fz12" id="username">
+                    <img src="../static/images/VIP2.png" alt="">${loginedUserLogin.userNickName}
+                </p>
+            </c:if>
+
+            <c:if test="${vip.userLevel == 3}">
+                <p class="username fz12" id="username">
+                    <img src="../static/images/VIP3.png" alt="">${loginedUserLogin.userNickName}
+                </p>
+            </c:if>
+
+            <c:if test="${vip.userLevel == 4}">
+                <p class="username fz12" id="username">
+                    <img src="../static/images/VIP4.png" alt="">${loginedUserLogin.userNickName}
+                </p>
+            </c:if>
+
+            <c:if test="${vip.userLevel == 5}">
+                <div class="username fz12" id="username">
+                    <img src="../static/images/VIP5.png" alt="">${loginedUserLogin.userNickName}
+                </div>
+            </c:if>
+        </c:if>
+
+        <c:if test="${loginedUserLogin.groupId == 1}">
+            <div class="menuIcon">
+                <a href="javascript:"><i></i></a>
+                <div class="menuBtn hide">
+                    <a class="loginA colorF fz16" onclick="toShow('login', 'register');">登录</a>
+                    <a class="registerA colorF fz16" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">注册</a>
+                </div>
+            </div>
+        </c:if>
+
+        <c:if test="${loginedUserLogin.groupId != 1}">
+            <p class="settingA colorF fz12">设置</p>
+            <div class="LoginOut hide" style="z-index: 999">
+                <a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register');">修改密码</a>
+                <a class="outBtn">退出登录</a>
+            </div>
+        </c:if>
+    </div>
+
+
+    <%--<div class="rightNav posAbs">--%>
+        <%--<c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}">--%>
+            <%--<a onclick="qqCustomer(${relation.userQq})" class="teacher"><span class="colorF">老师</span></a>--%>
+            <%--<a class="service" onclick="qqCustomer(${relation.userQq})"><span class="colorF">客服</span></a>--%>
+        <%--</c:if>--%>
+    <%--</div>--%>
+</div>
+
 <div class="flexWrap flexAgCen">
     <div class="flexCon contentRight wtBg">
         <div class="notice posRel">
-            <p class="trumpet fl"><img src="../static/images/notice.png"/></p>
-            <p class="msgTime fl">
-            </p>
-            <marquee onmouseover="this.stop()" class="noticeMsg noticeList" onmouseout="this.start()"
-                     scrollamount="5" direction="left"></marquee>
+            <marquee onmouseover="this.stop()" class="noticeMsg noticeList" onmouseout="this.start()" scrollamount="5" direction="left">直播为嘉宾的个人观点，仅供参考，请谨慎交易！</marquee>
         </div>
         <div class="msg" id="msgBox">
             <div class="load">
@@ -204,10 +205,10 @@
     </div>
 </div>
 
-<div style="height:5.3rem;"></div>
-<div class="footer ltGreyBg pt5 pb5">
+<div style="height: 6rem;    background: #f7f9fc;"></div>
+<div class="footer ltGreyBg">
     <div class="flexWrap flexAgCen sendMsg posRel">
-        <div class="expressionT posAbs hide" style="bottom:15rem;left:0;right:0;background-color: white;z-index: 1000;">
+        <div class="expressionT posAbs hide" style="bottom:5.6rem;left:0;right:0;background-color: white;z-index: 1000;">
             <div class="video-discuss-emotion" id="video-discuss-emotion">
                 <div class="video-emotion-pane">
                     <ul id="emotionUL">
@@ -227,7 +228,7 @@
 
 <div class="pop hide" id="pop">
 
-    <div class="login popWrap  wtBg mgAuto ac posRel ">
+    <div class="login wtBg ac posRel ">
         <form id="loginForm" method="post" action="/user/login">
             <h2 class="tit fz20 ac">登录</h2>
             <input type="text" class="inp" placeholder="请输入手机号码" name="userTel" id="loginPhone"/>
@@ -261,6 +262,13 @@
     </div>
 
 </div>
+
+<div class="lxqq">
+    <a href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">
+        <img src="../static/images/qqIcon.gif" alt="">
+    </a>
+</div>
+
 
 <div class="worning hide"></div>
 <iframe id="ifqq1" style="display:none;" src=""></iframe>

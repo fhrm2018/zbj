@@ -476,7 +476,7 @@ input::-moz-focus-inner {
     display: block;
     float: left;
     margin: 0 12px 0 0;
-    height: 36px;
+    height: 80px;
     text-align: center;
     color: #FFF;
     cursor: pointer;
@@ -6008,7 +6008,7 @@ button.swiper-pagination-bullet {
     width: 30%;
     max-width: 480px;
     min-width: 320px;
-    margin: -330px 0 0 -242px;
+    margin: -300px 0 0 -242px;
 }
 
 .techer_class .class_inside img:last-child {

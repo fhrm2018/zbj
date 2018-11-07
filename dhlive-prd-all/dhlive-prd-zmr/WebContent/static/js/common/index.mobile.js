@@ -77,6 +77,9 @@ $(function () {
     /********表情******/
     $(".faceF").click(function (e) {
         $('.expressionT').toggle();
+        $('#emotionUL li').last().prev().css('display', 'none');
+        // 隐藏红包
+        $('#emotionUL li').last().css('display', 'none');
     });
 
     $('.expressionT').click(function () {
@@ -267,6 +270,13 @@ $(function () {
     });
 
 
+    $('.menuIcon a').on('click',function(){
+        $(this).toggleClass('cur');
+        $('.menuBtn').fadeToggle();
+    });
+    $('.menuBtn a').on('click',function(){
+        $('.menuIcon a').removeClass('cur');
+    });
 
     /*当前在线人记录缓存(10秒/次)*/
     setInterval(function () {

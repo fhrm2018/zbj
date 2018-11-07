@@ -99,6 +99,7 @@ $(function () {
         $('.expressionT').toggle();
     });
 
+
     $('.expressionT').click(function () {
         $('.expressionT').toggle();
     });

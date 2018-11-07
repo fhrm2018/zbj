@@ -75,79 +75,87 @@
 
 <!-- 辅助变量 -->
 
-<div class="flexWrap flexAgCen header">
-    <div class="flexCon">
-        <a class="logo"><img src="../static/images/logo.png"></a>
-    </div>
-    <div class="flexCon topRight ac">
-        <c:if test="${loginedUserLogin.groupId == 1}">
-            <p class="username colorF fz12" id="username">
-                <img src="../static/images/yk.png" alt="">${loginedUserLogin.userNickName}
-            </p>
-        </c:if>
+<div class="header">
+    <a class="logo">
+        <img src="../static/images/logo2.png">
+    </a>
+    <div class="topRight">
+        <%--<c:if test="${loginedUserLogin.groupId == 1}">--%>
+            <%--<p class="username colorF fz12" id="username">--%>
+                <%--<img src="../static/images/yk.png" alt="">${loginedUserLogin.userNickName}--%>
+            <%--</p>--%>
+        <%--</c:if>--%>
 
         <c:if test="${loginedUserLogin.groupId == 2}">
             <p class="username colorF fz12" id="username">
-                <img src="../static/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
+                <%--<img src="../static/images/VIP8.png" alt="">--%>
+                ${loginedUserLogin.userNickName}
             </p>
         </c:if>
 
         <c:if test="${loginedUserLogin.groupId == 3}">
             <p class="username colorF fz12" id="username">
-                <img src="../static/images/zl.png" alt="">${loginedUserLogin.userNickName}
+                <%--<img src="../static/images/zl.png" alt="">--%>
+                ${loginedUserLogin.userNickName}
             </p>
         </c:if>
 
         <c:if test="${loginedUserLogin.groupId == 4}">
             <p class="username colorF fz12" id="username">
-                <img src="../static/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
+                <%--<img src="../static/images/VIP8.png" alt="">--%>
+                ${loginedUserLogin.userNickName}
             </p>
         </c:if>
 
-        <c:if test="${loginedUserLogin.groupId == 5}">
+        <c:if test="${loginedUserLogin.groupId == 5}">,
             <c:if test="${vip.userLevel == 1}">
                 <p class="username colorF fz12" id="username">
-                    <img src="../static/images/VIP1.png" alt="">${loginedUserLogin.userNickName}
+                    <%--<img src="../static/images/VIP1.png" alt="">--%>
+                    ${loginedUserLogin.userNickName}
                 </p>
             </c:if>
 
             <c:if test="${vip.userLevel == 2}">
                 <p class="username colorF fz12" id="username">
-                    <img src="../static/images/VIP2.png" alt="">${loginedUserLogin.userNickName}
+                    <%--<img src="../static/images/VIP2.png" alt="">--%>
+                    ${loginedUserLogin.userNickName}
                 </p>
             </c:if>
 
             <c:if test="${vip.userLevel == 3}">
                 <p class="username colorF fz12" id="username">
-                    <img src="../static/images/VIP3.png" alt="">${loginedUserLogin.userNickName}
+                    <%--<img src="../static/images/VIP3.png" alt="">--%>
+                    ${loginedUserLogin.userNickName}
                 </p>
             </c:if>
 
             <c:if test="${vip.userLevel == 4}">
                 <p class="username colorF fz12" id="username">
-                    <img src="../static/images/VIP4.png" alt="">${loginedUserLogin.userNickName}
+                    <%--<img src="../static/images/VIP4.png" alt="">--%>
+                    ${loginedUserLogin.userNickName}
                 </p>
             </c:if>
 
             <c:if test="${vip.userLevel == 5}">
                 <p class="username colorF fz12" id="username">
-                    <img src="../static/images/VIP5.png" alt="">${loginedUserLogin.userNickName}
+                    <%--<img src="../static/images/VIP5.png" alt="">--%>
+                    ${loginedUserLogin.userNickName}
                 </p>
             </c:if>
         </c:if>
 
         <c:if test="${loginedUserLogin.groupId == 1}">
-            <p class="ar mt5">
+
                 <a class="loginA colorF fz16" onclick="toShow('login', 'register');">登录</a>
-                <%--<a class="registerA colorF fz16" onclick="toShow('register','login');">注册</a>--%>
-            </p>
+                <a class="registerA colorF fz16" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">注册</a>
+
         </c:if>
 
         <c:if test="${loginedUserLogin.groupId != 1}">
-            <p class="settingA colorF fz16">设置</p>
-            <div class="LoginOut hide" style="z-index: 999">
-                <a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register');">修改密码</a>
-                <a class="outBtn">退出登录</a>
+            <p class="settingA colorF fz16"></p>
+            <div class="LoginOut hide" style="z-index: 99999">
+                <a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register');"><i></i> 修改密码</a>
+                <a class="outBtn" href="javascript:"><i></i> 退出登录</a>
             </div>
         </c:if>
     </div>
@@ -179,7 +187,7 @@
                     <p class="colorF fz16 ac mt10">登录后可免费观看</p>
                     <div class="loginOrReg ac mt10">
                         <a class="allbutton allbutton4 ilblock mr20" onclick="toShow('login', 'register');">登录</a>
-                        <a class="allbutton allbutton4 ilblock" onclick="toShow('register', 'login');">注册</a>
+                        <a class="allbutton allbutton4 ilblock" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">注册</a>
                     </div>
                 </div>
             </div>
@@ -187,14 +195,14 @@
     </div>
 </div>
 
-<div class="flexWrap flexAgCen">
-    <div class="flexCon contentRight wtBg">
+<div class="">
+    <div class="contentRight wtBg">
         <div class="notice posRel">
             <p class="trumpet fl"><img src="../static/images/notice.png"/></p>
             <p class="msgTime fl">
             </p>
             <marquee onmouseover="this.stop()" class="noticeMsg noticeList" onmouseout="this.start()"
-                     scrollamount="5" direction="left"></marquee>
+                     scrollamount="5" direction="left">直播为分析师的个人观点，不可作为您的交易依据与参考，交易有风险，请谨慎交易！</marquee>
         </div>
         <div class="msg" id="msgBox">
             <div class="load">
@@ -207,7 +215,7 @@
 <div style="height:5.3rem;"></div>
 <div class="footer ltGreyBg pt5 pb5">
     <div class="flexWrap flexAgCen sendMsg posRel">
-        <div class="expressionT posAbs hide" style="bottom:15rem;left:0;right:0;background-color: white;z-index: 1000;">
+        <div class="expressionT posAbs hide" style="bottom:4rem;left:0;right:0;background-color: white;z-index: 1000;">
             <div class="video-discuss-emotion" id="video-discuss-emotion">
                 <div class="video-emotion-pane">
                     <ul id="emotionUL">
