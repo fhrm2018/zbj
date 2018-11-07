@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -157,7 +158,9 @@ public class LiveController {
         //在线人数
         String onLineNum = this.redisManager.getStringValueByKey(RedisKeyConstant.ONLINENUM + room.getRoomId());
         if (EmptyUtil.isNotEmpty(onLineNum)) {
-            room.setBaseNum(room.getBaseNum() + Integer.parseInt(onLineNum));
+        	int count=this.baseCacheService.getAutoPersonCount();
+//            room.setBaseNum(room.getBaseNum() + Integer.parseInt(onLineNum));
+        	room.setBaseNum(count + Integer.parseInt(onLineNum));
         }
         model.addAttribute("room", room);
         
@@ -368,7 +371,8 @@ public class LiveController {
         List<String> listVIP = redisManager.getMapValueFromMapByStoreKey(RedisKeyConstant.VIP_IDS);
         Integer onLineNum = listYK.size() + listZL.size() + listVIP.size();
         this.redisManager.saveString(RedisKeyConstant.ONLINENUM + roomId, String.valueOf(onLineNum));
-        return new DataResponse(1000, room.getBaseNum() + onLineNum);
+        int count=this.baseCacheService.getAutoPersonCount();
+        return new DataResponse(1000, count + onLineNum);
     }
 
 
@@ -829,6 +833,13 @@ public class LiveController {
         result.setLevel(smalls.get(y).getSmallLevel());
 
         return new DataResponse(1000, result);
+    }
+    
+    @RequestMapping(value="/live/getUUID")
+    @ResponseBody
+    public DataResponse getUUid() {
+	    String uuid=UUID.randomUUID().toString();
+	    return new DataResponse(1000,"",uuid);
     }
 
 }

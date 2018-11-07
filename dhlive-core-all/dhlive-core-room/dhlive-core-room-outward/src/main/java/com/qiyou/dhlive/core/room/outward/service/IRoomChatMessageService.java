@@ -22,5 +22,7 @@ public interface IRoomChatMessageService extends IBaseService<RoomChatMessage> {
     DataResponse deleteChatMessage(RoomChatMessage params);
 
     DataResponse getChatMessageByUniqueId(RoomChatMessage params);
+    
+    public DataResponse getMessageList();
 
 }

@@ -1,8 +1,17 @@
 package com.qiyou.dhlive.core.base.service.service.impl;
 
 
-import com.alibaba.fastjson.JSONArray;
-import com.qiyou.dhlive.core.base.outward.model.BaseIp;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import com.google.common.collect.Maps;
 import com.qiyou.dhlive.core.base.outward.model.BaseWord;
 import com.qiyou.dhlive.core.base.outward.service.IBaseSysParamService;
 import com.qiyou.dhlive.core.base.outward.service.IBaseWordService;
@@ -10,21 +19,12 @@ import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
 import com.qiyou.dhlive.core.base.service.dao.BaseWordMapper;
 import com.yaozhong.framework.base.common.utils.EmptyUtil;
 import com.yaozhong.framework.base.database.domain.page.PageResult;
-import com.yaozhong.framework.base.database.domain.page.PageSearch;
 import com.yaozhong.framework.base.database.domain.page.builders.PageResultBuilder;
 import com.yaozhong.framework.base.database.domain.returns.DataResponse;
-import com.yaozhong.framework.base.database.domain.search.SearchCondition;
 import com.yaozhong.framework.base.database.mysql.service.impl.BaseMyBatisService;
 import com.yaozhong.framework.base.database.redis.RedisManager;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
-import redis.clients.jedis.Jedis;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import redis.clients.jedis.Jedis;
 
 /**
  * describe:
@@ -145,19 +145,20 @@ public class BaseWordServiceImpl extends BaseMyBatisService<BaseWord> implements
             for (String key : whiteKeys) {
                 String word = this.redisManager.getStringValueByKey(key);
                 if (params.getWord().trim().equals(word.trim())) {
-                    return new DataResponse(1000, 1);//在白名单,不需要审核
+                	return new DataResponse(1000, 1);//在白名单,不需要审核
                 }
             }
 
             for (String key : blackKeys) {
                 String word = this.redisManager.getStringValueByKey(key);
                 if (params.getWord().trim().contains(word.trim())) {
-                    return new DataResponse(1000, 0);//在黑名单, 不能发送
+                	return new DataResponse(1000, 0);//在黑名单, 不能发送
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        jedis.close();
         return new DataResponse(1000, 2);//正常消息, 需要审核
     }
 }

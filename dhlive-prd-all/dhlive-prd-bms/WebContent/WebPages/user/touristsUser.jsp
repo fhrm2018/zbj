@@ -37,6 +37,7 @@
                 </li>
             </ul>
             <div class="posAbs" style="right: 10px; top: 20px;">
+            	<span>当前在线用户数:<span id="onlineNum">${onlineNum }</span></span>
                 <button type="button" class="pageBtn searchBtn">查询用户</button>
                 <button type="button" class="pageBtn refBtn">刷新</button>
             </div>

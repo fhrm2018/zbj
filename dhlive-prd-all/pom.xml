@@ -15,5 +15,6 @@
 	<module>dhlive-prd-fy</module>
 	<module>dhlive-prd-qymt</module>
 	<module>dhlive-prd-zmr</module>
+	<module>dhlive-prd-job</module>
   </modules>
 </project>

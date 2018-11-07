@@ -135,10 +135,9 @@ public class RoomController {
     @RequestMapping(value = "getChatMessageByUser")
     @ResponseBody
     public DataResponse getChatMessageByUser(RoomChatMessage params) {
-        List<RoomChatMessage> data = this.baseCacheService.getChatMessageByUser(params.getRoomId());
-        return new DataResponse(1000, data);
+    	DataResponse data = this.roomChatMessageService.getMessageList();
+        return data;
     }
-
 
     /**
      * 管理员获取群消息(新消息和审核通过的)
@@ -149,7 +148,7 @@ public class RoomController {
     @RequestMapping(value = "getChatMessageByAdmin")
     @ResponseBody
     public DataResponse getChatMessageByAdmin(RoomChatMessage params) {
-        DataResponse result = this.roomChatMessageService.getChatMessageByAdmin(params);
+        DataResponse result = this.roomChatMessageService.getMessageList();
         return result;
     }
 

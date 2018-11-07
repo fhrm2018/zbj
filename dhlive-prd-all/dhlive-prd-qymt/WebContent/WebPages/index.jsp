@@ -339,7 +339,7 @@
 
                                         <c:if test="${manage.groupId == 3 || manage.groupId == 4}">
                                             <label>
-                                                <input type="checkbox">
+                                                <input type="checkbox" id="smallGroupType">
                                                 <span>小号群发</span>
                                             </label>
                                         </c:if>

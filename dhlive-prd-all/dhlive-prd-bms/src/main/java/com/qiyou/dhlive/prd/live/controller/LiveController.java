@@ -33,9 +33,11 @@ import com.qiyou.dhlive.core.base.outward.service.IBaseSysParamService;
 import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
 import com.qiyou.dhlive.core.live.outward.model.LiveRoom;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
+import com.qiyou.dhlive.core.room.outward.model.RoomAutoUser;
 import com.qiyou.dhlive.core.room.outward.model.RoomClass;
 import com.qiyou.dhlive.core.room.outward.model.RoomFile;
 import com.qiyou.dhlive.core.room.outward.service.IRoomAutoMsgService;
+import com.qiyou.dhlive.core.room.outward.service.IRoomAutoUserService;
 import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
 import com.qiyou.dhlive.core.user.outward.service.IUserGroupService;
 import com.qiyou.dhlive.core.user.outward.service.IUserManageInfoService;
@@ -578,4 +580,89 @@ public class LiveController {
 		return new DataResponse();
 	}
 	
+	@NeedSession
+	@UnSecurity
+	@RequestMapping("/settingAutoMessage")
+	@ResponseBody
+	public DataResponse settingAutoMessage(BaseSysParam params) {
+		if(EmptyUtil.isEmpty(params.getParamValue())) {
+			return new DataResponse(1001,"是否开启自动发言不能为空");
+		}
+		BaseSysParam p=new BaseSysParam();
+		p.setParamKey("auto_send_msg");
+		
+		p=baseSysParamService.findOneByCondition(new SearchCondition<BaseSysParam>(p));
+		if(EmptyUtil.isEmpty(p)) {
+			 p=new BaseSysParam();
+			 p.setParamKey("auto_send_msg");
+			 p.setParamValue(params.getParamValue());
+			 this.baseSysParamService.save(p);
+		}else {
+			 p.setParamValue(params.getParamValue());
+			 this.baseSysParamService.modifyEntity(p);
+		}
+		this.baseSysParamService.updateValueByKey("auto_send_msg");
+		return new DataResponse();
+	}
+	
+	
+	@NeedSession
+	@UnSecurity
+	@RequestMapping("/autoUser")
+	public String autoUserIndex() {
+		return "msg/user";
+	}
+	
+	@Autowired
+	private IRoomAutoUserService roomAutoUserService;
+	
+	@NeedSession
+	@UnSecurity
+	@RequestMapping("/getAutoUserList")
+	@ResponseBody
+	public DataResponse getAutoUserList(PageSearch ps) {
+		SearchCondition<RoomAutoUser> condition=new SearchCondition<RoomAutoUser>(new RoomAutoUser(),ps);
+		condition.buildOrderByConditions("id", "desc");
+		PageResult<RoomAutoUser> pr=this.roomAutoUserService.findByPage(condition);
+		return new DataResponse(1000,pr);
+	}
+	
+	@NeedSession
+	@UnSecurity
+	@RequestMapping("/getAutoUser")
+	@ResponseBody
+	public DataResponse getAutoUser(Integer id) {
+		RoomAutoUser autoMsg=roomAutoUserService.findById(id);
+		return new DataResponse(1000,autoMsg);
+	}
+	
+	@NeedSession
+	@UnSecurity
+	@RequestMapping("/saveAutoUser")
+	@ResponseBody
+	public DataResponse saveAutoUser(RoomAutoUser msg) {
+		if(EmptyUtil.isEmpty(msg.getLevel())) {
+			return new DataResponse(1001,"vip等级不能为空");
+		}
+		if(EmptyUtil.isEmpty(msg.getAutoUserName())) {
+			return new DataResponse(1001,"机器人昵称不能为空");
+		}
+		if(EmptyUtil.isEmpty(msg.getId())) {
+			this.roomAutoUserService.save(msg);
+		}else {
+			this.roomAutoUserService.modifyEntity(msg);
+		}
+		this.baseCacheService.updateAllRoomAutoUser();
+		return new DataResponse();
+	}
+
+	@NeedSession
+	@UnSecurity
+	@RequestMapping("/removeAutoUser")
+	@ResponseBody
+	public DataResponse removeAutoUser(Integer id) {
+		this.roomAutoUserService.removeById(id);
+		this.baseCacheService.updateAllRoomAutoUser();
+		return new DataResponse();
+	}
 }

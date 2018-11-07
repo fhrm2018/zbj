@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.qiyou.dhlive.api.base.outward.vo.UserInfoDTO;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
+import com.qiyou.dhlive.core.room.outward.model.RoomAutoUser;
 import com.qiyou.dhlive.core.room.outward.model.RoomChatMessage;
 import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
 
@@ -44,5 +45,17 @@ public interface IBaseCacheService {
 	List<RoomAutoMsg> getAllRoomAutoMsg();
 	
 	List<RoomAutoMsg> updateAllRoomAutoMsg();
+	
+	int getAutoPersonCount();
+	
+	int updateAutoPersonCount(int count);
+	
+	List<String> getAutoMsgUser();
+	
+	List<String> addAutoMsgUser();
+	
+	List<RoomAutoUser> getAllRoomAutoUserList();
+	
+	List<RoomAutoUser> updateAllRoomAutoUser();
 
 }

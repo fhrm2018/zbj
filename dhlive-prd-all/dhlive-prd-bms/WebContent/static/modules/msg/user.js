@@ -1,8 +1,7 @@
 var getDataList;
 $(function () {
     var $tableForm = $('#tableForm'),
-    	$uploadForm = $('#uploadForm'),
-    	$settingForm = $('#settingForm');
+    	$uploadForm = $('#uploadForm');
     var prame = {};
     // 列表
     var fnData = function (obj, pageIndex, recordsNum, pages) {
@@ -14,12 +13,14 @@ $(function () {
                 '<div class="flexWrap">',
                 '<div class="flexWrap flexAgCen" style="width: 16%; text-align:center; "> <div class="flexCon"> '
                 + (i+1) + '</div></div>',
+                '<div class="flexWrap flexAgCen" style="width: 16%; text-align:center;  min-height: 70px;""> <div class="flexCon"> VIP'
+                + record.level  + '</div></div>',
                 '<div class="flexWrap flexAgCen" style="width: 50%; text-align:center;  min-height: 70px;""> <div class="flexCon"> '
-                + record.msgContent  + '</div></div>',
+                + record.autoUserName  + '</div></div>',
 
 
                 '<div class="flexWrap flexAgCen"  style="width: 16%; text-align:center; "> <div class="flexCon">'
-                + op(record.msgId) + '</div></div>',
+                + op(record.id) + '</div></div>',
 
                 '</div>', '</div>'].join('');
         }
@@ -34,7 +35,7 @@ $(function () {
     // 列表数据
     getDataList = function () {
         $.ajaxGetData({
-            "ajaxUrl": g_requestContextPath + "/live/getMsgList",
+            "ajaxUrl": g_requestContextPath + "/live/getAutoUserList",
             "fnData": fnData,
             "postData": prame,
             "headtype": 1
@@ -49,37 +50,11 @@ $(function () {
         openPopForm('#addWin');
     });
     
-    $('.settingBtn').on('click', function () {
-        openPopForm('#settingWin');
+    $('.backBtn').on('click', function () {
+        window.location.href=g_requestContextPath+"/live/autoMsg";
     });
+    
   
-    $('.userBtn').on('click',function(){
-    	window.location.href=g_requestContextPath+'/live/autoUser';
-    });
-    /**
-     * 增加直播间表单提交
-     */
-    $settingForm.validate({
-        submitHandler: function () {
-            formSubmit("#submitSetBtn", true, "保存中...");
-            var options = {
-                success: function (data) {
-                    if (data.code == '1000') {
-                        window.location.href = g_requestContextPath + "/live/autoMsg";
-                    } else {
-                        popLayer(data.message);
-                    }
-                    formSubmit("#submitSetBtn", false, "保存");
-                },
-                error: function (data) {
-                    popLayer(stringMsg.serverErr);
-                    formSubmit("#submitSetBtn", false, "保存");
-                }
-            };
-            $settingForm.ajaxSubmit(options);
-        }
-    });
-
     /**
      * 增加直播间表单提交
      */
@@ -89,7 +64,7 @@ $(function () {
             var options = {
                 success: function (data) {
                     if (data.code == '1000') {
-                        window.location.href = g_requestContextPath + "/live/autoMsg";
+                        window.location.href = g_requestContextPath + "/live/autoUser";
                     } else {
                         popLayer(data.message);
                     }
@@ -103,6 +78,7 @@ $(function () {
             $tableForm.ajaxSubmit(options);
         }
     });
+
   
     $('.refBtn').on('click', function () {
         prame = {};
@@ -120,15 +96,16 @@ function op(roomId) {
 //编辑直播间
 function editLiveRoomWin(obj) {
     $.ajax({
-        url: g_requestContextPath + '/live/getAutoMsg',
+        url: g_requestContextPath + '/live/getAutoUser',
         data: {
-            'msgId': $(obj).data("id")
+            'id': $(obj).data("id")
         },
         success: function (data) {
             if (data.code == 1000) {
                 openPopForm('#addWin');
-                $('#msgId').val(data.data.msgId);
-                $('#msgContent').val(data.data.msgContent);
+                $('#id').val(data.data.id);
+                $('#autoUserName').val(data.data.autoUserName);
+                $('#level').val(data.data.level);
             } else {
                 popLayer(data.message);
             }

@@ -467,7 +467,7 @@
 
                                         <c:if test="${manage.groupId == 3 || manage.groupId == 4}">
                                             <label>
-                                                <input type="checkbox">
+                                                <input type="checkbox" id="smallGroupType">
                                                 <span>小号群发</span>
                                             </label>
                                         </c:if>
@@ -793,7 +793,7 @@
 <script src="${staticHost}/js/common/awardRotate.js?version=${version}"></script>
 
 <!--百度统计-->
-<script>
+ <script>
 
     var _hmt = _hmt || [];
     (function() {
@@ -804,7 +804,7 @@
     })();
 
 </script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
+Global site tag (gtag.js) - Google Analytics
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127711063-1"></script>
 <script>
     window.dataLayer = window.dataLayer || [];

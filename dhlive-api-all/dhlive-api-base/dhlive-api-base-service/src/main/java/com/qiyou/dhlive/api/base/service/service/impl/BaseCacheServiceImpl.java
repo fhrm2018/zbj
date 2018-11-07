@@ -3,6 +3,7 @@ package com.qiyou.dhlive.api.base.service.service.impl;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,9 +17,11 @@ import com.qiyou.dhlive.api.base.outward.service.IBaseCacheService;
 import com.qiyou.dhlive.api.base.outward.vo.UserInfoDTO;
 import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
+import com.qiyou.dhlive.core.room.outward.model.RoomAutoUser;
 import com.qiyou.dhlive.core.room.outward.model.RoomChatMessage;
 import com.qiyou.dhlive.core.room.outward.model.RoomDuty;
 import com.qiyou.dhlive.core.room.outward.service.IRoomAutoMsgService;
+import com.qiyou.dhlive.core.room.outward.service.IRoomAutoUserService;
 import com.qiyou.dhlive.core.room.outward.service.IRoomDutyService;
 import com.qiyou.dhlive.core.user.outward.model.UserInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
@@ -53,6 +56,9 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	@Autowired
 	private IRoomAutoMsgService roomAutoMsgService;
 	
+	@Autowired
+	private IRoomAutoUserService roomAutoUserService;
+	
 	public static final String USER_INFO = "dhlive-basedata-userinfo-";
 	
 	public static final String NEWUSER_LIST = "dhlive-basedata-newuserlist";
@@ -70,6 +76,13 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	public static final String MESSAGE_LIST = "dhlive-basedata-messagelist";
 	
 	public static final String AUTO_MESSAGE_LIST = "dhlive-basedata-automessagelist";
+	
+	public static final String AUTO_PERSON_COUNT = "dhlive-basedata-autopersoncount";
+	
+	public static final String AUTO_SENDUSER_COUNT = "dhlive-basedata-autosendUserCount";
+	
+	public static final String AUTO_SENDUSER_LIST = "dhlive-basedata-autosendUserList";
+
 
 	@Override
 	public UserInfoDTO getUserInfo(Integer userId) {
@@ -305,4 +318,90 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 		this.redisManager.saveString(AUTO_MESSAGE_LIST,JSON.toJSONString(msgList));
 		return msgList;
 	}
+
+	@Override
+	public int getAutoPersonCount() {
+		String autoCount=this.redisManager.getStringValueByKey(AUTO_PERSON_COUNT);
+		if(EmptyUtil.isNotEmpty(autoCount))
+			return Integer.parseInt(autoCount);
+		return 0;
+	}
+
+	@Override
+	public int updateAutoPersonCount(int count) {
+		String autoCount=this.redisManager.getStringValueByKey(AUTO_PERSON_COUNT);
+		if(EmptyUtil.isEmpty(autoCount)) {
+			this.redisManager.saveString(AUTO_PERSON_COUNT,count+"");
+		}
+		int sumCount=Integer.parseInt(autoCount)+count;
+		if(sumCount<=0) {
+			sumCount=0;
+		}
+		this.redisManager.saveString(AUTO_PERSON_COUNT,sumCount+"");
+		return sumCount;
+	}
+
+	@Override
+	public List<String> getAutoMsgUser() {
+		String json=this.redisManager.getStringValueByKey(AUTO_SENDUSER_COUNT);
+		if(EmptyUtil.isEmpty(json)) {
+			List<String> youkeList=Lists.newArrayList();
+			for(int i=0;i<10;i++) {
+				youkeList.add("游客MY"+getRandomString(8));
+			}
+			redisManager.saveStringBySeconds(AUTO_SENDUSER_COUNT,JSON.toJSONString(youkeList), 24*60*60);
+			return youkeList;
+		}else {
+			List<String> youkeList=JSON.parseArray(json, String.class);
+			if(youkeList.size()>=10) {
+				return youkeList;
+			}
+			for(int i=0;i<(10-youkeList.size());i++) {
+				youkeList.add("游客MY"+getRandomString(8));
+			}
+			redisManager.saveStringBySeconds(AUTO_SENDUSER_COUNT,JSON.toJSONString(youkeList), 24*60*60);
+			return youkeList;
+		}
+	}
+
+	@Override
+	public List<String> addAutoMsgUser() {
+		
+		return null;
+	}
+	
+	
+	public List<RoomAutoUser> getAllRoomAutoUserList(){
+		String json=this.redisManager.getStringValueByKey(AUTO_SENDUSER_LIST);
+		if(EmptyUtil.isEmpty(json)) {
+			return updateAllRoomAutoUser();
+		}
+		return JSON.parseArray(json,RoomAutoUser.class);
+	}
+	
+	public List<RoomAutoUser> updateAllRoomAutoUser(){
+		SearchCondition<RoomAutoUser> condition=new SearchCondition<RoomAutoUser>(new RoomAutoUser());
+		List<RoomAutoUser> userList=this.roomAutoUserService.findByCondition(condition);
+		redisManager.saveString(AUTO_SENDUSER_LIST, JSON.toJSONString(userList));
+		return userList;
+	}
+	
+    public String getRandomString(long length) {
+        String val = "";
+        Random random = new Random();
+        //参数length，表示生成几位随机数
+        for (int i = 0; i < length; i++) {
+            String charOrNum = random.nextInt(2) % 2 == 0 ? "char" : "num";
+            //输出字母还是数字
+            if ("char".equalsIgnoreCase(charOrNum)) {
+                //输出是大写字母还是小写字母
+                int temp = random.nextInt(2) % 2 == 0 ? 65 : 97;
+                val += (char) (random.nextInt(26) + temp);
+            } else if ("num".equalsIgnoreCase(charOrNum)) {
+                val += String.valueOf(random.nextInt(10));
+            }
+        }
+        return val;
+    }
+
 }

@@ -3,7 +3,7 @@ package com.qiyou.dhlive.core.base.service.constant;
 /**
  * Created by fish on 2018/4/13.
  */
-public class RedisKeyConstant {
+public class RedisKeyConstant { 
 
     public static final String TOURISTS = "dhlive-cachedata-tourists-";
 
@@ -44,6 +44,8 @@ public class RedisKeyConstant {
     public static final String INDEX_KEY = "dhlive-cachedata-params-";
 
     public static final String MESSAGE_INFO = "dhlive-cachedata-chat-messageMap";
+    
+    public static final String MESSAGE_INFO_LIST = "dhlive-cachedata-chat-messageList";
 
     public static final String ACTIVITY_CONFIG = "dhlive-cachedata-activity-config-";
 
