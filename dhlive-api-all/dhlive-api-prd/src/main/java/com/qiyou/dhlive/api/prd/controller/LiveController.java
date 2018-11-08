@@ -184,7 +184,8 @@ public class LiveController {
     		   onLineAssistant.add(m);
     	   }
        }
-        model.addAttribute("assistant", onLineAssistant);
+       Collections.shuffle(onLineAssistant);
+       model.addAttribute("assistant", onLineAssistant);
 
   /*      //如果没有在线的助理, 取所有的助理
         if (EmptyUtil.isEmpty(onLineAssistant)) {
