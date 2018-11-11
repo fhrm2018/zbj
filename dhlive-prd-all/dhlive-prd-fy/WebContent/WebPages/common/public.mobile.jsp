@@ -7,8 +7,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta content="telephone=no" name="format-detection" />
 <%
+	application.setAttribute("staticHost",ProjectConfig.getCdnHost());
 	if (application.getAttribute("version") == null) {
-		application.setAttribute("version", "1.0.3");
+		application.setAttribute("version", "1.5.7");
 	}
 	if (application.getAttribute("staticHost") == null) {
 		//application.setAttribute("staticHost", request.getScheme() + "://" + request.getServerName() +":"+request.getServerPort()+ request.getContextPath() + "/static");

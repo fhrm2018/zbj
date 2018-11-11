@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <%
-//	application.setAttribute("staticHost","http://static.rssdio.com");
+	application.setAttribute("staticHost",ProjectConfig.getCdnHost());
 	if (application.getAttribute("version") == null) {
 		application.setAttribute("version", "1.5.7");
 	}
