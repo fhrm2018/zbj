@@ -8,7 +8,7 @@
 	if (application.getAttribute("version") == null) {
 		application.setAttribute("version", "1.5.7");
 	}
-	if (application.getAttribute("staticHost") == null) {
+	if (application.getAttribute("staticHost") == null || application.getAttribute("staticHost") == "") {
 		//application.setAttribute("staticHost", request.getScheme() + "://" + request.getServerName() +":"+request.getServerPort()+ request.getContextPath() + "/static");
 		application.setAttribute("staticHost", request.getContextPath() + "/static");
 	}
