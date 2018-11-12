@@ -7,6 +7,7 @@ import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoUser;
 import com.qiyou.dhlive.core.room.outward.model.RoomChatMessage;
 import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
+import com.qiyou.dhlive.core.user.outward.model.UserRelation;
 
 public interface IBaseCacheService {
 	
@@ -58,4 +59,9 @@ public interface IBaseCacheService {
 	
 	List<RoomAutoUser> updateAllRoomAutoUser();
 
+	void updateYoukeKefuList(UserRelation relation);
+	
+	List<String> getYoukeKefuList();
+	
+	void removeYoukeKefuList(String value);
 }

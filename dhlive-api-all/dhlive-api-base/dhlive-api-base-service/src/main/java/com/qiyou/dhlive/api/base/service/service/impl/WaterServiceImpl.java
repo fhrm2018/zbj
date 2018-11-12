@@ -94,15 +94,16 @@ public class WaterServiceImpl implements IWaterService {
 			UserManageInfo myKefu = dutyList.get(auto_kefu_index);
 			auto_kefu_index++;
 			
-			UserRelation oldParam = new UserRelation();
+	/*		UserRelation oldParam = new UserRelation();
 			oldParam.setUserId(userId);
 			oldParam.setStatus(0);
 			oldParam.setGroupId(1);
-			
-			UserRelation upRation = new UserRelation();
-			upRation.setStatus(1);
-			this.userRelationService.modifyEntityByCondition(upRation, new SearchCondition<UserRelation>(oldParam));
-			
+			long count = this.userRelationService.countByCondition(new SearchCondition<UserRelation>(oldParam));
+			if(count>0) {
+				UserRelation upRation = new UserRelation();
+				upRation.setStatus(1);
+				this.userRelationService.modifyEntityByCondition(upRation, new SearchCondition<UserRelation>(oldParam));
+			}*/
 			
 			UserRelation relation = new UserRelation();
 			relation.setUserId(userId);
@@ -110,8 +111,8 @@ public class WaterServiceImpl implements IWaterService {
             relation.setRelationUserId(myKefu.getUserId());
             relation.setCreateTime(new Date());
             relation.setStatus(0);
-            this.userRelationService.save(relation);
-            
+//            this.userRelationService.save(relation);
+            this.baseCacheService.updateYoukeKefuList(relation);
             this.baseCacheService.updateYkKefuIdByDay(userId, day,myKefu.getUserId());
 			return myKefu;
 		}else {//系统自动分配
@@ -134,15 +135,6 @@ public class WaterServiceImpl implements IWaterService {
 			UserManageInfo myKefu = kefuList.get(auto_kefu_index);
 			auto_kefu_index++;
 			
-			UserRelation oldParam = new UserRelation();
-			oldParam.setUserId(userId);
-			oldParam.setStatus(0);
-			oldParam.setGroupId(1);
-			
-			UserRelation upRation = new UserRelation();
-			upRation.setStatus(1);
-			this.userRelationService.modifyEntityByCondition(upRation, new SearchCondition<UserRelation>(oldParam));
-			
 			
 			UserRelation relation = new UserRelation();
 			relation.setUserId(userId);
@@ -150,8 +142,8 @@ public class WaterServiceImpl implements IWaterService {
             relation.setRelationUserId(myKefu.getUserId());
             relation.setCreateTime(new Date());
             relation.setStatus(0);
-            this.userRelationService.save(relation);
-            
+//            this.userRelationService.save(relation);
+            this.baseCacheService.updateYoukeKefuList(relation);
             this.baseCacheService.updateYkKefuId(userId,myKefu.getUserId());
             
 			return myKefu;

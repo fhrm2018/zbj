@@ -82,6 +82,8 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	public static final String AUTO_SENDUSER_COUNT = "dhlive-basedata-autosendUserCount";
 	
 	public static final String AUTO_SENDUSER_LIST = "dhlive-basedata-autosendUserList";
+	
+	public static final String SAVE_USERKEFU_LIST = "dhlive-userrelation-waitsavekefulist";
 
 
 	@Override
@@ -385,6 +387,22 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 		redisManager.saveString(AUTO_SENDUSER_LIST, JSON.toJSONString(userList));
 		return userList;
 	}
+	
+	public void updateYoukeKefuList(UserRelation relation) {
+		List<String> list=Lists.newArrayList();
+		list.add(JSON.toJSONString(relation));
+		this.redisManager.saveList(SAVE_USERKEFU_LIST, list);
+	}
+	
+	public List<String> getYoukeKefuList() {
+		List<String> list=this.redisManager.getValuesFromListByStoreKey(SAVE_USERKEFU_LIST, -500, -1);
+		return list;
+	}
+	
+	public void removeYoukeKefuList(String value) {
+		this.redisManager.deleteFromListByByStoreKeyAndValue(SAVE_USERKEFU_LIST, value);
+	}
+	
 	
     public String getRandomString(long length) {
         String val = "";

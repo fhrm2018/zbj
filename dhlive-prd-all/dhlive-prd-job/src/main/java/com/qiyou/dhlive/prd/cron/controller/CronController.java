@@ -25,10 +25,13 @@ import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoUser;
 import com.qiyou.dhlive.core.room.outward.model.RoomChatMessage;
 import com.qiyou.dhlive.core.room.outward.service.IRoomChatMessageService;
+import com.qiyou.dhlive.core.user.outward.model.UserRelation;
+import com.qiyou.dhlive.core.user.outward.service.IUserRelationService;
 import com.yaozhong.framework.base.common.utils.DateStyle;
 import com.yaozhong.framework.base.common.utils.DateUtil;
 import com.yaozhong.framework.base.common.utils.EmptyUtil;
 import com.yaozhong.framework.base.common.utils.LogFormatUtil;
+import com.yaozhong.framework.base.database.domain.search.SearchCondition;
 import com.yaozhong.framework.base.database.redis.RedisManager;
 
 /**
@@ -54,6 +57,9 @@ public class CronController {
     @Autowired
     @Qualifier("commonRedisManager")
     private RedisManager redisManager;
+    
+    @Autowired
+    private IUserRelationService userRelationService;
 
     //游客定时任务
     @Scheduled(cron = "0/15 * *  * * ? ")   //每15秒执行一次
@@ -280,5 +286,26 @@ public class CronController {
     			
     			);
     	this.roomChatMessageService.saveChatMessage(chatMsg);
+    }
+    
+    @Scheduled(cron = "0 0/1 * * * ? ")
+    public void saveUserRelation() {
+    	List<String> list=this.baseCacheService.getYoukeKefuList();
+    	for(String json:list) {
+    		UserRelation re=JSON.parseObject(json,UserRelation.class);
+    		userRelationService.save(re);
+    		UserRelation oldParam = new UserRelation();
+			oldParam.setUserId(re.getUserId());
+			oldParam.setStatus(0);
+			oldParam.setGroupId(1);
+//			long count = this.userRelationService.countByCondition(new SearchCondition<UserRelation>(oldParam));
+//			if(count>0) {
+				UserRelation upRation = new UserRelation();
+				upRation.setStatus(1);
+				this.userRelationService.modifyEntityByCondition(upRation, new SearchCondition<UserRelation>(oldParam));
+//			}
+			
+    		this.baseCacheService.removeYoukeKefuList(json);
+    	}
     }
 }
