@@ -237,8 +237,10 @@ public class CronController {
     	
     	int count = (int)(250+Math.random()*(300-250+1));
     	int a=this.baseCacheService.getAutoPersonCount();
-    	if(a<=1000)
+    	if(a<=0)
     		return ;
+    	if(a<=1000)
+    		count=a;
     	baseCacheService.updateAutoPersonCount(0-count);
     }
     
@@ -294,21 +296,27 @@ public class CronController {
     @Scheduled(cron = "0 0/1 * * * ? ")
     public void saveUserRelation() {
     	List<String> list=this.baseCacheService.getYoukeKefuList();
+    	List<Object> updateUserIdList=Lists.newArrayList();
+    	List<UserRelation> relationList=Lists.newArrayList();
     	for(String json:list) {
     		UserRelation re=JSON.parseObject(json,UserRelation.class);
-    		userRelationService.save(re);
-    		UserRelation oldParam = new UserRelation();
-			oldParam.setUserId(re.getUserId());
+    		updateUserIdList.add(re.getUserId());
+    		relationList.add(re);
+    		this.baseCacheService.removeYoukeKefuList(json);
+    	}
+    	
+    	if(EmptyUtil.isNotEmpty(updateUserIdList)) {
+	    	UserRelation oldParam = new UserRelation();
 			oldParam.setStatus(0);
 			oldParam.setGroupId(1);
-//			long count = this.userRelationService.countByCondition(new SearchCondition<UserRelation>(oldParam));
-//			if(count>0) {
-				UserRelation upRation = new UserRelation();
-				upRation.setStatus(1);
-				this.userRelationService.modifyEntityByCondition(upRation, new SearchCondition<UserRelation>(oldParam));
-//			}
-			
-    		this.baseCacheService.removeYoukeKefuList(json);
+			UserRelation upRation = new UserRelation();
+			upRation.setStatus(1);
+			SearchCondition<UserRelation> condition = new SearchCondition<UserRelation>(oldParam);
+			condition.buildInConditions("userId", updateUserIdList);
+			this.userRelationService.modifyEntityByCondition(upRation, condition);
+    	}
+    	for(UserRelation re:relationList) {
+	    	userRelationService.save(re);
     	}
     }
 }
