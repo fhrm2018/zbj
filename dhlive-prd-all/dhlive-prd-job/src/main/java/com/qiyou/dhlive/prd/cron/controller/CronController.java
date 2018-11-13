@@ -25,10 +25,13 @@ import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoUser;
 import com.qiyou.dhlive.core.room.outward.model.RoomChatMessage;
 import com.qiyou.dhlive.core.room.outward.service.IRoomChatMessageService;
+import com.qiyou.dhlive.core.user.outward.model.UserRelation;
+import com.qiyou.dhlive.core.user.outward.service.IUserRelationService;
 import com.yaozhong.framework.base.common.utils.DateStyle;
 import com.yaozhong.framework.base.common.utils.DateUtil;
 import com.yaozhong.framework.base.common.utils.EmptyUtil;
 import com.yaozhong.framework.base.common.utils.LogFormatUtil;
+import com.yaozhong.framework.base.database.domain.search.SearchCondition;
 import com.yaozhong.framework.base.database.redis.RedisManager;
 
 /**
@@ -54,6 +57,9 @@ public class CronController {
     @Autowired
     @Qualifier("commonRedisManager")
     private RedisManager redisManager;
+    
+    @Autowired
+    private IUserRelationService userRelationService;
 
     //游客定时任务
     @Scheduled(cron = "0/15 * *  * * ? ")   //每15秒执行一次
@@ -118,8 +124,11 @@ public class CronController {
     	if(endRes) {
     		return ;
     	}
-    	
-    	int count = (int)(100+Math.random()*(120-100+1));
+    	int readyCount=this.baseCacheService.getAutoPersonCount();
+    	int count = (int)(150+Math.random()*(200-150+1));
+    	if(readyCount<=1000) {
+    		count=count+1000;
+    	}
     	baseCacheService.updateAutoPersonCount(count);
     	
     }
@@ -140,7 +149,7 @@ public class CronController {
     		return ;
     	}
     	
-    	int count = (int)(80+Math.random()*(100-80+1));
+    	int count = (int)(100+Math.random()*(120-100+1));
     	baseCacheService.updateAutoPersonCount(count);
     	
     }
@@ -166,7 +175,7 @@ public class CronController {
     	
     }
     
-    @Scheduled(cron = "0 0/25 * * * ? ")
+    @Scheduled(cron = "0 0/15 * * * ? ")
     public void addAutoPersonCountFourth() {
     	String beginDateStr=DateUtil.DateToString(new Date(), DateStyle.YYYY_MM_DD)+" "+"00:00:00";
     	String endDateStr=DateUtil.DateToString(new Date(), DateStyle.YYYY_MM_DD)+" "+"00:20:00";
@@ -203,7 +212,7 @@ public class CronController {
     		return ;
     	}
     	
-    	int count = (int)(70+Math.random()*(100-70+1));
+    	int count = (int)(150+Math.random()*(200-150+1));
     	int a=this.baseCacheService.getAutoPersonCount();
     	if(a==0)
     		return ;
@@ -226,10 +235,12 @@ public class CronController {
     		return ;
     	}
     	
-    	int count = (int)(200+Math.random()*(250-200+1));
+    	int count = (int)(250+Math.random()*(300-250+1));
     	int a=this.baseCacheService.getAutoPersonCount();
-    	if(a==0)
+    	if(a<=0)
     		return ;
+    	if(a<=1000)
+    		count=a;
     	baseCacheService.updateAutoPersonCount(0-count);
     }
     
@@ -280,5 +291,32 @@ public class CronController {
     			
     			);
     	this.roomChatMessageService.saveChatMessage(chatMsg);
+    }
+    
+    @Scheduled(cron = "0 0/1 * * * ? ")
+    public void saveUserRelation() {
+    	List<String> list=this.baseCacheService.getYoukeKefuList();
+    	List<Object> updateUserIdList=Lists.newArrayList();
+    	List<UserRelation> relationList=Lists.newArrayList();
+    	for(String json:list) {
+    		UserRelation re=JSON.parseObject(json,UserRelation.class);
+    		updateUserIdList.add(re.getUserId());
+    		relationList.add(re);
+    		this.baseCacheService.removeYoukeKefuList(json);
+    	}
+    	
+    	if(EmptyUtil.isNotEmpty(updateUserIdList)) {
+	    	UserRelation oldParam = new UserRelation();
+			oldParam.setStatus(0);
+			oldParam.setGroupId(1);
+			UserRelation upRation = new UserRelation();
+			upRation.setStatus(1);
+			SearchCondition<UserRelation> condition = new SearchCondition<UserRelation>(oldParam);
+			condition.buildInConditions("userId", updateUserIdList);
+			this.userRelationService.modifyEntityByCondition(upRation, condition);
+    	}
+    	for(UserRelation re:relationList) {
+	    	userRelationService.save(re);
+    	}
     }
 }

@@ -29,6 +29,10 @@ public class ProjectConfig {
 		return getValue("host.images");
 	}
 	
+	public static String getCdnHost(){
+		return getValue("host.cdn");
+	}
+	
 	public static boolean isOpenTestPay(){
 		String  openPay = getValue("pay.opentest");
 		if("true".equals(openPay)){

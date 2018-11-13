@@ -33,6 +33,7 @@ import com.qiyou.dhlive.api.base.outward.vo.UserVO;
 import com.qiyou.dhlive.api.prd.mvc.UserSession;
 import com.qiyou.dhlive.api.prd.util.AddressUtils;
 import com.qiyou.dhlive.api.prd.util.CheckMobileUtil;
+import com.qiyou.dhlive.api.prd.util.ProjectConfig;
 import com.qiyou.dhlive.api.prd.util.TLSUtils;
 import com.qiyou.dhlive.api.prd.vo.AutoMsgVo;
 import com.qiyou.dhlive.core.activity.outward.service.IActivityLuckyDrawWinnersService;
@@ -143,7 +144,7 @@ public class LiveController {
         //参与过活动标记
 //        String isReceive = "0";
 
-        String imagePath = this.baseSysParamService.getValueByKey("host.images");
+        String imagePath = ProjectConfig.getImagesHost();
         model.addAttribute("imagePath", imagePath);
 
         String roomStr = this.redisManager.getStringValueByKey(RedisKeyConstant.ROOM + roomId);
@@ -184,7 +185,8 @@ public class LiveController {
     		   onLineAssistant.add(m);
     	   }
        }
-        model.addAttribute("assistant", onLineAssistant);
+       Collections.shuffle(onLineAssistant);
+       model.addAttribute("assistant", onLineAssistant);
 
   /*      //如果没有在线的助理, 取所有的助理
         if (EmptyUtil.isEmpty(onLineAssistant)) {
@@ -320,6 +322,9 @@ public class LiveController {
         String sdkAppId = this.baseSysParamService.getValueByKey("sdk_app_id");
         String privateKey = this.baseSysParamService.getValueByKey("private_key");
         String userSig = "";
+        if(EmptyUtil.isEmpty(session)) {
+        	return new DataResponse(1001, "登陆失效，请重新登陆");
+        }
         if (EmptyUtil.isEmpty(session.getGroupId())) {
             session.setGroupId(groupId);
         }

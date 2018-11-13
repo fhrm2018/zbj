@@ -113,9 +113,6 @@ public class AddressUtils {
 //			}
 //		}
 //		return ipAddress;
-	 System.out.println("xff:"+request.getHeader("X-Forwarded-For"));
-	 System.out.println("xri:"+request.getHeader("X-Real-IP"));
-	 System.out.println("ra:"+request.getRemoteAddr());
 	 String ip = request.getHeader("X-Forwarded-For");
 	 if(EmptyUtil.isNotEmpty(ip) && !"unKnown".equalsIgnoreCase(ip)){
 	  //多次反向代理后会有多个ip值，第一个ip才是真实ip

@@ -132,7 +132,7 @@ public class WwwSecurityInterceptor extends HandlerInterceptorAdapter {
 	            return true;
 	        }
         }else {
-        	baseLog.info(LogFormatUtil.getActionFormat("拦截器获取ajax:" + ip + ",url:" + url));
+        	//baseLog.info(LogFormatUtil.getActionFormat("拦截器获取ajax:" + ip + ",url:" + url));
         	if (unSession == null) {
         		if (EmptyUtil.isEmpty(userLogin)) {
         			return false;

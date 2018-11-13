@@ -4,11 +4,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <%
-//	application.setAttribute("staticHost","http://static.rssdio.com");
+	application.setAttribute("staticHost",ProjectConfig.getCdnHost());
 	if (application.getAttribute("version") == null) {
 		application.setAttribute("version", "1.5.7");
 	}
-	if (application.getAttribute("staticHost") == null) {
+	if (application.getAttribute("staticHost") == null || application.getAttribute("staticHost") == "") {
 		//application.setAttribute("staticHost", request.getScheme() + "://" + request.getServerName() +":"+request.getServerPort()+ request.getContextPath() + "/static");
 		application.setAttribute("staticHost", request.getContextPath() + "/static");
 	}
