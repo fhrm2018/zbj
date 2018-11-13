@@ -124,8 +124,11 @@ public class CronController {
     	if(endRes) {
     		return ;
     	}
-    	
-    	int count = (int)(100+Math.random()*(120-100+1));
+    	int readyCount=this.baseCacheService.getAutoPersonCount();
+    	int count = (int)(150+Math.random()*(200-150+1));
+    	if(readyCount<=1000) {
+    		count=count+1000;
+    	}
     	baseCacheService.updateAutoPersonCount(count);
     	
     }
@@ -146,7 +149,7 @@ public class CronController {
     		return ;
     	}
     	
-    	int count = (int)(80+Math.random()*(100-80+1));
+    	int count = (int)(100+Math.random()*(120-100+1));
     	baseCacheService.updateAutoPersonCount(count);
     	
     }
@@ -172,7 +175,7 @@ public class CronController {
     	
     }
     
-    @Scheduled(cron = "0 0/25 * * * ? ")
+    @Scheduled(cron = "0 0/15 * * * ? ")
     public void addAutoPersonCountFourth() {
     	String beginDateStr=DateUtil.DateToString(new Date(), DateStyle.YYYY_MM_DD)+" "+"00:00:00";
     	String endDateStr=DateUtil.DateToString(new Date(), DateStyle.YYYY_MM_DD)+" "+"00:20:00";
@@ -209,7 +212,7 @@ public class CronController {
     		return ;
     	}
     	
-    	int count = (int)(70+Math.random()*(100-70+1));
+    	int count = (int)(150+Math.random()*(200-150+1));
     	int a=this.baseCacheService.getAutoPersonCount();
     	if(a==0)
     		return ;
@@ -232,9 +235,9 @@ public class CronController {
     		return ;
     	}
     	
-    	int count = (int)(200+Math.random()*(250-200+1));
+    	int count = (int)(250+Math.random()*(300-250+1));
     	int a=this.baseCacheService.getAutoPersonCount();
-    	if(a==0)
+    	if(a<=1000)
     		return ;
     	baseCacheService.updateAutoPersonCount(0-count);
     }
