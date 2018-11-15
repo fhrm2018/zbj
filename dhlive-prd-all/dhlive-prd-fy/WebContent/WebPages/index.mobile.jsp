@@ -19,6 +19,7 @@
             activityConfigId = '${config.id}',
             activityCountdown = '${config.activityCountdown}',
             talkUserId = '',
+
             type_flag = 0,
             isOver = ${isOver},
             chatImgs = new Array(),
@@ -287,19 +288,19 @@
 <script src="${staticHost}/js/common/jquery.endless-scroll-1.3.js"></script>
 <script src="${staticHost}/js/consult/consult.js?version=${version}"></script>
 <script src="${staticHost}/js/common/interval.js?version=${version}"></script>
-<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player.js?r=23695&id=dyyplayer"></script>
+<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=23695&id=dyyplayer"></script>
 <script type="text/javascript">
-    if(isOver == 0){
-        var playerVar = new dyyPlayer({
-            room_id: '${room.roomStreamServer}', //对应房间ID，必要参数
-//            room_id: '23695', //对应房间ID，必要参数
-            container: 'play-container', //播放器容器ID，必要参数
-            width: '100%', //播放器宽度，可用数字、百分比等
-            height: '100%', //播放器高度，可用数字、百分比等
-            autostart: true, //是否自动播放，默认为false
-            controlbardisplay: 'enable' //是否显示控制栏，值为：disable、enable默认为disable
-        });
-    }
+    <%--if(isOver == 0){--%>
+        <%--var playerVar = new dyyPlayer({--%>
+            <%--room_id: '${room.roomStreamServer}', //对应房间ID，必要参数--%>
+<%--//            room_id: '23695', //对应房间ID，必要参数--%>
+            <%--container: 'play-container', //播放器容器ID，必要参数--%>
+            <%--width: '100%', //播放器宽度，可用数字、百分比等--%>
+            <%--height: '100%', //播放器高度，可用数字、百分比等--%>
+            <%--autostart: true, //是否自动播放，默认为false--%>
+            <%--controlbardisplay: 'enable' //是否显示控制栏，值为：disable、enable默认为disable--%>
+        <%--});--%>
+    <%--}--%>
 
     $(function () {
         setTimeout(function () {

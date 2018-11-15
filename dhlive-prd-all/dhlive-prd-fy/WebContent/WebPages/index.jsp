@@ -283,7 +283,9 @@
                             <a href="javascript:" class="registerBtn" onclick="qqCustomer(${relation.userQq})">
                                 <div class="freeTipBox hide"></div>
                             </a>
-                            <div class="videoBox" id="play-container" style="width:100%; height:100%"></div>
+                            <div class="videoBox" id="play-container" style="width:100%; height:100%">
+                                <div id="dyyplayer" style="width:100%;height:100%"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="movieBot mt10">
@@ -815,7 +817,7 @@ Global site tag (gtag.js) - Google Analytics
 </script>
 
 
-<script type="text/javascript" src="http://58jinrongyun.com/helper/dyyplayer.js?v=1.02"></script>
+<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=23695&id=dyyplayer"></script>
 <script type="text/javascript">
 
 
@@ -856,16 +858,17 @@ Global site tag (gtag.js) - Google Analytics
         topQQ();
     }, 10000)
 
-
-    var playerVar = new dyyPlayer({
-        //room_id: '${room.roomStreamServer}', //对应房间ID，必要参数
-        room_id: '23695',
-        container: 'play-container', //播放器容器ID，必要参数
-        width: '100%', //播放器宽度，可用数字、百分比等
-        height: '100%', //播放器高度，可用数字、百分比等
-        autostart: true, //是否自动播放，默认为false
-        controlbardisplay: 'enable' //是否显示控制栏，值为：disable、enable默认为disable
-    });
+<%--$(function () {--%>
+    <%--var playerVar = new dyyPlayer({--%>
+        <%--//room_id: '${room.roomStreamServer}', //对应房间ID，必要参数--%>
+        <%--room_id: '23695',--%>
+        <%--container: 'play-container', //播放器容器ID，必要参数--%>
+        <%--width: '100%', //播放器宽度，可用数字、百分比等--%>
+        <%--height: '100%', //播放器高度，可用数字、百分比等--%>
+        <%--autostart: true, //是否自动播放，默认为false--%>
+        <%--controlbardisplay: 'enable' //是否显示控制栏，值为：disable、enable默认为disable--%>
+    <%--});--%>
+<%--});--%>
 
 
 </script>

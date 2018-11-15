@@ -151,7 +151,7 @@ html[xmlns] .clearfix {display: block;}
 .contentLeft{}
 .movie{}
 /*********观看时间到***********/
-.toLogin{background:#000000;height:22rem;}
+.toLogin{background:#000000;min-height:16rem;}
 .toLogin p{}
 .toLogin .loginOrReg{}
 

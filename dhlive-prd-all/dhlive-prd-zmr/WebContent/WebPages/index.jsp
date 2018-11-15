@@ -374,14 +374,12 @@
                                             <input type="file" id="msgImage" name="chatImage" accept="image/*"/>
                                         </a>
                                         <a class="clearScreen"><i style="display: none"></i></a>
-		
-                                          <c:if test="${manage.groupId == 3 || manage.groupId == 4}">
+										 <c:if test="${manage.groupId == 3 || manage.groupId == 4}">
                                             <label>
                                                 <input type="checkbox" id="smallGroupType">
                                                 <span>小号群发</span>
                                             </label>
                                         </c:if>
-
                                     </form>
                                 </div>
 
@@ -401,7 +399,7 @@
 
 <div class="footer">
     <div class="wrap ac mgAuto">
-        <span>直播为嘉宾的个人观点，仅供参考，请谨慎交易！</span>
+        <span>直播为嘉宾的个人观点，仅供参考，请谨慎交易！ 版权：深圳市美易互动科技有限公司 投资有风险  入市需谨慎</span>
     </div>
 </div>
 
@@ -723,7 +721,7 @@ var _hmt = _hmt || [];
   gtag('config', 'UA-124641888-1');
 </script>
 
-<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player.js?r=23590&id=dyyplayer"></script>
+<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=23590&id=dyyplayer"></script>
 <script type="text/javascript">
 
     // 弹出QQ弹框
@@ -762,7 +760,7 @@ var _hmt = _hmt || [];
         }, 5000)
     </c:if>
 
-    var playerVar = new dyyPlayer({
+   /* var playerVar = new dyyPlayer({
         //room_id: '${room.roomStreamServer}', //对应房间ID，必要参数
 		room_id: '23590',
         container: 'play-container', //播放器容器ID，必要参数
@@ -770,7 +768,7 @@ var _hmt = _hmt || [];
         height: '100%', //播放器高度，可用数字、百分比等
         autostart: true, //是否自动播放，默认为false
         controlbardisplay: 'enable' //是否显示控制栏，值为：disable、enable默认为disable
-    });
+    }); */ 
 
 
 

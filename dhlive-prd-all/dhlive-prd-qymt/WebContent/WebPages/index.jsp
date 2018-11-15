@@ -336,14 +336,12 @@
                                             <input type="file" id="msgImage" name="chatImage" accept="image/*"/>
                                         </a>
                                         <a class="clearScreen"><i style="display: none"></i></a>
-
-                                        <c:if test="${manage.groupId == 3 || manage.groupId == 4}">
+										  <c:if test="${manage.groupId == 3 || manage.groupId == 4}">
                                             <label>
                                                 <input type="checkbox" id="smallGroupType">
                                                 <span>小号群发</span>
                                             </label>
                                         </c:if>
-
                                     </form>
                                 </div>
 
@@ -700,7 +698,7 @@
 <script src="${staticHost}/js/common/awardRotate.js?version=${version}"></script>
 <script src="${staticHost}/js/chat/chat_base.js?version=${version}"></script>
 <script src="${staticHost}/js/chat/chat.js?version=${version}"></script>
-<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player.js?r=23275&id=dyyplayer"></script>
+<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=23275&id=dyyplayer"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124639879-1"></script>
 <script>
@@ -756,14 +754,14 @@ var _hmt = _hmt || [];
         }, 5000)
     </c:if>
 
-    var playerVar = new dyyPlayer({
+   /* var playerVar = new dyyPlayer({
         room_id: '${room.roomStreamServer}', //对应房间ID，必要参数
         container: 'play-container', //播放器容器ID，必要参数
         width: '100%', //播放器宽度，可用数字、百分比等
         height: '100%', //播放器高度，可用数字、百分比等
         autostart: true, //是否自动播放，默认为false
         controlbardisplay: 'enable' //是否显示控制栏，值为：disable、enable默认为disable
-    });
+    }); */
 
 </script>
 </html>

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -18,6 +18,7 @@
             time = 1,
             activityConfigId = '${config.id}',
             activityCountdown = '${config.activityCountdown}',
+	    imgPath = '${imagePath}',
             talkUserId = '',
             type_flag = 0,
             isOver = ${isOver},
@@ -282,9 +283,9 @@
 <script src="${staticHost}/js/common/jquery.endless-scroll-1.3.js"></script>
 <script src="${staticHost}/js/consult/consult.js?version=${version}"></script>
 <script src="${staticHost}/js/common/interval.js?version=${version}"></script>
-<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player.js?r=23590&id=dyyplayer"></script>
+<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=23590&id=dyyplayer"></script>
 <script type="text/javascript">
-    if(isOver == 0){
+    /* if(isOver == 0){
         var playerVar = new dyyPlayer({
             //room_id: '${room.roomStreamServer}', //对应房间ID，必要参数
 			room_id:'23590',
@@ -294,7 +295,7 @@
             autostart: true, //是否自动播放，默认为false
             controlbardisplay: 'enable' //是否显示控制栏，值为：disable、enable默认为disable
         });
-    }
+    } */
 
     $(function () {
         setTimeout(function () {
