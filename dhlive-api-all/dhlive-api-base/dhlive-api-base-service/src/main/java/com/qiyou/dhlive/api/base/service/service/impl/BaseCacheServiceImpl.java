@@ -131,7 +131,7 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 		UserManageInfo params = new UserManageInfo();
         params.setStatus(0);
         params.setRoomId(roomId);
-        //params.setIsOnline(1);
+        params.setIsOnline(1);
 		SearchCondition<UserManageInfo> condition = new SearchCondition<UserManageInfo>(params);
         List<UserManageInfo> data = this.userManageInfoService.findByCondition(condition);
 		if(EmptyUtil.isEmpty(data)) {
