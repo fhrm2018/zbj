@@ -16,7 +16,7 @@
 
     <select id="getRelationUserListAll" parameterType="java.lang.Integer"
             resultType="com.qiyou.dhlive.core.user.outward.vo.RelationVO">
-        select
+<!--         select
             a.id as id, (select count(*) from live_c2c_message b where b.from_id = a.user_id and b.group_id = 1 and is_view = 0  ) as ykCount,
             a.user_id as userId, a.group_id as groupId, a.water_group_id as waterGroupId,
             c.user_nick_name as ykName, c.create_time as ykTime,
@@ -24,13 +24,24 @@
         from user_relation as a
         left join user_info c on a.user_id = c.user_id and a.group_id = c.group_id
         where a.relation_user_id = #{0} and a.group_id = 1 and a.status = 0
-        order by  ykTime desc
+        order by  ykTime desc -->
+        
+        select
+            a.id as id, case when  b.ykcount is null THEN 0 else b.ykcount end  as ykCount,
+            a.user_id as userId, a.group_id as groupId, a.water_group_id as waterGroupId,
+            c.user_nick_name as ykName, c.create_time as ykTime,
+            CONCAT('yk-',a.user_id) as flag
+        from user_relation as a
+         LEFT JOIN (select count(*) ykcount,from_id from live_c2c_message  where  group_id = 1 and is_view = 0 GROUP BY  from_id,is_view ) b on b.from_id = a.user_id 
+        left join user_info c on a.user_id = c.user_id and a.group_id = c.group_id
+        where a.relation_user_id = #{0} and a.group_id = 1 and a.status = 0
+        order by  ykTime desc ;
     </select>
 
 
     <select id="getRelationUserList" parameterType="java.lang.Integer"
             resultType="com.qiyou.dhlive.core.user.outward.vo.RelationVO">
-        select
+     <!--    select
              a.id as id, (select count(*) from live_c2c_message b where b.from_id = a.user_id and b.group_id = 1 and is_view = 0  ) as ykCount,
              a.user_id as userId, a.group_id as groupId, a.water_group_id as waterGroupId,
              c.user_nick_name as ykName, c.create_time as ykTime,
@@ -38,7 +49,17 @@
         from user_relation as a
         left join user_info c on a.user_id = c.user_id and a.group_id = c.group_id
         where a.relation_user_id = #{0} and a.group_id = 1 and a.water_group_id = #{1} and a.status = 0
-        order by  ykTime desc
+        order by  ykTime desc -->
+        select
+             a.id as id, case when  b.ykcount is null THEN 0 else b.ykcount end  as ykCount,
+             a.user_id as userId, a.group_id as groupId, a.water_group_id as waterGroupId,
+             c.user_nick_name as ykName, c.create_time as ykTime,
+             CONCAT('yk-',a.user_id) as flag
+        from user_relation as a
+				LEFT JOIN (select count(*) ykcount,from_id from live_c2c_message  where  group_id = 1 and is_view = 0 GROUP BY  from_id,is_view ) b on b.from_id = a.user_id 
+        left join user_info c on a.user_id = c.user_id and a.group_id = c.group_id
+        where a.relation_user_id = #{0} and a.group_id = 1 and a.water_group_id = #{1} and a.status = 0
+        order by  ykTime desc;
     </select>
 
 
