@@ -1,6 +1,7 @@
 package com.qiyou.dhlive.api.base.outward.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.qiyou.dhlive.api.base.outward.vo.UserInfoDTO;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
@@ -64,4 +65,12 @@ public interface IBaseCacheService {
 	List<String> getYoukeKefuList();
 	
 	void removeYoukeKefuList(String value);
+	
+	int getUserOnlineTime(Integer userId);
+	
+	void updateUserOnlineTime(Integer userId,int times);
+	
+	Set<String> getAllOnlineUser();
+	
+	void removeUserOnlineTime(Integer userId);
 }

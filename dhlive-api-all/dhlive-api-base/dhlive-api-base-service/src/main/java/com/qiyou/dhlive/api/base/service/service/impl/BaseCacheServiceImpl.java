@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -85,6 +86,7 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	
 	public static final String SAVE_USERKEFU_LIST = "dhlive-userrelation-waitsavekefulist";
 
+	public static final String USER_ONLINE_TIME = "dhlive-user-onlineTime";
 
 	@Override
 	public UserInfoDTO getUserInfo(Integer userId) {
@@ -422,4 +424,38 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
         return val;
     }
 
+    
+    public int getUserOnlineTime(Integer userId) {
+    	List<String> times=this.redisManager.getValuesFromMapByStoreKeyAndMapKey(this.USER_ONLINE_TIME, userId.toString());
+    	if(EmptyUtil.isEmpty(times))
+    		return 0;
+    	return Integer.parseInt(times.get(0));
+    }
+    
+    
+    public Set<String> getAllOnlineUser(){
+    	Set<String> userIds=this.redisManager.getMapKeyFromMapByStoreKey(USER_ONLINE_TIME);
+    	return userIds;
+    }
+    
+    public void updateUserOnlineTime(Integer userId,int times) {
+    	List<String> timesList=this.redisManager.getValuesFromMapByStoreKeyAndMapKey(this.USER_ONLINE_TIME, userId.toString());
+    	if(EmptyUtil.isEmpty(timesList)) {
+    		this.redisManager.saveHash(USER_ONLINE_TIME, userId.toString(), String.valueOf(times));
+    	}else {
+    		if(EmptyUtil.isNotEmpty(timesList.get(0))&&!"null".equalsIgnoreCase(timesList.get(0))) {
+    			this.redisManager.saveHash(USER_ONLINE_TIME, userId.toString(), String.valueOf(times+Integer.parseInt(timesList.get(0))));
+    		}else {
+    			this.redisManager.saveHash(USER_ONLINE_TIME, userId.toString(), String.valueOf(times));
+    		}
+    	}
+    		
+    }
+    
+    public void removeUserOnlineTime(Integer userId) {
+    	this.redisManager.deleteFromHashByStoreKeyAndMapKey(this.USER_ONLINE_TIME, userId.toString());
+    	
+    }
+    
+    
 }

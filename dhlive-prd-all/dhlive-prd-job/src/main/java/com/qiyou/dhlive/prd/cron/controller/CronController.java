@@ -2,6 +2,7 @@ package com.qiyou.dhlive.prd.cron.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,13 +11,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 
-import com.alibaba.dubbo.common.json.JSONObject;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 import com.qiyou.dhlive.api.base.outward.service.IBaseCacheService;
 import com.qiyou.dhlive.api.base.outward.util.NoticeUtil;
 import com.qiyou.dhlive.api.base.outward.util.TLSUtils;
+import com.qiyou.dhlive.api.base.outward.vo.UserInfoDTO;
 import com.qiyou.dhlive.core.base.outward.service.IBaseSysParamService;
 import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
 import com.qiyou.dhlive.core.live.outward.model.LiveRoom;
@@ -25,7 +26,9 @@ import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoUser;
 import com.qiyou.dhlive.core.room.outward.model.RoomChatMessage;
 import com.qiyou.dhlive.core.room.outward.service.IRoomChatMessageService;
+import com.qiyou.dhlive.core.user.outward.model.UserInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserRelation;
+import com.qiyou.dhlive.core.user.outward.service.IUserInfoService;
 import com.qiyou.dhlive.core.user.outward.service.IUserRelationService;
 import com.yaozhong.framework.base.common.utils.DateStyle;
 import com.yaozhong.framework.base.common.utils.DateUtil;
@@ -60,6 +63,9 @@ public class CronController {
     
     @Autowired
     private IUserRelationService userRelationService;
+    
+    @Autowired
+    private IUserInfoService userInfoService;
 
     //游客定时任务
     @Scheduled(cron = "0/15 * *  * * ? ")   //每15秒执行一次
@@ -71,6 +77,7 @@ public class CronController {
             Long onLine = new Date().getTime() - Long.parseLong(str[0]);
             if (onLine > 10000) {
                 redisManager.deleteFromHashByStoreKeyAndMapKey(RedisKeyConstant.YK_IDS, str[1]);
+                this.baseCacheService.updateUserOnlineTime(Integer.parseInt(str[1]),(int)(onLine/1000));
             }
         }
         baseLog.info(LogFormatUtil.getActionFormat("定时任务清理下线游客结束"));
@@ -317,6 +324,32 @@ public class CronController {
     	}
     	for(UserRelation re:relationList) {
 	    	userRelationService.save(re);
+    	}
+    }
+    
+    @Scheduled(cron = "0 0/5 * * * ? ")
+    public void saveUserOnlineTime() {
+    	Set<String> list=this.baseCacheService.getAllOnlineUser();
+    	for(String key:list) {
+    		UserInfoDTO user=this.baseCacheService.getUserInfo(Integer.parseInt(key));
+    		if(EmptyUtil.isEmpty(user)) {
+    			continue;
+    		}
+    		int times=this.baseCacheService.getUserOnlineTime(user.getUserId());
+    		
+    		if(times<=0) {
+    			continue;
+    		}
+    		baseCacheService.removeUserOnlineTime(user.getUserId());
+    		UserInfo userInfo=new UserInfo();
+    		userInfo.setUserId(user.getUserId());
+    		if(EmptyUtil.isEmpty(user.getLookTime())) {
+    			userInfo.setLookTime(times);
+    		}else {
+    			userInfo.setLookTime(user.getLookTime().intValue()+times);
+    		}
+    		this.userInfoService.modifyEntity(userInfo);
+    		this.baseCacheService.updateUserInfo(user.getUserId());
     	}
     }
 }
