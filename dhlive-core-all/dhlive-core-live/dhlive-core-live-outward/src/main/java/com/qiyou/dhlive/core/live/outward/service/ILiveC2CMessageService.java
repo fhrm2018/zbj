@@ -12,4 +12,8 @@ public interface ILiveC2CMessageService extends IBaseService<LiveC2CMessage> {
 
     List<LiveC2CMessage> unReadMsg(Integer groupId, Integer userId);
 
+	List<LiveC2CMessage> byOrAnd(String fromNickName, String toNickName);
+
+	int byOrAndCount(String fromNickName, String toNickName);
+
 }
