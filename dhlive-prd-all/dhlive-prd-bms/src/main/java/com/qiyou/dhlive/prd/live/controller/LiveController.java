@@ -530,6 +530,8 @@ public class LiveController {
 	
 	@RequestMapping("/autoMsg")
 	public String autoMsg(Model model) {
+		String state = this.baseSysParamService.getValueByKey("auto_send_msg");
+        model.addAttribute("state", state);	
 		return "msg/index";
 	}
 	

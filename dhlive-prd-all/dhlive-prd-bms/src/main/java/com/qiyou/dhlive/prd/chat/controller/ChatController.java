@@ -80,7 +80,7 @@ public class ChatController {
     @ResponseBody
     public DataResponse getTouristsUserList(PageSearch pageSearch, BaseOptLog params) {
     	BaseOptLog searchParam = new BaseOptLog();
-    	SearchCondition<BaseOptLog> con = new SearchCondition<BaseOptLog>(searchParam);
+    	SearchCondition<BaseOptLog> con = new SearchCondition<BaseOptLog>(searchParam,pageSearch);
     	if(EmptyUtil.isNotEmpty(params.getOpeMsg())) {
     		con.buildLikeConditions("opeMsg", "%"+params.getOpeMsg()+"%");
     	}

@@ -7,6 +7,7 @@ import com.qiyou.dhlive.api.base.outward.vo.UserInfoDTO;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoUser;
 import com.qiyou.dhlive.core.room.outward.model.RoomChatMessage;
+import com.qiyou.dhlive.core.room.outward.model.RoomPlan;
 import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserRelation;
 
@@ -29,6 +30,10 @@ public interface IBaseCacheService {
 	List<UserManageInfo> getDutyUserByWeek(Integer roomId,Integer weekId);
 	
 	List<UserManageInfo> updateDutyUserByWeek(Integer roomId,Integer weekId);
+	
+	List<RoomPlan> getAllRoomPlan();
+	
+	List<RoomPlan> updateAllRoomPlan();
 	
 	String getYkKefuId(Integer userId);
 	
@@ -73,4 +78,5 @@ public interface IBaseCacheService {
 	Set<String> getAllOnlineUser();
 	
 	void removeUserOnlineTime(Integer userId);
+
 }

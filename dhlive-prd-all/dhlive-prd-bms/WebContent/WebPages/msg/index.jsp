@@ -118,10 +118,18 @@
 
         <div class="wtBg ptb10 ac">
             <span class="formLabel ar mr10">是否自动发言</span>
+            <c:if test="${state == 0}">
             <select  class="serIpt" id="paramValue" name="paramValue">
             	<option value="0">否</option>
             	<option value="1">是</option>
             </select>
+            </c:if>
+            <c:if test="${state == 1 }">
+             <select  class="serIpt" id="paramValue" name="paramValue">
+            	<option value="1">是</option>
+            	<option value="0">否</option>
+            </select>
+            </c:if>
         </div>
 
         <div style="text-align: center" class="pt20">

@@ -21,9 +21,11 @@ import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoUser;
 import com.qiyou.dhlive.core.room.outward.model.RoomChatMessage;
 import com.qiyou.dhlive.core.room.outward.model.RoomDuty;
+import com.qiyou.dhlive.core.room.outward.model.RoomPlan;
 import com.qiyou.dhlive.core.room.outward.service.IRoomAutoMsgService;
 import com.qiyou.dhlive.core.room.outward.service.IRoomAutoUserService;
 import com.qiyou.dhlive.core.room.outward.service.IRoomDutyService;
+import com.qiyou.dhlive.core.room.outward.service.IRoomPlanService;
 import com.qiyou.dhlive.core.user.outward.model.UserInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserRelation;
@@ -47,6 +49,9 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	
 	@Autowired
 	private IRoomDutyService roomDutyService;
+	
+	@Autowired
+	private IRoomPlanService roomPlanService;
 	
 	@Autowired
 	private IUserInfoService userInfoService;
@@ -87,6 +92,8 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	public static final String SAVE_USERKEFU_LIST = "dhlive-userrelation-waitsavekefulist";
 
 	public static final String USER_ONLINE_TIME = "dhlive-user-onlineTime";
+
+	private static final String ROOM_PLAN_LIST = "dhlive-basedata-roomPlanlist";
 
 	@Override
 	public UserInfoDTO getUserInfo(Integer userId) {
@@ -321,6 +328,23 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 		}
 		this.redisManager.saveString(AUTO_MESSAGE_LIST,JSON.toJSONString(msgList));
 		return msgList;
+	}
+	@Override
+	public List<RoomPlan> getAllRoomPlan(){
+		String json=this.redisManager.getStringValueByKey(ROOM_PLAN_LIST);
+		if(EmptyUtil.isEmpty(json)) {
+			return updateAllRoomPlan();
+		}
+		return JSON.parseArray(json, RoomPlan.class);
+	}
+	@Override
+	public List<RoomPlan> updateAllRoomPlan(){
+		List<RoomPlan> planList=this.roomPlanService.findByCondition(new SearchCondition<RoomPlan>(new RoomPlan()));
+		if(EmptyUtil.isEmpty(planList)) {
+			return Lists.newArrayList();
+		}
+		this.redisManager.saveString(ROOM_PLAN_LIST,JSON.toJSONString(planList));
+		return planList;
 	}
 
 	@Override

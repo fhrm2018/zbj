@@ -44,7 +44,9 @@ import com.qiyou.dhlive.core.live.outward.model.LiveRoom;
 import com.qiyou.dhlive.core.live.outward.service.ILiveC2CMessageService;
 import com.qiyou.dhlive.core.live.outward.service.ILiveRoomService;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
+import com.qiyou.dhlive.core.room.outward.model.RoomPlan;
 import com.qiyou.dhlive.core.room.outward.service.IRoomAutoMsgService;
+import com.qiyou.dhlive.core.room.outward.service.IRoomPlanService;
 import com.qiyou.dhlive.core.user.outward.model.UserInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserRelation;
@@ -60,6 +62,7 @@ import com.qiyou.dhlive.core.user.outward.service.IUserWaterGroupService;
 import com.qiyou.dhlive.core.user.outward.vo.RelationVO;
 import com.yaozhong.framework.base.common.utils.EmptyUtil;
 import com.yaozhong.framework.base.common.utils.LogFormatUtil;
+import com.yaozhong.framework.base.database.domain.page.PageResult;
 import com.yaozhong.framework.base.database.domain.returns.DataResponse;
 import com.yaozhong.framework.base.database.domain.search.SearchCondition;
 import com.yaozhong.framework.base.database.redis.RedisManager;
@@ -124,6 +127,9 @@ public class LiveController {
     
     @Autowired
     private IWaterService waterService;
+    
+    @Autowired
+    private IRoomPlanService roomPlanService;
 
     @Autowired
     @Qualifier("commonRedisManager")
@@ -137,6 +143,12 @@ public class LiveController {
         String accountType = this.baseSysParamService.getValueByKey("account_type");
         model.addAttribute("sdkAppId", sdkAppId);
         model.addAttribute("accountType", accountType);
+        String state = this.baseSysParamService.getValueByKey("set_plan");
+        model.addAttribute("state", state);
+        SearchCondition<RoomPlan> condition = new SearchCondition<RoomPlan>(new RoomPlan());
+        condition.buildOrderByConditions("id", "asc");
+        List<RoomPlan> plan = this.roomPlanService.findByCondition(condition);
+        model.addAttribute("plan",plan);
 
         if (EmptyUtil.isEmpty(roomId)) {
             roomId = 4;
