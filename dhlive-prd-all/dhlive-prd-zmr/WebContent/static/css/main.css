@@ -6066,13 +6066,14 @@ button.swiper-pagination-bullet {
 }
 
 .techer_class .class_inside {
+    width: 484px;
+    height:618px;
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 30%;
-    max-width: 484px;
-    min-width: 360px;
-    margin: -320px 0 0 -242px;
+    margin:-309px 0 0 -242px;
+    background: url("../images/kcap.png") 50% 50% no-repeat;
+    background-size: contain;
 }
 
 .techer_class .class_inside img:last-child {
@@ -6087,6 +6088,54 @@ button.swiper-pagination-bullet {
     top: -12px;
     right: -10px;
 }
+
+
+.class_inside .kcap{
+    padding: 110px 50px 0;
+}
+.class_inside .kcap table{
+    width:100%;
+    text-align: center;
+
+}
+.class_inside .kcap table tr{
+    border-bottom:1px solid #ebeaea;
+}
+.class_inside .kcap table th{
+    width:50%;
+    color:#f0f0f0;
+    font-size: 16px;
+    padding: 10px 0;
+}
+
+.class_inside .kcap table td{
+    color:#8ad6ff;
+    font-size: 16px;
+    padding: 10px 0;
+}
+.class_inside .kcap table td:nth-child(2n){
+    border-left:1px solid #ebeaea;
+}
+
+.class_inside .kcap2 table th{
+    width:30%;
+}
+.class_inside .kcap2 table td:nth-child(n){
+    border-right:1px solid #ebeaea;
+    border-left:1px solid #ebeaea;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*客服切换*/
 .slides {

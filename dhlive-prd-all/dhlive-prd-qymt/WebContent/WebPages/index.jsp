@@ -72,7 +72,40 @@
 <div class="techer_class" id="courseplanArea">
     <div class="class_inside">
         <img src="/static/images/close4.png" class="close11 pop-close" onclick="classShow('show');">
-        <img src="/static/images/kcbg_03.png">
+        <c:if test="${state == 3}">
+            <div class="kcap kcap2">
+                <table>
+                    <tr>
+                        <th>直播时间</th>
+                        <th>特邀嘉宾</th>
+                        <th>课程介绍</th>
+                    </tr>
+                    <c:forEach items="${plan}" var="pln">
+                        <tr>
+                            <td>${pln.planTeacher}</td>
+                            <td>${pln.planTime}</td>
+                            <td>${pln.planIntroduce}</td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
+        </c:if>
+        <c:if test="${state == 2}">
+            <div class="kcap">
+                <table>
+                    <tr>
+                        <th>直播时间</th>
+                        <th>特邀嘉宾</th>
+                    </tr>
+                    <c:forEach items="${plan}" var="pln">
+                        <tr>
+                            <td>${pln.planTime}</td>
+                            <td>${pln.planTeacher}</td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
+        </c:if>
     </div>
 </div>
 <div class="header">

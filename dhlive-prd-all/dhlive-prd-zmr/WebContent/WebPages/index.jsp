@@ -73,38 +73,38 @@
     <div class="class_inside">
         <img src="/static/images/close4.png" class="close11 pop-close" onclick="classShow('show');">
         <c:if test="${state == 3}">
-        <div class="kcap">
-        	<table>
-                 <tr>
-                      <th>直播时间（周一至周五）</th>
-                      <th>特邀嘉宾</th>
-                      <th>课程介绍</th>
-                </tr>
-           <c:forEach items="${plan}" var="pln">
-               <tr>
-                    <td>${pln.planTime}</td>
-                    <td>${pln.planTeacher}</td>
-                    <td>${pln.planIntroduce}</td>
-                </tr>
-           </c:forEach>
-        </table>
-        </div>
+            <div class="kcap kcap2">
+                <table>
+                    <tr>
+                        <th>直播时间</th>
+                        <th>特邀嘉宾</th>
+                        <th>课程介绍</th>
+                    </tr>
+                <c:forEach items="${plan}" var="pln">
+                    <tr>
+                    	<td>${pln.planTime}</td>
+                        <td>${pln.planTeacher}</td>
+                        <td>${pln.planIntroduce}</td>
+                    </tr>
+                </c:forEach>
+                </table>
+            </div>
         </c:if>
         <c:if test="${state == 2}">
-        <div class="kcap">
-        	<table>
-                 <tr>
-                      <th>直播时间（周一至周五）</th>
-                      <th>特邀嘉宾</th>
-                </tr>
-	           <c:forEach items="${plan}" var="pln">
-	               <tr>
-	                     <td>${pln.planTime}</td>
-	                     <td>${pln.planTeacher}</td>
-	                </tr>
-	           </c:forEach>
-	       </table>
-        </div>
+            <div class="kcap">
+                <table>
+                    <tr>
+                        <th>直播时间（周一至周五）</th>
+                        <th>特邀嘉宾</th>
+                    </tr>
+                <c:forEach items="${plan}" var="pln">
+                    <tr>
+                        <td>${pln.planTime}</td>
+                        <td>${pln.planTeacher}</td>
+                    </tr>
+                </c:forEach>
+                </table>
+            </div>
          </c:if>
     </div>
 </div>

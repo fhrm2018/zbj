@@ -67,7 +67,40 @@
 <div class="techer_class" id="courseplanArea">
     <div class="class_inside">
         <img src="/static/images/dh/close.png" class="close11 pop-close" onclick="classShow('show');">
-        <img src="/static/images/dh/kcbg_03.png">
+        <c:if test="${state == 3}">
+            <div class="kcap kcap2">
+                <table>
+                    <tr>
+                        <th>时间</th>
+                        <th>老师</th>
+                        <th>课程</th>
+                    </tr>
+                    <c:forEach items="${plan}" var="pln">
+                        <tr>
+                            <td>${pln.planTime}</td>
+                            <td>${pln.planTeacher}</td>
+                            <td>${pln.planIntroduce}</td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
+        </c:if>
+        <c:if test="${state == 2}">
+            <div class="kcap">
+                <table>
+                    <tr>
+                        <th>时间</th>
+                        <th>老师</th>
+                    </tr>
+                    <c:forEach items="${plan}" var="pln">
+                        <tr>
+                            <td>${pln.planTeacher}</td>
+                            <td>${pln.planTime}</td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
+        </c:if>
     </div>
 </div>
 <div class="header">
@@ -450,7 +483,7 @@
 
                                 <div class="emoticonIcon">
                                     <div class="expressionT posAbs hide"
-                                         style="top:-278px;left:0px; background-color: white; z-index: 99; box-shadow:0 1px 1px #ccc;">
+                                         style="top:-330px;left:0px; background-color: white; z-index: 99; box-shadow:0 1px 1px #ccc;">
                                         <div class="video-discuss-emotion" id="video-discuss-emotion">
                                             <div class="video-emotion-pane">
                                                 <ul id="emotionUL">

@@ -6161,14 +6161,16 @@ button.swiper-pagination-bullet {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+
 .techer_class .class_inside {
+    width: 484px;
+    height:610px;
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 30%;
-    max-width: 484px;
-    min-width: 360px;
-    margin: -320px 0 0 -242px;
+    margin:-305px 0 0 -242px;
+    background: url("../images/kcap.png") 50% 50% no-repeat;
+    background-size: contain;
 }
 
 .techer_class .class_inside img:last-child {
@@ -6181,8 +6183,51 @@ button.swiper-pagination-bullet {
     height: 44px;
     position: absolute;
     top: 25px;
-    right: 0;
+    right: 0px;
 }
+
+
+.class_inside .kcap{
+    padding: 70px 30px 0;
+}
+.class_inside .kcap table{
+    width:100%;
+    text-align: center;
+
+}
+.class_inside .kcap table tr{
+    border-bottom:1px dashed #aebbff;
+}
+.class_inside .kcap table tr:first-child{
+    border-bottom:1px solid #aebbff;
+}
+.class_inside .kcap table th{
+    /*width:50%;*/
+    color:#3c55d2;
+    font-size: 18px;
+    text-align: left;
+    padding: 10px 0;
+}
+
+.class_inside .kcap table td{
+    color:#333333;
+    font-size: 18px;
+    padding: 10px 0;
+    text-align: left;
+}
+.class_inside .kcap table th:nth-child(2n),.class_inside .kcap table td:nth-child(2n){
+    text-align: right;
+}
+
+.class_inside .kcap2 table th{
+    width:auto;
+}
+.techer_class .class_inside .kcap2 table th,.techer_class .class_inside .kcap2 table td{
+    text-align: center;
+}
+
+
+
 
 /*客服切换*/
 .slides {
