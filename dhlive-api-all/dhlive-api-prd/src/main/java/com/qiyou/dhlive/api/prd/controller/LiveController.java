@@ -145,10 +145,7 @@ public class LiveController {
         model.addAttribute("accountType", accountType);
         String state = this.baseSysParamService.getValueByKey("set_plan");
         model.addAttribute("state", state);
-        SearchCondition<RoomPlan> condition = new SearchCondition<RoomPlan>(new RoomPlan());
-        condition.buildOrderByConditions("id", "asc");
-        List<RoomPlan> plan = this.roomPlanService.findByCondition(condition);
-        model.addAttribute("plan",plan);
+        model.addAttribute("plan",this.baseCacheService.getAllRoomPlan());
 
         if (EmptyUtil.isEmpty(roomId)) {
             roomId = 4;

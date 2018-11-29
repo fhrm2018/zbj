@@ -6,6 +6,7 @@
       WARNING - @mbggenerated
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="plan_number" jdbcType="INTEGER" property="planNumber" />
     <result column="plan_time" jdbcType="VARCHAR" property="planTime" />
     <result column="plan_teacher" jdbcType="VARCHAR" property="planTeacher" />
     <result column="plan_introduce" jdbcType="VARCHAR" property="planIntroduce" />

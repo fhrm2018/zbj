@@ -30,11 +30,7 @@ public interface IBaseCacheService {
 	List<UserManageInfo> getDutyUserByWeek(Integer roomId,Integer weekId);
 	
 	List<UserManageInfo> updateDutyUserByWeek(Integer roomId,Integer weekId);
-	
-	List<RoomPlan> getAllRoomPlan();
-	
-	List<RoomPlan> updateAllRoomPlan();
-	
+
 	String getYkKefuId(Integer userId);
 	
 	String updateYkKefuId(Integer userId);
@@ -79,4 +75,9 @@ public interface IBaseCacheService {
 	
 	void removeUserOnlineTime(Integer userId);
 
+	
+	List<RoomPlan> getAllRoomPlan();
+	
+	List<RoomPlan> updateAllRoomPlan();
+	
 }

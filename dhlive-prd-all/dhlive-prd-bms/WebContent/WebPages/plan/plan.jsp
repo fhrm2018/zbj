@@ -48,7 +48,8 @@
             </div>
 
             <div class="tableTitle flexWrap ac">
-                <div style="width: 30%">直播老师</div>
+                <div style="width: 10%">编号</div>
+                <div style="width: 20%">直播老师</div>
                 <div style="width: 30%">直播时间</div>
                 <div style="width: 30%">课程介绍</div>
                 <div style="width: 10%">操作</div>
@@ -105,8 +106,12 @@
         </div>
 
         <div class="wtBg ptb10 ac">
-            <span class="formLabel ar mr10">直播老师</span>
+            <span class="formLabel ar mr10">编号</span>
             <input type="hidden"  id="id" name="id"/>
+            <input type="text" class="serIpt" id="planNumber" name="planNumber"/>
+        </div>
+        <div class="wtBg ptb10 ac">
+            <span class="formLabel ar mr10">直播老师</span>
             <input type="text" class="serIpt" id="planTeacher" name="planTeacher"/>
         </div>
         <div class="wtBg ptb10 ac">

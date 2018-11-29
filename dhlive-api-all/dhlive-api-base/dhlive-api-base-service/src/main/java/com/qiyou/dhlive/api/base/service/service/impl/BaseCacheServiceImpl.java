@@ -339,7 +339,9 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	}
 	@Override
 	public List<RoomPlan> updateAllRoomPlan(){
-		List<RoomPlan> planList=this.roomPlanService.findByCondition(new SearchCondition<RoomPlan>(new RoomPlan()));
+		SearchCondition<RoomPlan> condition=new SearchCondition<RoomPlan>(new RoomPlan());
+		condition.buildOrderByConditions("planNumber", "asc");
+		List<RoomPlan> planList=this.roomPlanService.findByCondition(condition);
 		if(EmptyUtil.isEmpty(planList)) {
 			return Lists.newArrayList();
 		}

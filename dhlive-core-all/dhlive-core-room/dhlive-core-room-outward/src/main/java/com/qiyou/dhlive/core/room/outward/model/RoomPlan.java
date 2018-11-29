@@ -9,6 +9,9 @@ public class RoomPlan implements Serializable {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    
+    @Column(name = "plan_number")
+    private Integer planNumber;
 
     @Column(name = "plan_time")
     private String planTime;
@@ -36,7 +39,17 @@ public class RoomPlan implements Serializable {
         this.id = id;
     }
 
-    /**
+
+
+    public Integer getPlanNumber() {
+		return planNumber;
+	}
+
+	public void setPlanNumber(Integer planNumber) {
+		this.planNumber = planNumber;
+	}
+
+	/**
      * @return planTime
      */
     public String getPlanTime() {
