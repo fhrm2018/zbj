@@ -94,8 +94,8 @@
                     </tr>
                     <c:forEach items="${plan}" var="pln">
                         <tr>
-                            <td>${pln.planTeacher}</td>
                             <td>${pln.planTime}</td>
+                            <td>${pln.planTeacher}</td>
                         </tr>
                     </c:forEach>
                 </table>
