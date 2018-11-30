@@ -48,6 +48,13 @@ public class CheckIpVisitServiceImpl implements ICheckIpVisitService {
 
     @Override
     public boolean checkCanVisit(String ip, String url) {
+    	if(EmptyUtil.isNotEmpty(ip)) {
+    		String[] balck=ip.split(".");
+    		if("117".equals(balck[0])) {
+    			return false;
+    		}
+    	}
+    	
         String whiteip = redisManager.getStringValueByKey(RedisKeyConstant.REIDSKEY_WHITEIP + ip);
         if (EmptyUtil.isNotEmpty(whiteip)) {
             return true;
