@@ -252,7 +252,8 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	public String getYkKefuId(Integer userId) {
 		String data = this.redisManager.getStringValueByKey(RELATION + "1-" + userId);
 		if(EmptyUtil.isEmpty(data)) {
-			return updateYkKefuId(userId);
+//			return updateYkKefuId(userId);
+			return null;
 		}
 		return data;
 	}
@@ -274,7 +275,7 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	
 	@Override
 	public String updateYkKefuId(Integer userId, Integer kefuId) {
-		redisManager.saveStringBySeconds(RELATION + "1-" + userId, kefuId+"", 60*60*24);
+		redisManager.saveStringBySeconds(RELATION + "1-" + userId, kefuId+"", 60*60*24*7);
 		return kefuId+"";
 	}
 
