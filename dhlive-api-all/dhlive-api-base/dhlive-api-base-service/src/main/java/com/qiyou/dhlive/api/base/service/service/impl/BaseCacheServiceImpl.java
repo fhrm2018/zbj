@@ -108,6 +108,9 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	@Override
 	public UserInfoDTO updateUserInfo(Integer userId) {
 		// TODO Auto-generated method stub
+		if(EmptyUtil.isEmpty(userId)) {
+			return null;
+		}
 		UserInfo data = this.userInfoService.findById(userId);
 		if(EmptyUtil.isEmpty(data)) {
 			return null;
