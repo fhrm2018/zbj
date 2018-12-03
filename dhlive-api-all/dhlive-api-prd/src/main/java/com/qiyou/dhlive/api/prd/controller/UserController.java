@@ -368,6 +368,7 @@ public class UserController {
         baseLog.info(LogFormatUtil.getActionFormat("key:" + RedisKeyConstant.VIP + userId + ",value:" + value));
         if (EmptyUtil.isEmpty(value)) {
             vip = this.userVipInfoService.findById(userId);
+            this.redisManager.saveString(RedisKeyConstant.VIP + userId,new Gson().toJson(vip));
         } else {
             vip = new Gson().fromJson(value, UserVipInfo.class);
         }
@@ -391,6 +392,7 @@ public class UserController {
         baseLog.info(LogFormatUtil.getActionFormat("key:" + RedisKeyConstant.TOURISTS + userId + ",value:" + value));
         if (EmptyUtil.isEmpty(value)) {
             tourse = this.userInfoService.findById(userId);
+            this.redisManager.saveString(RedisKeyConstant.TOURISTS + userId,new Gson().toJson(tourse));
         } else {
             tourse = new Gson().fromJson(value, UserInfo.class);
         }
