@@ -335,12 +335,17 @@ public class LiveController {
     @RequestMapping(value = "/live/createNewUser")
     @ResponseBody
     public DataResponse createNewUser(HttpServletRequest request,HttpServletResponse response,String utmSource) {
+    	if(EmptyUtil.isNotEmpty(UserSession.getUserSession())){
+    		return new DataResponse();
+    	}
+    	
     	HttpSession httpSession=request.getSession();
     	UserInfo user = this.userInfoService.createNewGuestUser(AddressUtils.getIpAddrFromRequest(request), utmSource);
         user.setUserId(user.getUserId());
         UserSession userSession = HttpSessionTool.createUserSession(user);
         HttpSessionTool.doLoginedUser(httpSession, userSession);
         Cookie userIdCookie = new Cookie(Constants.USER_ID, user.getUserId().toString());
+        userIdCookie.setPath("/");
         userIdCookie.setMaxAge(60 * 60 * 24 * 365);
         response.addCookie(userIdCookie);
         UserManageInfo onLineZL =waterService.initYkKefu(user.getUserId());
