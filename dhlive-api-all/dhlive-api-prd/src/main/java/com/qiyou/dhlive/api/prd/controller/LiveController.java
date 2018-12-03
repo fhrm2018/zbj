@@ -754,6 +754,9 @@ public class LiveController {
             List<String> listJson = redisManager.getMapValueFromMapByStoreKey(RedisKeyConstant.YK_IDS);
             List<Integer> ykIds = new ArrayList<Integer>();
             for (int i = 0; i < listJson.size(); i++) {
+            	if("null".equalsIgnoreCase(listJson.get(i))) {
+            		continue;
+            	}
                 String str[] = listJson.get(i).split("-");
                 ykIds.add(Integer.parseInt(str[1]));
             }
