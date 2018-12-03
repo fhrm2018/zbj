@@ -89,13 +89,13 @@ public class WwwSecurityInterceptor extends HandlerInterceptorAdapter {
 	                        }
 	                    }
 	                    if (EmptyUtil.isEmpty(user)) {
-	                        /*user = this.userInfoService.createNewGuestUser(AddressUtils.getIpAddrFromRequest(request), utmSource);
+	                        user = this.userInfoService.createNewGuestUser(AddressUtils.getIpAddrFromRequest(request), utmSource);
 	                        user.setUserId(user.getUserId());
 	                        UserSession userSession = HttpSessionTool.createUserSession(user);
 	                        HttpSessionTool.doLoginedUser(httpSession, userSession);
 	                        Cookie userIdCookie = new Cookie(Constants.USER_ID, user.getUserId().toString());
 	                        userIdCookie.setMaxAge(60 * 60 * 24 * 365);
-	                        response.addCookie(userIdCookie);*/
+	                        response.addCookie(userIdCookie);
 	                    } else {
 	                        UserSession userSession = HttpSessionTool.createUserSession(user);
 	                        HttpSessionTool.doLoginedUser(httpSession, userSession);
