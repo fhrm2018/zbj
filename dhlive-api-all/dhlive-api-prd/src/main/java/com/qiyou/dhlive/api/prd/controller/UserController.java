@@ -399,6 +399,9 @@ public class UserController {
         } else {
             tourse = new Gson().fromJson(value, UserInfo.class);
         }
+        if(EmptyUtil.isEmpty(tourse)) {
+        	return new DataResponse(1000, "success");
+        }
         if(EmptyUtil.isEmpty(tourse.getIsBlack())) {
         	return new DataResponse(1000, "success");
         }
