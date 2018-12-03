@@ -45,6 +45,9 @@ public class SessionFilter implements Filter {
 		if(EmptyUtil.isEmpty(response)) {
 			return ;
 		}
+		if(EmptyUtil.isEmpty(request)) {
+			return ;
+		}
 		SessionOperator.doSessionInfo(session, threadLocalHttpSession, req, response, category);
 		arg2.doFilter(request, arg1);
 	}

@@ -23,7 +23,7 @@
             chatImgs = new Array(),
             type_flag = 0,
             isCanSend = true,
-            groupId =    ${loginedUserLogin.groupId},
+            groupId =    '${loginedUserLogin.groupId}',
             tempWatchTime = ${room.tempWatchTime},
             loginInfo = {
                 'sdkAppID': '${sdkAppId}', //用户所属应用id,必填
@@ -37,12 +37,22 @@
             userInfo = {
                 'id': '${loginedUserLogin.userId}', //当前用户ID,必须是否字符串类型，选填
                 'nickName': '${loginedUserLogin.userNickName}', //当前用户昵称，选填
-                'groupId': ${loginedUserLogin.groupId},
+                'groupId': '${loginedUserLogin.groupId}',
                 'level': ''//会员等级
             },
             msgIdMap = {},
             selSess,//聊天session
-
+			utmSource = '${utmSource}',
+			relation = {
+				'userId': '${relation.userId}',	
+				'userNickName': '${relation.userNickName}',	
+				'groupId': '${relation.groupId}',	
+				'userLevel': '${relation.userLevel}',	
+				'userIntroduction': '${relation.userIntroduction}',	
+				'userPhoto': '${relation.userPhoto}',	
+				'userQrcode': '${relation.userQrcode}',	
+				'userQq': '${relation.userQq}',	
+			},
             accountMode = 0;//帐号模式，0-表示独立模式，1-表示托管模式
         if (groupId == '1') {
             loginInfo.identifier = 'yk-' + loginInfo.identifier;
@@ -54,6 +64,65 @@
             loginInfo.identifier = 'vip-' + loginInfo.identifier;
             userInfo.level = '${vip.userLevel}';
         }
+        
+        function qqCustomer() {
+            $("body").find("iframe").eq(0).attr("src", "tencent://message/?uin=" + relation.userQq + "");
+        }
+        
+        function createNewGuest(){
+        	var jqxhr = $.ajax({
+                url: ctx + '/live/createNewUser?utmSource='+ utmSource,
+                async: false,
+            });
+            jqxhr.done(function (data) {
+                if (data.code == '1000') {
+                    var userRes = data.data.user;
+                    var relationRes = data.data.onLineZL;
+                    userInfo.id = userRes.userId;
+                    userInfo.nickName = userRes.userNickName;
+                    userInfo.id = userRes.userId;
+                    userInfo.groupId = userRes.groupId;
+                    groupId = userRes.groupId;
+                    
+                    loginInfo.identifier = 'yk-' + userInfo.id ;
+                    loginInfo.identifierNick = userInfo.nickName ;
+                    
+                    relation.userId = relationRes.userId;
+                    relation.userNickName = relationRes.userNickName;
+                    relation.groupId = relationRes.groupId;
+                    relation.userLevel = relationRes.userLevel;
+                    relation.userIntroduction = relationRes.userIntroduction;
+                    relation.userPhoto = relationRes.userPhoto;
+                    relation.userQrcode = relationRes.userQrcode;
+                    relation.userQq = relationRes.userQq;
+                    
+                }
+           });
+        }
+        
+        var isInit = false;
+        if(userInfo.id == ''){
+        	createNewGuest();
+        	isInit = true;
+        }
+        $(function () {
+        	function initNewGuestPage(){
+        		$('.inintPage-relation-name').html(relation.userNickName);
+        		$('.inintPage-relation-qq').html(relation.userQq);
+        		$('.inintPage-relation-userIntroduction').html(relation.userIntroduction);
+        		$('.inintPage-relation-userQrcode').attr('src',imgPath + "ori/"+relation.userQrcode);
+        		$('.inintPage-relation-userPhoto').attr('src',imgPath + "ori/"+relation.userPhoto);
+        		$('#persionC2CMessageForm span').find('input[name="fromId"]').eq(0).val(userInfo.userId);
+        		$('#persionC2CMessageForm span').find('input[name="fromNickName"]').eq(0).val(userInfo.nickName);
+        		$('#persionC2CMessageForm span').find('input[name="toId"]').eq(0).val(relation.userId);
+        		$('#persionC2CMessageForm span').find('input[name="toNickName"]').eq(0).val(relation.userNickName);
+        		$('#persionC2CMessageForm span').find('input[name="persionToGroupId"]').eq(0).val(relation.groupId);
+        	}
+        	
+        	if(isInit){
+        		initNewGuestPage();
+        	}
+        });
     </script>
 
 </head>
@@ -122,16 +191,16 @@
             <a class="a1" target="_blank" href="http://www.ditan666.com/zm.html">
                 <img src="${staticHost }/images/a10.png" alt="">
             </a>
-            <a class="a1" onclick="qqCustomer(${relation.userQq})">
+            <a class="a1" onclick="qqCustomer()">
                 <img src="${staticHost }/images/a1.png" alt="">
             </a>
-            <a class="a1" onclick="qqCustomer(${relation.userQq})">
+            <a class="a1" onclick="qqCustomer()">
                 <img src="${staticHost }/images/a4.png" alt="">
             </a>
-            <a class="a1" onclick="qqCustomer(${relation.userQq})">
+            <a class="a1" onclick="qqCustomer()">
                 <img src="${staticHost }/images/a5.png" alt="">
             </a>
-            <a class="a1" onclick="qqCustomer(${relation.userQq})">
+            <a class="a1" onclick="qqCustomer()">
                 <img src="${staticHost }/images/a6.png" alt="">
             </a>
 
@@ -288,7 +357,7 @@
                         <div class="toLogin posRel">
                             <div class="freeTipBox hide">
                                 <div class="loginOrReg">
-                                    <a href="javascript:" class="registerBtn" onclick="qqCustomer(${relation.userQq})">
+                                    <a href="javascript:" class="registerBtn" onclick="qqCustomer()">
                                         <img src="${staticHost }/images/time_out_01.jpg" alt="">
                                     </a>
                                 </div>
@@ -301,7 +370,7 @@
                     <div class="movieBot mt10">
                         <div id="relativediv">
                             <div class="bannerImg">
-                                <a href="javascript:" onclick="qqCustomer(${relation.userQq})">
+                                <a href="javascript:" onclick="qqCustomer()">
                                     <img src="${staticHost }/images/b1.jpg" alt="">
                                 </a>
                             </div>
@@ -354,7 +423,7 @@
                         <div class="serviceList clearfix posRel">
                             <div class="qqWra">
                                 <c:forEach var="as" begin="0" items="${assistant}">
-                                    <a class="assistantQQ" onclick="qqCustomer(${as.userQq})">
+                                    <a class="assistantQQ" onclick="qqCustomer()">
                                         <img class="headImg" src="${imagePath}ori/${as.userPhoto}" alt="">
                                         <span>${as.userNickName}</span>
                                         <div class="bigImg hide">
@@ -371,8 +440,8 @@
                             <div class="inputTxt clearfix">
                                 <c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}">
                                     <div class="contactQQ">
-                                        <a id="goo26" href="javascript:" onclick="qqCustomer(${relation.userQq})">智能跟单</a>
-                                        <a id="goo27" href="javascript:" onclick="qqCustomer(${relation.userQq})">账户诊断</a>
+                                        <a id="goo26" href="javascript:"  onclick="qqCustomer()">智能跟单</a>
+                                        <a id="goo27" href="javascript:" onclick="qqCustomer()">账户诊断</a>
                                             <%--<a id="goo28" href="javascript:" onclick="qqCustomer(${relation.userQq})">领取策略</a>--%>
                                     </div>
                                 </c:if>
@@ -444,7 +513,7 @@
                 <h2 class="tit fz20 ac">VIP登录</h2>
                 <input type="text" class="inp" placeholder="请输入帐号" name="userTel" id="loginPhone"/>
                 <input type="password" class="inp" placeholder="请输入密码" name="userPass" id="loginPwd"/>
-                <a href="javascript:" onclick="qqCustomer(${relation.userQq})">忘记密码</a>
+                <a href="javascript:" onclick="qqCustomer()">忘记密码</a>
                 <input type="submit" class="redBut mb10 mt20" id="login" value="登录"/>
                 <p class="errorMsg red3 fz20 hide"></p>
             </form>
@@ -454,7 +523,7 @@
     <div class="register popWrap mgAuto posRel ac">
         <form id="registerForm" method="post" action="/user/userRegistered">
             <img src="${staticHost }/images/register.jpg" alt="">
-            <a class="btn01" href="javascript:" onclick="qqCustomer(${relation.userQq})">立即注册VIP</a>
+            <a class="btn01" href="javascript:"  onclick="qqCustomer()">立即注册VIP</a>
         </form>
         <a class="close close2"></a>
     </div>
@@ -480,12 +549,12 @@
     <div class="chat clearfix">
         <div class="left_wra">
             <div class="left_chat">
-                <h4 class="withManageToChatTip">正在与${relation.userNickName}对话<i></i></h4>
+                <h4 class="withManageToChatTip">正在与<span class="inintPage-relation-name">${relation.userNickName}</span>对话<i></i></h4>
                 <div class="list_chat clearfix" id="waterPersionChatBox">
                     <div class="messageTip hide">
                         <div class="text01 clearfix">
                             <div class="user_img">
-                                <span>${relation.userNickName}</span>
+                                <span class="inintPage-relation-name">${relation.userNickName}</span>
                             </div>
                             <div class="txt">
                                 <p>您好，欢迎您来到《追梦人直播间》国资背景期货公司合作方，希望我们的直播能给您带来便利！</p><br/>
@@ -511,7 +580,7 @@
                             <input type="hidden" name="fromNickName" value="${loginedUserLogin.userNickName}"/>
                             <input type="hidden" name="toId" id="persionToId" value="${relation.userId}"/>
                             <input type="hidden" name="toNickName" value="${relation.userNickName}"/>
-                            <input type="hidden" id="persionToGroupId" value="${relation.groupId}"/>
+                            <input type="hidden" name="persionToGroupId" id="persionToGroupId" value="${relation.groupId}"/>
                             <input type="hidden" name="level" value="${vip.userLevel}"/>
                             <input type="text" name="content" id="waterPersionContent" placeholder="请输入内容">
                             <div class="btns">
@@ -526,16 +595,16 @@
         <div class="right_chat">
             <div class="user_data">
                 <div class="user_title">
-                    <img src="${imagePath}ori/${relation.userPhoto}" alt="">
+                    <img class="inintPage-relation-userPhoto" src="${imagePath}ori/${relation.userPhoto}" alt="">
                     <div class="txt">
-                        <span>${relation.userNickName}</span>
+                        <span class="inintPage-relation-name">${relation.userNickName}</span>
                         <%--<span>手机：${relation.userTel}</span>--%>
-                        <span>QQ：${relation.userQq}</span>
+                        <span>QQ：</span><span class="inintPage-relation-qq">${relation.userQq}</span>
                     </div>
                 </div>
-                <p class="user_intro">${relation.userIntroduction}</p>
+                <p class="user_intro"><span class="inintPage-relation-userIntroduction">${relation.userIntroduction}</span></p>
                 <div class="img01">
-                    <img src="${imagePath}ori/${relation.userQrcode}" alt="">
+                    <img class="inintPage-relation-userQrcode" src="${imagePath}ori/${relation.userQrcode}" alt="">
                     <a href="javascript:"></a>
                 </div>
             </div>
@@ -686,7 +755,7 @@
 <div class="tkTimePopMask hide">
     <div class="tkTime">
         <%--<h3>您已听课3分钟</h3>--%>
-        <a class="lxQQ" id="g6" href="javascript:" onclick="qqCustomer(${relation.userQq})">立即注册VIP</a>
+        <a class="lxQQ" id="g6" href="javascript:" onclick="qqCustomer()">立即注册VIP</a>
         <a class="tkClose" href="javascript:"></a>
     </div>
 </div>
@@ -724,14 +793,14 @@
 <script src="${staticHost}/js/lib/slide.js?version=${version}"></script>
 <script src="${staticHost}/js/common/common.js?version=${version}"></script>
 <script src="${staticHost}/js/common/index.js?version=${version}"></script>
-<script src="${staticHost}/js/lib/tls/webim.js?version=${version}"></script>
-<script src="${staticHost}/js/chat/chat_group_notice.js?version=${version}"></script>
-<script src="${staticHost}/js/chat/c2c_chat.js?version=${version}"></script>
 <script src="${staticHost}/js/common/jquery.endless-scroll-1.3.js"></script>
 <script src="${staticHost}/js/comment/comment.js?version=${version}"></script>
 <script src="${staticHost}/js/consult/consult.js?version=${version}"></script>
 <script src="${staticHost}/js/common/interval.js?version=${version}"></script>
 <script src="${staticHost}/js/common/awardRotate.js?version=${version}"></script>
+<script src="${staticHost}/js/lib/tls/webim.js?version=${version}"></script>
+<script src="${staticHost}/js/chat/chat_group_notice.js?version=${version}"></script>
+<script src="${staticHost}/js/chat/c2c_chat.js?version=${version}"></script>
 <script src="${staticHost}/js/chat/chat_base.js?version=${version}"></script>
 <script src="${staticHost}/js/chat/chat.js?version=${version}"></script>
 <!-- baidu -->
@@ -759,7 +828,7 @@ var _hmt = _hmt || [];
 
     // 弹出QQ弹框
 //    var defaultQQ = new Array('3005619188', '3005658628', '3005698870','3005623869');
-    var defaultQQ = new Array('${relation.userQq}');
+    var defaultQQ = new Array(relation.userQq);
     function showQQ() {
         var sUserAgent = navigator.userAgent;
         var isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows");

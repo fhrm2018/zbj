@@ -436,6 +436,9 @@ public class LiveController {
     @RequestMapping(value = "/live/initRedisUser")
     @ResponseBody
     public DataResponse initRedisUser(Integer userId, Integer groupId) {
+    	if(EmptyUtil.isEmpty(groupId)) {
+    		return new DataResponse();
+    	}
         if (groupId.intValue() == 1) {//游客
             this.redisManager.saveHash(RedisKeyConstant.YK_IDS, String.valueOf(userId), String.valueOf(new Date().getTime()) + "-" + userId);
         } else if (groupId.intValue() == 3) {//助理
@@ -728,6 +731,9 @@ public class LiveController {
     @RequestMapping(value = "/live/getOnlineUserList")
     @ResponseBody
     public DataResponse getOnlineUserList(String flag) {
+    	if(EmptyUtil.isEmpty(flag)) {
+    		return new DataResponse();
+    	}
         if (flag.equals("0")) {
             List<String> listJson = redisManager.getMapValueFromMapByStoreKey(RedisKeyConstant.VIP_IDS);
             List<Integer> vipIds = new ArrayList<Integer>();
@@ -787,6 +793,9 @@ public class LiveController {
     @RequestMapping(value = "/live/checkCanWatch")
     @ResponseBody
     public DataResponse checkCanWatch(Integer groupId, Integer userId, HttpServletRequest request) {
+    	if(EmptyUtil.isEmpty(groupId)) {
+    		return new DataResponse();
+    	}
         String ip = AddressUtils.getIpAddrFromRequest(request);
         String wi = this.redisManager.getStringValueByKey(RedisKeyConstant.REIDSKEY_WHITEIP + ip);
         if (EmptyUtil.isNotEmpty(wi)) {//在白名单. 不限制时长.

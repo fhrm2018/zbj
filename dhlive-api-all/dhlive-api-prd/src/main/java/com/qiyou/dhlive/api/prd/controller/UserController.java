@@ -372,6 +372,9 @@ public class UserController {
         } else {
             vip = new Gson().fromJson(value, UserVipInfo.class);
         }
+        if(EmptyUtil.isEmpty(vip.getIsBlack())) {
+        	return new DataResponse(1000, "success");
+        }
         if (vip.getIsBlack().intValue() == 1) {
             return new DataResponse(9999, "已被拉黑.");
         }
@@ -395,6 +398,9 @@ public class UserController {
             this.redisManager.saveString(RedisKeyConstant.TOURISTS + userId,new Gson().toJson(tourse));
         } else {
             tourse = new Gson().fromJson(value, UserInfo.class);
+        }
+        if(EmptyUtil.isEmpty(tourse.getIsBlack())) {
+        	return new DataResponse(1000, "success");
         }
         if (tourse.getIsBlack().intValue() == 1) {
             return new DataResponse(9999, "已被拉黑.");
