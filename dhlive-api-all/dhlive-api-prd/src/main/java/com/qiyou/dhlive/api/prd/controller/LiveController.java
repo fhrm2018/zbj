@@ -292,8 +292,8 @@ public class LiveController {
         }else {
         	UserInfo user=new UserInfo();
         	user.setGroupId(1);
-            UserSession userSession = HttpSessionTool.createUserSession(user);
-            HttpSessionTool.doLoginedUser(request.getSession(), userSession);
+            session = HttpSessionTool.createUserSession(user);
+            HttpSessionTool.doLoginedUser(request.getSession(), session);
         }
         //活动配置
 //        if (session.getGroupId().intValue() == 1 || session.getGroupId().intValue() == 5) {
@@ -319,7 +319,7 @@ public class LiveController {
             } else if (session.getGroupId().intValue() == 5) {
                 result = this.checkCanWatch(session.getGroupId(), session.getUserId(), request);
             }
-            if (result.getCode().intValue() == 1001) {
+            if (result.getCode().intValue() == 1001&&EmptyUtil.isNotEmpty(session.getUserId())) {
                 model.addAttribute("isOver", 1);
             } else {
                 model.addAttribute("isOver", 0);
