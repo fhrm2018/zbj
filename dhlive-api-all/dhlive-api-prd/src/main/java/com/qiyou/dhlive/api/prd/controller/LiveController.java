@@ -213,7 +213,7 @@ public class LiveController {
         int x = (int) (Math.random() * onLineAssistant.size());//随机数, 用于选择一个助理进行关联
 
         UserSession session = UserSession.getUserSession();
-        if(EmptyUtil.isNotEmpty(session)) {
+        if(EmptyUtil.isNotEmpty(session)&&EmptyUtil.isNotEmpty(session.getUserId())) {
 	        //缓存当前登陆人身份, 如果是游客/vip 关联助理关系
 	        if (session.getGroupId().intValue() == 1) {
 	            String value = this.redisManager.getStringValueByKey(RedisKeyConstant.TOURISTS + session.getUserId());
