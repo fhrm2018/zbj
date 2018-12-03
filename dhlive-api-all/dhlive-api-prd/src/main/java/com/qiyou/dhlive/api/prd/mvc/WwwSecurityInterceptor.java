@@ -66,6 +66,8 @@ public class WwwSecurityInterceptor extends HandlerInterceptorAdapter {
         HandlerMethod handlerMethod = (HandlerMethod) handler;
         UnSession unSession = handlerMethod.getMethodAnnotation(UnSession.class);
         UserSession userLogin = UserSession.getUserSession();
+        if(EmptyUtil.isEmpty(request))
+        	return false;
         HttpSession httpSession = request.getSession();
         String ip = AddressUtils.getIpAddrFromRequest(request);
         String url = request.getRequestURL().toString();

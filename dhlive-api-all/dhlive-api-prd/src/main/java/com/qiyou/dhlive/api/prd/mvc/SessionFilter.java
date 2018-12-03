@@ -15,6 +15,8 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.yaozhong.framework.base.common.utils.EmptyUtil;
+
 
 public class SessionFilter implements Filter {
 	Logger logger = LoggerFactory.getLogger(SessionFilter.class);
@@ -37,6 +39,12 @@ public class SessionFilter implements Filter {
 		HttpSession session = ((HttpServletRequest) request).getSession();
 		HttpServletResponse response = (HttpServletResponse) arg1;
 		HttpServletRequest req = (HttpServletRequest) request;
+		if(EmptyUtil.isEmpty(req)) {
+			return ;
+		}
+		if(EmptyUtil.isEmpty(response)) {
+			return ;
+		}
 		SessionOperator.doSessionInfo(session, threadLocalHttpSession, req, response, category);
 		arg2.doFilter(request, arg1);
 	}
