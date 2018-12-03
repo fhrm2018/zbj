@@ -476,6 +476,9 @@ public class LiveController {
     @RequestMapping(value = "/live/getWaterChatMessage")
     @ResponseBody
     public DataResponse getWaterChatMessage(Integer roomId, Integer toGroupId, Integer fromGroupId, Integer fromId, Integer toId) {
+    	if(EmptyUtil.isEmpty(fromGroupId)) {
+    		return new DataResponse();
+    	}
         //获取聊天记录开始
         //发送人聊天记录
         LiveC2CMessage from = new LiveC2CMessage();
