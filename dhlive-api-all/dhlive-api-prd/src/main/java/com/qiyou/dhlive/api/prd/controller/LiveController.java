@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Ordering;
 import com.google.gson.Gson;
 import com.qiyou.dhlive.api.base.outward.service.IActivityApiService;
@@ -30,9 +34,11 @@ import com.qiyou.dhlive.api.base.outward.service.IUserInfoApiService;
 import com.qiyou.dhlive.api.base.outward.service.IWaterService;
 import com.qiyou.dhlive.api.base.outward.util.NoticeUtil;
 import com.qiyou.dhlive.api.base.outward.vo.UserVO;
+import com.qiyou.dhlive.api.prd.mvc.HttpSessionTool;
 import com.qiyou.dhlive.api.prd.mvc.UserSession;
 import com.qiyou.dhlive.api.prd.util.AddressUtils;
 import com.qiyou.dhlive.api.prd.util.CheckMobileUtil;
+import com.qiyou.dhlive.api.prd.util.Constants;
 import com.qiyou.dhlive.api.prd.util.ProjectConfig;
 import com.qiyou.dhlive.api.prd.util.TLSUtils;
 import com.qiyou.dhlive.api.prd.vo.AutoMsgVo;
@@ -44,7 +50,6 @@ import com.qiyou.dhlive.core.live.outward.model.LiveRoom;
 import com.qiyou.dhlive.core.live.outward.service.ILiveC2CMessageService;
 import com.qiyou.dhlive.core.live.outward.service.ILiveRoomService;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
-import com.qiyou.dhlive.core.room.outward.model.RoomPlan;
 import com.qiyou.dhlive.core.room.outward.service.IRoomAutoMsgService;
 import com.qiyou.dhlive.core.room.outward.service.IRoomPlanService;
 import com.qiyou.dhlive.core.user.outward.model.UserInfo;
@@ -62,7 +67,6 @@ import com.qiyou.dhlive.core.user.outward.service.IUserWaterGroupService;
 import com.qiyou.dhlive.core.user.outward.vo.RelationVO;
 import com.yaozhong.framework.base.common.utils.EmptyUtil;
 import com.yaozhong.framework.base.common.utils.LogFormatUtil;
-import com.yaozhong.framework.base.database.domain.page.PageResult;
 import com.yaozhong.framework.base.database.domain.returns.DataResponse;
 import com.yaozhong.framework.base.database.domain.search.SearchCondition;
 import com.yaozhong.framework.base.database.redis.RedisManager;
@@ -139,6 +143,9 @@ public class LiveController {
 
     @RequestMapping(value = "")
     public String index(HttpServletRequest request, HttpServletResponse response, Model model, Integer roomId) {
+    	String utmSource = request.getParameter("utm_source");
+    	model.addAttribute("utmSource", utmSource);
+    	
         String sdkAppId = this.baseSysParamService.getValueByKey("sdk_app_id");
         String accountType = this.baseSysParamService.getValueByKey("account_type");
         model.addAttribute("sdkAppId", sdkAppId);
@@ -206,82 +213,88 @@ public class LiveController {
         int x = (int) (Math.random() * onLineAssistant.size());//随机数, 用于选择一个助理进行关联
 
         UserSession session = UserSession.getUserSession();
-        //缓存当前登陆人身份, 如果是游客/vip 关联助理关系
-        if (session.getGroupId().intValue() == 1) {
-            String value = this.redisManager.getStringValueByKey(RedisKeyConstant.TOURISTS + session.getUserId());
-            UserInfo user = new UserInfo();
-            if (EmptyUtil.isNotEmpty(value)) {
-                user = new Gson().fromJson(value, UserInfo.class);
-            } else {
-                user = this.userInfoService.findById(session.getUserId());
-                this.redisManager.saveStringBySeconds(RedisKeyConstant.TOURISTS + session.getUserId(), new Gson().toJson(user));
-            }
-
-            //判断游客如果被拉黑, 跳转到404页面
-            if (user.getIsBlack().intValue() == 1) {
-                try {
-                    response.sendRedirect("/error/404");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            //从缓存拉取助理关系, 判断是否存在已经关联的助理, 如果没有进行关联(60s会失效)
-            UserManageInfo onLineZL =waterService.initYkKefu(session.getUserId());
-            model.addAttribute("relation", onLineZL);
-            model.addAttribute("user", user);
-        } else if (session.getGroupId().intValue() == 2 || session.getGroupId().intValue() == 3 || session.getGroupId().intValue() == 4) {
-            String value = this.redisManager.getStringValueByKey(RedisKeyConstant.MANAGE + session.getUserId());
-            UserManageInfo manage = new UserManageInfo();
-            if (EmptyUtil.isNotEmpty(value)) {
-                manage = new Gson().fromJson(value, UserManageInfo.class);
-            } else {
-                manage = this.userManageInfoService.findById(session.getUserId());
-                this.redisManager.saveStringBySeconds(RedisKeyConstant.MANAGE + session.getUserId(), new Gson().toJson(manage));
-            }
-            List<UserSmallInfo> small = this.userInfoApiService.getUserSmallList(roomId, manage.getUserId());
-            for (int i = 0; i < small.size(); i++) {
-                if (small.get(i).getUserId().intValue() != manage.getUserId()) {
-                    small.remove(i);
-                }
-            }
-            model.addAttribute("small", small);
-            model.addAttribute("manage", manage);
-        } else {
-            UserVipInfo check = this.userVipInfoService.findById(session.getUserId());
-            //判断游客如果被拉黑, 跳转到404页面
-            if (check.getIsBlack().intValue() == 1) {
-                try {
-                    response.sendRedirect("/error/404");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            String value = this.redisManager.getStringValueByKey(RedisKeyConstant.VIP + session.getUserId());
-            UserVipInfo vip = new UserVipInfo();
-            if (EmptyUtil.isNotEmpty(value)) {
-                vip = new Gson().fromJson(value, UserVipInfo.class);
-            } else {
-                vip = this.userVipInfoService.findById(session.getUserId());
-                this.redisManager.saveString(RedisKeyConstant.VIP + session.getUserId(), new Gson().toJson(vip));
-            }
-
-            //从缓存拉取助理关系, 判断是否存在已经关联的助理, 如果没有进行关联(60s会失效)
-            UserManageInfo onLineZL =waterService.initVipKefu(session.getUserId());
-            model.addAttribute("relation", onLineZL);
-//            ActivityLuckyDrawWinners winner = new ActivityLuckyDrawWinners();
-//            winner.setConfigId(1);
-//            winner.setUserId(vip.getUserId());
-//            winner.setStatus(1);
-//            SearchCondition<ActivityLuckyDrawWinners> condition = new SearchCondition<ActivityLuckyDrawWinners>(winner);
-//            winner = this.activityLuckyDrawWinnersService.findOneByCondition(condition);
-//            if (EmptyUtil.isNotEmpty(winner)) {
-//                isReceive = "1";
-//            }
-            model.addAttribute("vip", vip);
+        if(EmptyUtil.isNotEmpty(session)) {
+	        //缓存当前登陆人身份, 如果是游客/vip 关联助理关系
+	        if (session.getGroupId().intValue() == 1) {
+	            String value = this.redisManager.getStringValueByKey(RedisKeyConstant.TOURISTS + session.getUserId());
+	            UserInfo user = new UserInfo();
+	            if (EmptyUtil.isNotEmpty(value)) {
+	                user = new Gson().fromJson(value, UserInfo.class);
+	            } else {
+	                user = this.userInfoService.findById(session.getUserId());
+	                this.redisManager.saveStringBySeconds(RedisKeyConstant.TOURISTS + session.getUserId(), new Gson().toJson(user));
+	            }
+	
+	            //判断游客如果被拉黑, 跳转到404页面
+	            if (user.getIsBlack().intValue() == 1) {
+	                try {
+	                    response.sendRedirect("/error/404");
+	                } catch (IOException e) {
+	                    e.printStackTrace();
+	                }
+	            }
+	
+	            //从缓存拉取助理关系, 判断是否存在已经关联的助理, 如果没有进行关联(60s会失效)
+	            UserManageInfo onLineZL =waterService.initYkKefu(session.getUserId());
+	            model.addAttribute("relation", onLineZL);
+	            model.addAttribute("user", user);
+	        } else if (session.getGroupId().intValue() == 2 || session.getGroupId().intValue() == 3 || session.getGroupId().intValue() == 4) {
+	            String value = this.redisManager.getStringValueByKey(RedisKeyConstant.MANAGE + session.getUserId());
+	            UserManageInfo manage = new UserManageInfo();
+	            if (EmptyUtil.isNotEmpty(value)) {
+	                manage = new Gson().fromJson(value, UserManageInfo.class);
+	            } else {
+	                manage = this.userManageInfoService.findById(session.getUserId());
+	                this.redisManager.saveStringBySeconds(RedisKeyConstant.MANAGE + session.getUserId(), new Gson().toJson(manage));
+	            }
+	            List<UserSmallInfo> small = this.userInfoApiService.getUserSmallList(roomId, manage.getUserId());
+	            for (int i = 0; i < small.size(); i++) {
+	                if (small.get(i).getUserId().intValue() != manage.getUserId()) {
+	                    small.remove(i);
+	                }
+	            }
+	            model.addAttribute("small", small);
+	            model.addAttribute("manage", manage);
+	        } else {
+	            UserVipInfo check = this.userVipInfoService.findById(session.getUserId());
+	            //判断游客如果被拉黑, 跳转到404页面
+	            if (check.getIsBlack().intValue() == 1) {
+	                try {
+	                    response.sendRedirect("/error/404");
+	                } catch (IOException e) {
+	                    e.printStackTrace();
+	                }
+	            }
+	
+	            String value = this.redisManager.getStringValueByKey(RedisKeyConstant.VIP + session.getUserId());
+	            UserVipInfo vip = new UserVipInfo();
+	            if (EmptyUtil.isNotEmpty(value)) {
+	                vip = new Gson().fromJson(value, UserVipInfo.class);
+	            } else {
+	                vip = this.userVipInfoService.findById(session.getUserId());
+	                this.redisManager.saveString(RedisKeyConstant.VIP + session.getUserId(), new Gson().toJson(vip));
+	            }
+	
+	            //从缓存拉取助理关系, 判断是否存在已经关联的助理, 如果没有进行关联(60s会失效)
+	            UserManageInfo onLineZL =waterService.initVipKefu(session.getUserId());
+	            model.addAttribute("relation", onLineZL);
+	//            ActivityLuckyDrawWinners winner = new ActivityLuckyDrawWinners();
+	//            winner.setConfigId(1);
+	//            winner.setUserId(vip.getUserId());
+	//            winner.setStatus(1);
+	//            SearchCondition<ActivityLuckyDrawWinners> condition = new SearchCondition<ActivityLuckyDrawWinners>(winner);
+	//            winner = this.activityLuckyDrawWinnersService.findOneByCondition(condition);
+	//            if (EmptyUtil.isNotEmpty(winner)) {
+	//                isReceive = "1";
+	//            }
+	            model.addAttribute("vip", vip);
+	        }
+        }else {
+        	UserInfo user=new UserInfo();
+        	user.setGroupId(1);
+            UserSession userSession = HttpSessionTool.createUserSession(user);
+            HttpSessionTool.doLoginedUser(request.getSession(), userSession);
         }
-
         //活动配置
 //        if (session.getGroupId().intValue() == 1 || session.getGroupId().intValue() == 5) {
 //            ActivityLuckyDrawConfig config = (ActivityLuckyDrawConfig) this.activityApiService.redPackInfo(new ActivityLuckyDrawConfig()).getData();
@@ -318,6 +331,25 @@ public class LiveController {
         }
     }
 
+    @UnSession
+    @RequestMapping(value = "/live/createNewUser")
+    @ResponseBody
+    public DataResponse createNewUser(HttpServletRequest request,HttpServletResponse response,String utmSource) {
+    	HttpSession httpSession=request.getSession();
+    	UserInfo user = this.userInfoService.createNewGuestUser(AddressUtils.getIpAddrFromRequest(request), utmSource);
+        user.setUserId(user.getUserId());
+        UserSession userSession = HttpSessionTool.createUserSession(user);
+        HttpSessionTool.doLoginedUser(httpSession, userSession);
+        Cookie userIdCookie = new Cookie(Constants.USER_ID, user.getUserId().toString());
+        userIdCookie.setMaxAge(60 * 60 * 24 * 365);
+        response.addCookie(userIdCookie);
+        UserManageInfo onLineZL =waterService.initYkKefu(user.getUserId());
+        Map<String,Object> map=Maps.newHashMap();
+        map.put("user", user);
+        map.put("onLineZL", onLineZL);
+        return new DataResponse(1000,map);
+        
+    }
     /**
      * 页面初始化的时候, ajax调用, 获取token
      *
