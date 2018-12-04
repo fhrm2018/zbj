@@ -91,13 +91,14 @@ public class WwwSecurityInterceptor extends HandlerInterceptorAdapter {
 	                        }
 	                    }
 	                    if (EmptyUtil.isEmpty(user)) {
-	                        user = this.userInfoService.createNewGuestUser(AddressUtils.getIpAddrFromRequest(request), utmSource);
+	                        /*user = this.userInfoService.createNewGuestUser(AddressUtils.getIpAddrFromRequest(request), utmSource);
 	                        user.setUserId(user.getUserId());
 	                        UserSession userSession = HttpSessionTool.createUserSession(user);
 	                        HttpSessionTool.doLoginedUser(httpSession, userSession);
 	                        Cookie userIdCookie = new Cookie(Constants.USER_ID, user.getUserId().toString());
 	                        userIdCookie.setMaxAge(60 * 60 * 24 * 365);
-	                        response.addCookie(userIdCookie);
+	                        response.addCookie(userIdCookie);*/
+	                    	return true;
 	                    } else {
 	                        UserSession userSession = HttpSessionTool.createUserSession(user);
 	                        HttpSessionTool.doLoginedUser(httpSession, userSession);
@@ -113,7 +114,7 @@ public class WwwSecurityInterceptor extends HandlerInterceptorAdapter {
 	                        this.userInfoService.modifyEntity(record);
 	                    }
 	                }else {
-	                	Integer userId = userLogin.getUserId();
+	                	/*Integer userId = userLogin.getUserId();
 	                	if(EmptyUtil.isNotEmpty(userId)) {
 	                		UserInfo user = this.userInfoService.findById(userId);
 	                		if(EmptyUtil.isNotEmpty(user)) {
@@ -123,7 +124,7 @@ public class WwwSecurityInterceptor extends HandlerInterceptorAdapter {
 		                        record.setLastLoginTime(new Date());
 		                        this.userInfoService.modifyEntity(record);
 	                        }
-	                	}
+	                	}*/
 	                }
 	                return true;
 	            } else {
