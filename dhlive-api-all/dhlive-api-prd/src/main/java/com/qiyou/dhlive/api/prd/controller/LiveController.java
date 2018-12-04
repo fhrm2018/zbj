@@ -336,7 +336,9 @@ public class LiveController {
     @ResponseBody
     public DataResponse createNewUser(HttpServletRequest request,HttpServletResponse response,String utmSource) {
     	if(EmptyUtil.isNotEmpty(UserSession.getUserSession())){
-    		return new DataResponse();
+    		if(EmptyUtil.isNotEmpty(UserSession.getUserSession().getUserId())) {
+    			return new DataResponse();
+    		}
     	}
     	
     	HttpSession httpSession=request.getSession();
