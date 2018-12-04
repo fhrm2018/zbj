@@ -224,20 +224,24 @@ public class LiveController {
 	                user = this.userInfoService.findById(session.getUserId());
 	                this.redisManager.saveStringBySeconds(RedisKeyConstant.TOURISTS + session.getUserId(), new Gson().toJson(user));
 	            }
-	
-	            //判断游客如果被拉黑, 跳转到404页面
-	            if (user.getIsBlack().intValue() == 1) {
-	                try {
-	                    response.sendRedirect("/error/404");
-	                } catch (IOException e) {
-	                    e.printStackTrace();
-	                }
+	            if(EmptyUtil.isNotEmpty(user)) {
+	            	if(EmptyUtil.isNotEmpty(user.getIsBlack())) {
+		            	//判断游客如果被拉黑, 跳转到404页面
+			            if (user.getIsBlack().intValue() == 1) {
+			                try {
+			                    response.sendRedirect("/error/404");
+			                } catch (IOException e) {
+			                    e.printStackTrace();
+			                }
+			            }
+	            	}
+		          //从缓存拉取助理关系, 判断是否存在已经关联的助理, 如果没有进行关联(60s会失效)
+		            UserManageInfo onLineZL =waterService.initYkKefu(session.getUserId());
+		            model.addAttribute("relation", onLineZL);
+		            model.addAttribute("user", user);
 	            }
-	
-	            //从缓存拉取助理关系, 判断是否存在已经关联的助理, 如果没有进行关联(60s会失效)
-	            UserManageInfo onLineZL =waterService.initYkKefu(session.getUserId());
-	            model.addAttribute("relation", onLineZL);
-	            model.addAttribute("user", user);
+	            
+	            
 	        } else if (session.getGroupId().intValue() == 2 || session.getGroupId().intValue() == 3 || session.getGroupId().intValue() == 4) {
 	            String value = this.redisManager.getStringValueByKey(RedisKeyConstant.MANAGE + session.getUserId());
 	            UserManageInfo manage = new UserManageInfo();
