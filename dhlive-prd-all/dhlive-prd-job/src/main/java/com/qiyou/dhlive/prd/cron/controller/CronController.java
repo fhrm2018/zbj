@@ -77,6 +77,9 @@ public class CronController {
             Long onLine = new Date().getTime() - Long.parseLong(str[0]);
             if (onLine > 10000) {
                 redisManager.deleteFromHashByStoreKeyAndMapKey(RedisKeyConstant.YK_IDS, str[1]);
+                if("null".equalsIgnoreCase(str[1])) {
+                	continue;
+                }
                 this.baseCacheService.updateUserOnlineTime(Integer.parseInt(str[1]),(int)(onLine/1000));
             }
         }
