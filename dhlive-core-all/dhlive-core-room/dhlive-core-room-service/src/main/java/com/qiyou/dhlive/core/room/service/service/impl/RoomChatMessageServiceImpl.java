@@ -76,7 +76,7 @@ public class RoomChatMessageServiceImpl extends BaseMyBatisService<RoomChatMessa
         List<String> uuidList=redisManager.getAllValuesFromListByStoreKey(RedisKeyConstant.MESSAGE_INFO_LIST);
         List<String> removeUuidList=Lists.newArrayList();
         if(uuidList.size()>500) {
-        	for(int i=500;i<uuidList.size();i++) {
+        	for(int i=499;i<uuidList.size();i++) {
         		removeUuidList.add(uuidList.get(i));
         		this.redisManager.deleteFromListByByStoreKeyAndValue(RedisKeyConstant.MESSAGE_INFO_LIST, uuidList.get(i));
         	}

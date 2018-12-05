@@ -37,6 +37,7 @@ import com.yaozhong.framework.base.common.utils.LogFormatUtil;
 import com.yaozhong.framework.base.database.domain.page.PageSearch;
 import com.yaozhong.framework.base.database.domain.returns.DataResponse;
 import com.yaozhong.framework.base.database.domain.search.SearchCondition;
+import com.yaozhong.framework.web.annotation.session.UnSession;
 
 /**
  * 直播间controller
@@ -86,6 +87,7 @@ public class RoomController {
      * @param message 消息对象
      * @return
      */
+    @UnSession
     @RequestMapping(value = "saveChatMessage")
     @ResponseBody
     public DataResponse saveChatMessage(RoomChatMessage message) {
@@ -286,6 +288,7 @@ public class RoomController {
      * @param params
      * @return
      */
+    @UnSession
     @RequestMapping(value = "checkMsg")
     @ResponseBody
     public DataResponse checkMsg(BaseWord params) {

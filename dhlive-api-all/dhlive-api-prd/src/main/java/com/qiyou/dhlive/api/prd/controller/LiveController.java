@@ -445,6 +445,9 @@ public class LiveController {
     	if(EmptyUtil.isEmpty(groupId)) {
     		return new DataResponse();
     	}
+    	if(EmptyUtil.isEmpty(userId)) {
+    		return new DataResponse();
+    	}
         if (groupId.intValue() == 1) {//游客
             this.redisManager.saveHash(RedisKeyConstant.YK_IDS, String.valueOf(userId), String.valueOf(new Date().getTime()) + "-" + userId);
         } else if (groupId.intValue() == 3) {//助理
@@ -773,6 +776,9 @@ public class LiveController {
             		continue;
             	}
                 String str[] = listJson.get(i).split("-");
+                if("null".equalsIgnoreCase(str[1])) {
+                	continue;
+                }
                 ykIds.add(Integer.parseInt(str[1]));
             }
             List<UserInfo> data = new ArrayList<UserInfo>();
