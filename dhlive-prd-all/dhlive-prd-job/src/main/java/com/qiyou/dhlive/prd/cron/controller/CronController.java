@@ -74,6 +74,9 @@ public class CronController {
         List<String> listJson = redisManager.getMapValueFromMapByStoreKey(RedisKeyConstant.YK_IDS);
         for (int i = 0; i < listJson.size(); i++) {
             String str[] = listJson.get(i).split("-");
+            if("null".equalsIgnoreCase(str[1])) {
+            	 redisManager.deleteFromHashByStoreKeyAndMapKey(RedisKeyConstant.YK_IDS, str[1]);
+            }
             Long onLine = new Date().getTime() - Long.parseLong(str[0]);
             if (onLine > 10000) {
                 redisManager.deleteFromHashByStoreKeyAndMapKey(RedisKeyConstant.YK_IDS, str[1]);
