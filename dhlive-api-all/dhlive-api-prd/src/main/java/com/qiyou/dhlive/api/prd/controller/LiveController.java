@@ -635,6 +635,9 @@ public class LiveController {
         List<Integer> ykIds = new ArrayList<Integer>();
         for (int i = 0; i < listJson.size(); i++) {
             String str[] = listJson.get(i).split("-");
+            if("null".equalsIgnoreCase(str[1])) {
+            	continue;
+            }
             ykIds.add(Integer.parseInt(str[1]));
         }
         long end = System.currentTimeMillis();
@@ -688,6 +691,9 @@ public class LiveController {
         List<Integer> ykIds = new ArrayList<Integer>();
         for (int i = 0; i < listJson.size(); i++) {
             String str[] = listJson.get(i).split("-");
+            if("null".equalsIgnoreCase(str[1])) {
+            	continue;
+            }
             ykIds.add(Integer.parseInt(str[1]));
         }
         //封装返回集合
