@@ -177,21 +177,21 @@ public class RoomChatMessageServiceImpl extends BaseMyBatisService<RoomChatMessa
     @Override
     public DataResponse deleteChatMessage(RoomChatMessage params) {
         List<String> listJson = redisManager.getValuesFromMapByStoreKeyAndMapKey(RedisKeyConstant.MESSAGE_INFO, params.getUniqueId());
-        Integer postUid = null;
+        RoomChatMessage rs = new RoomChatMessage();
         if (EmptyUtil.isNotEmpty(listJson) && EmptyUtil.isNotEmpty(listJson.get(0))) {
             if (listJson.get(0) != null) {
                 RoomChatMessage msg = JSON.parseObject(listJson.get(0), RoomChatMessage.class);
                 msg.setIsDelete(1);//删除标记
                 String msgJson = JSON.toJSONString(msg);
                 redisManager.saveHash(RedisKeyConstant.MESSAGE_INFO, params.getUniqueId(), msgJson);
-                postUid = msg.getPostUid();
+                rs = msg;
                 this.redisManager.deleteFromListByByStoreKeyAndValue(RedisKeyConstant.MESSAGE_INFO_LIST,params.getUniqueId());
             }
         }
 
         //TODO 记录删除消息日志
 
-        return new DataResponse(1000, "success", postUid);
+        return new DataResponse(1000,rs);
     }
 
 

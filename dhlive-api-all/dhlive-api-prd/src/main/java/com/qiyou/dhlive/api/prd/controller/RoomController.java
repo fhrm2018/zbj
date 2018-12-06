@@ -1,7 +1,6 @@
 package com.qiyou.dhlive.api.prd.controller;
 
 import java.io.InputStream;
-import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -13,15 +12,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
-import com.qiyou.dhlive.api.base.outward.service.IBaseCacheService;
+import com.qiyou.dhlive.api.base.outward.service.IBaseOptLogApiService;
 import com.qiyou.dhlive.api.base.outward.service.IFileUploadRemoteService;
 import com.qiyou.dhlive.api.base.outward.service.ILiveRoomApiService;
 import com.qiyou.dhlive.api.base.outward.service.ISettingApiService;
 import com.qiyou.dhlive.api.base.outward.service.IUserInfoApiService;
 import com.qiyou.dhlive.api.prd.mvc.UserSession;
-import com.qiyou.dhlive.core.base.outward.model.BaseOptLog;
 import com.qiyou.dhlive.core.base.outward.model.BaseWord;
-import com.qiyou.dhlive.core.base.outward.service.IBaseOptLogService;
 import com.qiyou.dhlive.core.base.outward.service.IBaseWordService;
 import com.qiyou.dhlive.core.room.outward.model.RoomAnnouncement;
 import com.qiyou.dhlive.core.room.outward.model.RoomChatMessage;
@@ -70,16 +67,13 @@ public class RoomController {
     private ILiveRoomApiService liveRoomApiService;
 
     @Autowired
-    private IBaseOptLogService baseOptLogService;
+    private IBaseOptLogApiService baseOptLogApiService;
 
     @Autowired
     private IBaseWordService baseWordService;
 
     @Autowired
     private IFileUploadRemoteService fileUploadRemoteService;
-    
-    @Autowired
-    private IBaseCacheService baseCacheService;
 
     /**
      * 保存群聊消息
@@ -101,6 +95,15 @@ public class RoomController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
+        UserSession userSession = UserSession.getUserSession();
+		if(EmptyUtil.isNotEmpty(userSession) && EmptyUtil.isNotEmpty(userSession.getUserId()) && EmptyUtil.isNotEmpty(userSession.getGroupId())) {
+			if(userSession.getGroupId().intValue() == 3) {
+				message.setGroupId(userSession.getGroupId());
+				message.setPostUid(userSession.getUserId());
+				this.baseOptLogApiService.saveManageMessageLog(message);
+			}
+		}        
         return result;
     }
 
@@ -111,20 +114,12 @@ public class RoomController {
      * @param params
      * @return
      */
+    @UnSession
     @RequestMapping(value = "auditChatMessage")
     @ResponseBody
     public DataResponse auditChatMessage(RoomChatMessage params) {
         DataResponse result = this.roomChatMessageService.auditChatMessage(params);
-        //TODO 记录审核消息日志
-        BaseOptLog baseOptLog = new BaseOptLog();
-        baseOptLog.setType(0);//0 通过消息
-        baseOptLog.setUserId(params.getPostUid());//消息发送者id
-        baseOptLog.setGroupId(params.getGroupId());//消息发送者角色
-        UserSession userSession = UserSession.getUserSession();//操作人信息
-        baseOptLog.setOptUserId(userSession.getUserId());//操作用户id
-        baseOptLog.setOpeMsg("助理id:" + userSession.getUserId() + "通过了消息, 消息内容为: " + params.getContent());
-        baseOptLog.setOptTime(new Date());
-        baseOptLogService.save(baseOptLog);
+        this.baseOptLogApiService.saveAuditMessageLog(params);
         return result;
     }
 
@@ -161,25 +156,27 @@ public class RoomController {
      * @param params
      * @return
      */
+    @UnSession
     @RequestMapping(value = "deleteChatMessage")
     @ResponseBody
     public DataResponse deleteChatMessage(RoomChatMessage params) {
-        UserSession userSession = UserSession.getUserSession();//操作人信息
-        if (userSession.getGroupId().intValue() == 3) {
-            DataResponse result = this.roomChatMessageService.deleteChatMessage(params);
-            //TODO 记录审核消息日志
-            BaseOptLog baseOptLog = new BaseOptLog();
-            baseOptLog.setType(1);//1 删除消息
-            baseOptLog.setUserId(params.getPostUid());//消息发送者id
-            baseOptLog.setGroupId(params.getGroupId());//发送消息组
-            baseOptLog.setOptUserId(userSession.getUserId());//操作用户id
-            baseOptLog.setOpeMsg("助理删除了 " + params.getPostNickName() + " 的消息, 消息id为: " + params.getUniqueId());
-            baseOptLog.setOptTime(new Date());
-            baseOptLogService.save(baseOptLog);
-            return result;
-        } else {
-            return new DataResponse(1001, "您没有操作权限.");
+//        UserSession userSession = UserSession.getUserSession();//操作人信息
+//        if (userSession.getGroupId().intValue() == 3) {
+        DataResponse result = this.roomChatMessageService.deleteChatMessage(params);
+        try {
+        	RoomChatMessage resMsg = (RoomChatMessage)result.getData();
+        	if(EmptyUtil.isNotEmpty(resMsg) && EmptyUtil.isNotEmpty(resMsg.getUniqueId()) ) {
+        		UserSession userSession = UserSession.getUserSession();
+        		if(EmptyUtil.isNotEmpty(userSession) && EmptyUtil.isNotEmpty(userSession.getUserId())) {
+        			resMsg.setAuditUid(userSession.getUserId());
+        		}
+        		this.baseOptLogApiService.saveDelMessageLog(resMsg);
+        	}
+        	
+        }catch(Exception e) {
+        	e.printStackTrace();
         }
+        return result;
     }
 
 
