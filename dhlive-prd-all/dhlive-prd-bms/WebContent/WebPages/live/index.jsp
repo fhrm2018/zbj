@@ -21,19 +21,19 @@
 </div>
 <div class="mainArea flexWrap posRel">
     <jsp:include page="../common/nav.jsp">
-        <jsp:param value="直播室" name="name"/>
-        <jsp:param value="直播室" name="pName"/>
+        <jsp:param value="直播室列表" name="name"/>
+        <jsp:param value="直播配置" name="pName"/>
     </jsp:include>
     <div class="mainBox flexCon">
         <div class="mainSearch">
             <div style="right: 10px; top: 20px">
                 <button type="button" class="pageBtn addBtn">创建直播间</button>
-                <button type="button" class="pageBtn searchBtn">查询</button>
-                <button type="button" class="pageBtn uploadBtn">更新课程表</button>
+             <!--   <button type="button" class="pageBtn searchBtn">查询</button>  --> 
+               <!--  <button type="button" class="pageBtn uploadBtn">更新课程表</button>  -->
                 <button type="button" class="pageBtn refBtn">刷新</button>
-                <c:if test="${!empty fish}">
+              <!--   <c:if test="${!empty fish}">
                     <button type="button" class="pageBtn extXls" style="width: 150px;">导出聊天消息</button>
-                </c:if>
+                </c:if>   -->
             </div>
         </div>
 

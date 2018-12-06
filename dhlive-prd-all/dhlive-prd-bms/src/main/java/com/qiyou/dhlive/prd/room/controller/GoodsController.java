@@ -59,7 +59,7 @@ public class GoodsController {
 
     @RequestMapping("")
     public String index() {
-        return "good/file";
+        return "good/article";
     }
 
     @RequestMapping("file")

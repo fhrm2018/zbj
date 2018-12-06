@@ -42,16 +42,23 @@ $(function () {
 
     //查询vip客户
     $('#searchBtn').on('click', function () {
+    	if(document.chatValue.opeMsg.value=="" && document.chatValue.optName.value==""
+    		&& document.chatValue.ts.value==""&& document.chatValue.tt.value=="")
+        {
+            alert("至少选择一个查询条件");
+            return false;
+    	}else{
         getSearchForm();
         getDataList();
-        closePopForm('#searchWin');
+    //    closePopForm('#searchWin');
         return false;
+    	}
     });
 
-    //打开查询vip客户窗口
+ /*   //打开查询vip客户窗口
     $('.searchBtn').on('click', function () {
         openPopForm('#searchWin');
-    });
+    });  */
 
     //打开添加vip客户窗口
     $('.addBtn').on('click', function () {

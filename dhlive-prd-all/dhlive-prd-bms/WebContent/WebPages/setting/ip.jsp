@@ -13,12 +13,16 @@
 
 <body>
 <div class="mainTitle">
+<div class="titleContent">
+        <span class="lgLine ilblock ovfHid ml20 verMid"></span> <span
+            class="verMid ml10 colorF">IP黑白名单</span>
+    </div>
     <jsp:include page="../common/userSet.jsp"/>
 </div>
 <div class="mainArea flexWrap posRel">
     <jsp:include page="../common/nav.jsp">
         <jsp:param value="IP黑白名单" name="name"/>
-        <jsp:param value="运营设置" name="pName"/>
+        <jsp:param value="客户管理" name="pName"/>
     </jsp:include>
     <div class="mainBox flexCon">
         <div class="mainSearch">

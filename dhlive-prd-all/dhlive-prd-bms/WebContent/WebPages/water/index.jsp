@@ -13,19 +13,33 @@
 
 <body>
 <div class="mainTitle">
+<div class="titleContent">
+        <span class="lgLine ilblock ovfHid ml20 verMid"></span> <span
+            class="verMid ml10 colorF">聊天记录</span>
+    </div>
     <jsp:include page="../common/userSet.jsp"/>
 </div>
 <div class="mainArea flexWrap posRel">
     <jsp:include page="../common/nav.jsp">
         <jsp:param value="聊天记录" name="name"/>
-        <jsp:param value="水滴" name="pName"/>
+        <jsp:param value="内容设置" name="pName"/>
     </jsp:include>
     <div class="mainBox flexCon">
         <div class="mainSearch">
-            <div>
-                <button type="button" class="pageBtn addBtn">查询</button>
-                <button type="button" class="pageBtn refBtn">刷新</button>
-            </div>
+            <form id="tableForm"action="${pageContext.request.contextPath}/water/getWaterList" method="post" name="chatValue">
+            助理<select  id="paramValue" name="toNickName">
+                           <option></option>
+              <c:forEach  items="${assistant}"  var="str">
+                        <option value="${str.userNickName}">${str.userNickName}</option>
+                                            </c:forEach>                         
+            </select>
+            客户昵称<input type="text" id="name" name="fromNickName"/>
+            聊天时间<input type="text" id="ts" name="ts" onclick="SetDate(this,'yyyy-MM-dd hh:mm:ss')"/>至
+            <input type="text" id="tt" name="tt" onclick="SetDate(this,'yyyy-MM-dd hh:mm:ss')"/>
+            
+                <button id="submitBtn" type="button" class="pageBtn addBtn">查询</button>
+                <button type="button" class="pageBtn refBtn">刷新</button> 
+                </form>
         </div>
 
         <div class="mainContent">
@@ -59,37 +73,13 @@
 <div id="mask" class="bodyMask opa80 hide"></div>
 
 <!-- 查询窗口 -->
-<div id="addWin" class="popForm popFormWide wtBg posFixed hide">
-    <form id="tableForm" action="${pageContext.request.contextPath}/water/getWaterList" method="post" name="chatValue">
-
-        <div class="title flexWrap ">
-            <div class="flexCon fz16 liveTitle">查询</div>
-            <div class="pt5"><a href="" onclick="closePopForm(this);return !1;" class="close block">
-                <span class="icon block"></span></a>
-            </div>
-        </div>
-        
-        <div class="wtBg ptb10 ac">
-            <span class="formLabel ar mr10">输入游客昵称</span>
-            <input type="text" id="name"class="serIpt" name="fromNickName"/>
-        </div>
-         <div class="wtBg ptb10 ac">
-            <span class="formLabel ar mr10">选择查询的助理</span>
-            <select  class="serIpt" id="paramValue" name="toNickName">
-                           <option></option>
-              <c:forEach  items="${assistant}"  var="str">
-                        <option value="${str.userNickName}">${str.userNickName}</option>
-                                            </c:forEach>                         
-            </select>
-        </div>  
-        <div style="text-align: center" class="pt20">
-             <button id="submitBtn" type="button" class="pageBtn popFormBtn">确认</button>
-            <button class="pageBtn popFormBtn" onclick="closePopForm(this);return !1;">取消</button>
-        </div>
-    </form>
+<div id="addWin" class="popForm popFormWide wtBg posFixed hide" style="width:500px;height:700px;">
+             <p style="font-size:40px; text-align:center" >查询结果</p>
+            <button class="pageBtn popFormBtn" onclick="closePopForm(this);return !1;">返回</button>
 </div>
 
 </body>
 <script src="${pageContext.request.contextPath}/static/js/lib/artDialog/dialog-min.js"></script>
 <script src="${pageContext.request.contextPath}/static/modules/water/water.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/lib/date.js"></script>
 </html>

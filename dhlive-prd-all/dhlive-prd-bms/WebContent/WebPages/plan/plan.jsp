@@ -15,14 +15,14 @@
 <div class="mainTitle">
     <div class="titleContent">
         <span class="lgLine ilblock ovfHid ml20 verMid"></span> <span
-            class="verMid ml10 colorF">机器发言</span>
+            class="verMid ml10 colorF">课程表</span>
     </div>
     <jsp:include page="../common/userSet.jsp"/>
 </div>
 <div class="mainArea flexWrap posRel">
     <jsp:include page="../common/nav.jsp">
-        <jsp:param value="课程安排" name="name"/>
-        <jsp:param value="运营设置" name="pName"/>
+        <jsp:param value="课程表" name="name"/>
+        <jsp:param value="内容设置" name="pName"/>
     </jsp:include>
     <div class="mainBox flexCon">
         <div class="mainSearch">
@@ -49,8 +49,8 @@
 
             <div class="tableTitle flexWrap ac">
                 <div style="width: 10%">编号</div>
-                <div style="width: 20%">直播老师</div>
                 <div style="width: 30%">直播时间</div>
+                <div style="width: 20%">直播老师</div>
                 <div style="width: 30%">课程介绍</div>
                 <div style="width: 10%">操作</div>
             </div>
@@ -66,18 +66,18 @@
 <div id="settingWin" class="popForm popFormWide wtBg posFixed hide">
     <form id="settingForm" action="${pageContext.request.contextPath}/plan/settingPlan" method="post">
         <div class="title flexWrap ">
-            <div class="flexCon fz16 liveTitle">设置课程表样式</div>
+            <div class="flexCon fz16 liveTitle" style="text-align:center;">设置</div>
             <div class="pt5"><a href="" onclick="closePopForm(this);return !1;" class="close block">
                 <span class="icon block"></span></a>
             </div>
         </div>
 
         <div class="wtBg ptb10 ac">
-            <span class="formLabel ar mr10">是否显示课程介绍</span>
+            <span class="formLabel ar mr10" >是否启用课程介绍</span>
             <c:if test="${state == 3}">
                 <select id="paramValue" class="paramValue" name="paramValue">
-	            	<option value="3">显示</option>
-	                <option value="2">不显示</option>
+	            	<option value="3">是</option>
+	                <option value="2">否</option>
 	            </select>
             </c:if>
 			<c:if test="${state == 2}">

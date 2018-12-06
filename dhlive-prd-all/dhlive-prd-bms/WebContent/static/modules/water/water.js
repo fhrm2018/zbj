@@ -63,30 +63,31 @@ $(function () {
     
     //查询记录
     $('#submitBtn').on('click', function () {
-    	if(document.chatValue.fromNickName.value=="" || document.chatValue.toNickName.value=="")
+    	if(document.chatValue.fromNickName.value=="" && document.chatValue.toNickName.value==""
+    		&& document.chatValue.ts.value==""&& document.chatValue.tt.value=="")
         {
-            alert("请选择查询条件");
+            alert("至少选择一个查询条件");
             return false;
     	}else{
         getSearchForm();
         getDataList();
-        closePopForm('#addWin');
+       // openPopForm('#addWin');
         return false;
     	}
     });
 
-    //打开查询vip客户窗口
+ /*   //打开查询vip客户窗口
     $('.searchBtn').on('click', function () {
         openPopForm('#searchWin');
        
-    });
+    });  
 
-    //打开添加vip客户窗口
+    打开添加vip客户窗口
     $('.addBtn').on('click', function () {
     	    
     	                openPopForm('#addWin');
     	               
-    	});
+    	});  */
 
    
 

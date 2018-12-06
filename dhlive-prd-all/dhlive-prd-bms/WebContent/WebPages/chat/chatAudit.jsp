@@ -13,19 +13,28 @@
 
 <body>
 <div class="mainTitle">
+<div class="titleContent">
+        <span class="lgLine ilblock ovfHid ml20 verMid"></span> <span
+            class="verMid ml10 colorF">审核记录</span>
+    </div>
     <jsp:include page="../common/userSet.jsp"/>
 </div>
 <div class="mainArea flexWrap posRel">
     <jsp:include page="../common/nav.jsp">
-        <jsp:param value="聊天审核" name="name"/>
-        <jsp:param value="运营设置" name="pName"/>
+        <jsp:param value="审核记录" name="name"/>
+        <jsp:param value="内容设置" name="pName"/>
     </jsp:include>
     <div class="mainBox flexCon">
         <div class="mainSearch">
-            <div>
-                <button type="button" class="pageBtn searchBtn">查询</button>
-                <button type="button" class="pageBtn refBtn">刷新</button>
-            </div>
+        <form id="searchBox" action="${pageContext.request.contextPath}/user/getChatList" method="post" name="chatValue">
+        
+                 客户昵称<input type="text" id="opeMsg" name="opeMsg"/>
+                审核时间<input type="text" id="ts"  name="ts" onclick="SetDate(this,'yyyy-MM-dd hh:mm:ss')"/>至
+                <input type="text" id="tt" name="tt" onclick="SetDate(this,'yyyy-MM-dd hh:mm:ss')"/>
+                审核人<input type="text" id="optName" name="opName"/>
+                <button type="button" id="searchBtn" class="pageBtn searchBtn">查询</button>
+                <button type="button"  class="pageBtn refBtn">刷新</button>
+                </form>
         </div>
 
         <div class="mainContent">
@@ -56,7 +65,7 @@
 <jsp:include page="../common/changePassword.jsp"/>
 <div id="mask" class="bodyMask opa80 hide"></div>
 
-<!-- 查询客户窗口 -->
+<!-- 查询客户窗口 
 <div id="searchWin" class="popForm popFormWide wtBg posFixed hide">
     <form id="searchBox" action="${pageContext.request.contextPath}/user/getChatList" method="post">
 
@@ -78,8 +87,9 @@
         </div>
     </form>
 </div>
-
+-->
 </body>
 <script src="${pageContext.request.contextPath}/static/js/lib/artDialog/dialog-min.js"></script>
 <script src="${pageContext.request.contextPath}/static/modules/chat/chatAudit.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/lib/date.js"></script>
 </html>

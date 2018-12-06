@@ -10,6 +10,7 @@ import tk.mybatis.mapper.entity.Example.Criteria;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,30 +28,41 @@ public class LiveC2CMessageServiceImpl extends BaseMyBatisService<LiveC2CMessage
         return this.findByCondition(condition);
     }
     @Override
-    public List<LiveC2CMessage> byOrAnd(String fromNickName, String toNickName) {
+    public List<LiveC2CMessage> byOrAnd(String fromNickName, String toNickName,Date tb,Date tj) {
     	Example e=new Example(LiveC2CMessage.class);
     	Criteria criteria=e.createCriteria();
     	criteria.andEqualTo("fromNickName",fromNickName);
     	criteria.andEqualTo("toNickName",toNickName);
-    	
+    	criteria.andBetween("createTime", tb, tj);
+    	criteria.andGreaterThanOrEqualTo("createTime", tb);
+		criteria.andLessThanOrEqualTo("createTime", tj);
     	Criteria c=e.createCriteria();
     	c.andEqualTo("fromNickName",toNickName);
     	c.andEqualTo("toNickName",fromNickName);
+    	c.andBetween("createTime", tb, tj);
+    	c.andGreaterThanOrEqualTo("createTime", tb);
+		c.andLessThanOrEqualTo("createTime", tj);
     	e.or(c);
+    
     	
     	return mapper.selectByExample(e);
     }
     
     @Override
-    public int byOrAndCount(String fromNickName, String toNickName) {
+    public int byOrAndCount(String fromNickName, String toNickName,Date tb,Date tj) {
     	Example e=new Example(LiveC2CMessage.class);
     	Criteria criteria=e.createCriteria();
     	criteria.andEqualTo("fromNickName",fromNickName);
     	criteria.andEqualTo("toNickName",toNickName);
-    	
+    	criteria.andBetween("createTime", tb, tj);
+    	criteria.andGreaterThanOrEqualTo("createTime", tb);
+		criteria.andLessThanOrEqualTo("createTime", tj);
     	Criteria c=e.createCriteria();
     	c.andEqualTo("fromNickName",toNickName);
     	c.andEqualTo("toNickName",fromNickName);
+    	c.andBetween("createTime", tb, tj);
+    	c.andGreaterThanOrEqualTo("createTime", tb);
+		c.andLessThanOrEqualTo("createTime", tj);
     	e.or(c);
     	
     	return mapper.selectCountByExample(e);

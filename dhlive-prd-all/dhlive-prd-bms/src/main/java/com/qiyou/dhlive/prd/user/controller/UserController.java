@@ -108,6 +108,20 @@ public class UserController {
         return "user/vipUser";
     }
 
+    @NeedSession("/user/assistant")
+    @UnSecurity
+    @RequestMapping("assistant")
+    public String assistant(Model model) {
+        //角色:助理,老师
+        Object[] ids = {3, 4};
+        List<UserGroup> groups = this.userInfoApiService.getUserGroup(new UserGroup(), ids);
+        model.addAttribute("groups", groups);
+        //直播间
+        List<LiveRoom> rooms = this.liveRoomApiService.getLiveRoom(new LiveRoom());
+        model.addAttribute("room", rooms.get(0));
+        return "user/manageUser";
+    }
+
     @NeedSession("/user/manageUser")
     @UnSecurity
     @RequestMapping("manageUser")
@@ -122,6 +136,13 @@ public class UserController {
         return "user/manageUser";
     }
 
+    @NeedSession("/user/backstage")
+    @UnSecurity
+    @RequestMapping("backstage")
+    public String backstage(Model model) {
+        return "user/employeeUser";
+    }
+    
     @NeedSession
     @UnSecurity
     @RequestMapping("employeeUser")

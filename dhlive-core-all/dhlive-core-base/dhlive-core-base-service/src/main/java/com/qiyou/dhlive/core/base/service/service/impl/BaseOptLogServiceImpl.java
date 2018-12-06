@@ -15,5 +15,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class BaseOptLogServiceImpl extends BaseMyBatisService<BaseOptLog> implements IBaseOptLogService {
-
+        
+	
 }

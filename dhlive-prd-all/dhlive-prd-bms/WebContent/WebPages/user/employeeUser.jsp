@@ -22,7 +22,7 @@
 <div class="mainArea flexWrap posRel">
     <jsp:include page="../common/nav.jsp">
         <jsp:param value="后台用户" name="name"/>
-        <jsp:param value="用户" name="pName"/>
+        <jsp:param value="后台设置" name="pName"/>
     </jsp:include>
     <div class="mainBox flexCon">
         <div class="mainSearch">
@@ -46,12 +46,11 @@
             </div>
 
             <div class="tableTitle flexWrap ac">
-                <div style="width: 16%">登录帐号</div>
-                <div style="width: 16%">手机号</div>
-                <div style="width: 16%">姓名</div>
-                <div style="width: 16%">状态</div>
-                <div style="width: 16%">创建时间</div>
-                <div style="width: 16%">操作</div>
+                <div style="width: 20%">登录帐号</div>
+                <div style="width: 20%">姓名</div>
+                <div style="width: 20%">状态</div>
+                <div style="width: 20%">创建时间</div>
+                <div style="width: 20%">操作</div>
             </div>
 
             <div id="showrecords" class="ac"></div>
@@ -77,8 +76,8 @@
         </div>
 
         <div class="wtBg ptb10 ac">
-            <span class="formLabel ar mr10">手机号</span>
-            <input type="text" class="serIpt" name="mobile" placeholder="请输入手机号"/>
+            <span class="formLabel ar mr10">登陆账号</span>
+            <input type="text" class="serIpt" name="mobile" placeholder="请输入账号"/>
         </div>
 
         <div style="text-align: center" class="pt20">
@@ -100,7 +99,7 @@
         </div>
 
         <div class="wtBg ptb10 ac">
-            <span class="formLabel ar mr10">手机号</span>
+            <span class="formLabel ar mr10">登陆账号</span>
             <input type="text" class="serIpt" id="mobile" name="mobile" placeholder="用于登录使用"/>
         </div>
 

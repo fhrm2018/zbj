@@ -15,20 +15,20 @@
 <div class="mainTitle">
     <div class="titleContent">
         <span class="lgLine ilblock ovfHid ml20 verMid"></span> <span
-            class="verMid ml10 colorF">管理用户</span>
+            class="verMid ml10 colorF">助理列表</span>
     </div>
     <jsp:include page="../common/userSet.jsp"/>
 </div>
 <div class="mainArea flexWrap posRel">
     <jsp:include page="../common/nav.jsp">
-        <jsp:param value="管理用户" name="name"/>
-        <jsp:param value="用户" name="pName"/>
+        <jsp:param value="助理列表" name="name"/>
+        <jsp:param value="助理管理" name="pName"/>
     </jsp:include>
     <div class="mainBox flexCon">
         <div class="mainSearch">
             <div style="right: 10px; top: 20px;">
-                <button type="button" class="pageBtn addBtn">添加客户</button>
-                <button type="button" class="pageBtn searchBtn">查询客户</button>
+                <button type="button" class="pageBtn addBtn">添加助理</button>
+                <button type="button" class="pageBtn searchBtn">查询助理</button>
                 <button type="button" class="pageBtn refBtn">刷新</button>
             </div>
         </div>
@@ -50,11 +50,10 @@
             <div class="tableTitle flexWrap ac">
                 <div style="width: 15%">昵称</div>
                 <div style="width: 5%">角色</div>
-                <div style="width: 15%">手机号</div>
-                <div style="width: 10%">姓名</div>
-                <div style="width: 15%">所属直播室</div>
+                <div style="width: 15%">登陆账号</div>
                 <div style="width: 15%">创建时间</div>
                 <div style="width: 15%">最后登录时间</div>
+                <div style="width: 15%">IP</div>
                 <div style="width: 25%">操作</div>
             </div>
 
@@ -109,7 +108,7 @@
         </div>
 
         <div class="wtBg ptb10 ac">
-            <span class="formLabel ar mr10">手机号</span>
+            <span class="formLabel ar mr10">登陆账号</span>
             <input type="text" class="serIpt" id="userTel" name="userTel" placeholder="用于登录使用"/>
         </div>
 
@@ -118,10 +117,6 @@
             <input type="text" class="serIpt" id="userPass" name="userPass"/>
         </div>
 
-        <div class="wtBg ptb10 ac">
-            <span class="formLabel ar mr10">姓名</span>
-            <input type="text" class="serIpt" id="userRealName" name="userRealName" placeholder="非必填"/>
-        </div>
 
         <div class="clearfix ptb10" style="position:relative;z-index:210;">
             <div class="serSelect fl posRel">

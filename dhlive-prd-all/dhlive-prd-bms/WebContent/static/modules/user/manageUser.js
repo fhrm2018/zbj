@@ -20,17 +20,14 @@ $(function () {
                 '<div class="flexWrap flexAgCen"  style="width: 15%; text-align:center;"> <div class="flexCon"> '
                 + record.userTel + '</div></div>',
 
-                '<div class="flexWrap flexAgCen"  style="width: 10%; text-align:center;"> <div class="flexCon"> '
-                + record.userRealName + '</div></div>',
-
-                '<div class="flexWrap flexAgCen"  style="width: 15%; text-align:center; "> <div class="flexCon">'
-                + record.roomName + '</div></div>',
-
                 '<div class="flexWrap flexAgCen"  style="width: 15%; text-align:center; "> <div class="flexCon">'
                 + record.createTime + '</div></div>',
 
                 '<div class="flexWrap flexAgCen"  style="width: 15%; text-align:center; "> <div class="flexCon">'
                 + isUndefined(record.lastLoginTime) + '</div></div>',
+                
+                '<div class="flexWrap flexAgCen"  style="width: 15%; text-align:center; "> <div class="flexCon">'
+                + isUndefined(record.lastLoginIp) + '</div></div>',
 
                 '<div class="flexWrap flexAgCen"  style="width: 25%; text-align:center; "> <div class="flexCon">'
                 + op(record.userId, record.groupId) + '</div></div>',

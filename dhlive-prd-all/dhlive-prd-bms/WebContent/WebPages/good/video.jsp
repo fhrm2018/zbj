@@ -15,7 +15,7 @@
 <div class="mainTitle">
     <div class="titleContent">
         <span class="lgLine ilblock ovfHid ml20 verMid"></span> <span
-            class="verMid ml10 colorF">直播室</span>
+            class="verMid ml10 colorF">视频</span>
     </div>
     <jsp:include page="../common/userSet.jsp"/>
 </div>

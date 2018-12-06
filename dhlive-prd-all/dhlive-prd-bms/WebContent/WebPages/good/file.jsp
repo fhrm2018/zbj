@@ -15,7 +15,7 @@
 <div class="mainTitle">
     <div class="titleContent">
         <span class="lgLine ilblock ovfHid ml20 verMid"></span> <span
-            class="verMid ml10 colorF">直播室</span>
+            class="verMid ml10 colorF">文档</span>
     </div>
     <jsp:include page="../common/userSet.jsp"/>
 </div>
@@ -25,7 +25,7 @@
         <jsp:param value="干货" name="pName"/>
     </jsp:include>
     <div class="mainBox flexCon">
-        <div class="mainSearch">
+         <div class="mainSearch">
             <ul id="status-nav" class="navMenu wtBg pl15 ac hide">
             </ul>
             <div style="right: 10px; top: 20px;">
@@ -88,6 +88,7 @@
     </form>
 </div>
 </body>
+<script charset="utf-8" src="${pageContext.request.contextPath}/static/js/lib/kindeditor/kindeditor-all-min.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/lib/artDialog/dialog-min.js"></script>
 <script src="${pageContext.request.contextPath}/static/modules/good/file.js"></script>
 </html>

@@ -10,22 +10,19 @@ $(function () {
             htmls += [
                 '<div class="tableContent tableCtHover mt5">',
                 '<div class="flexWrap">',
-                '<div class="flexWrap flexAgCen" style="width: 16%; text-align:center;  min-height: 70px;""> <div class="flexCon"> '
+                '<div class="flexWrap flexAgCen" style="width: 20%; text-align:center;  min-height: 70px;""> <div class="flexCon"> '
                 + record.mobile + '</div></div>',
 
-                '<div class="flexWrap flexAgCen" style="width: 16%; text-align:center; "> <div class="flexCon"> '
-                + record.mobile + '</div></div>',
-
-                '<div class="flexWrap flexAgCen"  style="width: 16%; text-align:center;"> <div class="flexCon"> '
+                '<div class="flexWrap flexAgCen"  style="width: 20%; text-align:center;"> <div class="flexCon"> '
                 + record.name + '</div></div>',
 
-                '<div class="flexWrap flexAgCen"  style="width: 16%; text-align:center; "> <div class="flexCon">'
+                '<div class="flexWrap flexAgCen"  style="width: 20%; text-align:center; "> <div class="flexCon">'
                 + "-" + '</div></div>',
 
-                '<div class="flexWrap flexAgCen"  style="width: 16%; text-align:center; "> <div class="flexCon">'
+                '<div class="flexWrap flexAgCen"  style="width: 20%; text-align:center; "> <div class="flexCon">'
                 + record.createTime + '</div></div>',
 
-                '<div class="flexWrap flexAgCen"  style="width: 16%; text-align:center; "> <div class="flexCon">'
+                '<div class="flexWrap flexAgCen"  style="width: 20%; text-align:center; "> <div class="flexCon">'
                 + op(record.id) + '</div></div>',
 
                 '</div>', '</div>'].join('');
