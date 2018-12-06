@@ -18,6 +18,8 @@ import com.qiyou.dhlive.api.base.outward.service.IBaseCacheService;
 import com.qiyou.dhlive.api.base.outward.util.NoticeUtil;
 import com.qiyou.dhlive.api.base.outward.util.TLSUtils;
 import com.qiyou.dhlive.api.base.outward.vo.UserInfoDTO;
+import com.qiyou.dhlive.core.base.outward.model.BaseOptLog;
+import com.qiyou.dhlive.core.base.outward.service.IBaseOptLogService;
 import com.qiyou.dhlive.core.base.outward.service.IBaseSysParamService;
 import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
 import com.qiyou.dhlive.core.live.outward.model.LiveRoom;
@@ -25,8 +27,11 @@ import com.qiyou.dhlive.core.live.outward.service.ILiveRoomService;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoUser;
 import com.qiyou.dhlive.core.room.outward.model.RoomChatMessage;
+import com.qiyou.dhlive.core.room.outward.model.RoomMsgCount;
 import com.qiyou.dhlive.core.room.outward.service.IRoomChatMessageService;
+import com.qiyou.dhlive.core.room.outward.service.IRoomMsgCountService;
 import com.qiyou.dhlive.core.user.outward.model.UserInfo;
+import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserRelation;
 import com.qiyou.dhlive.core.user.outward.service.IUserInfoService;
 import com.qiyou.dhlive.core.user.outward.service.IUserRelationService;
@@ -34,6 +39,8 @@ import com.yaozhong.framework.base.common.utils.DateStyle;
 import com.yaozhong.framework.base.common.utils.DateUtil;
 import com.yaozhong.framework.base.common.utils.EmptyUtil;
 import com.yaozhong.framework.base.common.utils.LogFormatUtil;
+import com.yaozhong.framework.base.database.domain.search.RangeCondition;
+import com.yaozhong.framework.base.database.domain.search.RangeConditionType;
 import com.yaozhong.framework.base.database.domain.search.SearchCondition;
 import com.yaozhong.framework.base.database.redis.RedisManager;
 
@@ -66,6 +73,12 @@ public class CronController {
     
     @Autowired
     private IUserInfoService userInfoService;
+    
+    @Autowired
+    private IRoomMsgCountService roomMsgCountService;
+    
+    @Autowired
+    private IBaseOptLogService baseOptLogService;
 
     //游客定时任务
     @Scheduled(cron = "0/15 * *  * * ? ")   //每15秒执行一次
@@ -357,5 +370,77 @@ public class CronController {
     		this.userInfoService.modifyEntity(userInfo);
     		this.baseCacheService.updateUserInfo(user.getUserId());
     	}
+    }
+    
+    @Scheduled(cron = "0 0/1 * * * ? ")
+    public void saveMsgCount() {
+    	String beginStr=DateUtil.DateToString(new Date(), DateStyle.YYYY_MM_DD)+" 00:00:00";
+    	Date beginDate=DateUtil.StringToDate(beginStr, DateStyle.YYYY_MM_DD_HH_MM_SS);
+    	String endStr=DateUtil.DateToString(new Date(), DateStyle.YYYY_MM_DD)+" 00:30:00";
+    	Date endDate=DateUtil.StringToDate(endStr, DateStyle.YYYY_MM_DD_HH_MM_SS);
+    	boolean beginRes=DateUtil.checkLessTime(beginDate, new Date());
+    	boolean endRes=DateUtil.checkLessTime(endDate, new Date());
+    	
+    	boolean isYesterdayFinish=false;
+    	if(beginRes&&!endRes) {
+    		isYesterdayFinish=true;
+    	}
+    	
+    	List<UserManageInfo> manageList=baseCacheService.getManageUserList(4);
+    	
+    	for(UserManageInfo m:manageList) {
+    		if(m.getGroupId().intValue()!=3)
+    			continue;
+    		if(isYesterdayFinish) {
+    			RoomMsgCount msgCount=new RoomMsgCount();
+    			msgCount.setSendDate(DateUtil.addDay(DateUtil.dateTimeToDate(new Date()), -1));
+    			msgCount.setUserId(m.getUserId());
+    			msgCount.setIsFinish(0);
+    			msgCount=roomMsgCountService.findOneByCondition(new SearchCondition<RoomMsgCount>(msgCount));
+    			if(EmptyUtil.isNotEmpty(msgCount)) {
+    				BaseOptLog baseOptLog=new BaseOptLog();
+    				baseOptLog.setType(4);
+    				baseOptLog.setUserId(m.getUserId());
+    				SearchCondition<BaseOptLog> bcondition=new SearchCondition<BaseOptLog>(baseOptLog);
+    				List<RangeCondition> rangs=Lists.newArrayList();
+    				rangs.add(new RangeCondition("optTime", DateUtil.addDay(beginDate, -1), RangeConditionType.GreaterThanOrEqual));
+    				rangs.add(new RangeCondition("optTime", beginDate, RangeConditionType.LessThan));
+    				bcondition.setRangeConditions(rangs);
+    				Long count = baseOptLogService.countByCondition(bcondition);
+    				msgCount.setSendCount(count.intValue());
+    				this.roomMsgCountService.modifyEntity(msgCount);
+    			}
+    		}
+    		
+    		RoomMsgCount msgCount=new RoomMsgCount();
+			msgCount.setSendDate(DateUtil.dateTimeToDate(new Date()));
+			msgCount.setUserId(m.getUserId());
+			msgCount.setIsFinish(0);
+			msgCount=roomMsgCountService.findOneByCondition(new SearchCondition<RoomMsgCount>(msgCount));
+			BaseOptLog baseOptLog=new BaseOptLog();
+			baseOptLog.setType(4);
+			baseOptLog.setUserId(m.getUserId());
+			SearchCondition<BaseOptLog> bcondition=new SearchCondition<BaseOptLog>(baseOptLog);
+			List<RangeCondition> rangs=Lists.newArrayList();
+			rangs.add(new RangeCondition("optTime", beginDate, RangeConditionType.GreaterThanOrEqual));
+			bcondition.setRangeConditions(rangs);
+			Long count = baseOptLogService.countByCondition(bcondition);
+			
+			if(EmptyUtil.isNotEmpty(msgCount)) {
+				msgCount.setSendCount(count.intValue());
+				this.roomMsgCountService.modifyEntity(msgCount);
+			}else {
+				msgCount=new RoomMsgCount();
+				msgCount.setSendDate(DateUtil.dateTimeToDate(new Date()));
+				msgCount.setUserId(m.getUserId());
+				msgCount.setIsFinish(0);
+				msgCount.setCreateTime(new Date());
+				msgCount.setSendCount(count.intValue());
+				this.roomMsgCountService.save(msgCount);
+				
+			}
+    		
+    	}
+    	
     }
 }
