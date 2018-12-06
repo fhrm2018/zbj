@@ -43,10 +43,6 @@ $(function () {
         $(".jinshi").hide();
     })
 
-    if (userInfo.groupId == 3 || userInfo.groupId == 4) {
-        getOnlineUserList();
-    }
-
     $('#loginPhone').val(cookieFunction.get('loginNameCache'));
     $('#loginPwd').val(cookieFunction.get('passwordCache'));
 
@@ -577,32 +573,34 @@ function initRedisUser(userId, groupId) {
 
 /* 每10秒请求一次, 获取当前在线的人数*/
 function getOnlineUserList() {
-    $.ajax({
-        url: ctx + "/live/getOnlineUserList",
-        data: {"flag": type_flag},
-        success: function (data) {
-            if (type_flag == 0) {
-                var htmls = '';
-                for (var i = 0; i < data.data.length; i++) {
-                    htmls += '<li><a>';
-                    htmls += getIcon(data.data[i].groupId, data.data[i].userLevel);
-                    htmls += '<p>' + data.data[i].userNickName + '</p>';
-                    htmls += '</a></li>';
-                }
-                $('.vipOnlineList').html(htmls);
-            } else {
-                var htmls = '';
-                for (var i = 0; i < data.data.length; i++) {
-                    htmls += '<li><a>';
-                    htmls += getIcon(data.data[i].groupId, data.data[i].userLevel);
-                    htmls += '<p>' + data.data[i].userNickName + '</p>';
-                    htmls += '</a></li>';
-                }
-                $('.ykOnlineList').html(htmls);
-            }
-            console.log("获取当前在线的人数已执行.");
-        }
-    });
+	if (userInfo.groupId == 3 || userInfo.groupId == 4) {
+	    $.ajax({
+	        url: ctx + "/live/getOnlineUserList",
+	        data: {"flag": type_flag},
+	        success: function (data) {
+	            if (type_flag == 0) {
+	                var htmls = '';
+	                for (var i = 0; i < data.data.length; i++) {
+	                    htmls += '<li><a>';
+	                    htmls += getIcon(data.data[i].groupId, data.data[i].userLevel);
+	                    htmls += '<p>' + data.data[i].userNickName + '</p>';
+	                    htmls += '</a></li>';
+	                }
+	                $('.vipOnlineList').html(htmls);
+	            } else {
+	                var htmls = '';
+	                for (var i = 0; i < data.data.length; i++) {
+	                    htmls += '<li><a>';
+	                    htmls += getIcon(data.data[i].groupId, data.data[i].userLevel);
+	                    htmls += '<p>' + data.data[i].userNickName + '</p>';
+	                    htmls += '</a></li>';
+	                }
+	                $('.ykOnlineList').html(htmls);
+	            }
+	            console.log("获取当前在线的人数已执行.");
+	        }
+	    });
+    }
 }
 
 
