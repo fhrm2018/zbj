@@ -407,6 +407,7 @@ public class LiveController {
      * @param roomId
      * @return
      */
+    @UnSession
     @RequestMapping(value = "/live/getOnlineUser")
     @ResponseBody
     public DataResponse getOnlineUser(Integer roomId) {
@@ -482,6 +483,7 @@ public class LiveController {
      * @param toId
      * @return
      */
+    @UnSession
     @RequestMapping(value = "/live/getWaterChatMessage")
     @ResponseBody
     public DataResponse getWaterChatMessage(Integer roomId, Integer toGroupId, Integer fromGroupId, Integer fromId, Integer toId) {
@@ -749,58 +751,66 @@ public class LiveController {
     @RequestMapping(value = "/live/getOnlineUserList")
     @ResponseBody
     public DataResponse getOnlineUserList(String flag) {
-    	if(EmptyUtil.isEmpty(flag)) {
+    	UserSession userSession=UserSession.getUserSession();
+    	if(EmptyUtil.isEmpty(userSession)) {
     		return new DataResponse();
     	}
-        if (flag.equals("0")) {
-            List<String> listJson = redisManager.getMapValueFromMapByStoreKey(RedisKeyConstant.VIP_IDS);
-            List<Integer> vipIds = new ArrayList<Integer>();
-            for (int i = 0; i < listJson.size(); i++) {
-                String str[] = listJson.get(i).split("-");
-                vipIds.add(Integer.parseInt(str[1]));
-            }
-            List<UserVipInfo> data = new ArrayList<UserVipInfo>();
-            for (int i = 0; i < vipIds.size(); i++) {
-                String value = this.redisManager.getStringValueByKey(RedisKeyConstant.VIP + vipIds.get(i));
-                UserVipInfo record = new UserVipInfo();
-                if (EmptyUtil.isEmpty(value)) {
-                    record = this.userVipInfoService.findById(vipIds.get(i));
-                } else {
-                    record = new Gson().fromJson(value, UserVipInfo.class);
-                }
-                record.setUserNickName(record.getUserNickName());
-                data.add(record);
-            }
-            return new DataResponse(1000, data);
-
-        } else {
-            //取到在线的游客id
-            List<String> listJson = redisManager.getMapValueFromMapByStoreKey(RedisKeyConstant.YK_IDS);
-            List<Integer> ykIds = new ArrayList<Integer>();
-            for (int i = 0; i < listJson.size(); i++) {
-            	if("null".equalsIgnoreCase(listJson.get(i))) {
-            		continue;
-            	}
-                String str[] = listJson.get(i).split("-");
-                if("null".equalsIgnoreCase(str[1])) {
-                	continue;
-                }
-                ykIds.add(Integer.parseInt(str[1]));
-            }
-            List<UserInfo> data = new ArrayList<UserInfo>();
-            for (int i = 0; i < ykIds.size(); i++) {
-                String value = this.redisManager.getStringValueByKey(RedisKeyConstant.TOURISTS + ykIds.get(i));
-                UserInfo record = new UserInfo();
-                if (EmptyUtil.isEmpty(value)) {
-                    record = this.userInfoService.findById(ykIds.get(i));
-                } else {
-                    record = new Gson().fromJson(value, UserInfo.class);
-                }
-                record.setUserNickName(record.getUserNickName());
-                data.add(record);
-            }
-            return new DataResponse(1000, data);
-        }
+    	if(userSession.getGroupId().equals(3)||userSession.getGroupId().equals(4)) {
+	    	if(EmptyUtil.isEmpty(flag)) {
+	    		return new DataResponse();
+	    	}
+	        if (flag.equals("0")) {
+	            List<String> listJson = redisManager.getMapValueFromMapByStoreKey(RedisKeyConstant.VIP_IDS);
+	            List<Integer> vipIds = new ArrayList<Integer>();
+	            for (int i = 0; i < listJson.size(); i++) {
+	                String str[] = listJson.get(i).split("-");
+	                vipIds.add(Integer.parseInt(str[1]));
+	            }
+	            List<UserVipInfo> data = new ArrayList<UserVipInfo>();
+	            for (int i = 0; i < vipIds.size(); i++) {
+	                String value = this.redisManager.getStringValueByKey(RedisKeyConstant.VIP + vipIds.get(i));
+	                UserVipInfo record = new UserVipInfo();
+	                if (EmptyUtil.isEmpty(value)) {
+	                    record = this.userVipInfoService.findById(vipIds.get(i));
+	                } else {
+	                    record = new Gson().fromJson(value, UserVipInfo.class);
+	                }
+	                record.setUserNickName(record.getUserNickName());
+	                data.add(record);
+	            }
+	            return new DataResponse(1000, data);
+	
+	        } else {
+	            //取到在线的游客id
+	            List<String> listJson = redisManager.getMapValueFromMapByStoreKey(RedisKeyConstant.YK_IDS);
+	            List<Integer> ykIds = new ArrayList<Integer>();
+	            for (int i = 0; i < listJson.size(); i++) {
+	            	if("null".equalsIgnoreCase(listJson.get(i))) {
+	            		continue;
+	            	}
+	                String str[] = listJson.get(i).split("-");
+	                if("null".equalsIgnoreCase(str[1])) {
+	                	continue;
+	                }
+	                ykIds.add(Integer.parseInt(str[1]));
+	            }
+	            List<UserInfo> data = new ArrayList<UserInfo>();
+	            for (int i = 0; i < ykIds.size(); i++) {
+	                String value = this.redisManager.getStringValueByKey(RedisKeyConstant.TOURISTS + ykIds.get(i));
+	                UserInfo record = new UserInfo();
+	                if (EmptyUtil.isEmpty(value)) {
+	                    record = this.userInfoService.findById(ykIds.get(i));
+	                } else {
+	                    record = new Gson().fromJson(value, UserInfo.class);
+	                }
+	                record.setUserNickName(record.getUserNickName());
+	                data.add(record);
+	            }
+	            return new DataResponse(1000, data);
+	        }
+    	}else {
+    		return new DataResponse();
+    	}
     }
 
 
@@ -811,10 +821,14 @@ public class LiveController {
      * @param request
      * @return
      */
+    @UnSession
     @RequestMapping(value = "/live/checkCanWatch")
     @ResponseBody
     public DataResponse checkCanWatch(Integer groupId, Integer userId, HttpServletRequest request) {
     	if(EmptyUtil.isEmpty(groupId)) {
+    		return new DataResponse();
+    	}
+    	if(EmptyUtil.isEmpty(userId)) {
     		return new DataResponse();
     	}
         String ip = AddressUtils.getIpAddrFromRequest(request);
