@@ -134,6 +134,7 @@ public class RoomController {
      * @param params
      * @return
      */
+    @UnSession
     @RequestMapping(value = "getChatMessageByUser")
     @ResponseBody
     public DataResponse getChatMessageByUser(RoomChatMessage params) {
@@ -188,6 +189,7 @@ public class RoomController {
      * @param params
      * @return
      */
+    @UnSession
     @RequestMapping(value = "getChatMessageByUniqueId")
     @ResponseBody
     public DataResponse getChatMessageByUniqueId(RoomChatMessage params) {
@@ -215,6 +217,7 @@ public class RoomController {
      * @param params
      * @return
      */
+    @UnSession
     @RequestMapping(value = "getMessageBoardByUser")
     @ResponseBody
     public DataResponse getMessageBoardByUser(PageSearch pageSearch, RoomMessageBoard params) {
@@ -229,6 +232,7 @@ public class RoomController {
      * @param params
      * @return
      */
+    @UnSession
     @RequestMapping(value = "getRoomAnnouncementList")
     @ResponseBody
     public DataResponse getRoomAnnouncementList(PageSearch pageSearch, RoomAnnouncement params) {

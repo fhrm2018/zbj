@@ -218,12 +218,20 @@ public class RoomChatMessageServiceImpl extends BaseMyBatisService<RoomChatMessa
     	}
     	List<RoomChatMessage> msgDataList=Lists.newArrayList();
     	int j = 1;
-    	for(int i=msgUUidList.size()-1;i>=0;i--) {
+    	List<String> newMsgUuidList=Lists.newArrayList();
+    	for(int i=0;i<msgUUidList.size();i++) {
+    		if(i>200) {
+    			break;
+    		}
+    		newMsgUuidList.add(msgUUidList.get(i));
+    	}
+    	
+    	for(int i=newMsgUuidList.size()-1;i>=0;i--) {
     		if(j>200){
     			break;
     		}
-    		if(!EmptyUtil.isEmpty(msgDetailMap.get(msgUUidList.get(i)))) {
-    			msgDataList.add(msgDetailMap.get(msgUUidList.get(i)));
+    		if(!EmptyUtil.isEmpty(msgDetailMap.get(newMsgUuidList.get(i)))) {
+    			msgDataList.add(msgDetailMap.get(newMsgUuidList.get(i)));
     			j++;
     		}
     	}

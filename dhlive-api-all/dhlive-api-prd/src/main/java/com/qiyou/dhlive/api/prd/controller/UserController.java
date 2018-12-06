@@ -372,6 +372,9 @@ public class UserController {
         } else {
             vip = new Gson().fromJson(value, UserVipInfo.class);
         }
+        if(EmptyUtil.isEmpty(vip)) {
+        	return new DataResponse(1000, "success");
+        }
         if(EmptyUtil.isEmpty(vip.getIsBlack())) {
         	return new DataResponse(1000, "success");
         }
