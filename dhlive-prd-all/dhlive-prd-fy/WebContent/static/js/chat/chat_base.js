@@ -2046,22 +2046,21 @@ function shielding(obj) {
 }
 
 function getHeaderHtml(groupId, level, small) {
-    var htmls = '';
-    switch (groupId) {
-        case 1:
-            htmls = '<span class="ac yk"></span>';
-            break;
-        case 2:
-            htmls = '<i class="patrol circle ac">巡</i>';
-            break;
-        case 3:
-            htmls = '<span class="ac zl"></span>';
-            break;
-        case 4:
-            htmls = '<i class="teacher ac"></i>';
-            break;
-        case 5:
-        	if (level == -1) {
+	 var htmls = '';
+	    if(groupId == 1){
+	    	 htmls = '<span class="ac yk"></span>';
+	    }
+	    if(groupId == 2){
+	    	htmls = '<i class="patrol circle ac">巡</i>';
+		}
+		if(groupId == 3){
+			  htmls = '<span class="ac zl"></span>';
+		}
+		if(groupId == 4){
+			 htmls = '<i class="teacher ac"></i>';
+		}
+		if(groupId == 5){
+			if (level == -1) {
                 htmls = '<span class="ac yk"></span>';
             }else if (level == 1) {
                 htmls = '<span class="ac vip1"></span>';
@@ -2080,11 +2079,11 @@ function getHeaderHtml(groupId, level, small) {
             } else if (level == 8) {
                 htmls = '<span class="ac vip8"></span>';
             }
-            break;
-        default:
-            htmls = '<i class="visit circle ac">游</i>';
-            break;
-    }
+		}
+		if(htmls == ''){
+			htmls = '<i class="visit circle ac">游</i>';
+		}
+	
     return htmls;
 }
 
