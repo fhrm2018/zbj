@@ -43,7 +43,17 @@
             },
             msgIdMap = {},
             selSess,//聊天session
-
+            utmSource = '${utmSource}',
+			relation = {
+				'userId': '${relation.userId}',	
+				'userNickName': '${relation.userNickName}',	
+				'groupId': '${relation.groupId}',	
+				'userLevel': '${relation.userLevel}',	
+				'userIntroduction': '${relation.userIntroduction}',	
+				'userPhoto': '${relation.userPhoto}',	
+				'userQrcode': '${relation.userQrcode}',	
+				'userQq': '${relation.userQq}',	
+			},
             accountMode = 0;//帐号模式，0-表示独立模式，1-表示托管模式
         if (groupId == '1') {
             loginInfo.identifier = 'yk-' + loginInfo.identifier;
@@ -55,6 +65,60 @@
             loginInfo.identifier = 'vip-' + loginInfo.identifier;
             userInfo.level = '${vip.userLevel}';
         }
+        function createNewGuest(){
+        	var jqxhr = $.ajax({
+                url: ctx + '/live/createNewUser?utmSource='+ utmSource,
+                async: false,
+            });
+            jqxhr.done(function (data) {
+                if (data.code == '1000') {
+                    var userRes = data.data.user;
+                    var relationRes = data.data.onLineZL;
+                    userInfo.id = userRes.userId;
+                    userInfo.nickName = userRes.userNickName;
+                    userInfo.id = userRes.userId;
+                    userInfo.groupId = userRes.groupId;
+                    groupId = userRes.groupId;
+                    
+                    loginInfo.identifier = 'yk-' + userInfo.id ;
+                    loginInfo.identifierNick = userInfo.nickName ;
+                    
+                    relation.userId = relationRes.userId;
+                    relation.userNickName = relationRes.userNickName;
+                    relation.groupId = relationRes.groupId;
+                    relation.userLevel = relationRes.userLevel;
+                    relation.userIntroduction = relationRes.userIntroduction;
+                    relation.userPhoto = relationRes.userPhoto;
+                    relation.userQrcode = relationRes.userQrcode;
+                    relation.userQq = relationRes.userQq;
+                    
+                }
+           });
+        }
+        
+        var isInit = false;
+        if(userInfo.id == ''){
+        	createNewGuest();
+        	isInit = true;
+        }
+        $(function () {
+        	function initNewGuestPage(){
+        		$('.inintPage-relation-name').html(relation.userNickName);
+        		$('.inintPage-relation-qq').html(relation.userQq);
+        		$('.inintPage-relation-userIntroduction').html(relation.userIntroduction);
+        		$('.inintPage-relation-userQrcode').attr('src',imgPath + "ori/"+relation.userQrcode);
+        		$('.inintPage-relation-userPhoto').attr('src',imgPath + "ori/"+relation.userPhoto);
+        		$('#persionC2CMessageForm span').find('input[name="fromId"]').eq(0).val(userInfo.userId);
+        		$('#persionC2CMessageForm span').find('input[name="fromNickName"]').eq(0).val(userInfo.nickName);
+        		$('#persionC2CMessageForm span').find('input[name="toId"]').eq(0).val(relation.userId);
+        		$('#persionC2CMessageForm span').find('input[name="toNickName"]').eq(0).val(relation.userNickName);
+        		$('#persionC2CMessageForm span').find('input[name="persionToGroupId"]').eq(0).val(relation.groupId);
+        	}
+        	
+        	if(isInit){
+        		initNewGuestPage();
+        	}
+        });
     </script>
 
 </head>
@@ -449,12 +513,12 @@
     <div class="chat clearfix">
         <div class="left_wra">
             <div class="left_chat">
-                <h4 class="withManageToChatTip">正在与${relation.userNickName}对话<i></i></h4>
+                <h4 class="withManageToChatTip">正在与<span class="class="inintPage-relation-name">${relation.userNickName}</span>对话<i></i></h4>
                 <div class="list_chat clearfix" id="waterPersionChatBox">
                     <div class="messageTip hide">
                         <div class="text01 clearfix">
                             <div class="user_img">
-                                <span>${relation.userNickName}</span>
+                                <span class="inintPage-relation-name">${relation.userNickName}</span>
                             </div>
                             <div class="txt">
                                 <p>您好，欢迎您来到《期盈满堂直播间》国资背景期货公司合作方，希望我们的直播能给您带来便利！</p><br/>
@@ -495,16 +559,16 @@
         <div class="right_chat">
             <div class="user_data">
                 <div class="user_title">
-                    <img src="${imagePath}ori/${relation.userPhoto}" alt="">
+                    <img class="inintPage-relation-userPhoto"  src="${imagePath}ori/${relation.userPhoto}" alt="">
                     <div class="txt">
                         <span>${relation.userNickName}</span>
                         <%--<span>手机：${relation.userTel}</span>--%>
-                        <span>QQ：${relation.userQq}</span>
+                        <span>QQ：</span><span class="inintPage-relation-qq">${relation.userQq}</span>
                     </div>
                 </div>
-                <p class="user_intro">${relation.userIntroduction}</p>
+                <p class="user_intro"><span class="inintPage-relation-userIntroduction">${relation.userIntroduction}</span></p>
                 <div class="img01">
-                    <img src="${imagePath}ori/${relation.userQrcode}" alt="">
+                    <img class="inintPage-relation-userQrcode" src="${imagePath}ori/${relation.userQrcode}" alt="">
                     <a href="javascript:"></a>
                 </div>
             </div>

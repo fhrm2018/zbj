@@ -2040,42 +2040,40 @@ function shielding(obj) {
 
 function getHeaderHtml(groupId, level, small) {
     var htmls = '';
-    switch (groupId) {
-        case 1:
-            htmls = '<span class="ac yk"></span>';
-            break;
-        case 2:
-            htmls = '<i class="patrol circle ac">巡</i>';
-            break;
-        case 3:
-            htmls = '<span class="ac zl"></span>';
-            break;
-        case 4:
-            htmls = '<i class="teacher ac"></i>';
-            break;
-        case 5:
-            if (level == 1) {
-                htmls = '<span class="ac vip1"></span>';
-            } else if (level == 2) {
-                htmls = '<span class="ac vip2"></span>';
-            } else if (level == 3) {
-                htmls = '<span class="ac vip3"></span>';
-            } else if (level == 4) {
-                htmls = '<span class="ac vip4"></span>';
-            } else if (level == 5) {
-                htmls = '<span class="ac vip5"></span>';
-            } else if (level == 6) {
-                htmls = '<span class="ac vip6"></span>';
-            } else if (level == 7) {
-                htmls = '<span class="ac vip7"></span>';
-            } else if (level == 8) {
-                htmls = '<span class="ac vip8"></span>';
-            }
-            break;
-        default:
-            htmls = '<i class="visit circle ac">游</i>';
-            break;
+    if(groupId == 1){
+    	 htmls = '<span class="ac yk"></span>';
     }
+    if(groupId == 2){
+    	htmls = '<i class="patrol circle ac">巡</i>';	
+	}
+	if(groupId == 3){
+		htmls = '<span class="ac zl"></span>';
+	}
+	if(groupId == 4){
+		htmls = '<i class="teacher ac"></i>';
+	}
+	if(groupId == 5){
+		 if (level == 1) {
+             htmls = '<span class="ac vip1"></span>';
+         } else if (level == 2) {
+             htmls = '<span class="ac vip2"></span>';
+         } else if (level == 3) {
+             htmls = '<span class="ac vip3"></span>';
+         } else if (level == 4) {
+             htmls = '<span class="ac vip4"></span>';
+         } else if (level == 5) {
+             htmls = '<span class="ac vip5"></span>';
+         } else if (level == 6) {
+             htmls = '<span class="ac vip6"></span>';
+         } else if (level == 7) {
+             htmls = '<span class="ac vip7"></span>';
+         } else if (level == 8) {
+             htmls = '<span class="ac vip8"></span>';
+         }
+	}
+	if(htmls == ''){
+		htmls = '<i class="visit circle ac">游</i>';
+	}
     return htmls;
 }
 
