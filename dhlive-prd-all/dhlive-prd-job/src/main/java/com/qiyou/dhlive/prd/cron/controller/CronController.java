@@ -372,7 +372,7 @@ public class CronController {
     	}
     }
     
-    @Scheduled(cron = "0 0/1 * * * ? ")
+    @Scheduled(cron = "0 0/20 * * * ? ")
     public void saveMsgCount() {
     	String beginStr=DateUtil.DateToString(new Date(), DateStyle.YYYY_MM_DD)+" 00:00:00";
     	Date beginDate=DateUtil.StringToDate(beginStr, DateStyle.YYYY_MM_DD_HH_MM_SS);
