@@ -30,9 +30,9 @@
 	}
 %>
 
-<link href="/static/css/main.css?v=${version}" rel="stylesheet" type="text/css" />
-<link href="/static/css/water.css?v=${version}" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/ui-dialog.css">
+<link href="${staticHost}/css/main.css?v=${version}" rel="stylesheet" type="text/css" />
+<link href="${staticHost}/css/water.css?v=${version}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="${staticHost}/css/ui-dialog.css">
 <script type="text/javascript">
 	//全局变量
 	var g_requestContextPath = "${pageContext.request.contextPath}",
@@ -42,6 +42,5 @@
 <script src="${staticHost}/js/lib/jquery.validate.min.js"></script>
 <script src="${staticHost}/js/common/jquery.ajaxGetData.js"></script>
 <script src="${staticHost}/js/lib/jquery.form.min.js"></script>
-<script src="${staticHost}/js/lib/artDialog/dialog-min.js"></script>
-<script src="${staticHost}/js/common/jquery.validate.methods.js"></script>
+
 

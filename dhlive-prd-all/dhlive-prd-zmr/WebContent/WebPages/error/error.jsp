@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>404</title>
-    <jsp:include page="common/public.jsp"/>
+    <title>500</title>
+    <jsp:include page="../common/public.jsp"/>
     <link href="/static/css/main.css?v=${version}" rel="stylesheet" type="text/css"/>
 </head>
 
@@ -20,7 +20,6 @@
         top: 12%;
         left: 50%;
         margin-left:-380px;
-        background: url("../static/images/404.png") 50% 50% no-repeat;
     }
 
     .errorContent .errorBtn {
@@ -49,7 +48,6 @@
 <body>
 <div class="errorContent">
     <div class="errorBtn">
-        <span>您的ip地址为:${ip}</span>
         <a href="javascript:;" onclick="qqCustomer(${qqNum})">联系客服</a>
     </div>
 </div>

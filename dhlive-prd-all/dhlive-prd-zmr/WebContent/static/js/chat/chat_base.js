@@ -294,12 +294,14 @@ function convertMsgtoHtml(msg) {
             for (var i = 1; i < text.length; i++) {
                 other += " " + text[i];
             }
-            return webim.Tool.formatHtml2Text("<image src='../static/images/whosaid.png' /><span class='msgName ml10 mr10 greenFont'>" + text[0] + "</span><span style='display: inline-block; color: red;font-weight: 700;font-size:16px; background-color: #e9edf8;border-bottom-left-radius: 10px;border-top-right-radius: 10px;border-bottom-right-radius: 10px;padding: 2px 8px;'> " + other + "</span>");
+            return webim.Tool.formatHtml2Text("<image src='../static/images/whosaid.png' /><span style='color:#000000' class='msgName greenFont' >" + text[0] + "</span><span style='display: inline-block; color: red;font-weight: 700;font-size:16px;border-bottom-left-radius: 10px;border-top-right-radius: 10px;border-bottom-right-radius: 10px;padding: 3px 10px;'> " + other + "</span>");
         } else {
-            return webim.Tool.formatHtml2Text("<span style='color: red; display: inline-block; background-color: #e9edf8; font-weight: 700; font-size:16px;border-bottom-left-radius: 10px;border-top-right-radius: 10px;border-bottom-right-radius: 10px;padding: 2px 8px;'>" + html + "</span>");
+            return webim.Tool.formatHtml2Text("<span style='color:#e40d0b;font-weight:bold'>" + html + "</span>");
         }
+    } else if (cmdObj.groupId == 4) {
+        return webim.Tool.formatHtml2Text("<span style='color:#e40d0b;font-weight:bold;'>" + html + "</span>");
     } else {
-        return webim.Tool.formatHtml2Text("<span style='background-color: #e9edf8; display: inline-block; border-bottom-left-radius: 10px;border-top-right-radius: 10px;border-bottom-right-radius: 10px;padding: 2px 8px;'>" + html + "</span>");
+        return webim.Tool.formatHtml2Text("<span>" + html + "</span>");
     }
 }
 
@@ -610,16 +612,6 @@ function getCmdFromMsg(msg) {
     return cmdObj;
 }
 
-function sleep(numberMillis) { 
-	var now = new Date(); 
-	var exitTime = now.getTime() + numberMillis; 
-	while (true) { 
-		now = new Date(); 
-		if (now.getTime() > exitTime) 
-			return; 
-	} 
-}
-
 function createNewMsg(msgtosend,cmdJson){
 	var selType = webim.SESSION_TYPE.GROUP;
 	selSess = new webim.Session(selType, selToID, selToID, '', Math.round(new Date().getTime() / 1000));
@@ -693,7 +685,6 @@ var randomSort = function(list) {
 	}
 	return input;
 }
-
 //发送消息(普通消息)
 function onSendMsg() {
     if (!loginInfo.identifier) { //未登录
@@ -859,9 +850,11 @@ function clone(obj){
     return result;
 }
 
+
+
 function sendImgMsg(imageUrl) {
     var selType = webim.SESSION_TYPE.GROUP;
-    var msgtosend = "<i></i><img class='img_big' style='max-width: 350px;max-height: 350px;' src='" + imgPath + "chat/" + imageUrl + "'/>";
+    var msgtosend = "<i></i><img class='img_big' style='max-width: 200px;max-height: 200px;' src='" + imgPath + "chat/" + imageUrl + "'/>";
     selSess = new webim.Session(selType, selToID, selToID, '', Math.round(new Date().getTime() / 1000));
     var isSend = true; //是否为自己发送
     var seq = -1; //消息序列，-1表示sdk自动生成，用于去重
@@ -923,16 +916,15 @@ function sendImgMsg(imageUrl) {
         text_obj = new webim.Msg.Elem.Text(msgtosend);
         msg.addText(text_obj);
     }
-    var result = clone(msg);
     webim.sendMsg(msg, function (resp) {
         webim.Log.info("发消息成功");
-        
+//        saveGroupMsg(msg);
     }, function (err) {
         if (err.ErrorCode == 10017) {
             alert('当前无法发言，如有疑问，请联系客服。');
         }
     });
-    saveGroupMsg(result);
+    saveGroupMsg(msg);
 }
 
 //发送消息(普通消息)
@@ -1177,20 +1169,20 @@ function sendFlowerMsg() {
             msg.addText(text_obj);
         }
     }
-    var result = clone(msg);
+
     webim.sendMsg(msg, function (resp) {
         if (selType == webim.SESSION_TYPE.C2C) { //私聊时，在聊天窗口手动添加一条发的消息，群聊时，长轮询接口会返回自己发的消息
             showMsg(msg);
         }
-       
+//        saveGroupMsg(msg);
         webim.Log.info("发消息成功");
         sendRoseMsg();
         //vip/游客发送成功之后禁用按钮, 3秒后解除禁用
         if (userInfo.groupId == 1 || userInfo.groupId == 5) {
             countDownSendMsgBtn();
         }
-        // 发送鲜花后5s倒计时可再次发送
-        var i = 5;
+        // 发送鲜花后20s倒计时可再次发送
+        var i = 3;
         var roseInt = setInterval(function () {
             if (i == 1) {
                 $('.roseF').bind('click', sendFlowerMsg);
@@ -1207,7 +1199,7 @@ function sendFlowerMsg() {
             alert('当前无法发言，如有疑问，请联系客服。');
         }
     });
-    saveGroupMsg(result);
+    saveGroupMsg(msg);
 }
 
 //发送红包(普通消息)
@@ -1323,11 +1315,12 @@ function sendRedBagMsg() {
         }
     }
 
-    var result = clone(msg);
+
     webim.sendMsg(msg, function (resp) {
         if (selType == webim.SESSION_TYPE.C2C) { //私聊时，在聊天窗口手动添加一条发的消息，群聊时，长轮询接口会返回自己发的消息
             showMsg(msg);
         }
+//        saveGroupMsg(msg);
         webim.Log.info("发消息成功");
 
         sendRedPackMsg();
@@ -1337,8 +1330,8 @@ function sendRedBagMsg() {
             countDownSendMsgBtn();
         }
 
-        // 发送红包后5s可以继续发送
-        var i = 5;
+        // 发送红包后20s可以继续发送
+        var i = 3;
         var roseInt = setInterval(function () {
             if (i == 1) {
                 $('.redBagF').bind('click', sendRedBagMsg);
@@ -1356,7 +1349,7 @@ function sendRedBagMsg() {
             alert('当前无法发言，如有疑问，请联系客服。');
         }
     });
-    saveGroupMsg(result);
+    saveGroupMsg(msg);
 }
 
 //发送C2C消息(文本或者表情)
@@ -2046,45 +2039,41 @@ function shielding(obj) {
 }
 
 function getHeaderHtml(groupId, level, small) {
-    var htmls = '';
-    switch (groupId) {
-        case 1:
-            htmls = '<span class="ac yk"></span>';
-            break;
-        case 2:
-            htmls = '<i class="patrol circle ac">巡</i>';
-            break;
-        case 3:
-            htmls = '<span class="ac zl"></span>';
-            break;
-        case 4:
-            htmls = '<i class="teacher ac"></i>';
-            break;
-        case 5:
-        	if (level == -1) {
-                htmls = '<span class="ac yk"></span>';
-            }else if (level == 1) {
-                htmls = '<span class="ac vip1"></span>';
-            } else if (level == 2) {
-                htmls = '<span class="ac vip2"></span>';
-            } else if (level == 3) {
-                htmls = '<span class="ac vip3"></span>';
-            } else if (level == 4) {
-                htmls = '<span class="ac vip4"></span>';
-            } else if (level == 5) {
-                htmls = '<span class="ac vip5"></span>';
-            } else if (level == 6) {
-                htmls = '<span class="ac vip6"></span>';
-            } else if (level == 7) {
-                htmls = '<span class="ac vip7"></span>';
-            } else if (level == 8) {
-                htmls = '<span class="ac vip8"></span>';
-            }
-            break;
-        default:
-            htmls = '<i class="visit circle ac">游</i>';
-            break;
+	var htmls = '';
+    if(groupId == 1){
+    	htmls =  '<span class="ac yk"></span>';
     }
+	if(groupId == 2){
+	    htmls = '<i class="patrol circle ac">巡</i>';	
+	}
+	if(groupId == 3){
+		htmls = '<span class="ac zl"></span>';
+	}
+	if(groupId == 4){
+		 htmls = '<i class="teacher ac"></i>';
+	}
+	if(groupId == 5){
+		if (level == 1) {
+            htmls = '<span class="ac vip1"></span>';
+        } else if (level == 2) {
+            htmls = '<span class="ac vip2"></span>';
+        } else if (level == 3) {
+            htmls = '<span class="ac vip3"></span>';
+        } else if (level == 4) {
+            htmls = '<span class="ac vip4"></span>';
+        } else if (level == 5) {
+            htmls = '<span class="ac vip5"></span>';
+        } else if (level == 6) {
+            htmls = '<span class="ac vip6"></span>';
+        } else if (level == 7) {
+            htmls = '<span class="ac vip7"></span>';
+        } else if (level == 8) {
+            htmls = '<span class="ac vip8"></span>';
+        }
+	}
+	if(htmls == ''){
+		 htmls = '<span class="ac vip1"></span>';
+	}
     return htmls;
 }
 
@@ -2123,9 +2112,10 @@ function getRoomMsgHtml(msg, cmdJson) {
                 '<div class="info posRel" id="msginfo-' + cmdJson.uniqueId + '">',
                 '<div class="msgLine posRel">',
                 getHeaderHtml(cmdJson.groupId, cmdJson.level, cmdJson.small),
-                '<span class="msgName ml10 ' + (cmdJson.groupId == 1 ? 'greenFont' : '') + ' ' + (cmdJson.groupId == 3 ? 'yellowFont' : '') + ' ' + (cmdJson.groupId == 4 ? 'redFont' : '') + ' ' + (cmdJson.groupId == 5 ? 'greenFont' : '') + '">' + cmdJson.postNickName + '</span>',
+                '<span class="msgName ml10 ' + (cmdJson.groupId == 1 ? 'greenFont' : '') + ' ' + (cmdJson.groupId == 3 ? 'redFont' : '') + ' ' + (cmdJson.groupId == 4 ? 'redFont' : '') + ' ' + (cmdJson.groupId == 5 ? 'greenFont' : '') + '">' + cmdJson.postNickName + '</span>',
                 '<div class="ilblock posRel ml10">',
-                '<div class="msgInfo" style="background-color: #5a95f0;margin:0 0 4px 4px;padding: 3px 10px;">',
+                // '<div class="msgInfo" style="margin-bottom:4px;">',
+                (cmdJson.groupId == 3 || cmdJson.groupId == 4) ? '<div class="msgInfo zlBg" style="margin-bottom:4px;">' : '<div class="msgInfo" style="margin-bottom:4px;"> ',
                 '<span></span> <img src="../static/images/small_redpack.png" alt="">',
                 '</div></div></div></div>'].join('');
         } else {
@@ -2133,10 +2123,17 @@ function getRoomMsgHtml(msg, cmdJson) {
                 '<div class="info posRel" id="msginfo-' + cmdJson.uniqueId + '">',
                 '<div class="msgLine posRel">',
                 getHeaderHtml(cmdJson.groupId, cmdJson.level, cmdJson.small),
-                '<span class="msgName ml10 ' + (cmdJson.groupId == 1 ? 'greenFont' : '') + ' ' + (cmdJson.groupId == 3 ? 'yellowFont' : '') + ' ' + (cmdJson.groupId == 4 ? 'redFont' : '') + ' ' + (cmdJson.groupId == 5 ? 'greenFont' : '') + '">' + cmdJson.postNickName + '</span>',
+                '<span class="msgName ml10 ' + (cmdJson.groupId == 1 ? 'greenFont' : '') + ' ' + (cmdJson.groupId == 3 ? 'redFont' : '') + ' ' + (cmdJson.groupId == 4 ? 'redFont' : '') + ' ' + (cmdJson.groupId == 5 ? 'greenFont' : '') + '">' + cmdJson.postNickName + '</span>',
                 '<div class="ilblock posRel ml10">',
-                '<div class="msgInfo" style="background-color: #5a95f0;margin:0 0 4px 4px;padding: 3px 10px;">',
+                // '<div class="msgInfo" style="margin-bottom:4px;">',
+
+                (cmdJson.groupId == 3 || cmdJson.groupId == 4) ? '<div class="msgInfo zlBg" style="margin-bottom:4px;">' : '<div class="msgInfo" style="margin-bottom:4px;"> ',
+
+
                 '  <span> </span> <img src="../static/images/small_flower.png" alt="">',
+
+
+
                 '</div></div></div></div>'].join('');
         }
     } else {
@@ -2145,7 +2142,7 @@ function getRoomMsgHtml(msg, cmdJson) {
                 '<div class="info posRel" id="msginfo-' + cmdJson.uniqueId + '">',
                 '<div class="msgLine posRel">',
                 getHeaderHtml(cmdJson.groupId, cmdJson.level, cmdJson.small),
-                '<span class="msgName ml10 ' + (cmdJson.groupId == 1 ? 'greenFont' : '') + ' ' + (cmdJson.groupId == 3 ? 'yellowFont' : '') + ' ' + (cmdJson.groupId == 4 ? 'redFont' : '') + ' ' + (cmdJson.groupId == 5 ? 'greenFont' : '') + '">' + cmdJson.postNickName + '</span>',
+                '<span class="msgName ml10 ' + (cmdJson.groupId == 1 ? 'greenFont' : '') + ' ' + (cmdJson.groupId == 3 ? 'redFont' : '') + ' ' + (cmdJson.groupId == 4 ? 'redFont' : '') + ' ' + (cmdJson.groupId == 5 ? 'greenFont' : '') + '">' + cmdJson.postNickName + '</span>',
                 '<div class="ilblock posRel ml10">',
                 (userInfo.groupId == 3 && (cmdJson.groupId == 1 || cmdJson.groupId == 5)) ? ' <button class="op" onclick="op(this)"></button>' : '',
                 '<div class="posAbs selectBtn hide" style="left:32px;top:1px;" >',
@@ -2161,7 +2158,7 @@ function getRoomMsgHtml(msg, cmdJson) {
                 '<div class="info posRel" id="msginfo-' + cmdJson.uniqueId + '">',
                 '<div class="msgLine posRel">',
                 getHeaderHtml(cmdJson.groupId, cmdJson.level, cmdJson.small),
-                '<span class="msgName ml10 ' + (cmdJson.groupId == 1 ? 'greenFont' : '') + ' ' + (cmdJson.groupId == 3 ? 'yellowFont' : '') + ' ' + (cmdJson.groupId == 4 ? 'redFont' : '') + ' ' + (cmdJson.groupId == 5 ? 'greenFont' : '') + '">' + cmdJson.postNickName + '</span>',
+                '<span class="msgName ml10 ' + (cmdJson.groupId == 1 ? 'greenFont' : '') + ' ' + (cmdJson.groupId == 3 ? 'redFont' : '') + ' ' + (cmdJson.groupId == 4 ? 'redFont' : '') + ' ' + (cmdJson.groupId == 5 ? 'greenFont' : '') + '">' + cmdJson.postNickName + '</span>',
                 '<div class="ilblock posRel ml10">',
                 (userInfo.groupId == 3 && (cmdJson.groupId == 1 || cmdJson.groupId == 5)) ? ' <button class="op" onclick="op(this)"></button>' : '',
                 '<div class="posAbs selectBtn hide" style="left:32px;top:1px;" >',
@@ -2169,7 +2166,9 @@ function getRoomMsgHtml(msg, cmdJson) {
                 '<a style="cursor: pointer;background-color:#622717;" data-uid="' + cmdJson.postUid + '" data-gid="' + cmdJson.groupId + '" onclick="shielding(this)">拉黑</a>',
                 '<a style="cursor: pointer" data-uid="' + cmdJson.postUid + '" data-name="' + cmdJson.postNickName + '" onclick="atHe(this)">@他</a>',
                 '</div></div></div>',
-                '<div class="msgInfo">',
+
+                (cmdJson.groupId == 3 || cmdJson.groupId == 4) ? '<div class="msgInfo zlBg">' : '<div class="msgInfo maxImg">',
+
                 convertMsgtoHtml(msg),
                 '</div>',
                 getRoomMsgBtnHtml(msg, cmdJson),
@@ -2318,20 +2317,6 @@ function delGroupMsg(obj) {
 
 function qqCustomer(qq) {
     $("body").find("iframe").eq(0).attr("src", "tencent://message/?uin=" + qq + "");
-}
-
-//加载企业QQ文件
-function _loadQQ(ID) {
-    var _qqUrl = "http://wpa.b.qq.com/cgi/wpa.php";
-    IdSelector = $("#" + ID);
-    //取消原有加载文件的事件绑定
-    IdSelector.unbind("click");
-    $.getScript(_qqUrl, function () {
-        //中间的数字即是你本公司的企业QQ
-        BizQQWPA.addCustom({aty: '0', nameAccount: '4008399521', selector: ID});
-        //初次加载触发事件(延迟触发)
-        setTimeout('IdSelector.click();', 500);
-    });
 }
 
 

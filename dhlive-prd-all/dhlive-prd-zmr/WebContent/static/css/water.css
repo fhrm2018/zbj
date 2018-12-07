@@ -12,17 +12,16 @@
 .logo {
     width: 100%;
     height: 56px;
-    background-color: #624827;
+    background-color: #3598db;
     position: relative;
     overflow: hidden;
 }
 
 .logo img {
     display: block;
-    width: 224px;
-    height: 60px;
+    width: 156px;
     float: left;
-    margin: -5px 0px 0 10px;
+    margin: 0 0 0 10px;
 }
 
 .logo .seach {
@@ -124,6 +123,7 @@
     overflow: hidden;
 }
 .list_chat {
+    width:100%;
     margin:10px 0 30px;
     height: 260px;
     overflow: auto;
@@ -182,17 +182,9 @@
 }
 
 .list_chat .text01 .txt p {
-    color: #000000;
-    font-size: 14px;
+    color: #333333;
+    font-size:14px;
 }
-.list_chat .text01 .txt p i{
-    display:inline-block;
-    width:23px;
-    height:23px;
-    background: url("../images/icon.jpg") 50% 50% no-repeat;
-    vertical-align: middle;
-}
-
 
 .list_chat .text01 strong {
     line-height: 16px;
@@ -225,6 +217,7 @@
 
 .list_chat .text02 .txt p {
     color: #ffffff;
+    font-size:14px;
 }
 
 .list_chat .text02 strong {
@@ -341,7 +334,7 @@
     color: #ffffff;
     text-align: center;
     border: none;
-    background-color: #402d15;
+    background-color: #3598db;
     vertical-align: middle;
 }
 
@@ -403,7 +396,7 @@
     display: block;
     width: 102px;
     height: 102px;
-    margin: 120px auto 0;
+    margin: 106px auto 0;
 }
 
 .tabBtns {
@@ -684,7 +677,7 @@
     display:inline-block;
     width:16px;
     height:16px;
-    background:url("../images/dh/down.png") 50% 50% no-repeat;
+    background:url("../images/down.png") 50% 50% no-repeat;
     vertical-align:middle;
 }
 .cur .down{
@@ -701,7 +694,7 @@
     display:inline-block;
     width:16px;
     height:16px;
-    background:url("../images/dh/edit.png") 50% 50% no-repeat;
+    background:url("../images/edit.png") 50% 50% no-repeat;
     vertical-align:middle;
 }
 .Grouping .GroupingBtns{
@@ -791,7 +784,7 @@
     display:block;
     width:56px;
     height:56px;
-    background:url("../images/dh/close2.png") 50% 50% no-repeat;
+    background:url("../images/close2.png") 50% 50% no-repeat;
     position:absolute;
     right:0;
     top:0;
@@ -853,7 +846,7 @@
     display:block;
     width:28px;
     height:28px;
-    background:url("../images/dh/close2.png") 50% 50% no-repeat;
+    background:url("../images/close2.png") 50% 50% no-repeat;
     position:absolute;
     right:0;
     top:0;
