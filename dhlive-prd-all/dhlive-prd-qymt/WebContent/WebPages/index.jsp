@@ -104,7 +104,7 @@
         $(function () {
         	function initNewGuestPage(){
         		$('.inintPage-relation-name').html(relation.userNickName);
-        		$('.inintPage-relation-qq').html(relation.userQq);
+        		$('.inintPage-relation-qq').html('QQ：'+relation.userQq);
         		$('.inintPage-relation-userIntroduction').html(relation.userIntroduction);
         		$('.inintPage-relation-userQrcode').attr('src',imgPath + "ori/"+relation.userQrcode);
         		$('.inintPage-relation-userPhoto').attr('src',imgPath + "ori/"+relation.userPhoto);
@@ -561,9 +561,9 @@
                 <div class="user_title">
                     <img class="inintPage-relation-userPhoto"  src="${imagePath}ori/${relation.userPhoto}" alt="">
                     <div class="txt">
-                        <span>${relation.userNickName}</span>
+                        <span class="inintPage-relation-name">${relation.userNickName}</span>
                         <%--<span>手机：${relation.userTel}</span>--%>
-                        <span>QQ：</span><span class="inintPage-relation-qq">${relation.userQq}</span>
+                        <span class="inintPage-relation-qq">QQ：${relation.userQq}</span>
                     </div>
                 </div>
                 <p class="user_intro"><span class="inintPage-relation-userIntroduction">${relation.userIntroduction}</span></p>
