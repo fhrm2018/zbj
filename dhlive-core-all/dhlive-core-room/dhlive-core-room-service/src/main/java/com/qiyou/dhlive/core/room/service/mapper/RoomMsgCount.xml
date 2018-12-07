@@ -14,29 +14,29 @@
     </resultMap>
     
     <select id="findBySearch" resultType="com.qiyou.dhlive.core.room.outward.model.RoomMsgCount" parameterType="com.qiyou.dhlive.core.room.outward.vo.RoomMsgCountVO">
-    	select send_date from room_msg_count
+    	select send_date as sendDate from room_msg_count
     	where 1=1
-    	<if test="beginDate == null">
-    		DATE_FORMAT(send_date,'%Y%m%d') <![CDATA[>=]]>#{beginDate}
+    	<if test="beginDate != null">
+    		<![CDATA[and DATE_FORMAT(send_date,'%Y-%m-%d') >=DATE_FORMAT(#{beginDate},'%Y-%m-%d')]]>
     	</if>
-    	<if test="endDate == null">
-    		DATE_FORMAT(send_date,'%Y%m%d') <![CDATA[>=]]>#{beginDate}
+    	<if test="endDate != null">
+    		<![CDATA[and DATE_FORMAT(send_date,'%Y-%m-%d') <=DATE_FORMAT(#{endDate},'%Y-%m-%d')]]>
     	</if>
-    	 GROUP BY send_date
-    	 LIMIT #{index},15
+    	 group by send_date order by send_date
+    	 limit #{index},15
     </select>
     
     <select id="countBySearch" resultType="Long" parameterType="com.qiyou.dhlive.core.room.outward.vo.RoomMsgCountVO">
     	SELECT count(*) from (	
     	select send_date from room_msg_count 
     	where 1=1
-    	<if test="beginDate == null">
-    		DATE_FORMAT(send_date,'%Y%m%d') <![CDATA[>=]]>#{beginDate}
+    	<if test="beginDate != null">
+    		<![CDATA[and DATE_FORMAT(send_date,'%Y-%m-%d') >=DATE_FORMAT(#{beginDate},'%Y-%m-%d')]]>
     	</if>
-    	<if test="endDate == null">
-    		DATE_FORMAT(send_date,'%Y%m%d') <![CDATA[>=]]>#{beginDate}
+    	<if test="endDate != null">
+    		<![CDATA[and DATE_FORMAT(send_date,'%Y-%m-%d') <=DATE_FORMAT(#{endDate},'%Y-%m-%d')]]>
     	</if>
-    	GROUP BY send_date
+    	group by send_date
     	)t
     </select>
 </mapper>

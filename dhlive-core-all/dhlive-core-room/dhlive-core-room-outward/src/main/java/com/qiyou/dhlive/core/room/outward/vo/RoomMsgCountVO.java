@@ -1,12 +1,14 @@
 package com.qiyou.dhlive.core.room.outward.vo;
 
+import java.util.Date;
+
 import com.qiyou.dhlive.core.room.outward.model.RoomMsgCount;
 
 public class RoomMsgCountVO extends RoomMsgCount {
 	
-	private String beginDate;
+	private Date beginDate;
 	
-	private String endDate;
+	private Date endDate;
 	
 	private int index;
 
@@ -18,19 +20,19 @@ public class RoomMsgCountVO extends RoomMsgCount {
 		this.index = index;
 	}
 
-	public String getBeginDate() {
+	public Date getBeginDate() {
 		return beginDate;
 	}
 
-	public void setBeginDate(String beginDate) {
+	public void setBeginDate(Date beginDate) {
 		this.beginDate = beginDate;
 	}
 
-	public String getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(String endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
