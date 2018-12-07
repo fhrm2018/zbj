@@ -27,19 +27,35 @@
     <div class="mainBox flexCon">
         <div class="mainSearch">
             <form id="tableForm"action="${pageContext.request.contextPath}/water/getWaterList" method="post" name="chatValue">
-            助理<select  id="paramValue" name="toNickName">
-                           <option></option>
-              <c:forEach  items="${assistant}"  var="str">
-                        <option value="${str.userNickName}">${str.userNickName}</option>
-                                            </c:forEach>                         
-            </select>
-            客户昵称<input type="text" id="name" name="fromNickName"/>
-            聊天时间<input type="text" id="ts" name="ts" onclick="SetDate(this,'yyyy-MM-dd hh:mm:ss')"/>至
-            <input type="text" id="tt" name="tt" onclick="SetDate(this,'yyyy-MM-dd hh:mm:ss')"/>
-            
-                <button id="submitBtn" type="button" class="pageBtn addBtn">查询</button>
-                <button type="button" class="pageBtn refBtn">刷新</button> 
-                </form>
+            <div class="posAbs right0">
+                 <button id="submitBtn" type="button" class="pageBtn btn">查询</button>
+                 <button type="button" class="pageBtn refBtn">刷新</button> 
+             </div>
+              <div class="clearfix">
+                    <div class="serTag mr10 verTop ar fl">选择助理</div>
+                    <div tabindex="0" class="serSelect middle fl posRel mr10">
+                        <div class="text posRel wtBg plr10"></div>
+                        <ul id="statusList" tabindex="0" class="posAbs wtBg ovfHid">
+                        	<li data-value="">全部助理</li>
+                            <c:forEach  items="${assistant}"  var="str">
+                        		<li data-value="${str.userNickName}">${str.userNickName}</li>
+                            </c:forEach>
+                        </ul>
+                        <input type="hidden" name="toNickName" id="paramValue" value=""/>
+                    </div>
+                    
+                    <div class="serTag mr10 verTop ar fl">聊天时间</div>
+                 	 <div tabindex="0" class="serSelect fl posRel mr10 showSelectTime">
+                        <input type="text" id="timeStart" name="ts" class="serIpt serIptNar fl date-hook" />
+                        <span class="serToTxt block fl ac">至</span>
+                        <input type="text" id="timeEnd" name="tt" class="serIpt serIptNar fl date-hook" />
+                    </div>			
+              </div>
+              <div class="clearfix mt15">
+                 	<div class="serTag mr10 verTop ar fl">客户昵称</div>
+                    <input type="text" name="fromNickName" class="serIpt fl" />
+              </div>
+              </form>
         </div>
 
         <div class="mainContent">
@@ -81,5 +97,4 @@
 </body>
 <script src="${pageContext.request.contextPath}/static/js/lib/artDialog/dialog-min.js"></script>
 <script src="${pageContext.request.contextPath}/static/modules/water/water.js"></script>
-<script src="${pageContext.request.contextPath}/static/js/lib/date.js"></script>
 </html>

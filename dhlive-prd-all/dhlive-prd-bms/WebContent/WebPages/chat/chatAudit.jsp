@@ -27,15 +27,26 @@
     <div class="mainBox flexCon">
         <div class="mainSearch">
         <form id="searchBox" action="${pageContext.request.contextPath}/user/getChatList" method="post" name="chatValue">
-        
-                 客户昵称<input type="text" id="opeMsg" name="opeMsg"/>
-                审核时间<input type="text" id="ts"  name="ts" onclick="SetDate(this,'yyyy-MM-dd hh:mm:ss')"/>至
-                <input type="text" id="tt" name="tt" onclick="SetDate(this,'yyyy-MM-dd hh:mm:ss')"/>
-                审核人<input type="text" id="optName" name="opName"/>
+            <div class="posAbs right0">
                 <button type="button" id="searchBtn" class="pageBtn searchBtn">查询</button>
                 <button type="button"  class="pageBtn refBtn">刷新</button>
-                </form>
-        </div>
+            </div>
+            <div class="clearfix">
+              <div class="serTag mr10 verTop ar fl">客户昵称</div>
+                 <input type="text" id="opeMsg" name="opeMsg" class="serIpt fl"/>
+              <div class="serTag mr10 verTop ar fl">审核时间</div>
+              <div tabindex="0" class="serSelect fl posRel mr10 showSelectTime">
+                <input type="text" id="timeStart"  name="ts" class="serIpt serIptNar fl date-hook"/>
+                <span class="serToTxt block fl ac">至</span>
+                <input type="text" id="timeEnd" name="tt" class="serIpt serIptNar fl date-hook"/>
+              </div>
+              </div>
+              <div class="clearfix mt15">
+                <div class="serTag mr10 verTop ar fl">审核人</div>
+                <input type="text" id="optName" name="opName" class="serIpt fl"/>
+                </div>  
+        </form>
+    </div>
 
         <div class="mainContent">
             <div class="bar" style="height: 40px;">
@@ -91,5 +102,4 @@
 </body>
 <script src="${pageContext.request.contextPath}/static/js/lib/artDialog/dialog-min.js"></script>
 <script src="${pageContext.request.contextPath}/static/modules/chat/chatAudit.js"></script>
-<script src="${pageContext.request.contextPath}/static/js/lib/date.js"></script>
 </html>
