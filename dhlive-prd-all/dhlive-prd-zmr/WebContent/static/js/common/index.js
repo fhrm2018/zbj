@@ -297,25 +297,12 @@ $(function () {
         });
     });
 
-    // if(userInfo.groupId == 3 || userInfo.groupId == 4){
-    //     $('.file').css("display","inline-block");
-    //     $('.emoticonIcon').css("width","53%");
-    //     $('#small').click(function () {
-    //         var options = $('#small option:selected').val();
-    //         if(options != 0){
-    //             $('.file').css("display","none");
-    //         }else{
-    //             $('.file').css("display","inline-block");
-    //         }
-    //     });
-    // }
     // 聊天图片发送
     $('#msgImage').change(function () {
         var $sendChatImgForm = $('#sendChatImgForm');
         var options = {
             success: function (data) {
                 if (data.code == '1000') {
-                    bigImage = data.data;
                     sendImgMsg(data.data);
                 } else {
                     alert(data.message);
@@ -399,17 +386,6 @@ $(function () {
     });
 
 
-    $(".msg").on("click", '.img_big', function () {
-        $(".imgMask").show();
-        var imgUrl = $(this).attr("src");
-        $(".bigImg img").attr("src", imgUrl);
-    });
-
-    $(".bigImgClose").click(function () {
-        $(".imgMask").hide();
-    });
-
-
     /*当前在线人记录缓存(10秒/次)*/
     setInterval(function () {
         //服务器缓存在线人数
@@ -422,30 +398,46 @@ $(function () {
         }
     }, 10000);
 
+    // 点击图片弹框
+    $(".msg").on("click", '.img_big', function () {
+        $(".imgMask").show();
+        var imgUrl = $(this).attr("src");
+        $(".bigImg img").attr("src", imgUrl);
+    });
+    $(".msg").on("click", "i", function () {
+        $(".imgMask").show();
+        var imgUrl = $(this).attr("src");
+        $(".bigImg img").attr("src", imgUrl);
+    });
+    $(".bigImgClose").click(function () {
+        $(".imgMask").hide();
+    });
+
+
     // 助理点击更多
-    // var htmlNode = $(".qqWra .assistantQQ");
-    // $('.more').click(function () {
-    //     var _this = $(this);
-    //     if (_this.hasClass("open")) {
-    //         _this.removeClass("open");
-    //         autoWindow(2, 4);
-    //     } else {
-    //         autoWindow(htmlNode.length, htmlNode.length);
-    //         _this.addClass("open");
-    //         $(".serviceList").addClass("w1500")
-    //     }
-    // });
+    var htmlNode = $(".qqWra .assistantQQ");
+    $('.more').click(function () {
+        var _this = $(this);
+        if (_this.hasClass("open")) {
+            _this.removeClass("open");
+            autoWindow(2, 3);
+        } else {
+            autoWindow(htmlNode.length, htmlNode.length);
+            _this.addClass("open");
+            $(".serviceList").addClass("w1500")
+        }
+    });
 
     // 助理显示个数
-    // function none(num) {
-    //     // console.log(htmlNode);
-    //     htmlNode.map(function (item, index) {
-    //         index.style.display = 'inline-block';
-    //         if (item > num) {
-    //             index.style.display = 'none';
-    //         }
-    //     })
-    // }
+    function none(num) {
+        // console.log(htmlNode);
+        htmlNode.map(function (item, index) {
+            index.style.display = 'inline-block';
+            if (item > num) {
+                index.style.display = 'none';
+            }
+        })
+    }
 
     //窗口自适应
     autoWindow();
@@ -453,34 +445,28 @@ $(function () {
     function autoWindow(num1, num2) {
         var win = $(window);
         var screenWidth = win.width();
-        // if (!num1) num1 = 2;
-        // if (!num2) num2 = 4;
+        if (!num1) num1 = 2;
+        if (!num2) num2 = 3;
         // console.log(screenWidth)
         if (screenWidth <= 1600) {
-            $(".topLeft").attr('class', "headBtns topLeft fl");
-            $(".headBtns .collectionBtn").css('width', "7.75%");
-            // $(".headBtns .downUrlBtn").css('width', "10.5%");
-            $(".logo").addClass("logo02");
-
             $(".serviceList").attr('class', "serviceList clearfix posRel w1400");
             $(".rq_ewm2").show();
             $(".rq_ewm").hide();
             $(".popularGuest h3").hide();
-            $(".rq_btn a img").css("width", "60%");
-            // none(num1);
+            $(".teacherVideo a").css({"width": "80%","margin":"0 auto"});
+            $(".teacherVideo").css("min-height","auto");
+            $(".rq_btn a").css("width","86%");
+            $(".bigImg").css("max-height", "500px");
+            none(num1);
         } else if (screenWidth <= 1700) {
-            // none(3);
+            none(num2);
             $(".serviceList").attr('class', "serviceList clearfix posRel w1700");
             $(".rq_ewm2").show();
             $(".rq_ewm").hide();
             $(".popularGuest h3").hide();
+            $(".bigImg").css("max-height", "600px");
         } else {
-            // none(num2);
-            $(".topLeft").attr('class', "topLeft fl");
-            $(".collectionBtn").css('width', "auto");
-            $(".downUrlBtn").css('width', "auto");
-            $(".logo").removeClass("logo02");
-
+            none(num2);
             $(".serviceList").attr('class', "serviceList clearfix posRel w1800");
             $(".rq_ewm").show();
             $(".rq_ewm2").hide();
@@ -490,9 +476,9 @@ $(function () {
         var serviceListHeight = $('.contentRight .serviceList').outerHeight(true);
         var messageBoxHeight = $('.contentRight .messageBox').outerHeight(true);
         var tishiHeight = $('.tishi').outerHeight(true);
-        var videoHeight = winHeight - 40 - 150 - 60 - 46;        // 40 footer; 150 banner margin; 60 header margin; 46 viewTime;
-        var contentRightMsg = winHeight - 60 - serviceListHeight - messageBoxHeight - 40 - 30 - tishiHeight;
-        var newLeft = winHeight - 60 - 40;
+        var videoHeight = winHeight - 40 - 180 - 80 - 52;        // 40 footer; 150 banner margin; 80 header margin; 44 viewTime;
+        var contentRightMsg = winHeight - 80 - serviceListHeight - messageBoxHeight - 26 - 30 - tishiHeight;
+        var newLeft = winHeight - 70 - 40;
 
         if (winHeight < 800) {
             $('.slides').height(100);
@@ -505,7 +491,7 @@ $(function () {
         }
         $('.contentRight .msg').height(contentRightMsg);                       // 右侧栏字幕高度
         $('.left_left, .left_middle, .left_left .visitors').height(newLeft);
-        $('.left_left .visitorsCon').height(newLeft - 60)
+        $('.left_left .visitorsCon').height(newLeft - 70)
         // console.log('serviceListHeight', serviceListHeight, contentRightMsg, messageBoxHeight, winHeight);
     }
 
@@ -515,18 +501,66 @@ $(function () {
     };
 });
 
+//打开红包
+function openRedPack() {
+    if (userInfo.groupId != 5) {
+        $('.redPackTip1').html('登录后才可领取，请联系助理注册账号');
+        $('#g17').addClass('hide');
+        $('#g18').removeClass('hide');
+    } else {
+        $.ajax({
+            url: ctx + "/activity/robRedPack",
+            data: {
+                "roomId": roomId,
+                "configId": activityConfigId,
+                "userId": userInfo.id
+            },
+            success: function (data) {
+                if (data.code == '1000') {
+                    $('#g17').addClass('hide');
+                    $('#g18').addClass('hide');
+                    $('#g19').removeClass('hide');
+                    $('.redBagImg').addClass('hide');
+                    $('.redBagMoney').removeClass('hide');
+                    $('.moneyBg').html('<p>' + data.data + '<span>元</span></p>')
+                } else {
+                    alert(data.message);
+                }
+            }
+        });
+    }
+}
 
 /****水滴tab切换****/
-var btns = $(".tabBtns .btn");
-var child = $(".tabCon .tab_title");
-btns.each(function (index) {
+$(".tabBtns .btn").each(function (index) {
     $(this).click(function () {
-        $(btns).removeClass("cur");
-        $(child).hide()
+        $(".tabBtns .btn").removeClass("cur");
+        $(".tabCon .tab_title").hide();
         $(this).addClass('cur');
-        $(child).eq(index).show()
+        $(".tabCon .tab_title").eq(index).show()
     })
 });
+/****活动老师介绍切换****/
+$(".activityBtn  .btn1").each(function (index) {
+    $(this).click(function () {
+        $(".activityBtn  .btn1").removeClass("cur");
+        $(".activityImg .img1").hide();
+        $(this).addClass('cur');
+        $(".activityImg .img1").eq(index).show()
+    })
+});
+
+/****活动老师介绍切换****/
+$(".lsBtn  a").each(function (index) {
+    $(this).click(function () {
+        $(".lsBtn a").removeClass("cur");
+        $(".lsCon .lsImg").hide();
+        $(this).addClass('cur');
+        $(".lsCon .lsImg").eq(index).show()
+    })
+});
+
+
 
 /****拼接喊单****/
 function appendHD(content, time) {
@@ -618,9 +652,16 @@ function getOnlineUserList() {
 }
 
 //清屏
-$('.clearScreen').click(function(){
-   $('.msg').html('');
+$('.clearScreen').click(function () {
+    $('.msg').html('');
 });
+
+$('.hoverImg a').hover(function(){
+    $(this).next('.teacherImg').show();
+},function () {
+    $(this).next('.teacherImg').hide();
+})
+
 
 //保存到桌面
 function downUrl() {
@@ -755,6 +796,15 @@ $(".visitorsBtn a").each(function (index) {
 });
 
 // 老师介绍
+$(".teacherBtn a").each(function (index) {
+    $(this).click(function () {
+        $(".teacherBtn a").removeClass("cur");
+        $(".teacherCon .teacherTitle").hide()
+        $(this).addClass('cur');
+        $(".teacherCon .teacherTitle").eq(index).show()
+    })
+});
+
 function teacherJs() {
     $(".teacherJsMask").show();
 }
@@ -906,29 +956,3 @@ function checkTourseIsBlack(userId) {
     });
 }
 
-
-// 转盘显示隐藏
-function zpShow() {
-    $(".rotateWin").css("visibility", "visible");
-    // 领奖显示
-    if (userInfo.groupId == 1) {
-        $.ajax({
-            url: ctx + "/activity/prizeInfo",
-            data: {
-                "roomId": roomId,
-                "userId": userInfo.id,
-                "groupId": userInfo.groupId
-            },
-            success: function (data) {
-                if (data.code == 1000) {
-                    $('.prizeName').removeClass('hide');
-                    $('#prize').text(data.data);
-                }
-            }
-        });
-    }
-}
-
-function zpClose() {
-    $(".rotateWin").css("visibility", "hidden");
-}

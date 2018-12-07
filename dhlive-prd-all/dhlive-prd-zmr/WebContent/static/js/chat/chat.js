@@ -35,7 +35,6 @@ $(function () {
         $('#msgBox').scrollTop($('#msgBox')[0].scrollHeight);
     }
 
-
     var $msgBox = $('#msgBox');
     if (loginInfo.userSig == '') {
         chatInit();

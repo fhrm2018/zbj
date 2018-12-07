@@ -8,7 +8,7 @@
 	if (application.getAttribute("version") == null) {
 		application.setAttribute("version", "1.5.7");
 	}
-	if (application.getAttribute("staticHost") == null || application.getAttribute("staticHost") == "") {
+	if (application.getAttribute("staticHost") == null) {
 		//application.setAttribute("staticHost", request.getScheme() + "://" + request.getServerName() +":"+request.getServerPort()+ request.getContextPath() + "/static");
 		application.setAttribute("staticHost", request.getContextPath() + "/static");
 	}
@@ -29,7 +29,6 @@
 		application.setAttribute("imagesPhotoHost", ProjectConfig.getImagesHost()+"photo/");
 	}
 %>
-
 <link href="${staticHost}/css/main.css?v=${version}" rel="stylesheet" type="text/css" />
 <link href="${staticHost}/css/water.css?v=${version}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="${staticHost}/css/ui-dialog.css">

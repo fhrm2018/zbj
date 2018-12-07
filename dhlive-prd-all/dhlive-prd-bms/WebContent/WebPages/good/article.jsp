@@ -15,18 +15,17 @@
 <div class="mainTitle">
     <div class="titleContent">
         <span class="lgLine ilblock ovfHid ml20 verMid"></span> <span
-            class="verMid ml10 colorF">直播室</span>
+            class="verMid ml10 colorF">日报</span>
     </div>
     <jsp:include page="../common/userSet.jsp"/>
 </div>
 <div class="mainArea flexWrap posRel">
     <jsp:include page="../common/nav.jsp">
-        <jsp:param value="文章" name="name"/>
+        <jsp:param value="日报" name="name"/>
         <jsp:param value="干货" name="pName"/>
     </jsp:include>
     <div class="mainBox flexCon">
-
-        <div class="mainSearch">
+         <div class="mainSearch">
             <ul id="status-nav" class="navMenu wtBg pl15 ac hide">
             </ul>
             <div style="right: 10px; top: 20px;">

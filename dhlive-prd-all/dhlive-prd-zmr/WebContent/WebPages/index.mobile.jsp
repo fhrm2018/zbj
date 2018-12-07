@@ -1,13 +1,13 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 
-    <title>【国际期货直播室】恒指期货直播室_股指期货直播间_黄金直播间-追梦人直播间</title>
-    <meta name="keywords" content="追梦人,追梦人直播间、国际黄金实时行情、国际原油期货、恒指期货开户、期货怎么炒、国际期货"/>
-    <meta name="description" content="追梦人-权威国际期货直播领导者，追梦人国际期货交易平台,特邀精英讲师团为投资者提供前沿的全球期货实时行情分析、恒生指数期货实战交流、股指期货实盘交易培训、指数期货直播、原油期货直播、黄金期货实时行情、每日美股行情走势等，打造您身边靠谱的国际期货交流平台。"/>
+    <title>牛金商学院-期货入门知识_农产品期货开户_期货课堂</title>
+    <meta name="keywords" content="牛金商学院,牛金商学院直播间,牛金商学院研究所,期货入门,期货知识,农产品期货开户"/>
+    <meta name="description" content="牛金商学院提供专家内盘期货入门指导，专业分析师在线进行指导教学,牛金商学院研究所提供炒期货投资入门、农产品期货行情,金融期货投资、期货经济数据、期货模拟交易等,牛金商学院是您身边值得信赖的期货直播平台!"/>
     <link rel="shortcut icon" href="/static/images/favicon.png" type="image/x-icon"/>
     <jsp:include page="common/public.mobile.jsp"/>
     <script type="text/javascript">
@@ -18,8 +18,8 @@
             time = 1,
             activityConfigId = '${config.id}',
             activityCountdown = '${config.activityCountdown}',
-	    imgPath = '${imagePath}',
             talkUserId = '',
+
             type_flag = 0,
             isOver = ${isOver},
             chatImgs = new Array(),
@@ -76,7 +76,103 @@
 
 <!-- 辅助变量 -->
 
+<div class="flexWrap flexAgCen header">
+    <div class="flexCon">
+        <a class="logo"><img src="../static/images/logo.png"></a>
+    </div>
+    <div class="flexCon topRight ac">
+        <!-- <c:if test="${loginedUserLogin.groupId == 1}">
+            <p class="username colorF fz12" id="username">
+                <img src="../static/images/yk.gif" alt="">${loginedUserLogin.userNickName}
+            </p>
+        </c:if> -->
 
+        <c:if test="${loginedUserLogin.groupId == 2}">
+            <p class="username colorF fz12" id="username">
+                <img src="../static/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
+            </p>
+        </c:if>
+
+        <c:if test="${loginedUserLogin.groupId == 3}">
+            <p class="username colorF fz12" id="username">
+                <img src="../static/images/zl.gif" alt="">${loginedUserLogin.userNickName}
+            </p>
+        </c:if>
+
+        <c:if test="${loginedUserLogin.groupId == 4}">
+            <p class="username colorF fz12" id="username">
+                <img src="../static/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
+            </p>
+        </c:if>
+
+        <c:if test="${loginedUserLogin.groupId == 5}">
+            <c:if test="${vip.userLevel == 1}">
+                <p class="username colorF fz12" id="username">
+                    <img src="../static/images/VIP1.gif" alt="">${loginedUserLogin.userNickName}
+                </p>
+            </c:if>
+
+            <c:if test="${vip.userLevel == 2}">
+                <p class="username colorF fz12" id="username">
+                    <img src="../static/images/VIP2.gif" alt="">${loginedUserLogin.userNickName}
+                </p>
+            </c:if>
+
+            <c:if test="${vip.userLevel == 3}">
+                <p class="username colorF fz12" id="username">
+                    <img src="../static/images/VIP3.gif" alt="">${loginedUserLogin.userNickName}
+                </p>
+            </c:if>
+
+            <c:if test="${vip.userLevel == 4}">
+                <p class="username colorF fz12" id="username">
+                    <img src="../static/images/VIP4.gif" alt="">${loginedUserLogin.userNickName}
+                </p>
+            </c:if>
+
+            <c:if test="${vip.userLevel == 5}">
+                <p class="username colorF fz12" id="username">
+                    <img src="../static/images/VIP5.gif" alt="">${loginedUserLogin.userNickName}
+                </p>
+            </c:if>
+
+            <c:if test="${vip.userLevel == 6}">
+                <p class="username colorF fz12" id="username">
+                    <img src="../static/images/VIP6.gif" alt="">${loginedUserLogin.userNickName}
+                </p>
+            </c:if>
+
+            <c:if test="${vip.userLevel == 7}">
+                <p class="username colorF fz12" id="username">
+                    <img src="../static/images/VIP7.gif" alt="">${loginedUserLogin.userNickName}
+                </p>
+            </c:if>
+        </c:if>
+
+        <c:if test="${loginedUserLogin.groupId == 1}">
+            <p class="ar mt5">
+                <a class="loginA colorF fz16" onclick="toShow('login', 'register');">登录</a>
+                <a class="registerA colorF fz16" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">注册</a>
+            </p>
+        </c:if>
+
+        <c:if test="${loginedUserLogin.groupId != 1}">
+            <p class="settingA colorF fz16">设置</p>
+            <div class="LoginOut hide" style="z-index: 99999">
+                <a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register');">修改密码</a>
+                <a class="outBtn">退出登录</a>
+            </div>
+        </c:if>
+    </div>
+
+
+    <%--<div class="rightNav posAbs">--%>
+        <%--<c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}">--%>
+            <%--<a onclick="qqCustomer(${relation.userQq})" class="teacher"><span class="colorF">老师</span></a>--%>
+            <%--<a class="service" onclick="qqCustomer(${relation.userQq})"><span class="colorF">客服</span></a>--%>
+        <%--</c:if>--%>
+    <%--</div>--%>
+</div>
 <div class="flexWrap flexAgCen">
     <div class="flexCon contentLeft">
         <div class="movieTop clearfix">
@@ -104,99 +200,15 @@
     </div>
 </div>
 
-<div class="header clearfix">
-    <div class="fl">
-        <a class="logo"><img src="../static/images/logo.png"></a>
-    </div>
-    <div class="fr topRight">
-        <c:if test="${loginedUserLogin.groupId == 1}">
-            <p class="username fz12" id="username">
-                <img src="../static/images/yk.png" alt="">${loginedUserLogin.userNickName}
-            </p>
-        </c:if>
-
-        <c:if test="${loginedUserLogin.groupId == 2}">
-            <p class="username fz12" id="username">
-                <img src="../static/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
-            </p>
-        </c:if>
-
-        <c:if test="${loginedUserLogin.groupId == 3}">
-            <p class="username fz12" id="username">
-                <img src="../static/images/zl.png" alt="">${loginedUserLogin.userNickName}
-            </p>
-        </c:if>
-
-        <c:if test="${loginedUserLogin.groupId == 4}">
-            <p class="username fz12" id="username">
-                <img src="../static/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
-            </p>
-        </c:if>
-
-        <c:if test="${loginedUserLogin.groupId == 5}">
-            <c:if test="${vip.userLevel == 1}">
-                <p class="username fz12" id="username">
-                    <img src="../static/images/VIP1.png" alt="">${loginedUserLogin.userNickName}
-                </p>
-            </c:if>
-
-            <c:if test="${vip.userLevel == 2}">
-                <p class="username fz12" id="username">
-                    <img src="../static/images/VIP2.png" alt="">${loginedUserLogin.userNickName}
-                </p>
-            </c:if>
-
-            <c:if test="${vip.userLevel == 3}">
-                <p class="username fz12" id="username">
-                    <img src="../static/images/VIP3.png" alt="">${loginedUserLogin.userNickName}
-                </p>
-            </c:if>
-
-            <c:if test="${vip.userLevel == 4}">
-                <p class="username fz12" id="username">
-                    <img src="../static/images/VIP4.png" alt="">${loginedUserLogin.userNickName}
-                </p>
-            </c:if>
-
-            <c:if test="${vip.userLevel == 5}">
-                <div class="username fz12" id="username">
-                    <img src="../static/images/VIP5.png" alt="">${loginedUserLogin.userNickName}
-                </div>
-            </c:if>
-        </c:if>
-
-        <c:if test="${loginedUserLogin.groupId == 1}">
-            <div class="menuIcon">
-                <a href="javascript:"><i></i></a>
-                <div class="menuBtn hide">
-                    <a class="loginA colorF fz16" onclick="toShow('login', 'register');">登录</a>
-                    <a class="registerA colorF fz16" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">注册</a>
-                </div>
-            </div>
-        </c:if>
-
-        <c:if test="${loginedUserLogin.groupId != 1}">
-            <p class="settingA colorF fz12">设置</p>
-            <div class="LoginOut hide" style="z-index: 999">
-                <a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register');">修改密码</a>
-                <a class="outBtn">退出登录</a>
-            </div>
-        </c:if>
-    </div>
-
-
-    <%--<div class="rightNav posAbs">--%>
-        <%--<c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}">--%>
-            <%--<a onclick="qqCustomer(${relation.userQq})" class="teacher"><span class="colorF">老师</span></a>--%>
-            <%--<a class="service" onclick="qqCustomer(${relation.userQq})"><span class="colorF">客服</span></a>--%>
-        <%--</c:if>--%>
-    <%--</div>--%>
-</div>
-
 <div class="flexWrap flexAgCen">
-    <div class="flexCon contentRight wtBg">
+    <div class="flexCon contentRight">
         <div class="notice posRel">
-            <marquee onmouseover="this.stop()" class="noticeMsg noticeList" onmouseout="this.start()" scrollamount="5" direction="left">直播为嘉宾的个人观点，仅供参考，请谨慎交易！</marquee>
+            <p class="trumpet fl"><img src="../static/images/notice.png"/></p>
+            <p class="msgTime fl">
+            </p>
+            <marquee onmouseover="this.stop()" class="noticeMsg noticeList" onmouseout="this.start()"
+                     scrollamount="5" direction="left">直播为嘉宾的个人观点，不可作为您的交易依据与参考，交易有风险，请谨慎交易！
+            </marquee>
         </div>
         <div class="msg" id="msgBox">
             <div class="load">
@@ -206,10 +218,10 @@
     </div>
 </div>
 
-<div style="height: 6rem;    background: #f7f9fc;"></div>
-<div class="footer ltGreyBg">
+<div style="height:5.3rem;"></div>
+<div class="footer pt5 pb5">
     <div class="flexWrap flexAgCen sendMsg posRel">
-        <div class="expressionT posAbs hide" style="bottom:5.6rem;left:0;right:0;background-color: white;z-index: 1000;">
+        <div class="expressionT posAbs hide" style="bottom:4rem;left:0;right:0;background-color: white;z-index: 1000;">
             <div class="video-discuss-emotion" id="video-discuss-emotion">
                 <div class="video-emotion-pane">
                     <ul id="emotionUL">
@@ -229,7 +241,7 @@
 
 <div class="pop hide" id="pop">
 
-    <div class="login wtBg ac posRel ">
+    <div class="login popWrap  wtBg mgAuto ac posRel ">
         <form id="loginForm" method="post" action="/user/login">
             <h2 class="tit fz20 ac">登录</h2>
             <input type="text" class="inp" placeholder="请输入手机号码" name="userTel" id="loginPhone"/>
@@ -264,13 +276,6 @@
 
 </div>
 
-<div class="lxqq">
-    <a href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">
-        <img src="../static/images/qqIcon.gif" alt="">
-    </a>
-</div>
-
-
 <div class="worning hide"></div>
 <iframe id="ifqq1" style="display:none;" src=""></iframe>
 </body>
@@ -283,19 +288,19 @@
 <script src="${staticHost}/js/common/jquery.endless-scroll-1.3.js"></script>
 <script src="${staticHost}/js/consult/consult.js?version=${version}"></script>
 <script src="${staticHost}/js/common/interval.js?version=${version}"></script>
-<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=23590&id=dyyplayer"></script>
+<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=23695&id=dyyplayer"></script>
 <script type="text/javascript">
-    /* if(isOver == 0){
-        var playerVar = new dyyPlayer({
-            //room_id: '${room.roomStreamServer}', //对应房间ID，必要参数
-			room_id:'23590',
-            container: 'play-container', //播放器容器ID，必要参数
-            width: '100%', //播放器宽度，可用数字、百分比等
-            height: '100%', //播放器高度，可用数字、百分比等
-            autostart: true, //是否自动播放，默认为false
-            controlbardisplay: 'enable' //是否显示控制栏，值为：disable、enable默认为disable
-        });
-    } */
+    <%--if(isOver == 0){--%>
+        <%--var playerVar = new dyyPlayer({--%>
+            <%--room_id: '${room.roomStreamServer}', //对应房间ID，必要参数--%>
+<%--//            room_id: '23695', //对应房间ID，必要参数--%>
+            <%--container: 'play-container', //播放器容器ID，必要参数--%>
+            <%--width: '100%', //播放器宽度，可用数字、百分比等--%>
+            <%--height: '100%', //播放器高度，可用数字、百分比等--%>
+            <%--autostart: true, //是否自动播放，默认为false--%>
+            <%--controlbardisplay: 'enable' //是否显示控制栏，值为：disable、enable默认为disable--%>
+        <%--});--%>
+    <%--}--%>
 
     $(function () {
         setTimeout(function () {

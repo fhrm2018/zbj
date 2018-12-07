@@ -13,6 +13,9 @@ if (userInfo.groupId == 1 || userInfo.groupId == 5) {
         }
         //将倒计时赋值到div中
         document.getElementById('remainderTime').innerHTML = str;
+        if (time <= 0) {
+            window.location.reload();
+        }
     }
 
     var currTime = setInterval(function () {
@@ -42,7 +45,6 @@ function checkCanWatch() {
                     $('.freeTipBox .loginOrReg').addClass('hide');
                     $('.videoBox').addClass('hide');
                     $('.viewTime').addClass('hide');
-                    $('.tkTime').attr('tkTime tkTime2');
                     clearInterval(currTime);
                 }
             } else if (data.code == 1002) {

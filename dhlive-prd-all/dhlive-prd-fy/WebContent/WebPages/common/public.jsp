@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <%@page import="com.alibaba.dubbo.config.ApplicationConfig"%>
 <%@page import="com.qiyou.dhlive.api.prd.util.ProjectConfig"%>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -8,7 +8,7 @@
 	if (application.getAttribute("version") == null) {
 		application.setAttribute("version", "1.5.7");
 	}
-	if (application.getAttribute("staticHost") == null || application.getAttribute("staticHost") == "") {
+	if (application.getAttribute("staticHost") == null) {
 		//application.setAttribute("staticHost", request.getScheme() + "://" + request.getServerName() +":"+request.getServerPort()+ request.getContextPath() + "/static");
 		application.setAttribute("staticHost", request.getContextPath() + "/static");
 	}

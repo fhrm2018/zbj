@@ -216,7 +216,7 @@ html[xmlns] .clearfix {display: block;}
     width:100%;
     padding:0 0.5rem;
     line-height: 36px;
-    color: #ffffff;
+	color:#ffffff;
     box-sizing: border-box;
     border: 1px solid #a9a9a9;
 }

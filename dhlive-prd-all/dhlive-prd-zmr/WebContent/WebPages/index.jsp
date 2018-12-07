@@ -1,14 +1,14 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 
-    <title>【国际期货直播室】恒指期货直播室_股指期货直播间_黄金直播间-追梦人直播间</title>
-    <meta name="keywords" content="追梦人,追梦人直播间、国际黄金实时行情、国际原油期货、恒指期货开户、期货怎么炒、国际期货"/>
-    <meta name="description" content="追梦人-权威国际期货直播领导者，追梦人国际期货交易平台,特邀精英讲师团为投资者提供前沿的全球期货实时行情分析、恒生指数期货实战交流、股指期货实盘交易培训、指数期货直播、原油期货直播、黄金期货实时行情、每日美股行情走势等，打造您身边靠谱的国际期货交流平台。"/>
-    <link rel="shortcut icon" href="${staticHost }/images/favicon.png" type="image/x-icon"/>
+    <title>牛金商学院-期货入门知识_农产品期货开户_期货课堂</title>
+    <meta name="keywords" content="牛金商学院,牛金商学院直播间,牛金商学院研究所,期货入门,期货知识,农产品期货开户"/>
+    <meta name="description" content="牛金商学院提供专家内盘期货入门指导，专业分析师在线进行指导教学,牛金商学院研究所提供炒期货投资入门、农产品期货行情,金融期货投资、期货经济数据、期货模拟交易等,牛金商学院是您身边值得信赖的期货直播平台!"/>
+    <link rel="shortcut icon" href="/static/images/favicon.png" type="image/x-icon"/>
     <jsp:include page="common/public.jsp"/>
     <script type="text/javascript">
         //全局变量
@@ -18,12 +18,12 @@
             time = 1,
             activityConfigId = '${config.id}',
             activityCountdown = '${config.activityCountdown}',
+            chatImgs = new Array(),
             talkUserId = '',
             imgPath = '${imagePath}',
-            chatImgs = new Array(),
             type_flag = 0,
             isCanSend = true,
-            groupId =    '${loginedUserLogin.groupId}',
+            groupId =    ${loginedUserLogin.groupId},
             tempWatchTime = ${room.tempWatchTime},
             loginInfo = {
                 'sdkAppID': '${sdkAppId}', //用户所属应用id,必填
@@ -37,22 +37,12 @@
             userInfo = {
                 'id': '${loginedUserLogin.userId}', //当前用户ID,必须是否字符串类型，选填
                 'nickName': '${loginedUserLogin.userNickName}', //当前用户昵称，选填
-                'groupId': '${loginedUserLogin.groupId}',
+                'groupId': ${loginedUserLogin.groupId},
                 'level': ''//会员等级
             },
             msgIdMap = {},
             selSess,//聊天session
-			utmSource = '${utmSource}',
-			relation = {
-				'userId': '${relation.userId}',	
-				'userNickName': '${relation.userNickName}',	
-				'groupId': '${relation.groupId}',	
-				'userLevel': '${relation.userLevel}',	
-				'userIntroduction': '${relation.userIntroduction}',	
-				'userPhoto': '${relation.userPhoto}',	
-				'userQrcode': '${relation.userQrcode}',	
-				'userQq': '${relation.userQq}',	
-			},
+
             accountMode = 0;//帐号模式，0-表示独立模式，1-表示托管模式
         if (groupId == '1') {
             loginInfo.identifier = 'yk-' + loginInfo.identifier;
@@ -64,65 +54,6 @@
             loginInfo.identifier = 'vip-' + loginInfo.identifier;
             userInfo.level = '${vip.userLevel}';
         }
-        
-        function qqCustomer() {
-            $("body").find("iframe").eq(0).attr("src", "tencent://message/?uin=" + relation.userQq + "");
-        }
-        
-        function createNewGuest(){
-        	var jqxhr = $.ajax({
-                url: ctx + '/live/createNewUser?utmSource='+ utmSource,
-                async: false,
-            });
-            jqxhr.done(function (data) {
-                if (data.code == '1000') {
-                    var userRes = data.data.user;
-                    var relationRes = data.data.onLineZL;
-                    userInfo.id = userRes.userId;
-                    userInfo.nickName = userRes.userNickName;
-                    userInfo.id = userRes.userId;
-                    userInfo.groupId = userRes.groupId;
-                    groupId = userRes.groupId;
-                    
-                    loginInfo.identifier = 'yk-' + userInfo.id ;
-                    loginInfo.identifierNick = userInfo.nickName ;
-                    
-                    relation.userId = relationRes.userId;
-                    relation.userNickName = relationRes.userNickName;
-                    relation.groupId = relationRes.groupId;
-                    relation.userLevel = relationRes.userLevel;
-                    relation.userIntroduction = relationRes.userIntroduction;
-                    relation.userPhoto = relationRes.userPhoto;
-                    relation.userQrcode = relationRes.userQrcode;
-                    relation.userQq = relationRes.userQq;
-                    
-                }
-           });
-        }
-        
-        var isInit = false;
-        if(userInfo.id == ''){
-        	createNewGuest();
-        	isInit = true;
-        }
-        $(function () {
-        	function initNewGuestPage(){
-        		$('.inintPage-relation-name').html(relation.userNickName);
-        		$('.inintPage-relation-qq').html(relation.userQq);
-        		$('.inintPage-relation-userIntroduction').html(relation.userIntroduction);
-        		$('.inintPage-relation-userQrcode').attr('src',imgPath + "ori/"+relation.userQrcode);
-        		$('.inintPage-relation-userPhoto').attr('src',imgPath + "ori/"+relation.userPhoto);
-        		$('#persionC2CMessageForm span').find('input[name="fromId"]').eq(0).val(userInfo.userId);
-        		$('#persionC2CMessageForm span').find('input[name="fromNickName"]').eq(0).val(userInfo.nickName);
-        		$('#persionC2CMessageForm span').find('input[name="toId"]').eq(0).val(relation.userId);
-        		$('#persionC2CMessageForm span').find('input[name="toNickName"]').eq(0).val(relation.userNickName);
-        		$('#persionC2CMessageForm span').find('input[name="persionToGroupId"]').eq(0).val(relation.groupId);
-        	}
-        	
-        	if(isInit){
-        		initNewGuestPage();
-        	}
-        });
     </script>
 
 </head>
@@ -130,32 +61,27 @@
 <body class="changeBg1">
 
 
-<%--<c:if test="${loginedUserLogin.groupId == 1}">--%>
-    <%--<!-- WPA Button Begin -->--%>
-    <%--<!-- 添加营销QQ -->--%>
-    <%--<!-- WPA Button End -->--%>
-<%--</c:if>--%>
 
 <!-- 辅助变量 -->
 <input type="hidden" id="atHeInput" value=""/>
 <div class="techer_class" id="courseplanArea">
     <div class="class_inside">
-        <img src="${staticHost }/images/close4.png" class="close11 pop-close" onclick="classShow('show');">
+        <img src="/static/images/dh/close.png" class="close11 pop-close" onclick="classShow('show');">
         <c:if test="${state == 3}">
             <div class="kcap kcap2">
                 <table>
                     <tr>
-                        <th>直播时间</th>
-                        <th>特邀嘉宾</th>
-                        <th>课程介绍</th>
+                        <th>时间</th>
+                        <th>老师</th>
+                        <th>课程</th>
                     </tr>
-                <c:forEach items="${plan}" var="pln">
-                    <tr>
-                    	<td>${pln.planTime}</td>
-                        <td>${pln.planTeacher}</td>
-                        <td>${pln.planIntroduce}</td>
-                    </tr>
-                </c:forEach>
+                    <c:forEach items="${plan}" var="pln">
+                        <tr>
+                            <td>${pln.planTime}</td>
+                            <td>${pln.planTeacher}</td>
+                            <td>${pln.planIntroduce}</td>
+                        </tr>
+                    </c:forEach>
                 </table>
             </div>
         </c:if>
@@ -163,154 +89,152 @@
             <div class="kcap">
                 <table>
                     <tr>
-                        <th>直播时间（周一至周五）</th>
-                        <th>特邀嘉宾</th>
+                        <th>时间</th>
+                        <th>老师</th>
                     </tr>
-                <c:forEach items="${plan}" var="pln">
-                    <tr>
-                        <td>${pln.planTime}</td>
-                        <td>${pln.planTeacher}</td>
-                    </tr>
-                </c:forEach>
+                    <c:forEach items="${plan}" var="pln">
+                        <tr>
+                            <td>${pln.planTeacher}</td>
+                            <td>${pln.planTime}</td>
+                        </tr>
+                    </c:forEach>
                 </table>
             </div>
-         </c:if>
+        </c:if>
     </div>
 </div>
 <div class="header">
     <div class="wrap mgAuto posRel">
         <div class="topLeft fl">
-            <a class="logo"><img src="${staticHost }/images/logo.png"></a>
-            <%--<a class="a1 collectionBtn" id="Collection01" onclick="collection(document.title,window.location)">--%>
-                <%--<img src="../static/images/a7.png" alt="">--%>
-            <%--</a>--%>
+            <a class="logo"><img src="../static/images/logo.png"></a>
 
-            <a class="a1" onclick="classShow()">
-                <img src="${staticHost }/images/a9.png" alt="">
+            <a class="a1" onclick="qqCustomer(${relation.userQq})">
+                <img src="../static/images/a1.png" alt="">
             </a>
-            <a class="a1" target="_blank" href="http://www.ditan666.com/zm.html">
-                <img src="${staticHost }/images/a10.png" alt="">
+            <a class="a1" onclick="qqCustomer(${relation.userQq})">
+                <img src="../static/images/a2.png" alt="">
             </a>
-            <a class="a1" onclick="qqCustomer()">
-                <img src="${staticHost }/images/a1.png" alt="">
+            <a class="a1" onclick="qqCustomer(${relation.userQq})">
+                <img src="../static/images/a3.png" alt="">
             </a>
-            <a class="a1" onclick="qqCustomer()">
-                <img src="${staticHost }/images/a4.png" alt="">
-            </a>
-            <a class="a1" onclick="qqCustomer()">
-                <img src="${staticHost }/images/a5.png" alt="">
-            </a>
-            <a class="a1" onclick="qqCustomer()">
-                <img src="${staticHost }/images/a6.png" alt="">
+            <a class="a1" target="_blank" href="http://www.oeo2.com/">
+                <img src="../static/images/a5.png" alt="">
             </a>
 
-            <a class="a1 downUrlBtn" onclick="downUrl()">
-                <img src="${staticHost }/images/a3.png" alt="">
+            <a class="a1" onclick="qqCustomer(${relation.userQq})" style="margin-top:11px;">
+                <img src="../static/images/zxzx.gif" alt="">
             </a>
-
-            <c:if test="${loginedUserLogin.groupId == 1}">
-                <a class="a1 service">
-                    <img src="${staticHost }/images/a8.png" alt="">
-                </a>
-            </c:if>
-
-            <%--<a class="a1" onclick="teacherJs()">--%>
-                <%--<img src="../static/images/a2.png" alt="">--%>
-            <%--</a>--%>
 
 
         </div>
         <div class="topRight fr">
+
+            <%--<a class="shareBtn colorF fz16" href="javascript:">--%>
+            <%--<i><img src="../static/images/shareIcon.png" alt=""></i>--%>
+            <%--<span>分享</span>--%>
+            <%--</a>--%>
+            <a class="downUrl colorF fz16" href="javascript:" onclick="downUrl()">
+                <span>保存到桌面</span>
+            </a>
+
             <%--<c:if test="${loginedUserLogin.groupId == 1}">--%>
-                <%--<span class="username colorF" id="username">--%>
-                    <%--<img src="../static/images/yk.png" alt="">${loginedUserLogin.userNickName}--%>
-                <%--</span>--%>
+            <%--<span class="username colorF" id="username">--%>
+            <%--<img src="../static/images/yk.png" alt="">${loginedUserLogin.userNickName}--%>
+            <%--</span>--%>
             <%--</c:if>--%>
 
             <c:if test="${loginedUserLogin.groupId == 2}">
                 <span class="username colorF" id="username">
-                    <img src="${staticHost }/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
+                    <img src="../static/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
                 </span>
             </c:if>
 
             <c:if test="${loginedUserLogin.groupId == 3}">
                 <span class="username colorF" id="username">
-                    <img src="${staticHost }/images/zl.png" alt="">${loginedUserLogin.userNickName}
+                    <img src="../static/images/zl.png" alt="">${loginedUserLogin.userNickName}
                 </span>
             </c:if>
 
             <c:if test="${loginedUserLogin.groupId == 4}">
                 <span class="username colorF" id="username">
-                    <img src="${staticHost }/images/icon_teacher.png" alt="">${loginedUserLogin.userNickName}
+                    <img src="../static/images/icon_teacher.png" alt="">${loginedUserLogin.userNickName}
                 </span>
             </c:if>
 
             <c:if test="${loginedUserLogin.groupId == 5}">
                 <c:if test="${vip.userLevel == 1}">
                     <span class="username colorF" id="username">
-                      <img src="${staticHost }/images/VIP1.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="../static/images/VIP1.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
 
                 <c:if test="${vip.userLevel == 2}">
                     <span class="username colorF" id="username">
-                      <img src="${staticHost }/images/VIP2.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="../static/images/VIP2.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
 
                 <c:if test="${vip.userLevel == 3}">
                     <span class="username colorF" id="username">
-                      <img src="${staticHost }/images/VIP3.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="../static/images/VIP3.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
 
                 <c:if test="${vip.userLevel == 4}">
                     <span class="username colorF" id="username">
-                      <img src="${staticHost }/images/VIP4.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="../static/images/VIP4.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
 
                 <c:if test="${vip.userLevel == 5}">
                     <span class="username colorF" id="username">
-                      <img src="${staticHost }/images/VIP5.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="../static/images/VIP5.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
 
                 <c:if test="${vip.userLevel == 6}">
                     <span class="username colorF" id="username">
-                      <img src="${staticHost }/images/VIP6.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="../static/images/VIP6.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
 
                 <c:if test="${vip.userLevel == 7}">
                     <span class="username colorF" id="username">
-                      <img src="${staticHost }/images/VIP7.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="../static/images/VIP7.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
 
                 <c:if test="${vip.userLevel == 8}">
                     <span class="username colorF" id="username">
-                      <img src="${staticHost }/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="../static/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
             </c:if>
 
             <c:if test="${loginedUserLogin.groupId == 1}">
-                <%--<span class="username colorF" id="username"></span>--%>
-                <a href="javascript:" class="loginA colorF fz16 bg12" id="g10" onclick="toShow('login', 'register');">登录</a>
-                <a herf="javascript:" class="registerA colorF fz16" id="g11" onclick="toShow('register','login');">注册</a>
+                <a class="message posRel hide">
+                    <img src="../static/images/message.png"/>
+                    <i class="redDot posAbs"></i>
+                </a>
+                <a class="loginA colorF fz16" id="g10" onclick="toShow('login', 'register');">登录</a>
+                <a class="registerA colorF fz16" id="g11" onclick="toShow('register','login');">注册</a>
             </c:if>
 
             <c:if test="${loginedUserLogin.groupId != 1}">
-                <a class="settingA colorF fz16">设置</a>
-                <div class="LoginOut hide">
-                    <a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register');">修改密码</a>
-                    <a class="outBtn">退出登录</a>
-                </div>
+
+                <%--<c:if test="${loginedUserLogin.groupId == 3}">--%>
+                    <a class="settingA colorF fz16">设置</a>
+                    <div class="LoginOut hide">
+                        <a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register');">修改密码</a>
+                        <a class="outBtn">退出登录</a>
+                    </div>
+                <%--</c:if>--%>
+
+
             </c:if>
         </div>
         <div class="rightNav posAbs">
-            <c:if test="${loginedUserLogin.groupId == 3 }">
+            <c:if test="${loginedUserLogin.groupId != 1 && loginedUserLogin.groupId != 5}">
                 <a class="waterF"><span class="colorF">水滴</span>
                     <div class="newMsgtipDiv hide"><i class="newMsgtip"></i></div>
                 </a>
@@ -322,8 +246,42 @@
     <div class="wrap clearfix">
         <div class="contentLeft fl">
             <div class="clearfix" style="width: 100%">
-                <c:if test="${loginedUserLogin.groupId == 3 || loginedUserLogin.groupId == 4}">
-                    <div class="left_left">
+                <div class="left_left">
+                    <c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}">
+                        <div class="leftBtn">
+                            <%--<a href="javascript:" onclick="qqCustomer(${relation.userQq})">--%>
+                                <%--<i><img src="../static/images/icon1.png" alt=""></i>--%>
+                                <%--<span>盈利榜</span>--%>
+                            <%--</a>--%>
+                            <a href="javascript:" onclick="qqCustomer(${relation.userQq})">
+                                <i><img src="../static/images/icon2.png" alt=""></i>
+                                <span>实时策略</span>
+                            </a>
+                            <a href="javascript:" onclick="qqCustomer(${relation.userQq})">
+                                <i><img src="../static/images/icon3.png" alt=""></i>
+                                <span>早晚评</span>
+                            </a>
+                            <a href="javascript:" onclick="classShow()">
+                                <i><img src="../static/images/icon4.png" alt=""></i>
+                                <span>课程表</span>
+                            </a>
+                            <%--<a href="javascript:">--%>
+                                <%--<i><img src="../static/images/icon5.png" alt=""></i>--%>
+                                <%--<span>财经资讯</span>--%>
+                            <%--</a>--%>
+                            <a class="service" href="javascript:">
+                                <i><img src="../static/images/icon6.png" alt=""></i>
+                                <span>专属客服</span>
+                            </a>
+                            <div class="ewm">
+                                <img src="../static/images/ewm.png" alt=""></i>
+                                <span>扫一扫</span>
+                                <span>看直播</span>
+                            </div>
+                        </div>
+                    </c:if>
+
+                    <c:if test="${loginedUserLogin.groupId == 3 || loginedUserLogin.groupId == 4}">
                         <div class="visitors">
                             <div class="visitorsBtn clearfix">
                                 <a class="cur">VIP</a>
@@ -338,8 +296,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </c:if>
+                    </c:if>
+                </div>
 
                 <div class="left_right"></div>
                 <div class="left_middle <c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}"> pad0 </c:if>">
@@ -355,31 +313,102 @@
                             </div>
                         </div>
                         <div class="toLogin posRel">
-                            <div class="freeTipBox hide">
-                                <div class="loginOrReg">
-                                    <a href="javascript:" class="registerBtn" onclick="qqCustomer()">
-                                        <img src="${staticHost }/images/time_out_01.jpg" alt="">
-                                    </a>
-                                </div>
-                            </div>
+                            <a href="javascript:" class="registerBtn" onclick="qqCustomer(${relation.userQq})">
+                                <div class="freeTipBox hide"></div>
+                            </a>
                             <div class="videoBox" id="play-container" style="width:100%; height:100%">
                                 <div id="dyyplayer" style="width:100%;height:100%"></div>
                             </div>
                         </div>
                     </div>
                     <div class="movieBot mt10">
-                        <div id="relativediv">
+                        <div id="relativediv" class="clearfix">
                             <div class="bannerImg">
-                                <a href="javascript:" onclick="qqCustomer()">
-                                    <img src="${staticHost }/images/b1.jpg" alt="">
-                                </a>
+                                <div class="activityBtn clearfix">
+                                    <a class="btn1 cur" href="javascript:">精彩活动</a>
+                                    <a class="btn1" href="javascript:">老师介绍</a>
+                                </div>
+                                <div class="activityImg">
+                                    <div class="img1">
+                                        <a href="javascript:" onclick="qqCustomer(${relation.userQq})">
+                                            <img class='b1' src="../static/images/b1.jpg" alt="">`
+                                        </a>
+                                    </div>
+                                    <div class="img1 clearfix hide">
+                                        <ul class="hoverImg clearfix">
+                                            <li>
+                                              <a href="javascript:">
+                                                  <img src="../static/images/sl.png" alt="">
+                                              </a>
+                                              <div class="teacherImg hide">
+                                                  <img src="../static/images/sld.png" alt="">
+                                              </div>
+                                            </li>
+                                            <%--<li>--%>
+                                                <%--<a href="javascript:">--%>
+                                                    <%--<img src="../static/images/hy.png" alt="">--%>
+                                                <%--</a>--%>
+                                                <%--<div class="teacherImg hide">--%>
+                                                    <%--<img src="../static/images/hyd.png" alt="">--%>
+                                                <%--</div>--%>
+                                            <%--</li>--%>
+                                            <li>
+                                                <a href="javascript:">
+                                                    <img src="../static/images/jj.png" alt="">
+                                                </a>
+                                                <div class="teacherImg hide">
+                                                    <img src="../static/images/jjd.png" alt="">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:">
+                                                    <img src="../static/images/qk.png" alt="">
+                                                </a>
+                                                <div class="teacherImg hide">
+                                                    <img src="../static/images/qkd.png" alt="">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:">
+                                                    <img src="../static/images/sg.png" alt="">
+                                                </a>
+                                                <div class="teacherImg hide">
+                                                    <img src="../static/images/sgd.png" alt="">
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                        <%--<div class="lsBtn">--%>
+                                            <%--<a class="cur" href="javascript:">哈哈老师</a>--%>
+                                            <%--<a href="javascript:">哼哼老师</a>--%>
+                                            <%--<a href="javascript:">哈哈老师</a>--%>
+                                            <%--<a href="javascript:">哼哼老师</a>--%>
+                                        <%--</div>--%>
+                                        <%--<div class="lsCon">--%>
+                                            <%--<div class="lsImg">--%>
+                                                <%--<img src="../static/images/asd.jpg" alt="">--%>
+                                            <%--</div>--%>
+                                            <%--<div class="lsImg hide">--%>
+                                                <%--<img src="../static/images/asd.jpg" alt="">--%>
+                                            <%--</div>--%>
+                                            <%--<div class="lsImg hide">--%>
+                                                <%--<img src="../static/images/asd.jpg" alt="">--%>
+                                            <%--</div>--%>
+                                            <%--<div class="lsImg hide">--%>
+                                                <%--<img src="../static/images/asd.jpg" alt="">--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="otherMenu hide">
-                            <ul>
-                                <li class="ml7">课程安排</li>
-                            </ul>
-                            <span class="tip fz12 fr">投资有风险，入市须谨慎</span>
+
+                            <div class="jinShi">
+                                <h3>实时财经资讯</h3>
+                                <div class="jinShiNews">
+                                    <iframe frameborder="0" width="100%" height="2100" scrolling="no" src="https://www.jin10.com/example/jin10.com.html?messageNum=50&fontSize=14px&theme=black"></iframe>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -390,9 +419,9 @@
         <div class="contentRight fr posRel">
             <div class="allUserView ">
                 <div class="notice posRel hide">
-                    <p class="trumpet fl"><img src="${staticHost }/images/notice.png"/></p>
+                    <p class="trumpet fl"><img src="../static/images/notice.png"/></p>
                     <p class="msgTime fl"></p>
-                    <p class="trig fr" style="display:none;"><img src="${staticHost }/images/trig.png"/></p>
+                    <p class="trig fr" style="display:none;"><img src="../static/images/trig.png"/></p>
                     <marquee onmouseover="this.stop()" class="noticeMsg noticeList" onmouseout="this.start()" scrollamount="5" direction="left"></marquee>
                 </div>
                 <div class="moreNotice hide">
@@ -410,20 +439,20 @@
                             </c:if>
                             <p class="tishi">
                                 <i class="noticeIcon"></i>
-                                <marquee scrollamount="5">
-                                    直播为嘉宾的个人观点，仅供参考，请谨慎交易！
+                                <marquee scrollamount="10" 速度="">
+                                    直播为嘉宾的个人观点，不可作为您的交易依据与参考，交易有风险，请谨慎交易！
                                 </marquee>
                             </p>
                             <div class="msg" id="msgBox">
                                 <div class="load">
-                                    <img src="${staticHost }/images/load.gif"/>
+                                    <img src="../static/images/load.gif"/>
                                 </div>
                             </div>
                         </div>
                         <div class="serviceList clearfix posRel">
                             <div class="qqWra">
                                 <c:forEach var="as" begin="0" items="${assistant}">
-                                    <a class="assistantQQ" onclick="qqCustomer()">
+                                    <a class="assistantQQ" onclick="qqCustomer(${as.userQq})">
                                         <img class="headImg" src="${imagePath}ori/${as.userPhoto}" alt="">
                                         <span>${as.userNickName}</span>
                                         <div class="bigImg hide">
@@ -433,19 +462,13 @@
                                     </a>
                                 </c:forEach>
                             </div>
-                            <%--<a class="more" href="javascript:"></a>--%>
+                            <c:if test="${!empty assistant}">
+                                <a class="more assistantQQ">更多</a>
+                            </c:if>
                         </div>
 
                         <div class="messageBox">
                             <div class="inputTxt clearfix">
-                                <c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}">
-                                    <div class="contactQQ">
-                                        <a id="goo26" href="javascript:"  onclick="qqCustomer()">智能跟单</a>
-                                        <a id="goo27" href="javascript:" onclick="qqCustomer()">账户诊断</a>
-                                            <%--<a id="goo28" href="javascript:" onclick="qqCustomer(${relation.userQq})">领取策略</a>--%>
-                                    </div>
-                                </c:if>
-
                                 <!-- 选择小号 -->
                                 <c:if test="${manage.groupId == 3 || manage.groupId == 4}">
                                     <div class="assistantList" style="float: right">
@@ -460,7 +483,7 @@
 
                                 <div class="emoticonIcon">
                                     <div class="expressionT posAbs hide"
-                                         style="top:-506px;left:0px; background-color: white; z-index: 99; box-shadow:0 1px 1px #ccc;">
+                                         style="top:-330px;left:0px; background-color: white; z-index: 99; box-shadow:0 1px 1px #ccc;">
                                         <div class="video-discuss-emotion" id="video-discuss-emotion">
                                             <div class="video-emotion-pane">
                                                 <ul id="emotionUL">
@@ -472,19 +495,20 @@
                                         <a class="faceF"></a>
                                         <a class="redBagF"><i id="redPackIntF" style="display: none"></i></a>
                                         <a class="roseF"><i id="roseIntF" style="display: none"></i></a>
-                                        <a class="file sendImgA">
-                                            <input type="file" id="msgImage" name="chatImage" accept="image/*"/>
+                                        <a class="file" href="javascript:">
+                                            <input type="file" id="msgImage" name="chatImage" value="发送图片" accept="image/*"/>
                                         </a>
                                         <a class="clearScreen"><i style="display: none"></i></a>
-										 <c:if test="${manage.groupId == 3 || manage.groupId == 4}">
+
+                                        <c:if test="${manage.groupId == 3 || manage.groupId == 4}">
                                             <label>
                                                 <input type="checkbox" id="smallGroupType">
                                                 <span>小号群发</span>
                                             </label>
                                         </c:if>
+
                                     </form>
                                 </div>
-
                             </div>
                             <div class="sendMsg posRel">
                                 <textarea class="message" placeholder="观望一天不如咨询一遍，即刻开启您的财富之旅"
@@ -501,19 +525,27 @@
 
 <div class="footer">
     <div class="wrap ac mgAuto">
-        <span>直播为嘉宾的个人观点，仅供参考，请谨慎交易！ 版权：深圳市美易互动科技有限公司 投资有风险  入市需谨慎</span>
+        <span>嘉宾所发表言论只代表个人观点，不可作为您交易的参考和依据，交易有风险，操作需谨慎！</span>
+        <%--<span style="color:#1c4e83">金创互动科技(深圳)有限公司</span>--%>
     </div>
 </div>
 
-
 <div class="pop hide" id="pop">
-    <div class="login clearfix">
+    <div class="login popWrap wtBg mgAuto ac posRel clearfix">
         <div class="rightInput">
             <form id="loginForm" method="post" action="/user/login">
                 <h2 class="tit fz20 ac">VIP登录</h2>
-                <input type="text" class="inp" placeholder="请输入帐号" name="userTel" id="loginPhone"/>
-                <input type="password" class="inp" placeholder="请输入密码" name="userPass" id="loginPwd"/>
-                <a href="javascript:" onclick="qqCustomer()">忘记密码</a>
+                <span class="inp inp2">
+                    <i></i>
+                    <input type="text" placeholder="请输入帐号" name="userTel" id="loginPhone"/>
+                </span>
+                <span class="inp">
+                    <i></i>
+                    <input type="password" placeholder="请输入密码" name="userPass" id="loginPwd"/>
+                </span>
+                <a href="javascript:" onclick="qqCustomer(${relation.userQq})">
+                    <span>忘记密码</span> <i>/</i> 注册
+                </a>
                 <input type="submit" class="redBut mb10 mt20" id="login" value="登录"/>
                 <p class="errorMsg red3 fz20 hide"></p>
             </form>
@@ -522,8 +554,10 @@
     </div>
     <div class="register popWrap mgAuto posRel ac">
         <form id="registerForm" method="post" action="/user/userRegistered">
-            <img src="${staticHost }/images/register.jpg" alt="">
-            <a class="btn01" href="javascript:"  onclick="qqCustomer()">立即注册VIP</a>
+            <img src="../static/images/kf.png" alt="">
+            <a class="btn01" href="javascript:" onclick="qqCustomer(${relation.userQq})">
+                <img src="../static/images/button.png" alt="">
+            </a>
         </form>
         <a class="close close2"></a>
     </div>
@@ -543,29 +577,29 @@
 
 <div class="waterDrop hide waterPersionBox ykpop">
     <div class="logo">
-        <img src="${staticHost }/images/logo.png" alt="">
+        <img src="../static/images/logo.png" alt="">
         <a href="javascript:" class="close1"></a>
     </div>
     <div class="chat clearfix">
         <div class="left_wra">
             <div class="left_chat">
-                <h4 class="withManageToChatTip">正在与<span class="inintPage-relation-name">${relation.userNickName}</span>对话<i></i></h4>
+                <h4 class="withManageToChatTip">正在与${relation.userNickName}对话<i></i></h4>
                 <div class="list_chat clearfix" id="waterPersionChatBox">
                     <div class="messageTip hide">
                         <div class="text01 clearfix">
                             <div class="user_img">
-                                <span class="inintPage-relation-name">${relation.userNickName}</span>
+                                <span>${relation.userNickName}</span>
                             </div>
                             <div class="txt">
-                                <p>您好，欢迎您来到《追梦人直播间》国资背景期货公司合作方，希望我们的直播能给您带来便利！</p><br/>
-                                <p>【0元开户】请回复：1</p>
-                                <p>【领取课件】请回复：2</p>
-                                <p>【操作策略】请回复：3</p>
-                                <p>【仓单诊断】请回复：5</p>
-                                <p>【名师一对一】请回复：6</p>
-                                <p>【注册会员】请回复：7</p>
-                                <p>【其他】请回复：888</p>
-                                <p>如有其它问题或不便打字，可留下电话/QQ/微信或扫一扫【二维码】添加小秘书微信哦！</p>
+                                <p>您好，我是《牛金商学院》高级助理，很高兴为您服务。</p><br/>
+                                <p><i></i>申请策略体验 <i></i> 回复1</p>
+                                <p><i></i>持仓诊断分析 <i></i> 回复2</p>
+                                <p><i></i>平台资料详解 <i></i> 回复3</p>
+                                <p><i></i>分析师一对一 <i></i> 回复4</p>
+                                <p><i></i>会员课件布局 <i></i> 回复5</p>
+                                <p><i></i>开户转户入金 <i></i> 回复6</p>
+                                <p><i></i>升级马甲会员 <i></i> 回复7</p>
+                                <p>牛金商学院，专业的理财交易平台，国内顶级分析师团队，主讲产品：恒指、德指、美原油、美黄金、美铜。可添加QQ或扫描二维码添加助理小秘书哦！</p>
                             </div>
                         </div>
                     </div>
@@ -580,7 +614,7 @@
                             <input type="hidden" name="fromNickName" value="${loginedUserLogin.userNickName}"/>
                             <input type="hidden" name="toId" id="persionToId" value="${relation.userId}"/>
                             <input type="hidden" name="toNickName" value="${relation.userNickName}"/>
-                            <input type="hidden" name="persionToGroupId" id="persionToGroupId" value="${relation.groupId}"/>
+                            <input type="hidden" id="persionToGroupId" value="${relation.groupId}"/>
                             <input type="hidden" name="level" value="${vip.userLevel}"/>
                             <input type="text" name="content" id="waterPersionContent" placeholder="请输入内容">
                             <div class="btns">
@@ -595,16 +629,16 @@
         <div class="right_chat">
             <div class="user_data">
                 <div class="user_title">
-                    <img class="inintPage-relation-userPhoto" src="${imagePath}ori/${relation.userPhoto}" alt="">
+                    <img src="${imagePath}ori/${relation.userPhoto}" alt="">
                     <div class="txt">
-                        <span class="inintPage-relation-name">${relation.userNickName}</span>
-                        <%--<span>手机：${relation.userTel}</span>--%>
-                        <span>QQ：</span><span class="inintPage-relation-qq">${relation.userQq}</span>
+                        <span>${relation.userNickName}</span>
+                        <span>手机：${relation.userTel}</span>
+                        <span>QQ：${relation.userQq}</span>
                     </div>
                 </div>
-                <p class="user_intro"><span class="inintPage-relation-userIntroduction">${relation.userIntroduction}</span></p>
+                <p class="user_intro">${relation.userIntroduction}</p>
                 <div class="img01">
-                    <img class="inintPage-relation-userQrcode" src="${imagePath}ori/${relation.userQrcode}" alt="">
+                    <img src="${imagePath}ori/${relation.userQrcode}" alt="">
                     <a href="javascript:"></a>
                 </div>
             </div>
@@ -614,7 +648,7 @@
 
 <div class="waterDrop waterListF hide zlpop">
     <div class="logo">
-        <img src="${staticHost }/images/logo.png" alt="">
+        <img src="../static/images/logo.png" alt="">
         <span class="seach">
         <input type="text" placeholder="输入查询">
         <a href="javascript:"></a>
@@ -664,7 +698,7 @@
                         <div class="list_chat clearfix waterChatMessageList" id="waterAdminChatBox">
                             <div class="text01 clearfix">
                                 <div class="user_img">
-                                    <img src="${staticHost }/images/img_08.png" alt="">
+                                    <img src="../static/images/img_08.png" alt="">
                                     <span>晨曦</span>
                                 </div>
                                 <div class="txt">
@@ -678,7 +712,7 @@
                                     <p></p>
                                 </div>
                                 <div class="user_img">
-                                    <img src="${staticHost }/images/img_09.png" alt="">
+                                    <img src="../static/images/img_09.png" alt="">
                                     <span>游客123</span>
                                 </div>
                             </div>
@@ -742,21 +776,25 @@
 </div>
 <div class="worning hide"></div>
 
-<%--<div class="popMask">--%>
-    <%--<div class="popImg">--%>
-        <%--<a href="javascript:" id="g15" onclick="qqCustomer(${relation.userQq})">--%>
-            <%--<img src="../static/images/img.png" alt="">--%>
-        <%--</a>--%>
-        <%--<a class="closeImg" style="" href="javascript:"></a>--%>
-    <%--</div>--%>
-<%--</div>--%>
+<div class="popMask">
+    <div class="popImg">
+        <a href="javascript:" id="g15" onclick="qqCustomer(${relation.userQq})">
+            <img src="../static/images/img.jpg" alt="">
+        </a>
+        <a class="closeImg" style="" href="javascript:"></a>
+    </div>
+</div>
 
 <%--听课时长--%>
 <div class="tkTimePopMask hide">
     <div class="tkTime">
-        <%--<h3>您已听课3分钟</h3>--%>
-        <a class="lxQQ" id="g6" href="javascript:" onclick="qqCustomer()">立即注册VIP</a>
-        <a class="tkClose" href="javascript:"></a>
+        <%--<h3>恭喜您! 收看超过3分钟免费获得VIP</h3>--%>
+        <div class="tkBg">
+            <div class="tkBtn">
+                <a class="lxQQ" id="g6" href="javascript:" onclick="qqCustomer(${relation.userQq})"></a>
+            </div>
+            <a class="tkClose" href="javascript:"></a>
+        </div>
     </div>
 </div>
 
@@ -764,71 +802,65 @@
 <div class="imgMask hide">
     <div class="bigImgWra">
         <div class="bigImg">
-            <img src="${staticHost }/images/timg2.jpg" alt="">
+            <img src="" alt="">
         </div>
         <a class="bigImgClose" href="javascript:" onclick="bigClose()"></a>
     </div>
 </div>
 
-<div class="teacherJsMask hide">
-    <div class="teacherJs">
-        <img src="${staticHost }/images/teacherJs.png" alt="">
-        <a class="teacherJsClose" href="javascript:"></a>
-    </div>
-</div>
-
-
-<c:if test="${loginedUserLogin.groupId == 1}">
-    <a class="kefu" onclick="topQQ()" href="javascript:">
-        <img src="${staticHost }/images/qqIcon.gif" alt="">
-    </a>
-</c:if>
-
-
 
 <iframe id="ifqq1" style="display:none;" src=""></iframe>
 
 </body>
-<%--<script async defer src="//vip2.xunbaoqu.com/client?swt&id=1520:2895"></script>--%>
+
 <script src="${staticHost}/js/lib/slide.js?version=${version}"></script>
 <script src="${staticHost}/js/common/common.js?version=${version}"></script>
 <script src="${staticHost}/js/common/index.js?version=${version}"></script>
-<script src="${staticHost}/js/common/jquery.endless-scroll-1.3.js"></script>
-<script src="${staticHost}/js/comment/comment.js?version=${version}"></script>
-<script src="${staticHost}/js/consult/consult.js?version=${version}"></script>
-<script src="${staticHost}/js/common/interval.js?version=${version}"></script>
-<script src="${staticHost}/js/common/awardRotate.js?version=${version}"></script>
 <script src="${staticHost}/js/lib/tls/webim.js?version=${version}"></script>
 <script src="${staticHost}/js/chat/chat_group_notice.js?version=${version}"></script>
 <script src="${staticHost}/js/chat/c2c_chat.js?version=${version}"></script>
 <script src="${staticHost}/js/chat/chat_base.js?version=${version}"></script>
 <script src="${staticHost}/js/chat/chat.js?version=${version}"></script>
-<!-- baidu -->
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?a30a73c4b69a6450074e9dcb9cf4bf4d";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124641888-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<script src="${staticHost}/js/common/jquery.endless-scroll-1.3.js"></script>
+<script src="${staticHost}/js/comment/comment.js?version=${version}"></script>
+<script src="${staticHost}/js/consult/consult.js?version=${version}"></script>
+<script src="${staticHost}/js/common/interval.js?version=${version}"></script>
+<script src="${staticHost}/js/common/awardRotate.js?version=${version}"></script>
 
-  gtag('config', 'UA-124641888-1');
+<!--百度统计-->
+ <script>
+
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?52a8650a332af0c0ecd048ac4aa3ce48";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+
+</script>
+Global site tag (gtag.js) - Google Analytics
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127711063-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-127711063-1');
 </script>
 
-<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=23590&id=dyyplayer"></script>
+
+<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=23695&id=dyyplayer"></script>
 <script type="text/javascript">
 
+
+//    $(function () {
+//        $('#FontScroll').FontScroll({time: 3000, num: 1});
+//    });
+//
+
     // 弹出QQ弹框
-//    var defaultQQ = new Array('3005619188', '3005658628', '3005698870','3005623869');
-    var defaultQQ = new Array(relation.userQq);
+    var defaultQQ = new Array('${relation.userQq}');
     function showQQ() {
         var sUserAgent = navigator.userAgent;
         var isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows");
@@ -855,25 +887,21 @@ var _hmt = _hmt || [];
     function topQQ() {
         showQQ();
     }
+    setTimeout(function () {
+        topQQ();
+    }, 10000)
 
-    <c:if test="${loginedUserLogin.groupId == 1}">
-        setTimeout(function () {
-            topQQ();
-        }, 5000)
-    </c:if>
-
-   /* var playerVar = new dyyPlayer({
-        //room_id: '${room.roomStreamServer}', //对应房间ID，必要参数
-		room_id: '23590',
-        container: 'play-container', //播放器容器ID，必要参数
-        width: '100%', //播放器宽度，可用数字、百分比等
-        height: '100%', //播放器高度，可用数字、百分比等
-        autostart: true, //是否自动播放，默认为false
-        controlbardisplay: 'enable' //是否显示控制栏，值为：disable、enable默认为disable
-    }); */ 
-
-
-
+<%--$(function () {--%>
+    <%--var playerVar = new dyyPlayer({--%>
+        <%--//room_id: '${room.roomStreamServer}', //对应房间ID，必要参数--%>
+        <%--room_id: '23695',--%>
+        <%--container: 'play-container', //播放器容器ID，必要参数--%>
+        <%--width: '100%', //播放器宽度，可用数字、百分比等--%>
+        <%--height: '100%', //播放器高度，可用数字、百分比等--%>
+        <%--autostart: true, //是否自动播放，默认为false--%>
+        <%--controlbardisplay: 'enable' //是否显示控制栏，值为：disable、enable默认为disable--%>
+    <%--});--%>
+<%--});--%>
 
 
 </script>

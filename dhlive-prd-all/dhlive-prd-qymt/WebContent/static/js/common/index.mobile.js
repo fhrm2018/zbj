@@ -77,9 +77,6 @@ $(function () {
     /********表情******/
     $(".faceF").click(function (e) {
         $('.expressionT').toggle();
-        $('#emotionUL li').last().prev().css('display', 'none');
-        // 隐藏红包
-        $('#emotionUL li').last().css('display', 'none');
     });
 
     $('.expressionT').click(function () {

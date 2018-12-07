@@ -64,7 +64,7 @@ jQuery.ajaxGetData = function(options) {
 				var intPageIndex = parseInt(settings.pageIndex);
 				var total = objs.total; //总记录数
 				if(total == 0){ //没有数据
-					//$pager.addClass('hide');
+					$pager.addClass('hide');
 					$container.empty();
 					settings.doneFn();
 					$nodata.removeClass('hide').html('没有查询到相关数据！');
