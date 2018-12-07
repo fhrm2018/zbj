@@ -8,7 +8,7 @@
     <title>牛金商学院-期货入门知识_农产品期货开户_期货课堂</title>
     <meta name="keywords" content="牛金商学院,牛金商学院直播间,牛金商学院研究所,期货入门,期货知识,农产品期货开户"/>
     <meta name="description" content="牛金商学院提供专家内盘期货入门指导，专业分析师在线进行指导教学,牛金商学院研究所提供炒期货投资入门、农产品期货行情,金融期货投资、期货经济数据、期货模拟交易等,牛金商学院是您身边值得信赖的期货直播平台!"/>
-    <link rel="shortcut icon" href="/static/images/favicon.png" type="image/x-icon"/>
+    <link rel="shortcut icon" href="${staticHost}/images/favicon.png" type="image/x-icon"/>
     <jsp:include page="common/public.jsp"/>
     <script type="text/javascript">
         //全局变量
@@ -134,7 +134,7 @@
 <input type="hidden" id="atHeInput" value=""/>
 <div class="techer_class" id="courseplanArea">
     <div class="class_inside">
-        <img src="/static/images/dh/close.png" class="close11 pop-close" onclick="classShow('show');">
+        <img src="${staticHost}/images/dh/close.png" class="close11 pop-close" onclick="classShow('show');">
         <c:if test="${state == 3}">
             <div class="kcap kcap2">
                 <table>
@@ -174,23 +174,23 @@
 <div class="header">
     <div class="wrap mgAuto posRel">
         <div class="topLeft fl">
-            <a class="logo"><img src="../static/images/logo.png"></a>
+            <a class="logo"><img src="${staticHost}/images/logo.png"></a>
 
             <a class="a1" onclick="qqCustomer(${relation.userQq})">
-                <img src="../static/images/a1.png" alt="">
+                <img src="${staticHost}/images/a1.png" alt="">
             </a>
             <a class="a1" onclick="qqCustomer(${relation.userQq})">
-                <img src="../static/images/a2.png" alt="">
+                <img src="${staticHost}/images/a2.png" alt="">
             </a>
             <a class="a1" onclick="qqCustomer(${relation.userQq})">
-                <img src="../static/images/a3.png" alt="">
+                <img src="${staticHost}/images/a3.png" alt="">
             </a>
             <a class="a1" target="_blank" href="http://www.oeo2.com/">
-                <img src="../static/images/a5.png" alt="">
+                <img src="${staticHost}/images/a5.png" alt="">
             </a>
 
             <a class="a1" onclick="qqCustomer(${relation.userQq})" style="margin-top:11px;">
-                <img src="../static/images/zxzx.gif" alt="">
+                <img src="${staticHost}/images/zxzx.gif" alt="">
             </a>
 
 
@@ -213,75 +213,75 @@
 
             <c:if test="${loginedUserLogin.groupId == 2}">
                 <span class="username colorF" id="username">
-                    <img src="../static/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
+                    <img src="${staticHost}/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
                 </span>
             </c:if>
 
             <c:if test="${loginedUserLogin.groupId == 3}">
                 <span class="username colorF" id="username">
-                    <img src="../static/images/zl.png" alt="">${loginedUserLogin.userNickName}
+                    <img src="${staticHost}/images/zl.png" alt="">${loginedUserLogin.userNickName}
                 </span>
             </c:if>
 
             <c:if test="${loginedUserLogin.groupId == 4}">
                 <span class="username colorF" id="username">
-                    <img src="../static/images/icon_teacher.png" alt="">${loginedUserLogin.userNickName}
+                    <img src="${staticHost}/images/icon_teacher.png" alt="">${loginedUserLogin.userNickName}
                 </span>
             </c:if>
 
             <c:if test="${loginedUserLogin.groupId == 5}">
                 <c:if test="${vip.userLevel == 1}">
                     <span class="username colorF" id="username">
-                      <img src="../static/images/VIP1.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="${staticHost}/images/VIP1.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
 
                 <c:if test="${vip.userLevel == 2}">
                     <span class="username colorF" id="username">
-                      <img src="../static/images/VIP2.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="${staticHost}/images/VIP2.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
 
                 <c:if test="${vip.userLevel == 3}">
                     <span class="username colorF" id="username">
-                      <img src="../static/images/VIP3.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="${staticHost}/images/VIP3.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
 
                 <c:if test="${vip.userLevel == 4}">
                     <span class="username colorF" id="username">
-                      <img src="../static/images/VIP4.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="${staticHost}/images/VIP4.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
 
                 <c:if test="${vip.userLevel == 5}">
                     <span class="username colorF" id="username">
-                      <img src="../static/images/VIP5.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="${staticHost}/images/VIP5.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
 
                 <c:if test="${vip.userLevel == 6}">
                     <span class="username colorF" id="username">
-                      <img src="../static/images/VIP6.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="${staticHost}/images/VIP6.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
 
                 <c:if test="${vip.userLevel == 7}">
                     <span class="username colorF" id="username">
-                      <img src="../static/images/VIP7.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="${staticHost}/images/VIP7.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
 
                 <c:if test="${vip.userLevel == 8}">
                     <span class="username colorF" id="username">
-                      <img src="../static/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="${staticHost}/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
             </c:if>
 
             <c:if test="${loginedUserLogin.groupId == 1}">
                 <a class="message posRel hide">
-                    <img src="../static/images/message.png"/>
+                    <img src="${staticHost}/images/message.png"/>
                     <i class="redDot posAbs"></i>
                 </a>
                 <a class="loginA colorF fz16" id="g10" onclick="toShow('login', 'register');">登录</a>
@@ -322,15 +322,15 @@
                                 <%--<span>盈利榜</span>--%>
                             <%--</a>--%>
                             <a href="javascript:" onclick="qqCustomer(${relation.userQq})">
-                                <i><img src="../static/images/icon2.png" alt=""></i>
+                                <i><img src="${staticHost}/images/icon2.png" alt=""></i>
                                 <span>实时策略</span>
                             </a>
                             <a href="javascript:" onclick="qqCustomer(${relation.userQq})">
-                                <i><img src="../static/images/icon3.png" alt=""></i>
+                                <i><img src="${staticHost}/images/icon3.png" alt=""></i>
                                 <span>早晚评</span>
                             </a>
                             <a href="javascript:" onclick="classShow()">
-                                <i><img src="../static/images/icon4.png" alt=""></i>
+                                <i><img src="${staticHost}/images/icon4.png" alt=""></i>
                                 <span>课程表</span>
                             </a>
                             <%--<a href="javascript:">--%>
@@ -338,11 +338,11 @@
                                 <%--<span>财经资讯</span>--%>
                             <%--</a>--%>
                             <a class="service" href="javascript:">
-                                <i><img src="../static/images/icon6.png" alt=""></i>
+                                <i><img src="${staticHost}/images/icon6.png" alt=""></i>
                                 <span>专属客服</span>
                             </a>
                             <div class="ewm">
-                                <img src="../static/images/ewm.png" alt=""></i>
+                                <img src="${staticHost}/images/ewm.png" alt=""></i>
                                 <span>扫一扫</span>
                                 <span>看直播</span>
                             </div>
@@ -399,17 +399,17 @@
                                 <div class="activityImg">
                                     <div class="img1">
                                         <a href="javascript:" onclick="qqCustomer(${relation.userQq})">
-                                            <img class='b1' src="../static/images/b1.jpg" alt="">`
+                                            <img class='b1' src="${staticHost}/images/b1.jpg" alt="">`
                                         </a>
                                     </div>
                                     <div class="img1 clearfix hide">
                                         <ul class="hoverImg clearfix">
                                             <li>
                                               <a href="javascript:">
-                                                  <img src="../static/images/sl.png" alt="">
+                                                  <img src="${staticHost}/images/sl.png" alt="">
                                               </a>
                                               <div class="teacherImg hide">
-                                                  <img src="../static/images/sld.png" alt="">
+                                                  <img src="${staticHost}/images/sld.png" alt="">
                                               </div>
                                             </li>
                                             <%--<li>--%>
@@ -422,26 +422,26 @@
                                             <%--</li>--%>
                                             <li>
                                                 <a href="javascript:">
-                                                    <img src="../static/images/jj.png" alt="">
+                                                    <img src="${staticHost}/images/jj.png" alt="">
                                                 </a>
                                                 <div class="teacherImg hide">
-                                                    <img src="../static/images/jjd.png" alt="">
+                                                    <img src="${staticHost}/images/jjd.png" alt="">
                                                 </div>
                                             </li>
                                             <li>
                                                 <a href="javascript:">
-                                                    <img src="../static/images/qk.png" alt="">
+                                                    <img src="${staticHost}/images/qk.png" alt="">
                                                 </a>
                                                 <div class="teacherImg hide">
-                                                    <img src="../static/images/qkd.png" alt="">
+                                                    <img src="${staticHost}/images/qkd.png" alt="">
                                                 </div>
                                             </li>
                                             <li>
                                                 <a href="javascript:">
-                                                    <img src="../static/images/sg.png" alt="">
+                                                    <img src="${staticHost}/images/sg.png" alt="">
                                                 </a>
                                                 <div class="teacherImg hide">
-                                                    <img src="../static/images/sgd.png" alt="">
+                                                    <img src="${staticHost}/images/sgd.png" alt="">
                                                 </div>
                                             </li>
                                         </ul>
@@ -487,9 +487,9 @@
         <div class="contentRight fr posRel">
             <div class="allUserView ">
                 <div class="notice posRel hide">
-                    <p class="trumpet fl"><img src="../static/images/notice.png"/></p>
+                    <p class="trumpet fl"><img src="${staticHost}/images/notice.png"/></p>
                     <p class="msgTime fl"></p>
-                    <p class="trig fr" style="display:none;"><img src="../static/images/trig.png"/></p>
+                    <p class="trig fr" style="display:none;"><img src="${staticHost}/images/trig.png"/></p>
                     <marquee onmouseover="this.stop()" class="noticeMsg noticeList" onmouseout="this.start()" scrollamount="5" direction="left"></marquee>
                 </div>
                 <div class="moreNotice hide">
@@ -513,7 +513,7 @@
                             </p>
                             <div class="msg" id="msgBox">
                                 <div class="load">
-                                    <img src="../static/images/load.gif"/>
+                                    <img src="${staticHost}/images/load.gif"/>
                                 </div>
                             </div>
                         </div>
@@ -624,7 +624,7 @@
         <form id="registerForm" method="post" action="/user/userRegistered">
             <img src="../static/images/kf.png" alt="">
             <a class="btn01" href="javascript:" onclick="qqCustomer(${relation.userQq})">
-                <img src="../static/images/button.png" alt="">
+                <img src="${staticHost}/images/button.png" alt="">
             </a>
         </form>
         <a class="close close2"></a>
@@ -645,7 +645,7 @@
 
 <div class="waterDrop hide waterPersionBox ykpop">
     <div class="logo">
-        <img src="../static/images/logo.png" alt="">
+        <img src="${staticHost}/images/logo.png" alt="">
         <a href="javascript:" class="close1"></a>
     </div>
     <div class="chat clearfix">
@@ -716,7 +716,7 @@
 
 <div class="waterDrop waterListF hide zlpop">
     <div class="logo">
-        <img src="../static/images/logo.png" alt="">
+        <img src="${staticHost}/images/logo.png" alt="">
         <span class="seach">
         <input type="text" placeholder="输入查询">
         <a href="javascript:"></a>
@@ -766,7 +766,7 @@
                         <div class="list_chat clearfix waterChatMessageList" id="waterAdminChatBox">
                             <div class="text01 clearfix">
                                 <div class="user_img">
-                                    <img src="../static/images/img_08.png" alt="">
+                                    <img src="${staticHost}/images/img_08.png" alt="">
                                     <span>晨曦</span>
                                 </div>
                                 <div class="txt">
@@ -780,7 +780,7 @@
                                     <p></p>
                                 </div>
                                 <div class="user_img">
-                                    <img src="../static/images/img_09.png" alt="">
+                                    <img src="${staticHost}/images/img_09.png" alt="">
                                     <span>游客123</span>
                                 </div>
                             </div>
@@ -847,7 +847,7 @@
 <div class="popMask">
     <div class="popImg">
         <a href="javascript:" id="g15" onclick="qqCustomer(${relation.userQq})">
-            <img src="../static/images/img.jpg" alt="">
+            <img src="${staticHost}/images/img.jpg" alt="">
         </a>
         <a class="closeImg" style="" href="javascript:"></a>
     </div>

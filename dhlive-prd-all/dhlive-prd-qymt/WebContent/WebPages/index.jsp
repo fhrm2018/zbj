@@ -9,7 +9,7 @@
     <meta name="keywords" content="期盈满堂,期盈满堂直播间,国际期货、外盘期货、恒指期货开户、期货怎么炒、国际黄金实时行情"/>
     <meta name="description"
           content="期盈满堂国际期货交易平台，特邀精英讲师团为投资者提供前沿的全球期货实时行情分析、恒指期货实战交流、股指期货实盘交易培训、指数期货直播、美原油直播、黄金期货实时行情、今日美股行情走势等,期盈满堂-致力于打造权威国际期货直播引领者，成为您身边值得信赖的国际期货交流平台。"/>
-    <link rel="shortcut icon" href="/static/images/favicon.png" type="image/x-icon"/>
+    <link rel="shortcut icon" href="${staticHost}/images/favicon.png" type="image/x-icon"/>
     <jsp:include page="common/public.jsp"/>
     <script type="text/javascript">
         //全局变量
@@ -135,7 +135,7 @@
 <input type="hidden" id="atHeInput" value=""/>
 <div class="techer_class" id="courseplanArea">
     <div class="class_inside">
-        <img src="/static/images/close4.png" class="close11 pop-close" onclick="classShow('show');">
+        <img src="${staticHost}/images/close4.png" class="close11 pop-close" onclick="classShow('show');">
         <c:if test="${state == 3}">
             <div class="kcap kcap2">
                 <table>
@@ -176,28 +176,28 @@
     <div class="wrap mgAuto posRel">
         <div class="headBtns topLeft fl">
             <a class="logo">
-                <img src="../static/images/logo.png">
+                <img src="${staticHost}/images/logo.png">
             </a>
             <%--<a class="a1" id="Collection01" onclick="collection(document.title,window.location)">--%>
                 <%--<img src="../static/images/a7.png" alt="">--%>
             <%--</a>--%>
             <a class="a1 gwLink" target="_blank" href="http://www.ditan666.com/qy.html">
-                <img src="../static/images/a10.png" alt="">
+                <img src="${staticHost}/images/a10.png" alt="">
             </a>
             <a class="a1" onclick="downUrl()">
-                <img src="../static/images/a3.png" alt="">
+                <img src="${staticHost}/images/a3.png" alt="">
             </a>
             <a class="a1" onclick="teacherJs()">
-                <img src="../static/images/a9.png" alt="">
+                <img src="${staticHost}/images/a9.png" alt="">
             </a>
             <a class="a1" onclick="qqCustomer(${relation.userQq})">
-                <img src="../static/images/a1.png" alt="">
+                <img src="${staticHost}/images/a1.png" alt="">
             </a>
             <a class="a1" onclick="qqCustomer(${relation.userQq})">
-                <img src="../static/images/a4.png" alt="">
+                <img src="${staticHost}/images/a4.png" alt="">
             </a>
             <a class="a1" onclick="qqCustomer(${relation.userQq})">
-                <img src="../static/images/a6.png" alt="">
+                <img src="${staticHost}/images/a6.png" alt="">
             </a>
 
         </div>
@@ -211,68 +211,68 @@
 
             <c:if test="${loginedUserLogin.groupId == 2}">
                 <span class="username colorF" id="username">
-                    <img src="../static/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
+                    <img src="${staticHost}/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
                 </span>
             </c:if>
 
             <c:if test="${loginedUserLogin.groupId == 3}">
                 <span class="username colorF" id="username">
-                    <img src="../static/images/zl.png" alt="">${loginedUserLogin.userNickName}
+                    <img src="${staticHost}/images/zl.png" alt="">${loginedUserLogin.userNickName}
                 </span>
             </c:if>
 
             <c:if test="${loginedUserLogin.groupId == 4}">
                 <span class="username colorF" id="username">
-                    <img src="../static/images/icon_teacher.png" alt="">${loginedUserLogin.userNickName}
+                    <img src="${staticHost}/images/icon_teacher.png" alt="">${loginedUserLogin.userNickName}
                 </span>
             </c:if>
 
             <c:if test="${loginedUserLogin.groupId == 5}">
                 <c:if test="${vip.userLevel == 1}">
                     <span class="username colorF" id="username">
-                      <img src="../static/images/VIP1.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="${staticHost}/images/VIP1.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
 
                 <c:if test="${vip.userLevel == 2}">
                     <span class="username colorF" id="username">
-                      <img src="../static/images/VIP2.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="${staticHost}/images/VIP2.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
 
                 <c:if test="${vip.userLevel == 3}">
                     <span class="username colorF" id="username">
-                      <img src="../static/images/VIP3.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="${staticHost}/images/VIP3.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
 
                 <c:if test="${vip.userLevel == 4}">
                     <span class="username colorF" id="username">
-                      <img src="../static/images/VIP4.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="${staticHost}/images/VIP4.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
 
                 <c:if test="${vip.userLevel == 5}">
                     <span class="username colorF" id="username">
-                      <img src="../static/images/VIP5.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="${staticHost}/images/VIP5.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
 
                 <c:if test="${vip.userLevel == 6}">
                     <span class="username colorF" id="username">
-                      <img src="../static/images/VIP6.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="${staticHost}/images/VIP6.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
 
                 <c:if test="${vip.userLevel == 7}">
                     <span class="username colorF" id="username">
-                      <img src="../static/images/VIP7.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="${staticHost}/images/VIP7.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
 
                 <c:if test="${vip.userLevel == 8}">
                     <span class="username colorF" id="username">
-                      <img src="../static/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
+                      <img src="${staticHost}/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
                     </span>
                 </c:if>
             </c:if>
@@ -347,10 +347,10 @@
                         <div id="relativediv">
                             <div class="bannerImg">
                                 <a href="javascript:" onclick="qqCustomer(${relation.userQq})">
-                                    <img src="../static/images/b1.jpg" alt="">
+                                    <img src="${staticHost}/images/b1.jpg" alt="">
                                 </a>
                                 <a href="javascript:" onclick="qqCustomer(${relation.userQq})">
-                                    <img src="../static/images/b2.jpg" alt="">
+                                    <img src="${staticHost}/images/b2.jpg" alt="">
                                 </a>
                             </div>
                         </div>
@@ -380,7 +380,7 @@
                             </p>
                             <div class="msg" id="msgBox">
                                 <div class="load">
-                                    <img src="../static/images/load.gif"/>
+                                    <img src="${staticHost}/images/load.gif"/>
                                 </div>
                             </div>
                         </div>
@@ -486,7 +486,7 @@
     </div>
     <div class="register popWrap mgAuto posRel ac">
         <form id="registerForm" method="post" action="/user/userRegistered">
-            <img src="../static/images/kf.png" alt="">
+            <img src="${staticHost}/images/kf.png" alt="">
             <a class="btn01" href="javascript:" onclick="qqCustomer(${relation.userQq})">注册VIP</a>
         </form>
         <a class="close close2"></a>
@@ -578,7 +578,7 @@
 
 <div class="waterDrop waterListF hide zlpop">
     <div class="logo">
-        <img src="../static/images/logo.png" alt="">
+        <img src="${staticHost}/images/logo.png" alt="">
         <span class="seach">
         <input type="text" placeholder="输入查询">
         <a href="javascript:"></a>
@@ -628,7 +628,7 @@
                         <div class="list_chat clearfix waterChatMessageList" id="waterAdminChatBox">
                             <div class="text01 clearfix">
                                 <div class="user_img">
-                                    <img src="../static/images/img_08.png" alt="">
+                                    <img src="${staticHost}/images/img_08.png" alt="">
                                     <span>晨曦</span>
                                 </div>
                                 <div class="txt">
@@ -642,7 +642,7 @@
                                     <p></p>
                                 </div>
                                 <div class="user_img">
-                                    <img src="../static/images/img_09.png" alt="">
+                                    <img src="${staticHost}/images/img_09.png" alt="">
                                     <span>游客123</span>
                                 </div>
                             </div>
@@ -737,19 +737,19 @@
         </div>
         <div class="tCon">
             <div class="imgList">
-                <img src="../static/images/t1.png" alt="">
+                <img src="${staticHost}/images/t1.png" alt="">
             </div>
             <div class="imgList hide">
-                <img src="../static/images/t2.png" alt="">
+                <img src="${staticHost}/images/t2.png" alt="">
             </div>
             <div class="imgList hide">
-                <img src="../static/images/t3.png" alt="">
+                <img src="${staticHost}/images/t3.png" alt="">
             </div>
             <div class="imgList hide">
-                <img src="../static/images/t4.png" alt="">
+                <img src="${staticHost}/images/t4.png" alt="">
             </div>
             <div class="imgList hide">
-                <img src="../static/images/t5.png" alt="">
+                <img src="${staticHost}/images/t5.png" alt="">
             </div>
 
         </div>
