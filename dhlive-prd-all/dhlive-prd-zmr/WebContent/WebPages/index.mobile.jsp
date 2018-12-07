@@ -18,7 +18,7 @@
             time = 1,
             activityConfigId = '${config.id}',
             activityCountdown = '${config.activityCountdown}',
-	    imgPath = '${imagePath}',
+	   		imgPath = '${imagePath}',
             talkUserId = '',
             type_flag = 0,
             isOver = ${isOver},
@@ -288,7 +288,7 @@
                 <input class="message" placeholder="在此输入内容" id="sendMsgIpt"></input>
             </div>
         </div>
-        <div class="allbutton allbutton3" onclick="onSendMsg()">发送</div>
+        <div id="sendMsgBtn" class="allbutton allbutton3" onclick="onSendMsg()">发送</div>
     </div>
 </div>
 

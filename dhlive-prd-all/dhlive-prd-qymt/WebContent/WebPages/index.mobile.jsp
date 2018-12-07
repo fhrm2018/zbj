@@ -43,6 +43,17 @@
             },
             msgIdMap = {},
             selSess,//聊天session
+            utmSource = '${utmSource}',
+            relation = {
+    				'userId': '${relation.userId}',	
+    				'userNickName': '${relation.userNickName}',	
+    				'groupId': '${relation.groupId}',	
+    				'userLevel': '${relation.userLevel}',	
+    				'userIntroduction': '${relation.userIntroduction}',	
+    				'userPhoto': '${relation.userPhoto}',	
+    				'userQrcode': '${relation.userQrcode}',	
+    				'userQq': '${relation.userQq}',	
+    			},
             accountMode = 0;//帐号模式，0-表示独立模式，1-表示托管模式
         if (groupId == '1') {
             loginInfo.identifier = 'yk-' + loginInfo.identifier;
@@ -54,6 +65,60 @@
             loginInfo.identifier = 'vip-' + loginInfo.identifier;
             userInfo.level = '${vip.userLevel}';
         }
+        function createNewGuest(){
+        	var jqxhr = $.ajax({
+                url: ctx + '/live/createNewUser?utmSource='+ utmSource,
+                async: false,
+            });
+            jqxhr.done(function (data) {
+                if (data.code == '1000') {
+                    var userRes = data.data.user;
+                    var relationRes = data.data.onLineZL;
+                    userInfo.id = userRes.userId;
+                    userInfo.nickName = userRes.userNickName;
+                    userInfo.id = userRes.userId;
+                    
+                    loginInfo.identifier = 'yk-' + userInfo.id ;
+                    loginInfo.identifierNick = userInfo.nickName ;
+                    
+                    relation.userId = relationRes.userId;
+                    relation.userNickName = relationRes.userNickName;
+                    relation.groupId = relationRes.groupId;
+                    relation.userLevel = relationRes.userLevel;
+                    relation.userIntroduction = relationRes.userIntroduction;
+                    relation.userPhoto = relationRes.userPhoto;
+                    relation.userQrcode = relationRes.userQrcode;
+                    relation.userQq = relationRes.userQq;
+                    
+                }
+           });
+        }
+        
+        var isInit = false;
+        if(userInfo.id == ''){
+        	createNewGuest();
+        	isInit = true;
+        }
+        $(function () {
+        	function initNewGuestPage(){
+        		$('.inintPage-user-name').html(userInfo.nickName);
+        		$('.inintPage-relation-qq').html(relation.userQq);
+        		$('.inintPage-relation-userIntroduction').html(relation.userIntroduction);
+        		$('.inintPage-relation-userQrcode').attr('src',imgPath + "ori/"+relation.userQrcode);
+        		$('.inintPage-relation-userPhoto').attr('src',imgPath + "ori/"+relation.userPhoto);
+        		$('.initPage-mqqwpa').attr('href',"mqqwpa://im/chat?chat_type=wpa&uin="+relation.userQq+"&version=1&src_type=web&web_src=oicqzone.com");
+        		
+        		$('#persionC2CMessageForm span').find('input[name="fromId"]').eq(0).val(userInfo.userId);
+        		$('#persionC2CMessageForm span').find('input[name="fromNickName"]').eq(0).val(userInfo.nickName);
+        		$('#persionC2CMessageForm span').find('input[name="toId"]').eq(0).val(relation.userId);
+        		$('#persionC2CMessageForm span').find('input[name="toNickName"]').eq(0).val(relation.userNickName);
+        		$('#persionC2CMessageForm span').find('input[name="persionToGroupId"]').eq(0).val(relation.groupId);
+        	}
+        	
+        	if(isInit){
+        		initNewGuestPage();
+        	}
+        });
     </script>
 
     <script>
@@ -83,7 +148,7 @@
     <div class="topRight">
         <%--<c:if test="${loginedUserLogin.groupId == 1}">--%>
             <%--<p class="username colorF fz12" id="username">--%>
-                <%--<img src="../static/images/yk.png" alt="">${loginedUserLogin.userNickName}--%>
+                <%--<img class="inintPage-user-name" src="../static/images/yk.png" alt="">${loginedUserLogin.userNickName}--%>
             <%--</p>--%>
         <%--</c:if>--%>
 
@@ -148,7 +213,7 @@
         <c:if test="${loginedUserLogin.groupId == 1}">
 
                 <a class="loginA colorF fz16" onclick="toShow('login', 'register');">登录</a>
-                <a class="registerA colorF fz16" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">注册</a>
+                <a class="registerA colorF fz16 initPage-mqqwpa" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">注册</a>
 
         </c:if>
 
@@ -188,7 +253,7 @@
                     <p class="colorF fz16 ac mt10">登录后可免费观看</p>
                     <div class="loginOrReg ac mt10">
                         <a class="allbutton allbutton4 ilblock mr20" onclick="toShow('login', 'register');">登录</a>
-                        <a class="allbutton allbutton4 ilblock" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">注册</a>
+                        <a class="allbutton allbutton4 ilblock initPage-mqqwpa" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">注册</a>
                     </div>
                 </div>
             </div>
@@ -230,7 +295,7 @@
                 <input class="message" placeholder="在此输入内容" id="sendMsgIpt"></input>
             </div>
         </div>
-        <div class="allbutton allbutton3" onclick="onSendMsg()">发送</div>
+        <div id="sendMsgBtn" class="allbutton allbutton3" onclick="onSendMsg()">发送</div>
     </div>
 </div>
 
