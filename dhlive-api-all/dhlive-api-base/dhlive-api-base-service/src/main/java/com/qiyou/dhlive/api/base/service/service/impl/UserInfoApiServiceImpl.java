@@ -441,9 +441,10 @@ public class UserInfoApiServiceImpl implements IUserInfoApiService {
         if (EmptyUtil.isNotEmpty(params.getUserPass())) {
             params.setUserPass(MD5Util.MD5Encode(params.getUserPass(), "utf-8"));
         }
-        params.setCreateTime(new Date());
+        
         //保存和修改共用一个方法, 如果userid不为空表示是修改操作
         if (EmptyUtil.isEmpty(params.getUserId())) {
+        	params.setCreateTime(new Date());
             //检查手机号是否重复
             DataResponse check = this.checkPhone(params.getUserTel());
             if (check.getCode().intValue() != 1000) {
@@ -534,8 +535,12 @@ public class UserInfoApiServiceImpl implements IUserInfoApiService {
 
     @Override
     public DataResponse saveEmployee(BmsEmployeeInfo params) {
-        if (EmptyUtil.isEmpty(params.getId()) && EmptyUtil.isNotEmpty(params.getPassword())) {
-            params.setPassword(MD5Util.MD5Encode(params.getPassword(), "utf-8"));
+        if (EmptyUtil.isEmpty(params.getId()) ) {
+        	if(EmptyUtil.isEmpty(params.getPassword())) {
+        		return new DataResponse(1001,"密码不能为空");
+        	}else {
+        		params.setPassword(MD5Util.MD5Encode(params.getPassword(), "utf-8"));
+        	}
         }
         params.setCreateTime(new Date());
         if (EmptyUtil.isEmpty(params.getId())) {

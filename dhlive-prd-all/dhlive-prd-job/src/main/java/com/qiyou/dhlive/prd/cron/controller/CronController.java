@@ -396,27 +396,41 @@ public class CronController {
     			msgCount.setSendDate(DateUtil.addDay(DateUtil.dateTimeToDate(new Date()), -1));
     			msgCount.setUserId(m.getUserId());
     			msgCount.setIsFinish(0);
-    			msgCount=roomMsgCountService.findOneByCondition(new SearchCondition<RoomMsgCount>(msgCount));
+//    			msgCount=roomMsgCountService.findOneByCondition(new SearchCondition<RoomMsgCount>(msgCount));
+    			
+    			SearchCondition<RoomMsgCount> con=new SearchCondition<RoomMsgCount>(msgCount);
+    			List<RangeCondition> ranges=Lists.newArrayList();
+    			ranges.add(new RangeCondition("sendDate", DateUtil.dateTimeToDate(DateUtil.addDay(new Date(), -1)), RangeConditionType.GreaterThanOrEqual));
+    			ranges.add(new RangeCondition("sendDate", DateUtil.dateTimeToDate(new Date()), RangeConditionType.LessThan));
+    			con.setRangeConditions(ranges);
+    			msgCount=roomMsgCountService.findOneByCondition(con);
     			if(EmptyUtil.isNotEmpty(msgCount)) {
-    				BaseOptLog baseOptLog=new BaseOptLog();
-    				baseOptLog.setType(4);
-    				baseOptLog.setUserId(m.getUserId());
-    				SearchCondition<BaseOptLog> bcondition=new SearchCondition<BaseOptLog>(baseOptLog);
-    				List<RangeCondition> rangs=Lists.newArrayList();
-    				rangs.add(new RangeCondition("optTime", DateUtil.addDay(beginDate, -1), RangeConditionType.GreaterThanOrEqual));
-    				rangs.add(new RangeCondition("optTime", beginDate, RangeConditionType.LessThan));
-    				bcondition.setRangeConditions(rangs);
-    				Long count = baseOptLogService.countByCondition(bcondition);
-    				msgCount.setSendCount(count.intValue());
-    				this.roomMsgCountService.modifyEntity(msgCount);
+    				if(msgCount.getIsFinish().intValue()==0) {
+	    				BaseOptLog baseOptLog=new BaseOptLog();
+	    				baseOptLog.setType(4);
+	    				baseOptLog.setUserId(m.getUserId());
+	    				SearchCondition<BaseOptLog> bcondition=new SearchCondition<BaseOptLog>(baseOptLog);
+	    				List<RangeCondition> rangs=Lists.newArrayList();
+	    				rangs.add(new RangeCondition("optTime", DateUtil.addDay(beginDate, -1), RangeConditionType.GreaterThanOrEqual));
+	    				rangs.add(new RangeCondition("optTime", beginDate, RangeConditionType.LessThan));
+	    				bcondition.setRangeConditions(rangs);
+	    				Long count = baseOptLogService.countByCondition(bcondition);
+	    				msgCount.setSendCount(count.intValue());
+	    				msgCount.setIsFinish(1);
+	    				this.roomMsgCountService.modifyEntity(msgCount);
+    				}
     			}
     		}
-    		
+    	
     		RoomMsgCount msgCount=new RoomMsgCount();
-			msgCount.setSendDate(DateUtil.dateTimeToDate(new Date()));
 			msgCount.setUserId(m.getUserId());
 			msgCount.setIsFinish(0);
-			msgCount=roomMsgCountService.findOneByCondition(new SearchCondition<RoomMsgCount>(msgCount));
+			SearchCondition<RoomMsgCount> con=new SearchCondition<RoomMsgCount>(msgCount);
+			List<RangeCondition> ranges=Lists.newArrayList();
+			ranges.add(new RangeCondition("sendDate", DateUtil.dateTimeToDate(new Date()), RangeConditionType.GreaterThanOrEqual));
+			ranges.add(new RangeCondition("sendDate", DateUtil.dateTimeToDate(DateUtil.addDay(new Date(), 1)), RangeConditionType.LessThan));
+			con.setRangeConditions(ranges);
+			msgCount=roomMsgCountService.findOneByCondition(con);
 			BaseOptLog baseOptLog=new BaseOptLog();
 			baseOptLog.setType(4);
 			baseOptLog.setUserId(m.getUserId());
