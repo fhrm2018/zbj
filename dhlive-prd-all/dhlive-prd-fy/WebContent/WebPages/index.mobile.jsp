@@ -26,6 +26,7 @@
             isCanSend = true,
             groupId =    ${loginedUserLogin.groupId},
             tempWatchTime = ${room.tempWatchTime},
+            url = '${url}',
             loginInfo = {
                 'sdkAppID': '${sdkAppId}', //用户所属应用id,必填
                 'appIDAt3rd': '${sdkAppId}', //用户所属应用id，必填
@@ -67,7 +68,7 @@
         }
         function createNewGuest(){
         	var jqxhr = $.ajax({
-                url: ctx + '/live/createNewUser?utmSource='+ utmSource,
+                url: ctx + '/live/createNewUser?utmSource='+ utmSource+'&url='+url,
                 async: false,
             });
             jqxhr.done(function (data) {

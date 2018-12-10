@@ -129,8 +129,11 @@ public class UserInfoApiServiceImpl implements IUserInfoApiService {
         for (int i = 0; i < data.getRows().size(); i++) {
             VipUserVO record = MyBeanUtils.copyBean(data.getRows().get(i), VipUserVO.class);
             if (EmptyUtil.isNotEmpty(record.getCreateUserId())) {
-                String createUserName = this.employeeInfoService.findById(record.getCreateUserId()).getName();
-                record.setCreateUserName(createUserName);
+               BmsEmployeeInfo e = this.employeeInfoService.findById(record.getCreateUserId());
+                if(EmptyUtil.isNotEmpty(e)) {
+                	String createUserName = e.getName();
+                    record.setCreateUserName(createUserName);
+                }
                 list.add(record);
             }
         }

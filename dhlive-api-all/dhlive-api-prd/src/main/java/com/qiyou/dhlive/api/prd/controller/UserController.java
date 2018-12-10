@@ -135,6 +135,9 @@ public class UserController {
                         return new DataResponse(1001, "当前无法登录，请联系客服.");
                     }
                     String loginIp = AddressUtils.getIpAddrFromRequest(request);
+                    if(EmptyUtil.isEmpty(vip.getFirstLoginIp())) {
+                    	vip.setFirstLoginIp(loginIp);
+                    }
                     vip.setLastLoginIp(loginIp);
                     vip.setLastLoginTime(new Date());
                     this.userVipInfoService.modifyEntity(vip);

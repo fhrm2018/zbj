@@ -152,6 +152,9 @@ public class UserVipInfo implements Serializable {
     private Integer tempWatchTime;
 
     private Integer createUserId;
+    
+    @Column(name = "first_login_ip")
+    private String firstLoginIp;
 
     private static final long serialVersionUID = 1L;
 
@@ -164,7 +167,15 @@ public class UserVipInfo implements Serializable {
         return userId;
     }
 
-    /**
+    public String getFirstLoginIp() {
+		return firstLoginIp;
+	}
+
+	public void setFirstLoginIp(String firstLoginIp) {
+		this.firstLoginIp = firstLoginIp;
+	}
+
+	/**
      * 设置用户id
      *
      * @param userId 用户id

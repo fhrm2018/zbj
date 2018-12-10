@@ -73,6 +73,12 @@ public class UserInfo implements Serializable {
     private Date limitTime;
 
     private String utmSource;
+    
+    @Column(name = "from_url")
+    private String fromUrl;
+    
+    @Column(name = "create_ip")
+    private String createIp;
 
     /**
      * 观看时长
@@ -85,7 +91,24 @@ public class UserInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getUserId() {
+
+	public String getFromUrl() {
+		return fromUrl;
+	}
+
+	public void setFromUrl(String fromUrl) {
+		this.fromUrl = fromUrl;
+	}
+
+	public String getCreateIp() {
+		return createIp;
+	}
+
+	public void setCreateIp(String createIp) {
+		this.createIp = createIp;
+	}
+
+	public Integer getUserId() {
         return userId;
     }
 

@@ -37,7 +37,7 @@ public class UserInfoServiceImpl extends BaseMyBatisService<UserInfo> implements
     }
 
     @Override
-    public UserInfo createNewGuestUser(String ipAddress, String utmSource) {
+    public UserInfo createNewGuestUser(String ipAddress, String utmSource,String url) {
         UserGroup params = new UserGroup();
         params.setName("游客");
         SearchCondition<UserGroup> condition = new SearchCondition<UserGroup>(params);
@@ -51,6 +51,8 @@ public class UserInfoServiceImpl extends BaseMyBatisService<UserInfo> implements
         user.setIsFirstLogin(1);
         user.setLastLoginTime(new Date());
         user.setLastLoginIp(ipAddress);
+        user.setFromUrl(url);
+        user.setCreateIp(ipAddress);
         user.setLookTime(0);
         if (EmptyUtil.isNotEmpty(userGroup)) {
             user.setGroupId(userGroup.getId());

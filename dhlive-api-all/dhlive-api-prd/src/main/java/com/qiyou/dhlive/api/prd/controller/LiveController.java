@@ -145,7 +145,9 @@ public class LiveController {
     public String index(HttpServletRequest request, HttpServletResponse response, Model model, Integer roomId) {
     	String utmSource = request.getParameter("utm_source");
     	model.addAttribute("utmSource", utmSource);
-    	
+    	String uri=request.getQueryString();
+    	String url = request.getRequestURL().toString()+"?"+uri;
+    	model.addAttribute("url", url);
         String sdkAppId = this.baseSysParamService.getValueByKey("sdk_app_id");
         String accountType = this.baseSysParamService.getValueByKey("account_type");
         model.addAttribute("sdkAppId", sdkAppId);
@@ -338,15 +340,14 @@ public class LiveController {
     @UnSession
     @RequestMapping(value = "/live/createNewUser")
     @ResponseBody
-    public DataResponse createNewUser(HttpServletRequest request,HttpServletResponse response,String utmSource) {
+    public DataResponse createNewUser(HttpServletRequest request,HttpServletResponse response,String utmSource,String url) {
     	if(EmptyUtil.isNotEmpty(UserSession.getUserSession())){
     		if(EmptyUtil.isNotEmpty(UserSession.getUserSession().getUserId())) {
     			return new DataResponse();
     		}
     	}
-    	
     	HttpSession httpSession=request.getSession();
-    	UserInfo user = this.userInfoService.createNewGuestUser(AddressUtils.getIpAddrFromRequest(request), utmSource);
+    	UserInfo user = this.userInfoService.createNewGuestUser(AddressUtils.getIpAddrFromRequest(request), utmSource,url);
         user.setUserId(user.getUserId());
         UserSession userSession = HttpSessionTool.createUserSession(user);
         HttpSessionTool.doLoginedUser(httpSession, userSession);

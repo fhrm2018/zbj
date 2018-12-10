@@ -13,6 +13,8 @@
     <result column="limit_time" jdbcType="TIMESTAMP" property="limitTime" />
     <result column="last_login_ip" jdbcType="VARCHAR" property="lastLoginIp" />
     <result column="utm_source" jdbcType="VARCHAR" property="utmSource" />
+    <result column="from_url" jdbcType="VARCHAR" property="fromUrl" />
+    <result column="create_ip" jdbcType="VARCHAR" property="createIp" />
     <result column="is_first_login" jdbcType="INTEGER" property="isFirstLogin" />
     <result column="is_black" jdbcType="INTEGER" property="isBlack" />
     <result column="is_gag" jdbcType="INTEGER" property="isGag" />

@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface IUserInfoService extends IBaseService<UserInfo> {
 
-    public UserInfo createNewGuestUser(String ipAddress, String utmSource);
+    public UserInfo createNewGuestUser(String ipAddress, String utmSource,String url);
 
     /*
      * 从缓存中获取所有客服
