@@ -22,7 +22,7 @@
 <div class="mainArea flexWrap posRel">
     <jsp:include page="../common/nav.jsp">
         <jsp:param value="互动统计" name="name"/>
-        <jsp:param value="互动统计" name="pName"/>
+        <jsp:param value="助理管理" name="pName"/>
     </jsp:include>
     <div class="mainBox flexCon">
         <div class="mainSearch">
