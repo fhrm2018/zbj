@@ -21,7 +21,7 @@
 </div>
 <div class="mainArea flexWrap posRel">
     <jsp:include page="../common/nav.jsp">
-        <jsp:param value="VIP客户" name="name"/>
+        <jsp:param value="VIP" name="name"/>
         <jsp:param value="客户管理" name="pName"/>
     </jsp:include>
     <div class="mainBox flexCon">

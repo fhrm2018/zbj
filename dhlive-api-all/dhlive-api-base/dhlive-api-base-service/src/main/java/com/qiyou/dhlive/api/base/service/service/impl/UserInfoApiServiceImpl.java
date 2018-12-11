@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONArray;
+import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 import com.qiyou.dhlive.api.base.outward.service.IUserInfoApiService;
 import com.qiyou.dhlive.api.base.outward.util.HttpUtil;
@@ -99,9 +101,28 @@ public class UserInfoApiServiceImpl implements IUserInfoApiService {
      */
     @Override
     public DataResponse getTouristsUserList(PageSearch pageSearch, UserInfo params) {
+    	List<Object> userIdList = Lists.newArrayList();
+    	if(EmptyUtil.isNotEmpty(params.getIsOnline())) {
+    		params.setIsOnline(null);
+        	Set<String> listJson = redisManager.getMapKeyFromMapByStoreKey(RedisKeyConstant.YK_IDS);
+        	for(String key:listJson) {
+        		if("null".equalsIgnoreCase(key)) {
+        			continue;
+        		}
+        		userIdList.add(Integer.parseInt(key));
+        	}
+        	if(EmptyUtil.isEmpty(userIdList)) {
+        		PageResult<VipUserVO> result = new PageResultBuilder<VipUserVO>().buildPageData(0, new ArrayList<VipUserVO>()).toPageResult();
+                return new DataResponse(1000, result);
+        	}
+        }
         SearchCondition<UserInfo> condition = new SearchCondition<UserInfo>(params, pageSearch);
         condition.buildOrderByConditions("createTime", "desc");
+        if(EmptyUtil.isNotEmpty(userIdList)) {
+        	condition.buildInConditions("userId", userIdList);
+        }
         PageResult<UserInfo> result = this.userInfoService.findByPage(condition);
+        
         return new DataResponse(1000, result);
     }
 
@@ -116,9 +137,34 @@ public class UserInfoApiServiceImpl implements IUserInfoApiService {
     	if(EmptyUtil.isNotEmpty(params.getLastLoginIp())) {
     		conParam.setLastLoginIp(params.getLastLoginIp());;
         }
+    	if(EmptyUtil.isNotEmpty(params.getIsBlack())) {
+    		conParam.setIsBlack(params.getIsBlack());
+        }
+    	if(EmptyUtil.isNotEmpty(params.getIsGag())) {
+    		conParam.setIsGag(params.getIsGag());
+        }
+    	List<Object> userIdList = Lists.newArrayList();
+    	if(EmptyUtil.isNotEmpty(params.getIsOnline())) {
+    		params.setIsOnline(null);
+        	Set<String> listJson = redisManager.getMapKeyFromMapByStoreKey(RedisKeyConstant.VIP_IDS);
+        	for(String key:listJson) {
+        		if("null".equalsIgnoreCase(key)) {
+        			continue;
+        		}
+        		userIdList.add(Integer.parseInt(key));
+        	}
+        	if(EmptyUtil.isEmpty(userIdList)) {
+        		PageResult<VipUserVO> result = new PageResultBuilder<VipUserVO>().buildPageData(0, new ArrayList<VipUserVO>()).toPageResult();
+                return new DataResponse(1000, result);
+        	}
+        }
+    	
     	SearchCondition<UserVipInfo> condition = new SearchCondition<UserVipInfo>(conParam, pageSearch);
         if(EmptyUtil.isNotEmpty(params.getUserNickName())) {
         	condition.buildLikeConditions("userNickName", "%"+params.getUserNickName()+"%");
+        }
+        if(EmptyUtil.isNotEmpty(userIdList)) {
+        	condition.buildInConditions("userId", userIdList);
         }
         condition.buildOrderByConditions("createTime", "desc");
         
