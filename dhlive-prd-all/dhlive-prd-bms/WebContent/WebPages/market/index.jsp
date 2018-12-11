@@ -29,6 +29,7 @@
             <form id="tableForm"action="${pageContext.request.contextPath}/market/getData" method="post" name="chatValue">
             <div class="posAbs right0">
                  <button id="submitBtn" type="button" class="pageBtn btn">查询</button>
+                 <button id="exportBtn" type="button" class="pageBtn btn">导出</button>
                  <button type="button" class="pageBtn refBtn">刷新</button> 
              </div>
               <div class="clearfix">

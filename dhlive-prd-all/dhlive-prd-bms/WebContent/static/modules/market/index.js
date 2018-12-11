@@ -69,6 +69,13 @@ $(function () {
        // openPopForm('#addWin');
         return false;
     });
+    
+    $('#exportBtn').on('click', function () {
+        getSearchForm();
+            window.open(g_requestContextPath + "/market/export?searchDate="+$('#searchDate').val())
+       // openPopForm('#addWin');
+        return false;
+    });
 
  /*   //打开查询vip客户窗口
     $('.searchBtn').on('click', function () {
