@@ -48,7 +48,7 @@
             <div class="tableTitle flexWrap ac">
                 <div style="width: 20%">登录帐号</div>
                 <div style="width: 20%">姓名</div>
-                <div style="width: 20%">状态</div>
+                <div style="width: 20%">角色</div>
                 <div style="width: 20%">创建时间</div>
                 <div style="width: 20%">操作</div>
             </div>
@@ -92,7 +92,7 @@
     <form id="tableForm" action="${pageContext.request.contextPath}/user/saveEmployee" method="post">
         <input type="hidden" id="employeeId" name="id"/>
         <div class="title flexWrap ">
-            <div class="flexCon fz16 liveTitle">添加后台用户</div>
+            <div class="flexCon fz16 liveTitle" id="liveTitle">添加后台用户</div>
             <div class="pt5"><a href="" onclick="closePopForm(this);return !1;" class="close block">
                 <span class="icon block"></span></a>
             </div>
@@ -108,7 +108,7 @@
             <input type="text" class="serIpt" id="name" name="name" placeholder="非必填"/>
         </div>
 
-        <div class="wtBg ptb10 ac">
+        <div class="wtBg ptb10 ac" id="pass">
             <span class="formLabel ar mr10">登录密码</span>
             <input type="password" class="serIpt" id="password" name="password"/>
         </div>
@@ -122,6 +122,7 @@
                 <ul tabindex="0" class="posAbs wtBg ovfHid serIpt">
                     <li data-value="1">管理员</li>
                     <li data-value="2">客服</li>
+                    <li data-value="3">组长</li>
                 </ul>
                 <input type="hidden" id="roleId" name="roleId" value="2"/>
             </div>

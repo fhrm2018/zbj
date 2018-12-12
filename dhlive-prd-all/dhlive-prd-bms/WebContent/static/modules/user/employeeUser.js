@@ -7,6 +7,15 @@ $(function () {
         var htmls = "";
         for (var i = 0; i < obj.length; i++) {
             var record = obj[i];
+            var role;
+            switch(record.roleId){
+              case "1":role="管理员";
+              break;
+              case "2":role="客服";
+              break;
+              case "3":role="组长";
+              break;
+            }
             htmls += [
                 '<div class="tableContent tableCtHover mt5">',
                 '<div class="flexWrap">',
@@ -17,7 +26,7 @@ $(function () {
                 + record.name + '</div></div>',
 
                 '<div class="flexWrap flexAgCen"  style="width: 20%; text-align:center; "> <div class="flexCon">'
-                + "-" + '</div></div>',
+                + role + '</div></div>',
 
                 '<div class="flexWrap flexAgCen"  style="width: 20%; text-align:center; "> <div class="flexCon">'
                 + record.createTime + '</div></div>',
@@ -63,6 +72,9 @@ $(function () {
     //打开添加后台用户窗口
     $('.addBtn').on('click', function () {
         openPopForm('#addWin');
+        $('#employeeId').val("");
+        $("#liveTitle").html("添加后台用户");
+        $("#pass").show();
     });
 
     /**
@@ -107,6 +119,8 @@ function op(employeeId) {
 
 //修改后台用户
 function editEmployeeUserWin(obj) {
+	$("#liveTitle").html("编辑后台用户");
+	$("#pass").hide();
     $.ajax({
         url: g_requestContextPath + '/user/getEmployeeUserById',
         data: {
@@ -121,6 +135,9 @@ function editEmployeeUserWin(obj) {
                 	}
                 	if(data.data.roleId == 2){
                 		roleName = '客服';
+                	}
+                	if(data.data.roleId == 3){
+                		roleName = '组长';
                 	}
                 	$('#selectRoleId').data('default',roleName);
                 	$('#selectRoleId').data('defval',data.data.roleId);
