@@ -146,7 +146,7 @@ public class LiveController {
     	String utmSource = request.getParameter("utm_source");
     	model.addAttribute("utmSource", utmSource);
     	String uri=request.getQueryString();
-    	String url = request.getRequestURL().toString()+"?"+uri;
+    	String url = request.getRequestURL().toString()+(EmptyUtil.isEmpty(uri)?"":"?"+uri);
     	model.addAttribute("url", url);
         String sdkAppId = this.baseSysParamService.getValueByKey("sdk_app_id");
         String accountType = this.baseSysParamService.getValueByKey("account_type");

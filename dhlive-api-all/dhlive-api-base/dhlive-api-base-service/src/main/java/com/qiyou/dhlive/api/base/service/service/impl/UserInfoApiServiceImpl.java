@@ -210,9 +210,10 @@ public class UserInfoApiServiceImpl implements IUserInfoApiService {
         if (EmptyUtil.isNotEmpty(params.getUserPass())) {
             params.setUserPass(MD5Util.MD5Encode(params.getUserPass(), "utf-8"));
         }
-        params.setCreateTime(new Date());
+        
         //保存和修改共用一个方法, 如果userid不为空表示是修改操作
         if (EmptyUtil.isEmpty(params.getUserId())) {
+        	params.setCreateTime(new Date());
             //检查手机号是否重复
             DataResponse check = checkPhone(params.getUserTel());
             if (check.getCode().intValue() != 1000) {
