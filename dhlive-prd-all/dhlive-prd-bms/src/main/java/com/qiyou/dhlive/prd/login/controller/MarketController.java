@@ -99,9 +99,15 @@ public class MarketController {
 				UserInfo u=new UserInfo();
 				u.setCreateIp(v.getFirstLoginIp());
 				u=this.userInfoService.findOneByCondition(new SearchCondition<UserInfo>(u));
-				m.put("fromUrl", u.getFromUrl());
-				m.put("utmSource", u.getUtmSource());
-				m.put("ip", v.getFirstLoginIp()==null?"":v.getFirstLoginIp());
+				if(EmptyUtil.isEmpty(u)) {
+					m.put("fromUrl", "");
+					m.put("utmSource","");
+					m.put("ip", v.getFirstLoginIp()==null?"":v.getFirstLoginIp());
+				}else {
+					m.put("fromUrl", EmptyUtil.isEmpty(u.getFromUrl())?"":u.getFromUrl());
+					m.put("utmSource", u.getUtmSource());
+					m.put("ip", v.getFirstLoginIp()==null?"":v.getFirstLoginIp());
+				}
 			}
 			mapList.add(m);
 		}
@@ -154,9 +160,15 @@ public class MarketController {
 				UserInfo u=new UserInfo();
 				u.setCreateIp(v.getFirstLoginIp());
 				u=this.userInfoService.findOneByCondition(new SearchCondition<UserInfo>(u));
-				m.put("fromUrl", u.getFromUrl());
-				m.put("utmSource", u.getUtmSource());
-				m.put("ip", v.getFirstLoginIp()==null?"":v.getFirstLoginIp());
+				if(EmptyUtil.isEmpty(u)) {
+					m.put("fromUrl", "");
+					m.put("utmSource","");
+					m.put("ip", v.getFirstLoginIp()==null?"":v.getFirstLoginIp());
+				}else {
+					m.put("fromUrl", EmptyUtil.isEmpty(u.getFromUrl())?"":u.getFromUrl());
+					m.put("utmSource", u.getUtmSource());
+					m.put("ip", v.getFirstLoginIp()==null?"":v.getFirstLoginIp());
+				}
 			}
 			mapList.add(m);
 		}

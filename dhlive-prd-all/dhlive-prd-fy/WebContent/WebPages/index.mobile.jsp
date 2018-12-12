@@ -68,7 +68,9 @@
         }
         function createNewGuest(){
         	var jqxhr = $.ajax({
-                url: ctx + '/live/createNewUser?utmSource='+ utmSource+'&url='+url,
+                url: ctx + '/live/createNewUser',
+                type: 'POST',
+                data: {'utmSource':utmSource,'url':url},
                 async: false,
             });
             jqxhr.done(function (data) {

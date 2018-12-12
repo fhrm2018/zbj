@@ -69,7 +69,9 @@
         
         function createNewGuest(){
         	var jqxhr = $.ajax({
-                url: ctx + '/live/createNewUser?utmSource='+ utmSource+'&url='+url,
+        		url: ctx + '/live/createNewUser',
+                type: 'POST',
+                data: {'utmSource':utmSource,'url':url},
                 async: false,
             });
             jqxhr.done(function (data) {
@@ -124,7 +126,14 @@
         	}
         });
     </script>
-
+	<script>
+	(function() {
+		var _53code = document.createElement("script");
+		_53code.src = "https://tb.53kf.com/code/code/10168866/2";
+		var s = document.getElementsByTagName("script")[0]; 
+		s.parentNode.insertBefore(_53code, s);
+		})();
+	</script>
 </head>
 
 <body class="changeBg1">
