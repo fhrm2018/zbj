@@ -80,7 +80,7 @@
         </div>
 
         <div class="wtBg ptb10 ac">
-            <span class="formLabel ar mr10">手机号</span>
+            <span class="formLabel ar mr10">登陆账号</span>
             <input type="text" class="serIpt" name="userTel" placeholder="请输入手机号"/>
         </div>
 
