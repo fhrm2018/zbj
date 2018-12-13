@@ -81,7 +81,7 @@
 
         <div class="wtBg ptb10 ac">
             <span class="formLabel ar mr10">登陆账号</span>
-            <input type="text" class="serIpt" name="userTel" placeholder="请输入手机号"/>
+            <input type="text" class="serIpt" name="userTel" placeholder="请输入登陆账号"/>
         </div>
 
         <div style="text-align: center" class="pt20">
