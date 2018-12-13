@@ -106,7 +106,8 @@ public class LiveController {
 		}
 		return "live/index";
 	}
-
+	
+	
 	@NeedSession
 	@UnSecurity
 	@RequestMapping("room")

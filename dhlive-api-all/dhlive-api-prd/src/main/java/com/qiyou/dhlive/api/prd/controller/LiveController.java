@@ -47,8 +47,10 @@ import com.qiyou.dhlive.core.base.outward.service.IBaseSysParamService;
 import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
 import com.qiyou.dhlive.core.live.outward.model.LiveC2CMessage;
 import com.qiyou.dhlive.core.live.outward.model.LiveRoom;
+import com.qiyou.dhlive.core.live.outward.model.MarketVisitCount;
 import com.qiyou.dhlive.core.live.outward.service.ILiveC2CMessageService;
 import com.qiyou.dhlive.core.live.outward.service.ILiveRoomService;
+import com.qiyou.dhlive.core.live.outward.service.IMarketVisitCountService;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
 import com.qiyou.dhlive.core.room.outward.service.IRoomAutoMsgService;
 import com.qiyou.dhlive.core.room.outward.service.IRoomPlanService;
@@ -134,6 +136,9 @@ public class LiveController {
     
     @Autowired
     private IRoomPlanService roomPlanService;
+    
+    @Autowired
+    private IMarketVisitCountService marketVisitCountService;
 
     @Autowired
     @Qualifier("commonRedisManager")
@@ -335,6 +340,25 @@ public class LiveController {
             model.addAttribute("isOver", 0);
             return "index";
         }
+    }
+    
+    @UnSession
+    @RequestMapping(value = "/live/visit")
+    @ResponseBody
+    public DataResponse visit(String url,HttpServletRequest request) {
+    	String ip = AddressUtils.getIpAddrFromRequest(request);
+    	MarketVisitCount visit=new MarketVisitCount();
+    	visit.setFromUrl(url);
+    	visit.setIp(ip);
+    	visit=marketVisitCountService.findOneByCondition(new SearchCondition<MarketVisitCount>(visit));
+    	if(EmptyUtil.isEmpty(visit)) {
+    		visit=new MarketVisitCount();
+    		visit.setFromUrl(url);
+        	visit.setIp(ip);
+        	visit.setCreateTime(new Date());
+        	this.marketVisitCountService.save(visit);
+    	}
+    	return new DataResponse();
     }
 
     @UnSession
