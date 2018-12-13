@@ -106,6 +106,17 @@
         	createNewGuest();
         	isInit = true;
         }
+        function visit(){
+        	var jqxhr = $.ajax({
+                url: ctx + '/live/visit',
+                type: 'POST',
+                data: {'url':url},
+                async: false,
+            });
+            jqxhr.done(function (data) {
+               
+           });
+        }
         $(function () {
         	function initNewGuestPage(){
         		$('.inintPage-relation-name').html(relation.userNickName);
@@ -124,6 +135,7 @@
         	if(isInit){
         		initNewGuestPage();
         	}
+        	visit();
         });
     </script>
 	<script>

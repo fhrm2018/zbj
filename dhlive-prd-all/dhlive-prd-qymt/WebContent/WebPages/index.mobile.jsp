@@ -102,6 +102,17 @@
         	createNewGuest();
         	isInit = true;
         }
+        function visit(){
+        	var jqxhr = $.ajax({
+                url: ctx + '/live/visit',
+                type: 'POST',
+                data: {'url':url},
+                async: false,
+            });
+            jqxhr.done(function (data) {
+               
+           });
+        }
         $(function () {
         	function initNewGuestPage(){
         		$('.inintPage-user-name').html(userInfo.nickName);
@@ -121,6 +132,7 @@
         	if(isInit){
         		initNewGuestPage();
         	}
+        	visit();
         });
     </script>
 
