@@ -587,9 +587,13 @@ public class LiveController {
     @RequestMapping(value = "/live/saveWaterGroup")
     @ResponseBody
     public DataResponse saveWaterGroup(UserWaterGroup params) {
+    	
         if (EmptyUtil.isEmpty(params.getWaterGroupId())) {
             this.userWaterGroupService.save(params);
         } else {
+        	if(params.getWaterGroupId().intValue()==1) {
+        		return new DataResponse(1000,"success");
+        	}
             this.userWaterGroupService.modifyEntity(params);
         }
         return new DataResponse(1000, "success");
@@ -603,6 +607,11 @@ public class LiveController {
     @RequestMapping(value = "/live/delWaterGroup")
     @ResponseBody
     public DataResponse delWaterGroup(UserWaterGroup params) {
+    	if(EmptyUtil.isEmpty(params.getWaterGroupId()))
+    		return new DataResponse(1001,"该分组存在用户,不能删除.");
+    	if(params.getWaterGroupId().intValue()==1) {
+    		return new DataResponse(1000,"success");
+    	}
         List<UserRelation> data = this.userRelationService.findByField("waterGroupId", params.getWaterGroupId());
         if (EmptyUtil.isNotEmpty(data)) {
             return new DataResponse(1001, "该分组存在用户,不能删除.");
