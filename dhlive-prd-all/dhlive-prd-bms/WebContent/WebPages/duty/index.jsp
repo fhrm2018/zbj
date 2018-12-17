@@ -74,7 +74,7 @@
 <div class="mainArea flexWrap posRel">
     <jsp:include page="../common/nav.jsp">
         <jsp:param value="客服排班" name="name"/>
-        <jsp:param value="内容设置" name="pName"/>
+        <jsp:param value="内容管理" name="pName"/>
     </jsp:include>
     <div class="mainBox flexCon">
         <div class="mainSearch">

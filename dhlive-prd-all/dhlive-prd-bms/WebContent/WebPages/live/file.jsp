@@ -21,8 +21,8 @@
 </div>
 <div class="mainArea flexWrap posRel">
     <jsp:include page="../common/nav.jsp">
-        <jsp:param value="直播室" name="name"/>
-        <jsp:param value="直播室" name="pName"/>
+        <jsp:param value="直播室列表" name="name"/>
+        <jsp:param value="直播配置" name="pName"/>
     </jsp:include>
     <div class="mainBox flexCon">
         <div class="mainSearch">
