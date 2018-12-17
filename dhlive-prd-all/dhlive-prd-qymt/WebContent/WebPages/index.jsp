@@ -116,6 +116,7 @@
            });
         }
         $(function () {
+        	 
         	function initNewGuestPage(){
         		$('.inintPage-relation-name').html(relation.userNickName);
         		$('.inintPage-relation-qq').html('QQ：'+relation.userQq);
@@ -132,6 +133,13 @@
         	if(isInit){
         		initNewGuestPage();
         	}
+        	 setTimeout(function () {
+                 $('iframe').each(function(){
+                     $(this).contents().find('#launchBtn').each(function(){
+                         $(this)[0].click();
+                     });
+                 });
+             }, 10000);
         	visit();
         });
     </script>
@@ -810,7 +818,9 @@
 <script src="${staticHost}/js/common/awardRotate.js?version=${version}"></script>
 <script src="${staticHost}/js/chat/chat_base.js?version=${version}"></script>
 <script src="${staticHost}/js/chat/chat.js?version=${version}"></script>
+<script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzgwMDg1Njg3OV80ODg3MDBfODAwODU2ODc5Xw"></script>
 <script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=23275&id=dyyplayer"></script>
+
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124639879-1"></script>
 <script>
@@ -831,7 +841,8 @@ var _hmt = _hmt || [];
 })();
 </script>
 <script type="text/javascript">
-    var defaultQQ = new Array('${relation.userQq}');
+    var defaultQQ = new Array(relation.userQq);
+    console.log(defaultQQ);
 //    var defaultQQ = new Array('3005675818', '3005670158', '3005638269', '3005692003', '3005698929');
     function showQQ() {
         var sUserAgent = navigator.userAgent;
