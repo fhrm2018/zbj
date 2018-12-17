@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -23,9 +23,9 @@
             imgPath = '${imagePath}',
             type_flag = 0,
             isCanSend = true,
+	    url='${url}',
             groupId =    ${loginedUserLogin.groupId},
             tempWatchTime = ${room.tempWatchTime},
-            url = '${url}',
             loginInfo = {
                 'sdkAppID': '${sdkAppId}', //用户所属应用id,必填
                 'appIDAt3rd': '${sdkAppId}', //用户所属应用id，必填
@@ -69,7 +69,7 @@
         
         function createNewGuest(){
         	var jqxhr = $.ajax({
-        		url: ctx + '/live/createNewUser',
+                url: ctx + '/live/createNewUser',
                 type: 'POST',
                 data: {'utmSource':utmSource,'url':url},
                 async: false,
@@ -106,6 +106,17 @@
         	createNewGuest();
         	isInit = true;
         }
+       function visit(){
+        	var jqxhr = $.ajax({
+                url: ctx + '/live/visit',
+                type: 'POST',
+                data: {'url':url},
+                async: false,
+            });
+            jqxhr.done(function (data) {
+               
+           });
+        }
         $(function () {
         	function initNewGuestPage(){
         		$('.inintPage-relation-name').html(relation.userNickName);
@@ -124,16 +135,10 @@
         	if(isInit){
         		initNewGuestPage();
         	}
+	visit();
         });
     </script>
-	<script>
-	(function() {
-		var _53code = document.createElement("script");
-		_53code.src = "https://tb.53kf.com/code/code/10168866/2";
-		var s = document.getElementsByTagName("script")[0]; 
-		s.parentNode.insertBefore(_53code, s);
-		})();
-	</script>
+
 </head>
 
 <body class="changeBg1">
@@ -854,14 +859,14 @@
 </div>
 <div class="worning hide"></div>
 
-<div class="popMask">
+<!-- <div class="popMask">
     <div class="popImg">
         <a href="javascript:" id="g15" onclick="qqCustomer(${relation.userQq})">
             <img src="${staticHost}/images/img.jpg" alt="">
         </a>
         <a class="closeImg" style="" href="javascript:"></a>
     </div>
-</div>
+</div> -->
 
 <%--听课时长--%>
 <div class="tkTimePopMask hide">

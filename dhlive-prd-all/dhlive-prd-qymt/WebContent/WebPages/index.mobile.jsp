@@ -23,10 +23,10 @@
             isOver = ${isOver},
             chatImgs = new Array(),
 		imgPath = '${imagePath}',
+	url='${url}',
             isCanSend = true,
             groupId =    ${loginedUserLogin.groupId},
             tempWatchTime = ${room.tempWatchTime},
-            url = '${url}',
             loginInfo = {
                 'sdkAppID': '${sdkAppId}', //用户所属应用id,必填
                 'appIDAt3rd': '${sdkAppId}', //用户所属应用id，必填
@@ -68,7 +68,7 @@
         }
         function createNewGuest(){
         	var jqxhr = $.ajax({
-        		url: ctx + '/live/createNewUser',
+                url: ctx + '/live/createNewUser',
                 type: 'POST',
                 data: {'utmSource':utmSource,'url':url},
                 async: false,
@@ -102,6 +102,17 @@
         	createNewGuest();
         	isInit = true;
         }
+	function visit(){
+        	var jqxhr = $.ajax({
+                url: ctx + '/live/visit',
+                type: 'POST',
+                data: {'url':url},
+                async: false,
+            });
+            jqxhr.done(function (data) {
+               
+           });
+        }
         $(function () {
         	function initNewGuestPage(){
         		$('.inintPage-user-name').html(userInfo.nickName);
@@ -121,6 +132,7 @@
         	if(isInit){
         		initNewGuestPage();
         	}
+	 visit();
         });
     </script>
 
