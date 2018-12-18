@@ -1,16 +1,16 @@
 $(function () {
 
-    $(document).on("click", ".Grouping", function () {
-        if ($(this).hasClass('cur')) {
-            $(this).removeClass("cur");
-            $(this).next().hide();
-        } else {
-            $(".table1").find('.Grouping').removeClass("cur");
-            $(".table1").find('.user_list').hide();
-            $(this).addClass("cur");
-            $(this).next().show();
-        }
-    })
+//    $(document).on("click", ".Grouping", function () {
+//        if ($(this).hasClass('cur')) {
+//            $(this).removeClass("cur");
+//            $(this).next().hide();
+//        } else {
+//            $(".table1").find('.Grouping').removeClass("cur");
+//            $(".table1").find('.user_list').hide();
+//            $(this).addClass("cur");
+//            $(this).next().show();
+//        }
+//    })
 
     //如果是游客/vip加载聊天记录
     if (groupId == 1 || groupId == 5) {
@@ -205,13 +205,13 @@ function getWaterGroup() {
     jqxhr.done(function (data) {
         if (data.code == '1000') {
             var htmls = '';
-            var record = '<li id="yk-contract"><div class="Grouping"><i class="down"></i>';
-            	record += '<span data-id="contract" onclick="showGroup(this)">最近联系人</span>';
-            	record += '</div></li>';
+            var record = '<li id="yk-contract"  data-id="contract" onclick="showGroup(this)"><div class="Grouping"><i class="down"></i>';
+            	record += '<span>最近联系人</span>';
+            	record += '</div><table class="user_list"><tbody></tbody></table></li>';
             htmls += record;
             for (var i = 0; i < data.data.length; i++) {
-                var record = '<li id="yk-' + data.data[i].waterGroupId + '"><div class="Grouping"><i class="down" ></i>';
-                record += '<span data-id="' + data.data[i].waterGroupId + '" onclick="showGroup(this)">' + data.data[i].waterGroupName + '</span>';
+                var record = '<li id="yk-' + data.data[i].waterGroupId + '" data-id="' + data.data[i].waterGroupId + '" onclick="showGroup(this)"><div class="Grouping"><i class="down" ></i>';
+                record += '<span data-id="' + data.data[i].waterGroupId + '" >' + data.data[i].waterGroupName + '</span>';
                 if (data.data[i].waterGroupName != '未分组用户') {
                     record += '<a class="editGrouping pr15" onclick="editGrouping(this)"></a>';
                 }
@@ -235,27 +235,35 @@ function showContract(){
 	if(contarctMsglist.length == 0){
 		return false;
 	}
-	//$('#yk-contract').empty();
-    var htmls = '<table class="user_list"><tbody>';
-    for (var i = 0; i < contarctMsglist.length; i++) {
-    	var data = contarctMsglist[i];
-    	data.level = 0;
-        var record = '<tr class="cur" style="cursor: pointer">';
-        record += '<td onclick="toChat(' + data.groupId + ', ' + data.level + ', ' + data.postUid + ', /' + data.postNickName + '/)">'
-        record += data.postNickName + '</td>';
-        record += '<td onclick="toChat(' + data.groupId + ', ' + data.level + ', ' + data.postUid + ', /' + data.postNickName + '/)">在线</td><td onclick="toChat(' + data.groupId + ', ' + data.level + ', ' + data.postUid + ', /' + data.postNickName + '/)">';
-        record += '</td></tr>'
-        htmls += record;
-    }
-    htmls += '</tbody></table>';
-    $('#yk-contract').append(htmls);
+	$('#yk-contract table tbody').empty();
+	var htmls = '';
+	 for (var i = contarctMsglist.length - 1 ; i >= 0 ; i--) {
+	    	var data = contarctMsglist[i];
+	    	data.level = 0;
+	        var record = '<tr class="cur" style="cursor: pointer">';
+	        record += '<td onclick="toChat(' + data.groupId + ', ' + data.level + ', ' + data.postUid + ', /' + data.postNickName + '/)">'
+	        record += data.postNickName + '</td>';
+	        record += '<td onclick="toChat(' + data.groupId + ', ' + data.level + ', ' + data.postUid + ', /' + data.postNickName + '/)">在线</td><td onclick="toChat(' + data.groupId + ', ' + data.level + ', ' + data.postUid + ', /' + data.postNickName + '/)">';
+	        record += '</td></tr>'
+	        htmls += record;
+	 }
+    $('#yk-contract table tbody').append(htmls);
 }
 
 //列表成员
 function showGroup(obj) {
+	var $grouping = $(obj).find('.Grouping').eq(0);
+    if($grouping.hasClass('cur')) {
+    	$grouping.removeClass("cur");
+    	$(obj).find('table').eq(0).hide();
+	}else{
+		$grouping.removeClass("cur");
+	  //$(obj).find('.user_list').hide();
+		$grouping.addClass("cur");
+		$(obj).find('table').eq(0).show();
+	}
     var waterGroupId = $(obj).data("id");
     var userId = userInfo.id;
-    
     if(waterGroupId  == 'contract'){
     	showContract();
     	return false;
@@ -268,8 +276,10 @@ function showGroup(obj) {
     jqxhr.done(function (data) {
         if (data.code == '1000') {
             console.log(data);
+            var $table = $('#yk-' + waterGroupId).find('table tobdy').eq(0);
+            $table.empty();
             if ($('#yk-' + waterGroupId).find('table').length > 0)return;
-            var htmls = '<table class="user_list"><tbody>';
+            var htmls = '';
             for (var i = 0; i < data.data.length; i++) {
                 var record = '<tr class="cur" style="cursor: pointer">';
                 record += '<td onclick="toChat(' + data.data[i].groupId + ', ' + data.data[i].level + ', ' + data.data[i].userId + ', /' + data.data[i].userNickName + '/)">'
@@ -281,8 +291,7 @@ function showGroup(obj) {
                 record += '<div class="userTypeBtn hide"></div></td></tr>'
                 htmls += record;
             }
-            htmls += '</tbody></table>';
-            $('#yk-' + waterGroupId).append(htmls);
+            $table.append(htmls);
         } else {
             popLayer(data.message);
         }
@@ -358,6 +367,7 @@ function toChat(toGroupId, level, toId, name) {
             $('#waterAdminChatBox').scrollTop($('#waterAdminChatBox')[0].scrollHeight);//滚动条到最底部
         }
     });
+    event.stopPropagation();
 }
 
 /**
