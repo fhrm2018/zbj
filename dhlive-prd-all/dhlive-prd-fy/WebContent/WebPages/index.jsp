@@ -106,11 +106,7 @@
         	createNewGuest();
         	isInit = true;
         }
-<<<<<<< HEAD
-        function visit(){
-=======
        function visit(){
->>>>>>> branch 'HEAD' of https://github.com/fhrm2018/zbj.git
         	var jqxhr = $.ajax({
                 url: ctx + '/live/visit',
                 type: 'POST',
@@ -129,7 +125,7 @@
         		$('.inintPage-relation-tel').html('手机:'+relation.userTel);
         		$('.inintPage-relation-userQrcode').attr('src',imgPath + "ori/"+relation.userQrcode);
         		$('.inintPage-relation-userPhoto').attr('src',imgPath + "ori/"+relation.userPhoto);
-        		$('#persionC2CMessageForm span').find('input[name="fromId"]').eq(0).val(userInfo.userId);
+        		$('#persionC2CMessageForm span').find('input[name="fromId"]').eq(0).val(userInfo.id);
         		$('#persionC2CMessageForm span').find('input[name="fromNickName"]').eq(0).val(userInfo.nickName);
         		$('#persionC2CMessageForm span').find('input[name="toId"]').eq(0).val(relation.userId);
         		$('#persionC2CMessageForm span').find('input[name="toNickName"]').eq(0).val(relation.userNickName);
@@ -139,11 +135,7 @@
         	if(isInit){
         		initNewGuestPage();
         	}
-<<<<<<< HEAD
-        	visit();
-=======
 	visit();
->>>>>>> branch 'HEAD' of https://github.com/fhrm2018/zbj.git
         });
     </script>
 
@@ -951,7 +943,7 @@ Global site tag (gtag.js) - Google Analytics
 //
 
     // 弹出QQ弹框
-    var defaultQQ = new Array('${relation.userQq}');
+    var defaultQQ = new Array(relation.userQq);
     function showQQ() {
         var sUserAgent = navigator.userAgent;
         var isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows");

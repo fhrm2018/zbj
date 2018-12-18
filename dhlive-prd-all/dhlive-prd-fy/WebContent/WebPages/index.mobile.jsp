@@ -97,17 +97,7 @@
                 }
            });
         }
-        function visit(){
-        	var jqxhr = $.ajax({
-                url: ctx + '/live/visit',
-                type: 'POST',
-                data: {'url':url},
-                async: false,
-            });
-            jqxhr.done(function (data) {
-               
-           });
-        }
+        
         var isInit = false;
         if(userInfo.id == ''){
         	createNewGuest();
@@ -143,11 +133,7 @@
         	if(isInit){
         		initNewGuestPage();
         	}
-<<<<<<< HEAD
-        	visit();
-=======
 	visit();
->>>>>>> branch 'HEAD' of https://github.com/fhrm2018/zbj.git
         });
     </script>
 

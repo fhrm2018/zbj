@@ -1,4 +1,4 @@
-var send_msg_text_id = 'sendMsgIpt',
+﻿var send_msg_text_id = 'sendMsgIpt',
     room_msg_box_id = 'msgBox';
 //其他对象，选填
 var options = {
