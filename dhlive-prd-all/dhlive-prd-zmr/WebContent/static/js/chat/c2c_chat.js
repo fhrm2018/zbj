@@ -278,7 +278,6 @@ function showGroup(obj) {
             console.log(data);
             var $table = $('#yk-' + waterGroupId).find('table tobdy').eq(0);
             $table.empty();
-            if ($('#yk-' + waterGroupId).find('table').length > 0)return;
             var htmls = '';
             for (var i = 0; i < data.data.length; i++) {
                 var record = '<tr class="cur" style="cursor: pointer">';
