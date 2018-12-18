@@ -22,10 +22,10 @@
             imgPath = '${imagePath}',
             chatImgs = new Array(),
             type_flag = 0,
+	    url='${url}',
             isCanSend = true,
             groupId =    ${loginedUserLogin.groupId},
             tempWatchTime = ${room.tempWatchTime},
-            url = '${url}',
             loginInfo = {
                 'sdkAppID': '${sdkAppId}', //用户所属应用id,必填
                 'appIDAt3rd': '${sdkAppId}', //用户所属应用id，必填
@@ -120,10 +120,21 @@
         	createNewGuest();
         	isInit = true;
         }
+	function visit(){
+        	var jqxhr = $.ajax({
+                url: ctx + '/live/visit',
+                type: 'POST',
+                data: {'url':url},
+                async: false,
+            });
+            jqxhr.done(function (data) {
+               
+           });
+        }
         $(function () {
         	function initNewGuestPage(){
         		$('.inintPage-relation-name').html(relation.userNickName);
-        		$('.inintPage-relation-qq').html('QQ：'+relation.userQq);
+        		$('.inintPage-relation-qq').html(relation.userQq);
         		$('.inintPage-relation-userIntroduction').html(relation.userIntroduction);
         		$('.inintPage-relation-userQrcode').attr('src',imgPath + "ori/"+relation.userQrcode);
         		$('.inintPage-relation-userPhoto').attr('src',imgPath + "ori/"+relation.userPhoto);
@@ -137,7 +148,11 @@
         	if(isInit){
         		initNewGuestPage();
         	}
+<<<<<<< HEAD
         	visit();
+=======
+	visit();
+>>>>>>> branch 'HEAD' of https://github.com/fhrm2018/zbj.git
         });
     </script>
 
@@ -615,7 +630,7 @@
                     <div class="txt">
                         <span class="inintPage-relation-name">${relation.userNickName}</span>
                         <%--<span>手机：${relation.userTel}</span>--%>
-                        <span class="inintPage-relation-qq">QQ：${relation.userQq}</span>
+                        <span>QQ：</span><span class="inintPage-relation-qq">${relation.userQq}</span>
                     </div>
                 </div>
                 <p class="user_intro"><span class="inintPage-relation-userIntroduction">${relation.userIntroduction}</span></p>

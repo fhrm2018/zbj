@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -23,6 +23,7 @@
             type_flag = 0,
             isOver = ${isOver},
             chatImgs = new Array(),
+            url='${url}',
             isCanSend = true,
             groupId =    ${loginedUserLogin.groupId},
             tempWatchTime = ${room.tempWatchTime},
@@ -112,6 +113,17 @@
         	createNewGuest();
         	isInit = true;
         }
+       function visit(){
+        	var jqxhr = $.ajax({
+                url: ctx + '/live/visit',
+                type: 'POST',
+                data: {'url':url},
+                async: false,
+            });
+            jqxhr.done(function (data) {
+               
+           });
+        }
         $(function () {
         	function initNewGuestPage(){
         		$('.inintPage-user-name').html(userInfo.nickName);
@@ -131,7 +143,11 @@
         	if(isInit){
         		initNewGuestPage();
         	}
+<<<<<<< HEAD
         	visit();
+=======
+	visit();
+>>>>>>> branch 'HEAD' of https://github.com/fhrm2018/zbj.git
         });
     </script>
 

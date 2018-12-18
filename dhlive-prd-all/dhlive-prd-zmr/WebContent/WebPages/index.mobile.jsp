@@ -19,6 +19,7 @@
             activityConfigId = '${config.id}',
             activityCountdown = '${config.activityCountdown}',
 	   		imgPath = '${imagePath}',
+	url='${url}',
             talkUserId = '',
             type_flag = 0,
             isOver = ${isOver},
@@ -26,7 +27,6 @@
             isCanSend = true,
             groupId =    ${loginedUserLogin.groupId},
             tempWatchTime = ${room.tempWatchTime},
-            url = '${url}',
             loginInfo = {
                 'sdkAppID': '${sdkAppId}', //用户所属应用id,必填
                 'appIDAt3rd': '${sdkAppId}', //用户所属应用id，必填
@@ -68,7 +68,7 @@
         }
         function createNewGuest(){
         	var jqxhr = $.ajax({
-        		url: ctx + '/live/createNewUser',
+               url: ctx + '/live/createNewUser',
                 type: 'POST',
                 data: {'utmSource':utmSource,'url':url},
                 async: false,
@@ -102,7 +102,11 @@
         	createNewGuest();
         	isInit = true;
         }
+<<<<<<< HEAD
         function visit(){
+=======
+       function visit(){
+>>>>>>> branch 'HEAD' of https://github.com/fhrm2018/zbj.git
         	var jqxhr = $.ajax({
                 url: ctx + '/live/visit',
                 type: 'POST',
@@ -132,7 +136,11 @@
         	if(isInit){
         		initNewGuestPage();
         	}
+<<<<<<< HEAD
         	visit();
+=======
+	 visit();
+>>>>>>> branch 'HEAD' of https://github.com/fhrm2018/zbj.git
         });
     </script>
 
