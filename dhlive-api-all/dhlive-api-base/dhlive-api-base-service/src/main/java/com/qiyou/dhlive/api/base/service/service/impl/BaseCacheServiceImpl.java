@@ -29,9 +29,11 @@ import com.qiyou.dhlive.core.room.outward.service.IRoomPlanService;
 import com.qiyou.dhlive.core.user.outward.model.UserInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserRelation;
+import com.qiyou.dhlive.core.user.outward.model.UserVipInfo;
 import com.qiyou.dhlive.core.user.outward.service.IUserInfoService;
 import com.qiyou.dhlive.core.user.outward.service.IUserManageInfoService;
 import com.qiyou.dhlive.core.user.outward.service.IUserRelationService;
+import com.qiyou.dhlive.core.user.outward.service.IUserVipInfoService;
 import com.yaozhong.framework.base.common.utils.EmptyUtil;
 import com.yaozhong.framework.base.common.utils.MyBeanUtils;
 import com.yaozhong.framework.base.database.domain.search.SearchCondition;
@@ -57,6 +59,9 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	private IUserInfoService userInfoService;
 	
 	@Autowired
+	private IUserVipInfoService userVipInfoService;
+	
+	@Autowired
 	private IUserRelationService userRelationService;
 	
 	@Autowired
@@ -66,6 +71,10 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	private IRoomAutoUserService roomAutoUserService;
 	
 	public static final String USER_INFO = "dhlive-basedata-userinfo-";
+	
+	public static final String USER_VIP = "dhlive-basedata-userinfo-vip-";
+	
+	public static final String USER_MANAGER = "dhlive-basedata-userinfo-manager-";
 	
 	public static final String NEWUSER_LIST = "dhlive-basedata-newuserlist";
 	
@@ -121,6 +130,59 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 		return dataDto;
 	}
 
+
+	@Override
+	public UserInfoDTO getUserVip(Integer userId) {
+		String dataJson = redisManager.getStringValueByKey(USER_VIP+userId);
+		if(EmptyUtil.isEmpty(dataJson)) {
+			return updateUserVip(userId);
+		}
+		UserInfoDTO data = JSON.parseObject(dataJson,UserInfoDTO.class);
+		return data;
+	}
+	
+	@Override
+	public UserInfoDTO updateUserVip(Integer userId) {
+		// TODO Auto-generated method stub
+		if(EmptyUtil.isEmpty(userId)) {
+			return null;
+		}
+		UserVipInfo data = this.userVipInfoService.findById(userId);
+		if(EmptyUtil.isEmpty(data)) {
+			return null;
+		}
+		UserInfoDTO dataDto = MyBeanUtils.copyBean(data, UserInfoDTO.class);
+		String dataJson = JSON.toJSONString(dataDto);
+		redisManager.saveStringBySeconds(USER_VIP+userId, dataJson, 60*60*24);
+		return dataDto;
+	}
+
+	@Override
+	public UserInfoDTO getUserManager(Integer userId) {
+		String dataJson = redisManager.getStringValueByKey(USER_MANAGER+userId);
+		if(EmptyUtil.isEmpty(dataJson)) {
+			return updateUserManager(userId);
+		}
+		UserInfoDTO data = JSON.parseObject(dataJson,UserInfoDTO.class);
+		return data;
+	}
+	
+	@Override
+	public UserInfoDTO updateUserManager(Integer userId) {
+		// TODO Auto-generated method stub
+		if(EmptyUtil.isEmpty(userId)) {
+			return null;
+		}
+		UserManageInfo data = this.userManageInfoService.findById(userId);
+		if(EmptyUtil.isEmpty(data)) {
+			return null;
+		}
+		UserInfoDTO dataDto = MyBeanUtils.copyBean(data, UserInfoDTO.class);
+		String dataJson = JSON.toJSONString(dataDto);
+		redisManager.saveStringBySeconds(USER_MANAGER+userId, dataJson, 60*60*24);
+		return dataDto;
+	}
+	
 	@Override
 	public UserInfoDTO createNewGuestUser(String ipAddress, String utmSource) {
 		// TODO Auto-generated method stub

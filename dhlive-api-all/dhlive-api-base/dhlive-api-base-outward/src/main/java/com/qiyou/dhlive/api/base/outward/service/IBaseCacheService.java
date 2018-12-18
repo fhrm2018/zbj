@@ -17,6 +17,14 @@ public interface IBaseCacheService {
 	
 	UserInfoDTO updateUserInfo(Integer userId);
 	
+	UserInfoDTO getUserVip(Integer userId);
+	
+	UserInfoDTO updateUserVip(Integer userId);
+	
+	UserInfoDTO getUserManager(Integer userId);
+	
+	UserInfoDTO updateUserManager(Integer userId);
+	
 	UserInfoDTO createNewGuestUser(String ipAddress, String utmSource);
 	
 	List<UserManageInfo> getManageUserList(Integer roomId);

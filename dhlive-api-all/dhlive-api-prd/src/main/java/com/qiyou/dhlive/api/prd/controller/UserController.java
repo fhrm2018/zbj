@@ -2,7 +2,9 @@ package com.qiyou.dhlive.api.prd.controller;
 
 import java.util.Date;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -19,6 +21,7 @@ import com.qiyou.dhlive.api.base.outward.service.IUserInfoApiService;
 import com.qiyou.dhlive.api.prd.mvc.HttpSessionTool;
 import com.qiyou.dhlive.api.prd.mvc.UserSession;
 import com.qiyou.dhlive.api.prd.util.AddressUtils;
+import com.qiyou.dhlive.api.prd.util.Constants;
 import com.qiyou.dhlive.core.base.outward.model.BaseOptLog;
 import com.qiyou.dhlive.core.base.outward.service.IBaseOptLogService;
 import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
@@ -90,7 +93,7 @@ public class UserController {
     @UnSession
     @RequestMapping(value = "login")
     @ResponseBody
-    public DataResponse userLogin(UserManageInfo user, HttpSession session, HttpServletRequest request) {
+    public DataResponse userLogin(UserManageInfo user, HttpSession session, HttpServletRequest request,HttpServletResponse response) {
         String loginName = user.getUserTel();
         String password = user.getUserPass();
         Assert.hasText(loginName, "手机号不可为空");
@@ -114,6 +117,10 @@ public class UserController {
                     HttpSessionTool.doUserLoginOut(session);
                 }
                 HttpSessionTool.doLoginUser(session, user);
+                Cookie userIdCookie = new Cookie(Constants.MANAGE_USER_ID, user.getUserId().toString());
+                userIdCookie.setPath("/");
+                userIdCookie.setMaxAge(60 * 60 * 24);
+                response.addCookie(userIdCookie);
                 UserLoginLog log = new UserLoginLog();
                 log.setUserId(user.getUserId());
                 log.setGroupId(user.getGroupId());
@@ -146,7 +153,10 @@ public class UserController {
                         HttpSessionTool.doUserLoginOut(session);
                     }
                     HttpSessionTool.doLoginUser(session, vip);
-
+                    Cookie userIdCookie = new Cookie(Constants.VIP_USER_ID, vip.getUserId().toString());
+                    userIdCookie.setPath("/");
+                    userIdCookie.setMaxAge(60 * 60 * 24);
+                    response.addCookie(userIdCookie);
                     UserLoginLog log = new UserLoginLog();
                     log.setUserId(vip.getUserId());
                     log.setGroupId(vip.getGroupId());
@@ -204,7 +214,7 @@ public class UserController {
      */
     @RequestMapping("/editCurrentUserPwd")
     @ResponseBody
-    public DataResponse editCurrentUserPwd(String oldPass, String newPass, HttpServletRequest request) {
+    public DataResponse editCurrentUserPwd(String oldPass, String newPass, HttpServletRequest request,HttpServletResponse response) {
         if (EmptyUtil.isEmpty(oldPass)) {
             return new DataResponse(1001, "请输入原密码");
         }
@@ -224,6 +234,10 @@ public class UserController {
                 this.userVipInfoService.modifyEntity(vip);
                 HttpSession httpSession = request.getSession();
                 HttpSessionTool.doUserLoginOut(httpSession);
+                Cookie userIdCookie = new Cookie(Constants.VIP_USER_ID, vip.getUserId().toString());
+                userIdCookie.setPath("/");
+                userIdCookie.setMaxAge(0);
+                response.addCookie(userIdCookie);
             } else if (groupId == 2 || groupId == 3 || groupId == 4) {
                 UserManageInfo manage = new UserManageInfo();
                 manage.setUserPass(MD5Util.MD5Encode(newPass, "utf-8"));
@@ -231,6 +245,10 @@ public class UserController {
                 this.userManageInfoService.modifyEntity(manage);
                 HttpSession httpSession = request.getSession();
                 HttpSessionTool.doUserLoginOut(httpSession);
+                Cookie userIdCookie = new Cookie(Constants.MANAGE_USER_ID, manage.getUserId().toString());
+                userIdCookie.setPath("/");
+                userIdCookie.setMaxAge(0);
+                response.addCookie(userIdCookie);
             }
             return new DataResponse(1000, "success");
         }
@@ -245,8 +263,21 @@ public class UserController {
      */
     @RequestMapping(value = "userLoginOut")
     @ResponseBody
-    public DataResponse userLoginOut(HttpSession session) {
+    public DataResponse userLoginOut(HttpSession session,HttpServletResponse response) {
+    	UserSession s=UserSession.getUserSession();
+    	Integer userId=s.getUserId();
         HttpSessionTool.doUserLoginOut(session);
+        if(s.getGroupId().intValue()==5) {
+	        Cookie userIdCookie = new Cookie(Constants.VIP_USER_ID, userId.toString());
+	        userIdCookie.setPath("/");
+	        userIdCookie.setMaxAge(0);
+	        response.addCookie(userIdCookie);
+        }else {
+        	Cookie userIdCookie = new Cookie(Constants.MANAGE_USER_ID, userId.toString());
+            userIdCookie.setPath("/");
+            userIdCookie.setMaxAge(0);
+            response.addCookie(userIdCookie);
+        }
         return new DataResponse(1000, "success");
     }
 
