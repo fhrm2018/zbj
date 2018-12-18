@@ -1,6 +1,18 @@
 var send_msg_text_id = 'sendMsgIpt',
     room_msg_box_id = 'msgBox';
 var contarctMsglist = [];
+function updateMsgList(msg){
+	var isInList = false;
+	for(var i=0;i<contarctMsglist.length;i++){
+		if(msg.postUid == contarctMsglist[i].postUid){
+			isInList = true;
+			break;
+		}
+	}
+	if(isInList)
+		return false;
+	contarctMsglist.push(msg);
+}
 //其他对象，选填
 var options = {
     //'isAccessFormalEnv': isAccessFormalEnv,//是否访问正式环境，默认访问正式，选填
@@ -1518,7 +1530,7 @@ function showC2CMsg(data) {
                 }
             });
         } else {
-        	contarctMsglist.push(obj);
+        	updateMsgList(obj);
             if (talkUserId == '') {
                 $('.newMsgtipDiv').removeClass('hide');
             }
@@ -1526,7 +1538,7 @@ function showC2CMsg(data) {
             var status = $('.waterListF').hasClass('hide');
             //如果窗口打开, 锁定聊天的两个人, 其他的不会覆盖
             if (!status) {
-                $('.newMsgtipDiv').addClass('hide');
+                //$('.newMsgtipDiv').addClass('hide');
                 //记录当前聊天的发送人id
                 if (talkUserId == '') {
                     talkUserId = obj.postUid;
