@@ -123,7 +123,7 @@
         		$('.inintPage-relation-userIntroduction').html(relation.userIntroduction);
         		$('.inintPage-relation-userQrcode').attr('src',imgPath + "ori/"+relation.userQrcode);
         		$('.inintPage-relation-userPhoto').attr('src',imgPath + "ori/"+relation.userPhoto);
-        		$('#persionC2CMessageForm span').find('input[name="fromId"]').eq(0).val(userInfo.userId);
+        		$('#persionC2CMessageForm span').find('input[name="fromId"]').eq(0).val(userInfo.id);
         		$('#persionC2CMessageForm span').find('input[name="fromNickName"]').eq(0).val(userInfo.nickName);
         		$('#persionC2CMessageForm span').find('input[name="toId"]').eq(0).val(relation.userId);
         		$('#persionC2CMessageForm span').find('input[name="toNickName"]').eq(0).val(relation.userNickName);

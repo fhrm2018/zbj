@@ -2190,7 +2190,7 @@ function getRommMsgListHtml(msgList) {
 function removeMsgInfo(uniqueId, sendUid) {
     var $msgInfo = $('#msginfo-' + uniqueId);
     if ($msgInfo.length > 0) {
-        if (sendUid && sendUid != userInfo.id) {
+        if (sendUid && sendUid.postUid != userInfo.id) {
             $msgInfo.remove();
         }
     }
