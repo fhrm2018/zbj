@@ -102,11 +102,7 @@
         	createNewGuest();
         	isInit = true;
         }
-<<<<<<< HEAD
-        function visit(){
-=======
        function visit(){
->>>>>>> branch 'HEAD' of https://github.com/fhrm2018/zbj.git
         	var jqxhr = $.ajax({
                 url: ctx + '/live/visit',
                 type: 'POST',
@@ -136,11 +132,7 @@
         	if(isInit){
         		initNewGuestPage();
         	}
-<<<<<<< HEAD
-        	visit();
-=======
 	 visit();
->>>>>>> branch 'HEAD' of https://github.com/fhrm2018/zbj.git
         });
     </script>
 
