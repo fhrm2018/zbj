@@ -220,14 +220,14 @@ public class RoomChatMessageServiceImpl extends BaseMyBatisService<RoomChatMessa
     	int j = 1;
     	List<String> newMsgUuidList=Lists.newArrayList();
     	for(int i=0;i<msgUUidList.size();i++) {
-    		if(i>200) {
+    		if(i>50) {
     			break;
     		}
     		newMsgUuidList.add(msgUUidList.get(i));
     	}
     	
     	for(int i=newMsgUuidList.size()-1;i>=0;i--) {
-    		if(j>200){
+    		if(j>50){
     			break;
     		}
     		if(!EmptyUtil.isEmpty(msgDetailMap.get(newMsgUuidList.get(i)))) {
