@@ -1,25 +1,11 @@
 package com.qiyou.dhlive.prd.user.controller;
 
-import com.qiyou.dhlive.api.base.outward.service.IBaseCacheService;
-import com.qiyou.dhlive.api.base.outward.service.IFileUploadRemoteService;
-import com.qiyou.dhlive.api.base.outward.service.ILiveRoomApiService;
-import com.qiyou.dhlive.api.base.outward.service.IUserInfoApiService;
-import com.qiyou.dhlive.core.base.outward.model.BaseOptLog;
-import com.qiyou.dhlive.core.base.outward.service.IBaseOptLogService;
-import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
-import com.qiyou.dhlive.core.bms.outward.model.BmsEmployeeInfo;
-import com.qiyou.dhlive.core.live.outward.model.LiveRoom;
-import com.qiyou.dhlive.core.user.outward.model.*;
-import com.qiyou.dhlive.prd.component.annotation.ResourceAnnotation;
-import com.qiyou.dhlive.prd.component.annotation.UnSecurity;
-import com.qiyou.dhlive.prd.component.session.EmployeeSession;
-import com.qiyou.dhlive.prd.component.util.ResourceBaseController;
-import com.yaozhong.framework.base.common.utils.EmptyUtil;
-import com.yaozhong.framework.base.common.utils.LogFormatUtil;
-import com.yaozhong.framework.base.database.domain.page.PageSearch;
-import com.yaozhong.framework.base.database.domain.returns.DataResponse;
-import com.yaozhong.framework.base.database.redis.RedisManager;
-import com.yaozhong.framework.web.annotation.session.NeedSession;
+import java.io.InputStream;
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +16,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.InputStream;
-import java.util.Date;
-import java.util.List;
+import com.fhrm.common.file.outward.remote.IFileUploadRemoteService;
+import com.qiyou.dhlive.api.base.outward.service.IBaseCacheService;
+import com.qiyou.dhlive.api.base.outward.service.ILiveRoomApiService;
+import com.qiyou.dhlive.api.base.outward.service.IUserInfoApiService;
+import com.qiyou.dhlive.core.base.outward.model.BaseOptLog;
+import com.qiyou.dhlive.core.base.outward.service.IBaseOptLogService;
+import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
+import com.qiyou.dhlive.core.bms.outward.model.BmsEmployeeInfo;
+import com.qiyou.dhlive.core.live.outward.model.LiveRoom;
+import com.qiyou.dhlive.core.user.outward.model.UserGroup;
+import com.qiyou.dhlive.core.user.outward.model.UserInfo;
+import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
+import com.qiyou.dhlive.core.user.outward.model.UserSmallInfo;
+import com.qiyou.dhlive.core.user.outward.model.UserVipInfo;
+import com.qiyou.dhlive.prd.component.annotation.UnSecurity;
+import com.qiyou.dhlive.prd.component.session.EmployeeSession;
+import com.yaozhong.framework.base.common.utils.EmptyUtil;
+import com.yaozhong.framework.base.common.utils.LogFormatUtil;
+import com.yaozhong.framework.base.database.domain.page.PageSearch;
+import com.yaozhong.framework.base.database.domain.returns.DataResponse;
+import com.yaozhong.framework.base.database.redis.RedisManager;
+import com.yaozhong.framework.web.annotation.session.NeedSession;
 
 /**
  * describe:

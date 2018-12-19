@@ -1,6 +1,19 @@
 package com.qiyou.dhlive.prd.room.controller;
 
-import com.qiyou.dhlive.api.base.outward.service.IFileUploadRemoteService;
+import java.io.InputStream;
+import java.util.Date;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.HtmlUtils;
+
+import com.fhrm.common.file.outward.remote.IFileUploadRemoteService;
 import com.qiyou.dhlive.api.base.outward.service.ILiveRoomApiService;
 import com.qiyou.dhlive.core.base.outward.service.IBaseSysParamService;
 import com.qiyou.dhlive.core.room.outward.model.RoomArticle;
@@ -19,18 +32,6 @@ import com.yaozhong.framework.base.database.domain.returns.DataResponse;
 import com.yaozhong.framework.base.database.domain.search.SearchCondition;
 import com.yaozhong.framework.web.annotation.session.NeedSession;
 import com.yaozhong.framework.web.annotation.session.UnSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.util.HtmlUtils;
-
-import java.io.InputStream;
-import java.util.Date;
 
 /**
  * Created by fish on 2018/9/11.

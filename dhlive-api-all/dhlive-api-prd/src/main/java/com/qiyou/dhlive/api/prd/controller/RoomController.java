@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fhrm.common.file.outward.remote.IFileUploadRemoteService;
 import com.google.gson.Gson;
 import com.qiyou.dhlive.api.base.outward.service.IBaseOptLogApiService;
-import com.qiyou.dhlive.api.base.outward.service.IFileUploadRemoteService;
 import com.qiyou.dhlive.api.base.outward.service.ILiveRoomApiService;
 import com.qiyou.dhlive.api.base.outward.service.ISettingApiService;
 import com.qiyou.dhlive.api.base.outward.service.IUserInfoApiService;

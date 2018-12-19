@@ -84,7 +84,7 @@
 		<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" order="3" />
 	</aop:config>
 
-
+<import resource="classpath:dubbo/*.xml" /> 
 		<!-- 在扫描controller前扫描dubbo的service-->
 		<!--<import resource="classpath:dubbo/*.xml" />
   			<import resource="classpath:spring-mongodb.xml"/>-->
