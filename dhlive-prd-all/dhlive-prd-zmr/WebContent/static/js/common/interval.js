@@ -1,7 +1,12 @@
 if (userInfo.groupId == 1 || userInfo.groupId == 5) {
     // 截止时间转换成秒
-    checkCanWatch();
     function countTime() {
+    	if(time == 1){
+    		var watchTimeCache = cookieFunction.getCookie('watchTime');
+        	if(watchTimeCache){
+        		time = tempWatchTime - watchTimeCache;
+        	}
+    	}
         time--;
         var d, h, m, s, str;
         if (time > 0) {
@@ -14,10 +19,22 @@ if (userInfo.groupId == 1 || userInfo.groupId == 5) {
         //将倒计时赋值到div中
         document.getElementById('remainderTime').innerHTML = str;
     }
+    
+    function saveWatchTimeCookie(seconds){
+    	var watchTimeCache = cookieFunction.getCookie('watchTime');
+    	if(!watchTimeCache){
+    		watchTimeCache = 0;
+    	}
+    	cookieFunction.setCookie('watchTime',watchTimeCache + 10 );
+    }
 
     var currTime = setInterval(function () {
         countTime();
     }, 1000);
+    
+    var currTime = setInterval(function () {
+    	saveWatchTimeCookie(10);
+    }, 10000);
 }
 
 function checkCanWatch() {
@@ -29,7 +46,7 @@ function checkCanWatch() {
         },
         success: function (data) {
             if (data.code == 1000) {
-                time = data.data;
+                //time = data.data;
             } else if (data.code == 1001) {
                 if (userInfo.groupId == 1) {
                     $('.freeTipBox').removeClass('hide');
