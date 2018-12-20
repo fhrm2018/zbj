@@ -25,7 +25,7 @@ if (userInfo.groupId == 1 || userInfo.groupId == 5) {
     	if(!watchTimeCache){
     		watchTimeCache = 0;
     	}
-    	cookieFunction.setCookie('watchTime',watchTimeCache + 10 );
+    	cookieFunction.setCookie('watchTime',watchTimeCache + seconds );
     }
 
     var currTime = setInterval(function () {
