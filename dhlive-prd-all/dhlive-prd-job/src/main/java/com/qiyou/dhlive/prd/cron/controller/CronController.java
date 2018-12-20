@@ -98,6 +98,13 @@ public class CronController {
                 }
                 this.baseCacheService.updateUserOnlineTime(Integer.parseInt(str[1]),(int)(onLine/1000));
             }
+            
+            UserInfoDTO userInfo = this.baseCacheService.getUserInfo(Integer.parseInt(str[1]));
+            UserInfo u=new UserInfo();
+            u.setUserId(Integer.parseInt(str[1]));
+            u.setLookTime(userInfo.getLookTime().intValue()+(int)(onLine/1000));
+            this.userInfoService.modifyEntity(u);
+            this.baseCacheService.updateUserInfo(Integer.parseInt(str[1]));
         }
         baseLog.info(LogFormatUtil.getActionFormat("定时任务清理下线游客结束"));
     }
