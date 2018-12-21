@@ -14,8 +14,9 @@
         //全局变量
         var roomId = '${room.roomId}',//聊天室ID
             chatRoomId = '${room.roomGroupId}',//聊天室ID
+            tempWatchTime = '${room.tempWatchTime}',
             isAdmin = 0,
-            time = 1,
+            lookTime = -1,
             activityConfigId = '${config.id}',
             activityCountdown = '${config.activityCountdown}',
             talkUserId = '',
