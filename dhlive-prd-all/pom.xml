@@ -16,5 +16,6 @@
 	<module>dhlive-prd-qymt</module>
 	<module>dhlive-prd-zmr</module>
 	<module>dhlive-prd-job</module>
+	<module>dhlive-prd-zhongying</module>
   </modules>
 </project>
