@@ -9,22 +9,22 @@
     margin: -130px 0 0 -400px;
 }
 
-.logo {
+.w_logo {
     width: 100%;
     height: 56px;
-    background-color: #3598db;
+    background-color: #1e2241;
     position: relative;
     overflow: hidden;
 }
 
-.logo img {
+.w_logo img {
     display: block;
-    width: 156px;
+    width: 194px;
     float: left;
     margin: 0 0 0 10px;
 }
 
-.logo .seach {
+.w_logo .seach {
     display: block;
     width: 204px;
     height: 30px;
@@ -37,7 +37,7 @@
     top: 12px;
 }
 
-.logo .seach input {
+.w_logo .seach input {
     display: block;
     width: 100%;
     height: 30px;
@@ -48,23 +48,23 @@
     box-sizing: border-box;
 }
 
-.logo .seach input::-webkit-input-placeholder {
+.w_logo .seach input::-webkit-input-placeholder {
     color: #ffffff
 }
 
-.logo .seach input:-moz-placeholder {
+.w_logo .seach input:-moz-placeholder {
     color: #ffffff
 }
 
-.logo .seach input::-moz-placeholder {
+.w_logo .seach input::-moz-placeholder {
     color: #ffffff
 }
 
-.logo .seach input:-ms-input-placeholder {
+.w_logo .seach input:-ms-input-placeholder {
     color: #fffffff
 }
 
-.logo .seach a {
+.w_logo .seach a {
     display: block;
     width: 20px;
     height: 20px;
@@ -74,7 +74,7 @@
     top: 4px;
 }
 
-.logo .close1 {
+.w_logo .close1 {
     width: 56px;
     height: 56px;
     background: url(../images/img_02.png) 50% 50% no-repeat;

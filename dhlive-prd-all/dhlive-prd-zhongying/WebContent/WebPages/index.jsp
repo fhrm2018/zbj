@@ -148,7 +148,7 @@
     <%--<!-- 添加营销QQ -->--%>
     <%--<!-- WPA Button End -->--%>
 <%--</c:if>--%>
-<div class="header">
+<div class="header hide">
     <div class="wrap mgAuto posRel">
         <div class="topLeft fl">
             <a class="logo"><img src="${staticHost }/images/logo.png"></a>
@@ -191,7 +191,7 @@
 
 
         </div>
-        <div class="topRight fr">
+        <div class="topRight">
             <%--<c:if test="${loginedUserLogin.groupId == 1}">--%>
                 <%--<span class="username colorF" id="username">--%>
                     <%--<img src="../static/images/yk.png" alt="">${loginedUserLogin.userNickName}--%>
@@ -293,7 +293,164 @@
     <div class="wrap clearfix">
         <div class="contentLeft fl">
             <div class="clearfix" style="width: 100%">
+
+                <c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}">
+                    <div class="left_left">
+                        <div class="visitors">
+
+                            <div class="wrap mgAuto posRel">
+                                <div class="topLeft fl">
+                                    <a class="logo"><img src="${staticHost }/images/logo.png"></a>
+                                        <%--<a class="a1 collectionBtn" id="Collection01" onclick="collection(document.title,window.location)">--%>
+                                        <%--<img src="../static/images/a7.png" alt="">--%>
+                                        <%--</a>--%>
+
+
+                                    <a class="a1 downUrlBtn" onclick="downUrl()">
+                                        <img src="${staticHost }/images/a3.png" alt="">
+                                    </a>
+                                    <a class="a1" onclick="qqCustomer()">
+                                        <img src="${staticHost }/images/a1.png" alt="">
+                                    </a>
+                                    <a class="a1" onclick="qqCustomer()">
+                                        <img src="${staticHost }/images/a4.png" alt="">
+                                    </a>
+                                    <a class="a1" onclick="qqCustomer()">
+                                        <img src="${staticHost }/images/a5.png" alt="">
+                                    </a>
+                                    <a class="a1" onclick="classShow()">
+                                        <img src="${staticHost }/images/a9.png" alt="">
+                                    </a>
+
+                                    <c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}">
+                                        <a class="a1 service">
+                                            <img src="${staticHost }/images/a8.png" alt="">
+                                        </a>
+                                    </c:if>
+
+                                    <a class="a1" onclick="teacherJs()">
+                                        <img src="../static/images/a2.png" alt="">
+                                    </a>
+                                    
+                                    
+                                    <div class="sj_ewm">
+                                        <img src="../static/images/sj.jpg" alt="">
+                                    </div>
+
+
+                                </div>
+                                <div class="topRight">
+                                        <%--<c:if test="${loginedUserLogin.groupId == 1}">--%>
+                                        <%--<span class="username colorF" id="username">--%>
+                                        <%--<img src="../static/images/yk.png" alt="">${loginedUserLogin.userNickName}--%>
+                                        <%--</span>--%>
+                                        <%--</c:if>--%>
+
+                                    <c:if test="${loginedUserLogin.groupId == 2}">
+                                        <span class="username colorF" id="username">
+                                            <img src="${staticHost }/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
+                                        </span>
+                                    </c:if>
+
+                                    <c:if test="${loginedUserLogin.groupId == 3}">
+                                        <span class="username colorF" id="username">
+                                            <img src="${staticHost }/images/zl.png" alt="">${loginedUserLogin.userNickName}
+                                        </span>
+                                    </c:if>
+
+                                    <c:if test="${loginedUserLogin.groupId == 4}">
+                                        <span class="username colorF" id="username">
+                                            <img src="${staticHost }/images/icon_teacher.png" alt="">${loginedUserLogin.userNickName}
+                                        </span>
+                                    </c:if>
+
+                                    <c:if test="${loginedUserLogin.groupId == 5}">
+                                        <c:if test="${vip.userLevel == 1}">
+                                            <span class="username colorF" id="username">
+                                              <img src="${staticHost }/images/VIP1.png" alt="">${loginedUserLogin.userNickName}
+                                            </span>
+                                        </c:if>
+
+                                        <c:if test="${vip.userLevel == 2}">
+                                            <span class="username colorF" id="username">
+                                              <img src="${staticHost }/images/VIP2.png" alt="">${loginedUserLogin.userNickName}
+                                            </span>
+                                        </c:if>
+
+                                        <c:if test="${vip.userLevel == 3}">
+                                            <span class="username colorF" id="username">
+                                              <img src="${staticHost }/images/VIP3.png" alt="">${loginedUserLogin.userNickName}
+                                            </span>
+                                        </c:if>
+
+                                        <c:if test="${vip.userLevel == 4}">
+                                            <span class="username colorF" id="username">
+                                              <img src="${staticHost }/images/VIP4.png" alt="">${loginedUserLogin.userNickName}
+                                            </span>
+                                        </c:if>
+
+                                        <c:if test="${vip.userLevel == 5}">
+                                            <span class="username colorF" id="username">
+                                              <img src="${staticHost }/images/VIP5.png" alt="">${loginedUserLogin.userNickName}
+                                            </span>
+                                        </c:if>
+
+                                        <c:if test="${vip.userLevel == 6}">
+                                            <span class="username colorF" id="username">
+                                              <img src="${staticHost }/images/VIP6.png" alt="">${loginedUserLogin.userNickName}
+                                            </span>
+                                        </c:if>
+
+                                        <c:if test="${vip.userLevel == 7}">
+                                            <span class="username colorF" id="username">
+                                              <img src="${staticHost }/images/VIP7.png" alt="">${loginedUserLogin.userNickName}
+                                            </span>
+                                        </c:if>
+
+                                        <c:if test="${vip.userLevel == 8}">
+                                            <span class="username colorF" id="username">
+                                              <img src="${staticHost }/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
+                                            </span>
+                                        </c:if>
+                                    </c:if>
+
+                                    <c:if test="${loginedUserLogin.groupId == 1}">
+                                        <%--<span class="username colorF" id="username"></span>--%>
+                                        <a href="javascript:" class="loginA colorF fz16 bg12" id="g10" onclick="toShow('login', 'register');">登录</a>
+                                        <a herf="javascript:" class="registerA colorF fz16" id="g11" onclick="toShow('register','login');">注册</a>
+                                    </c:if>
+
+                                    <c:if test="${loginedUserLogin.groupId != 1}">
+                                        <a class="settingA colorF fz16">设置</a>
+                                        <div class="LoginOut hide">
+                                            <a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register');">修改密码</a>
+                                            <a class="outBtn">退出登录</a>
+                                        </div>
+                                    </c:if>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </c:if>
+
                 <c:if test="${loginedUserLogin.groupId == 3 || loginedUserLogin.groupId == 4}">
+
+                    <div class="rightNav posAbs">
+                        <c:if test="${loginedUserLogin.groupId == 3 }">
+                            <a class="waterF"><span class="colorF">水滴</span>
+                                <div class="newMsgtipDiv hide"><i class="newMsgtip"></i></div>
+                            </a>
+                            <a class="settingA colorF fz16"><span>设置</span></a>
+                            <div class="LoginOut LoginOut2 hide">
+                                <a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register');">修改密码</a>
+                                <a class="outBtn" href="javascript:">退出登录</a>
+                            </div>
+
+                        </c:if>
+                    </div>
+
                     <div class="left_left">
                         <div class="visitors">
                             <div class="visitorsBtn clearfix">
@@ -326,13 +483,13 @@
                             </div>
                         </div>
                         <div class="toLogin posRel">
-                            <div class="freeTipBox hide">
-                                <div class="loginOrReg">
-                                    <a href="javascript:" class="registerBtn" onclick="qqCustomer()">
-                                        <img src="${staticHost }/images/time_out_01.jpg" alt="">
-                                    </a>
-                                </div>
-                            </div>
+                            <a href="javascript:" class="freeTipBox hide" onclick="qqCustomer()">
+                                <%--<div class="loginOrReg">--%>
+                                    <%--<a href="javascript:" class="registerBtn" onclick="qqCustomer()">--%>
+                                        <%--<img src="${staticHost }/images/time_out_01.jpg" alt="">--%>
+                                    <%--</a>--%>
+                                <%--</div>--%>
+                            </a>
                             <div class="videoBox" id="play-container" style="width:100%; height:100%">
                                 <div id="dyyplayer" style="width:100%;height:100%"></div>
                             </div>
@@ -397,10 +554,10 @@
                                     <a class="assistantQQ" onclick="qqCustomer()">
                                         <img class="headImg" src="${imagePath}ori/${as.userPhoto}" alt="">
                                         <span>${as.userNickName}</span>
-                                        <div class="bigImg hide">
-                                            <i></i>
-                                            <img src="${imagePath}ori/${as.userPhoto}" alt="">
-                                        </div>
+                                        <%--<div class="bigImg hide">--%>
+                                            <%--<i></i>--%>
+                                            <%--<img src="${imagePath}ori/${as.userPhoto}" alt="">--%>
+                                        <%--</div>--%>
                                     </a>
                                 </c:forEach>
                             </div>
@@ -494,7 +651,7 @@
     <div class="register popWrap mgAuto posRel ac">
         <form id="registerForm" method="post" action="/user/userRegistered">
             <img src="${staticHost }/images/register.jpg" alt="">
-            <a class="btn01" href="javascript:"  onclick="qqCustomer()">立即注册VIP</a>
+            <a class="btn01" href="javascript:"  onclick="qqCustomer()"></a>
         </form>
         <a class="close close2"></a>
     </div>
@@ -513,8 +670,8 @@
 </div>
 
 <div class="waterDrop hide waterPersionBox ykpop">
-    <div class="logo">
-        <img src="${staticHost }/images/logo.png" alt="">
+    <div class="w_logo">
+        <img src="${staticHost }/images/logo2.png" alt="">
         <a href="javascript:" class="close1"></a>
     </div>
     <div class="chat clearfix">
@@ -584,8 +741,8 @@
 </div>
 
 <div class="waterDrop waterListF hide zlpop">
-    <div class="logo">
-        <img src="${staticHost }/images/logo.png" alt="">
+    <div class="w_logo">
+        <img src="${staticHost }/images/logo2.png" alt="">
         <span class="seach">
         <input type="text" placeholder="输入查询">
         <a href="javascript:"></a>
@@ -726,7 +883,7 @@
 <div class="tkTimePopMask hide">
     <div class="tkTime">
         <%--<h3>您已听课3分钟</h3>--%>
-        <a class="lxQQ" id="g6" href="javascript:" onclick="qqCustomer()">立即注册VIP</a>
+        <a class="lxQQ" id="g6" href="javascript:" onclick="qqCustomer()"></a>
         <a class="tkClose" href="javascript:"></a>
     </div>
 </div>
@@ -791,11 +948,11 @@
 </div>
 
 
-<c:if test="${loginedUserLogin.groupId == 1}">
-    <a class="kefu" onclick="topQQ()" href="javascript:">
-        <img src="${staticHost }/images/qqIcon.gif" alt="">
-    </a>
-</c:if>
+<%--<c:if test="${loginedUserLogin.groupId == 1}">--%>
+    <%--<a class="kefu" onclick="topQQ()" href="javascript:">--%>
+        <%--<img src="${staticHost }/images/qqIcon.gif" alt="">--%>
+    <%--</a>--%>
+<%--</c:if>--%>
 
 
 
@@ -817,24 +974,24 @@
 <script src="${staticHost}/js/chat/chat_base.js?version=${version}1"></script>
 <script src="${staticHost}/js/chat/chat.js?version=${version}"></script>
 <!-- baidu -->
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?a30a73c4b69a6450074e9dcb9cf4bf4d";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124641888-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<%--<script>--%>
+<%--var _hmt = _hmt || [];--%>
+<%--(function() {--%>
+  <%--var hm = document.createElement("script");--%>
+  <%--hm.src = "https://hm.baidu.com/hm.js?a30a73c4b69a6450074e9dcb9cf4bf4d";--%>
+  <%--var s = document.getElementsByTagName("script")[0]; --%>
+  <%--s.parentNode.insertBefore(hm, s);--%>
+<%--})();--%>
+<%--</script>--%>
+<%--<!-- Global site tag (gtag.js) - Google Analytics -->--%>
+<%--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124641888-1"></script>--%>
+<%--<script>--%>
+  <%--window.dataLayer = window.dataLayer || [];--%>
+  <%--function gtag(){dataLayer.push(arguments);}--%>
+  <%--gtag('js', new Date());--%>
 
-  gtag('config', 'UA-124641888-1');
-</script>
+  <%--gtag('config', 'UA-124641888-1');--%>
+<%--</script>--%>
 
 <script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=23590&id=dyyplayer"></script>
 <script type="text/javascript">

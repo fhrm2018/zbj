@@ -361,7 +361,7 @@ input::-moz-focus-inner {
 .footer .mgAuto {
     height: 30px;
     line-height: 30px;
-    background-color: #cedcf0;
+    background-color: #0c0410;
 }
 
 /**content**************/
@@ -418,8 +418,8 @@ input::-moz-focus-inner {
 
 .topRight .username img {
     display: inline-block;
-    width: 44px;
-    height: 18px;
+    width: 42px;
+    height: 42px;
     padding-right: 5px;
 }
 
@@ -434,18 +434,31 @@ input::-moz-focus-inner {
 }
 
 .LoginOut {
-    width: 176px;
+    width: 200px;
     height: auto;
+    margin:0 auto;
     text-align: center;
     background-color: #3d4b83;
-    position: absolute;
-    right: 0;
-    top: 60px;
+}
+.LoginOut2{
+    width: 62px;
+    background-color: transparent;
 }
 
 .LoginOut a {
     display: inline-block;
     width: 120px;
+    height: 36px;
+    line-height: 36px;
+    border-radius: 5px;
+    color: #ffffff;
+    text-align: center;
+    margin: 0 auto 10px;
+}
+
+.LoginOut2 a{
+    display: inline-block;
+    width: 60px;
     height: 36px;
     line-height: 36px;
     border-radius: 5px;
@@ -461,6 +474,7 @@ input::-moz-focus-inner {
 .LoginOut .outBtn {
     background-color: #7686d1;
 }
+
 
 /*.topRight .registerA {*/
     /*border-left: 1px solid #6e7ba1;*/
@@ -484,21 +498,32 @@ input::-moz-focus-inner {
     position: relative;
 }
 
+.topLeft  .logo{
+    display: block;
+    height: 130px;
+    margin: 20px auto 30px;
+}
+
 .topLeft .a1 {
     display: block;
-    float: left;
-    margin: 0 10px 0 0;
-    height: 66px;
+    height: 42px;
+    margin-bottom:20px;
     text-align: center;
     color: #FFF;
     cursor: pointer;
     position: relative;
 }
 
-.topLeft .a1 img {
-    display: block;
-    width: 100%;
+.topLeft .sj_ewm{
+    width:130px;
+    height:130px;
+    margin:20px auto;
 }
+
+/*.topLeft .a1 img {*/
+    /*display: block;*/
+    /*width: 100%;*/
+/*}*/
 
 .topLeft .goo6 {
     width: 121px;
@@ -518,6 +543,7 @@ input::-moz-focus-inner {
     height: 36px;
     line-height: 36px;
     padding-top: 18px;
+    text-align: center;
 }
 
 .header .logo02 img{
@@ -562,18 +588,18 @@ input::-moz-focus-inner {
 }
 
 .content {
-    margin-top: 78px;
+    /*margin-top: 78px;*/
     font-size: 0;
 }
 
 .content .movieTop {
     width: 100%;
     height: 36px;
-    background: #363333;
+    background: #2e1135;
 }
 
 .content .viewTime {
-    color: white;
+    color: #a469c9;
     height: 36px;
     line-height: 36px;
 }
@@ -734,7 +760,7 @@ input::-moz-focus-inner {
     padding: 0 10px 0 50px;
     font-size: 16px;
     color: #ffffff;
-    background-color: #d64853;
+    background-color: #733f90;
     box-sizing: border-box;
 }
 
@@ -949,9 +975,9 @@ input::-moz-focus-inner {
 .serviceList .qqWra {
     margin:0 10px;
     border-radius:5px;
-    border:1px solid #9e971b;
+    border:1px solid #7828ac;
     padding: 14px 5px 6px 10px;
-    background-color: #1b0a03;
+    background-color: #290b31;
 }
 
 /*.serviceList a{display: block;float: left;width: 82px;text-align: center;margin: 0 5px 10px;border-bottom: 1px solid #FFFFFF;color: #ffffff;border-right: 1px solid #FFFFFF;border-radius: 5px;height: 32px;line-height: 32px;position:relative;cursor: pointer;background: #7686d1;}*/
@@ -966,8 +992,8 @@ input::-moz-focus-inner {
     line-height: 38px;
     position: relative;
     cursor: pointer;
-    background:url("../images/zlBg.png") 50% 50% no-repeat;
-    background-size:cover;
+    /*background:url("../images/zlBg.png") 50% 50% no-repeat;*/
+    /*background-size:cover;*/
 }
 
 .serviceList > a {
@@ -992,17 +1018,18 @@ input::-moz-focus-inner {
 /*margin-right:0;*/
 /*}*/
 .serviceList .assistantQQ .headImg {
-    display: inline-block;
-    width: 26px;
-    height: 26px;
-    border-radius: 26px;
-    margin-right: 5px;
+    display: block;
+    width: 90px;
+    height: 90px;
+    border-radius: 90px;
+    overflow: hidden;
+    margin:0 auto;
 }
 
 .serviceList .assistantQQ span {
-    display: inline-block;
-    color: #333333;
-    font-size: 17px;
+    display: block;
+    color: #d670f1;
+    font-size: 18px;
     font-weight:bold;
 }
 
@@ -1065,13 +1092,13 @@ input::-moz-focus-inner {
     padding: 0 10px;
     margin-left: 10px;
     border-radius: 5px;
-    color: #ffffff;
+    color: #190822;
     font-size: 16px;
     text-align: center;
-    background-color:#e43a39;
+    background-color:#ffd867;
 }
 .contactQQ a:last-child {
-    background-color:#00a0e9;
+    background-color:#df79fa;
 }
 
 /*.contactQQ a:first-child {*/
@@ -1304,9 +1331,19 @@ input::-moz-focus-inner {
     /*height: 265px;*/
     top: 250px;
     right: 2px;
+    z-index: 999;
+
 }
 
-.rightNav a {
+.rightNav .waterF {
+    position: relative;
+    display: block;
+    width: 62px;
+    height: 66px;
+    cursor: pointer;
+    background: url('../images/right_nav.png') no-repeat;
+}
+.rightNav .settingA {
     position: relative;
     display: block;
     width: 62px;
@@ -1612,7 +1649,7 @@ input::-moz-focus-inner {
 
 .footer span {
     font-size: 12px;
-    color: #8ea0c1
+    color: #e194f5;
 }
 
 /**蒙层**/
@@ -1864,16 +1901,12 @@ input::-moz-focus-inner {
 
 .pop .register .btn01 {
     display: block;
-    width: 100%;
-    height: 70px;
-    line-height:70px;
-    font-size:34px;
-    color: #fcd66f;
-    letter-spacing:3px;
-    background-color: #e75485;
+    width: 400px;
+    height: 76px;
     position: absolute;
-    left: 0;
-    bottom: 0;
+    left: 50%;
+    bottom: 32px;
+    margin-left: -200px;
 }
 
 .pop .modifyPass {
@@ -2095,6 +2128,7 @@ input::-moz-focus-inner {
     float: left;
     width: 210px;
     height: 400px;
+    margin-right: 10px;
 }
 
 .left_right {
@@ -2107,7 +2141,7 @@ input::-moz-focus-inner {
 .left_middle {
     height: 400px;
     overflow: hidden;
-    padding-left: 10px;
+    /*padding-left: 10px;*/
 }
 
 .visitors {
@@ -2495,6 +2529,7 @@ input::-moz-focus-inner {
 }
 
 .freeTipBox {
+    display:block;
     width: 100%;
     height: 100%;
     background: url(../images/time_out.jpg) 50% 50% no-repeat;
@@ -2550,18 +2585,12 @@ input::-moz-focus-inner {
 
 .tkTime .lxQQ {
     display: block;
-    width: 100%;
-    height: 70px;
-    line-height:70px;
-    text-align:center;
-    margin: 0 auto;
-    background-color:#830d10;
-    font-size:34px;
-    color:#fcd66f;
-    letter-spacing:3px;
-    position:absolute;
-    left:0;
-    bottom:0;
+    width: 400px;
+    height: 76px;
+    position: absolute;
+    left: 50%;
+    bottom: 32px;
+    margin-left: -200px;
 }
 
 .tkTime2 {
@@ -5957,8 +5986,8 @@ button.swiper-pagination-bullet {
     background-image: url(../images/yk.png);
     background-repeat: no-repeat;
     display: inline-block;
-    width: 64px;
-    height: 26px;
+    width: 42px;
+    height: 42px;
     vertical-align: middle
 }
 
@@ -5966,8 +5995,8 @@ button.swiper-pagination-bullet {
     background-image: url(../images/zl.png);
     background-repeat: no-repeat;
     display: inline-block;
-    width: 64px;
-    height: 26px;
+    width: 42px;
+    height: 42px;
     vertical-align: middle
 }
 
@@ -5975,8 +6004,8 @@ button.swiper-pagination-bullet {
     background-image: url(../images/VIP1.png);
     background-repeat: no-repeat;
     display: inline-block;
-    width: 64px;
-    height: 26px;
+    width: 42px;
+    height: 42px;
     vertical-align: middle
 }
 
@@ -5984,8 +6013,8 @@ button.swiper-pagination-bullet {
     background-image: url(../images/VIP2.png);
     background-repeat: no-repeat;
     display: inline-block;
-    width: 64px;
-    height: 26px;
+    width: 42px;
+    height: 42px;
     vertical-align: middle
 }
 
@@ -5993,8 +6022,8 @@ button.swiper-pagination-bullet {
     background-image: url(../images/VIP3.png);
     background-repeat: no-repeat;
     display: inline-block;
-    width: 64px;
-    height: 26px;
+    width: 42px;
+    height: 42px;
     vertical-align: middle
 }
 
@@ -6002,8 +6031,8 @@ button.swiper-pagination-bullet {
     background-image: url(../images/VIP4.png);
     background-repeat: no-repeat;
     display: inline-block;
-    width: 64px;
-    height: 26px;
+    width: 42px;
+    height: 42px;
     vertical-align: middle
 }
 
@@ -6011,35 +6040,8 @@ button.swiper-pagination-bullet {
     background-image: url(../images/VIP5.png);
     background-repeat: no-repeat;
     display: inline-block;
-    width: 64px;
-    height: 26px;
-    vertical-align: middle
-}
-
-.vip6 {
-    background-image: url(../images/VIP6.png);
-    background-repeat: no-repeat;
-    display: inline-block;
-    width: 64px;
-    height: 26px;
-    vertical-align: middle
-}
-
-.vip7 {
-    background-image: url(../images/VIP7.png);
-    background-repeat: no-repeat;
-    display: inline-block;
-    width: 64px;
-    height: 26px;
-    vertical-align: middle
-}
-
-.vip8 {
-    background-image: url(../images/VIP8.png);
-    background-repeat: no-repeat;
-    display: inline-block;
-    width: 64px;
-    height: 26px;
+    width: 42px;
+    height: 42px;
     vertical-align: middle
 }
 
@@ -6047,8 +6049,8 @@ button.swiper-pagination-bullet {
     background-image: url(../images/icon_teacher.png);
     background-repeat: no-repeat;
     display: inline-block;
-    width: 64px;
-    height: 26px;
+    width: 42px;
+    height: 42px;
     vertical-align: middle;
 }
 
@@ -6203,7 +6205,7 @@ button.swiper-pagination-bullet {
     background: #D0EEFF;
     border-radius: 40px;
     overflow: hidden;
-    background:url("../images/ImgIcon.png") 50% 50% no-repeat;
+    background:url("../images/face4.png") 50% 50% no-repeat;
 }
 .file input{
     display: block;
