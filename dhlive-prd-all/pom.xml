@@ -17,5 +17,6 @@
 	<module>dhlive-prd-zmr</module>
 	<module>dhlive-prd-job</module>
 	<module>dhlive-prd-zhongying</module>
+	<module>dhlive-prd-baichuan</module>
   </modules>
 </project>

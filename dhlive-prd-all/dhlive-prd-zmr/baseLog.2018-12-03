@@ -1,0 +1,112 @@
+2018-11-28 11:48:22,846 (WwwSecurityInterceptor.java:73) INFO [qtp756185697-16] *****[拦截器获取页面:0:0:0:0:0:0:0:1,url:http://localhost:8007/]*****
+2018-11-28 11:53:03,317 (WwwSecurityInterceptor.java:73) INFO [qtp756185697-17] *****[拦截器获取页面:0:0:0:0:0:0:0:1,url:http://localhost:8007/]*****
+2018-11-28 11:53:08,849 (WwwSecurityInterceptor.java:73) INFO [qtp756185697-19] *****[拦截器获取页面:0:0:0:0:0:0:0:1,url:http://localhost:8007/]*****
+2018-11-28 11:59:09,709 (WwwSecurityInterceptor.java:73) INFO [qtp756185697-20] *****[拦截器获取页面:0:0:0:0:0:0:0:1,url:http://localhost:8007/]*****
+2018-11-28 12:03:05,505 (WwwSecurityInterceptor.java:73) INFO [qtp756185697-19] *****[拦截器获取页面:0:0:0:0:0:0:0:1,url:http://localhost:8007/]*****
+2018-11-28 12:04:08,621 (UserController.java:391) INFO [qtp756185697-12] *****[key:dhlive-cachedata-tourists-2856,value:{"userId":2856,"groupId":1,"groupName":"游客","userNickName":"游客MYe52qJW","lastLoginTime":"Nov 28, 2018 11:59:09 AM","lastLoginIp":"0:0:0:0:0:0:0:1","isFirstLogin":1,"isBlack":0,"isGag":0,"isOnline":1,"status":0,"lookTime":0,"createTime":"Nov 15, 2018 12:46:26 PM"}]*****
+2018-11-28 12:05:08,616 (UserController.java:391) INFO [qtp756185697-21] *****[key:dhlive-cachedata-tourists-2856,value:null]*****
+2018-11-28 12:06:08,613 (UserController.java:391) INFO [qtp756185697-33] *****[key:dhlive-cachedata-tourists-2856,value:null]*****
+2018-11-28 12:06:52,633 (WwwSecurityInterceptor.java:73) INFO [qtp756185697-34] *****[拦截器获取页面:0:0:0:0:0:0:0:1,url:http://localhost:8007/]*****
+2018-11-28 12:11:49,888 (WwwSecurityInterceptor.java:73) INFO [qtp756185697-14] *****[拦截器获取页面:0:0:0:0:0:0:0:1,url:http://localhost:8007/]*****
+2018-11-28 12:12:34,497 (WwwSecurityInterceptor.java:73) INFO [qtp756185697-16] *****[拦截器获取页面:0:0:0:0:0:0:0:1,url:http://localhost:8007/]*****
+2018-11-28 12:13:35,184 (UserController.java:391) INFO [qtp756185697-16] *****[key:dhlive-cachedata-tourists-2856,value:{"userId":2856,"groupId":1,"groupName":"游客","userNickName":"游客MYe52qJW","lastLoginTime":"Nov 28, 2018 12:12:34 PM","lastLoginIp":"0:0:0:0:0:0:0:1","isFirstLogin":1,"isBlack":0,"isGag":0,"isOnline":1,"status":0,"lookTime":0,"createTime":"Nov 15, 2018 12:46:26 PM"}]*****
+2018-11-28 12:13:50,995 (WwwSecurityInterceptor.java:73) INFO [qtp756185697-15] *****[拦截器获取页面:0:0:0:0:0:0:0:1,url:http://localhost:8007/]*****
+2018-11-28 12:14:14,274 (WwwSecurityInterceptor.java:73) INFO [qtp756185697-16] *****[拦截器获取页面:0:0:0:0:0:0:0:1,url:http://localhost:8007/]*****
+2018-11-28 12:14:35,559 (UserController.java:391) INFO [qtp756185697-16] *****[key:dhlive-cachedata-tourists-2856,value:{"userId":2856,"groupId":1,"groupName":"游客","userNickName":"游客MYe52qJW","lastLoginTime":"Nov 28, 2018 12:12:34 PM","lastLoginIp":"0:0:0:0:0:0:0:1","isFirstLogin":1,"isBlack":0,"isGag":0,"isOnline":1,"status":0,"lookTime":0,"createTime":"Nov 15, 2018 12:46:26 PM"}]*****
+2018-11-28 12:15:14,762 (UserController.java:391) INFO [qtp756185697-18] *****[key:dhlive-cachedata-tourists-2859,value:{"userId":2859,"groupId":1,"groupName":"游客","userNickName":"游客MY95z1fU","lastLoginTime":"Nov 28, 2018 12:13:51 PM","lastLoginIp":"0:0:0:0:0:0:0:1","isFirstLogin":1,"isBlack":0,"isGag":0,"isOnline":1,"status":0,"lookTime":0,"createTime":"Nov 15, 2018 2:18:55 PM"}]*****
+2018-11-28 12:15:35,557 (UserController.java:391) INFO [qtp756185697-18] *****[key:dhlive-cachedata-tourists-2856,value:{"userId":2856,"groupId":1,"groupName":"游客","userNickName":"游客MYe52qJW","lastLoginTime":"Nov 28, 2018 12:12:34 PM","lastLoginIp":"0:0:0:0:0:0:0:1","isFirstLogin":1,"isBlack":0,"isGag":0,"isOnline":1,"status":0,"lookTime":0,"createTime":"Nov 15, 2018 12:46:26 PM"}]*****
+2018-11-28 12:16:14,762 (UserController.java:391) INFO [qtp756185697-15] *****[key:dhlive-cachedata-tourists-2859,value:{"userId":2859,"groupId":1,"groupName":"游客","userNickName":"游客MY95z1fU","lastLoginTime":"Nov 28, 2018 12:13:51 PM","lastLoginIp":"0:0:0:0:0:0:0:1","isFirstLogin":1,"isBlack":0,"isGag":0,"isOnline":1,"status":0,"lookTime":0,"createTime":"Nov 15, 2018 2:18:55 PM"}]*****
+2018-11-28 12:16:35,556 (UserController.java:391) INFO [qtp756185697-33] *****[key:dhlive-cachedata-tourists-2856,value:{"userId":2856,"groupId":1,"groupName":"游客","userNickName":"游客MYe52qJW","lastLoginTime":"Nov 28, 2018 12:12:34 PM","lastLoginIp":"0:0:0:0:0:0:0:1","isFirstLogin":1,"isBlack":0,"isGag":0,"isOnline":1,"status":0,"lookTime":0,"createTime":"Nov 15, 2018 12:46:26 PM"}]*****
+2018-11-28 12:17:14,762 (UserController.java:391) INFO [qtp756185697-33] *****[key:dhlive-cachedata-tourists-2859,value:{"userId":2859,"groupId":1,"groupName":"游客","userNickName":"游客MY95z1fU","lastLoginTime":"Nov 28, 2018 12:13:51 PM","lastLoginIp":"0:0:0:0:0:0:0:1","isFirstLogin":1,"isBlack":0,"isGag":0,"isOnline":1,"status":0,"lookTime":0,"createTime":"Nov 15, 2018 2:18:55 PM"}]*****
+2018-11-28 12:17:35,564 (UserController.java:391) INFO [qtp756185697-35] *****[key:dhlive-cachedata-tourists-2856,value:null]*****
+2018-11-28 12:18:14,762 (UserController.java:391) INFO [qtp756185697-13] *****[key:dhlive-cachedata-tourists-2859,value:{"userId":2859,"groupId":1,"groupName":"游客","userNickName":"游客MY95z1fU","lastLoginTime":"Nov 28, 2018 12:13:51 PM","lastLoginIp":"0:0:0:0:0:0:0:1","isFirstLogin":1,"isBlack":0,"isGag":0,"isOnline":1,"status":0,"lookTime":0,"createTime":"Nov 15, 2018 2:18:55 PM"}]*****
+2018-11-28 12:18:19,841 (WwwSecurityInterceptor.java:73) INFO [qtp756185697-34] *****[拦截器获取页面:0:0:0:0:0:0:0:1,url:http://localhost:8007/]*****
+2018-11-28 12:18:35,186 (UserController.java:391) INFO [qtp756185697-13] *****[key:dhlive-cachedata-tourists-2856,value:null]*****
+2018-11-28 12:19:21,123 (UserController.java:391) INFO [qtp756185697-34] *****[key:dhlive-cachedata-tourists-2859,value:null]*****
+2018-11-28 12:19:35,185 (UserController.java:391) INFO [qtp756185697-37] *****[key:dhlive-cachedata-tourists-2856,value:null]*****
+2018-12-03 22:37:05,608 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-18] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 22:38:11,028 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-18] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 22:42:47,005 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-35] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 22:43:39,314 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-37] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 22:44:23,377 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-37] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 22:45:26,580 (UserController.java:391) INFO [qtp1670313965-23] *****[key:dhlive-cachedata-tourists-null,value:null]*****
+2018-12-03 22:46:26,567 (UserController.java:391) INFO [qtp1670313965-37] *****[key:dhlive-cachedata-tourists-null,value:null]*****
+2018-12-03 22:47:26,563 (UserController.java:391) INFO [qtp1670313965-23] *****[key:dhlive-cachedata-tourists-null,value:null]*****
+2018-12-03 22:48:26,563 (UserController.java:391) INFO [qtp1670313965-37] *****[key:dhlive-cachedata-tourists-null,value:null]*****
+2018-12-03 22:48:44,471 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-37] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 22:49:56,524 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-23] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 22:50:43,581 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-19] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 22:50:49,263 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-37] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 22:51:17,057 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-41] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 22:52:00,289 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-37] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 22:52:54,476 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-23] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 22:53:21,119 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-36] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 22:54:09,416 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-23] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 22:55:34,698 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-35] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:00:52,443 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-24] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:01:17,358 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-36] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:01:27,461 (RoomController.java:95) INFO [qtp1670313965-24] *****[保存群聊消息开始参数:"7065282780334005"]*****
+2018-12-03 23:01:27,473 (RoomController.java:98) INFO [qtp1670313965-24] *****[保存群聊消息结束]*****
+2018-12-03 23:02:17,418 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-37] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:04:07,656 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-24] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:04:17,274 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-38] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:04:48,174 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-38] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:07:22,851 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-40] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:11:43,802 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-24] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:12:19,228 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-39] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:13:15,619 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-24] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:14:06,678 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-40] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:14:34,272 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-38] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:15:29,722 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-40] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:16:38,362 (UserController.java:391) INFO [qtp1670313965-45] *****[key:dhlive-cachedata-tourists-3694,value:null]*****
+2018-12-03 23:17:29,398 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-43] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:21:19,646 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-43] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:21:41,144 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-46] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:22:50,242 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-50] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:23:05,053 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-45] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:23:24,056 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-52] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:24:28,561 (UserController.java:391) INFO [qtp1670313965-48] *****[key:dhlive-cachedata-tourists-3698,value:null]*****
+2018-12-03 23:25:27,742 (UserController.java:391) INFO [qtp1670313965-48] *****[key:dhlive-cachedata-tourists-3698,value:null]*****
+2018-12-03 23:25:35,240 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-51] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:25:56,207 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-48] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:27:01,747 (UserController.java:391) INFO [qtp1670313965-48] *****[key:dhlive-cachedata-tourists-3699,value:null]*****
+2018-12-03 23:27:18,982 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-53] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:27:46,157 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-46] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:27:52,271 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-53] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:28:53,556 (UserController.java:391) INFO [qtp1670313965-48] *****[key:dhlive-cachedata-tourists-3700,value:{"userId":3700,"groupId":1,"groupName":"游客","userNickName":"游客MYIo1Zf3","lastLoginTime":"Dec 3, 2018 11:27:52 PM","lastLoginIp":"127.0.0.1","isFirstLogin":1,"isBlack":0,"isGag":0,"isOnline":1,"status":0,"lookTime":0,"createTime":"Dec 3, 2018 11:27:47 PM"}]*****
+2018-12-03 23:29:53,561 (UserController.java:391) INFO [qtp1670313965-54] *****[key:dhlive-cachedata-tourists-3700,value:{"userId":3700,"groupId":1,"groupName":"游客","userNickName":"游客MYIo1Zf3","lastLoginTime":"Dec 3, 2018 11:27:52 PM","lastLoginIp":"127.0.0.1","isFirstLogin":1,"isBlack":0,"isGag":0,"isOnline":1,"status":0,"lookTime":0,"createTime":"Dec 3, 2018 11:27:47 PM"}]*****
+2018-12-03 23:30:53,561 (UserController.java:391) INFO [qtp1670313965-53] *****[key:dhlive-cachedata-tourists-3700,value:{"userId":3700,"groupId":1,"groupName":"游客","userNickName":"游客MYIo1Zf3","lastLoginTime":"Dec 3, 2018 11:27:52 PM","lastLoginIp":"127.0.0.1","isFirstLogin":1,"isBlack":0,"isGag":0,"isOnline":1,"status":0,"lookTime":0,"createTime":"Dec 3, 2018 11:27:47 PM"}]*****
+2018-12-03 23:31:53,565 (UserController.java:391) INFO [qtp1670313965-53] *****[key:dhlive-cachedata-tourists-3700,value:{"userId":3700,"groupId":1,"groupName":"游客","userNickName":"游客MYIo1Zf3","lastLoginTime":"Dec 3, 2018 11:27:52 PM","lastLoginIp":"127.0.0.1","isFirstLogin":1,"isBlack":0,"isGag":0,"isOnline":1,"status":0,"lookTime":0,"createTime":"Dec 3, 2018 11:27:47 PM"}]*****
+2018-12-03 23:32:42,311 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-55] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:32:56,933 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-54] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:33:24,245 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-48] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:33:58,951 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-45] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:36:18,135 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-55] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:37:15,775 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-45] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:39:00,378 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-48] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:40:04,782 (UserController.java:391) INFO [qtp1670313965-48] *****[key:dhlive-cachedata-tourists-3706,value:null]*****
+2018-12-03 23:40:20,555 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-55] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:40:25,792 (RoomController.java:95) INFO [qtp1670313965-48] *****[保存群聊消息开始参数:"40207212840614803"]*****
+2018-12-03 23:40:25,797 (RoomController.java:98) INFO [qtp1670313965-48] *****[保存群聊消息结束]*****
+2018-12-03 23:41:22,607 (UserController.java:391) INFO [qtp1670313965-45] *****[key:dhlive-cachedata-tourists-3707,value:null]*****
+2018-12-03 23:41:40,818 (RoomController.java:95) INFO [qtp1670313965-57] *****[保存群聊消息开始参数:"40207216214904300"]*****
+2018-12-03 23:41:40,820 (RoomController.java:98) INFO [qtp1670313965-57] *****[保存群聊消息结束]*****
+2018-12-03 23:42:22,608 (UserController.java:391) INFO [qtp1670313965-45] *****[key:dhlive-cachedata-tourists-3707,value:null]*****
+2018-12-03 23:43:22,606 (UserController.java:391) INFO [qtp1670313965-57] *****[key:dhlive-cachedata-tourists-3707,value:null]*****
+2018-12-03 23:43:51,017 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-45] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:43:56,485 (RoomController.java:95) INFO [qtp1670313965-55] *****[保存群聊消息开始参数:"9668204660302420"]*****
+2018-12-03 23:43:56,487 (RoomController.java:98) INFO [qtp1670313965-55] *****[保存群聊消息结束]*****
+2018-12-03 23:44:33,751 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-45] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:44:38,214 (RoomController.java:95) INFO [qtp1670313965-45] *****[保存群聊消息开始参数:"42138451683418614"]*****
+2018-12-03 23:44:38,216 (RoomController.java:98) INFO [qtp1670313965-45] *****[保存群聊消息结束]*****
+2018-12-03 23:44:45,378 (RoomController.java:95) INFO [qtp1670313965-59] *****[保存群聊消息开始参数:"42138454068689749"]*****
+2018-12-03 23:44:45,380 (RoomController.java:98) INFO [qtp1670313965-59] *****[保存群聊消息结束]*****
+2018-12-03 23:45:35,718 (UserController.java:391) INFO [qtp1670313965-60] *****[key:dhlive-cachedata-tourists-3710,value:null]*****
+2018-12-03 23:46:35,716 (UserController.java:391) INFO [qtp1670313965-61] *****[key:dhlive-cachedata-tourists-3710,value:null]*****
+2018-12-03 23:47:35,717 (UserController.java:391) INFO [qtp1670313965-55] *****[key:dhlive-cachedata-tourists-3710,value:null]*****
+2018-12-03 23:48:35,717 (UserController.java:391) INFO [qtp1670313965-62] *****[key:dhlive-cachedata-tourists-3710,value:null]*****
+2018-12-03 23:49:35,715 (UserController.java:391) INFO [qtp1670313965-48] *****[key:dhlive-cachedata-tourists-3710,value:null]*****
+2018-12-03 23:56:16,552 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-20] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:57:40,191 (WwwSecurityInterceptor.java:73) INFO [qtp1670313965-20] *****[拦截器获取页面:127.0.0.1,url:http://127.0.0.1:8007/]*****
+2018-12-03 23:58:40,762 (UserController.java:391) INFO [qtp1670313965-34] *****[key:dhlive-cachedata-tourists-3711,value:{"userId":3711,"groupId":1,"groupName":"游客","userNickName":"游客MYa1ajDy","lastLoginTime":"Dec 3, 2018 11:57:40 PM","lastLoginIp":"127.0.0.1","isFirstLogin":1,"isBlack":0,"isGag":0,"isOnline":1,"status":0,"lookTime":0,"createTime":"Dec 3, 2018 11:56:22 PM"}]*****
+2018-12-03 23:59:40,767 (UserController.java:391) INFO [qtp1670313965-21] *****[key:dhlive-cachedata-tourists-3711,value:{"userId":3711,"groupId":1,"groupName":"游客","userNickName":"游客MYa1ajDy","lastLoginTime":"Dec 3, 2018 11:57:40 PM","lastLoginIp":"127.0.0.1","isFirstLogin":1,"isBlack":0,"isGag":0,"isOnline":1,"status":0,"lookTime":0,"createTime":"Dec 3, 2018 11:56:22 PM"}]*****
