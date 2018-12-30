@@ -11,7 +11,7 @@
 
 <style>
     body{
-        background-color:#b4ccef;
+        background-color:#4a7d7e;
     }
     .errorContent {
         width: 760px;
@@ -42,7 +42,7 @@
         text-align: center;
         font-size: 34px;
         color: #fcd66f;
-        background-color: #e8504f;
+        background: url("../static/images/404btn.png") 50% 50%no-repeat;
     }
 </style>
 
@@ -50,7 +50,7 @@
 <div class="errorContent">
     <div class="errorBtn">
         <span>您的ip地址为:${ip}</span>
-        <a href="javascript:;" onclick="qqCustomer(${qqNum})">联系客服</a>
+        <a href="javascript:;" onclick="qqCustomer(${qqNum})"></a>
     </div>
 </div>
 

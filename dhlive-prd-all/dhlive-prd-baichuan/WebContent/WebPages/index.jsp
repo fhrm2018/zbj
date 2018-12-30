@@ -156,12 +156,12 @@
                 <%--<img src="../static/images/a7.png" alt="">--%>
             <%--</a>--%>
 
-            <a class="a1" onclick="classShow()">
-                <img src="${staticHost }/images/a9.png" alt="">
-            </a>
-            <a style="display:none;" class="a1" target="_blank" href="http://www.ditan666.com/zm.html">
-                <img src="${staticHost }/images/a10.png" alt="">
-            </a>
+            <%--<a class="a1" onclick="classShow()">--%>
+                <%--<img src="${staticHost }/images/a9.png" alt="">--%>
+            <%--</a>--%>
+            <%--<a style="display:none;" class="a1" target="_blank" href="http://www.ditan666.com/zm.html">--%>
+                <%--<img src="${staticHost }/images/a10.png" alt="">--%>
+            <%--</a>--%>
             <a class="a1" onclick="qqCustomer()">
                 <img src="${staticHost }/images/a1.png" alt="">
             </a>
@@ -171,23 +171,24 @@
             <a class="a1" onclick="qqCustomer()">
                 <img src="${staticHost }/images/a5.png" alt="">
             </a>
-            <a class="a1" onclick="qqCustomer()">
-                <img src="${staticHost }/images/a6.png" alt="">
+            <%--<a class="a1" onclick="qqCustomer()">--%>
+                <%--<img src="${staticHost }/images/a6.png" alt="">--%>
+            <%--</a>--%>
+
+            <a class="a1" onclick="teacherJs()">
+                <img src="../static/images/a2.png" alt="">
             </a>
 
             <a class="a1 downUrlBtn" onclick="downUrl()">
                 <img src="${staticHost }/images/a3.png" alt="">
             </a>
 
-            <c:if test="${loginedUserLogin.groupId == 1}">
-                <a class="a1 service">
-                    <img src="${staticHost }/images/a8.png" alt="">
-                </a>
-            </c:if>
+            <%--<c:if test="${loginedUserLogin.groupId == 1}">--%>
+                <%--<a class="a1 service">--%>
+                    <%--<img src="${staticHost }/images/a8.png" alt="">--%>
+                <%--</a>--%>
+            <%--</c:if>--%>
 
-            <%--<a class="a1" onclick="teacherJs()">--%>
-                <%--<img src="../static/images/a2.png" alt="">--%>
-            <%--</a>--%>
 
 
         </div>
@@ -313,7 +314,35 @@
                 </c:if>
 
                 <div class="left_right"></div>
-                <div class="left_middle <c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}"> pad0 </c:if>">
+                <div class="left_middle <c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}"> pad10 </c:if>">
+
+                    <div class="tsWra clearfix">
+                        <p class="tishi">
+                            <i class="noticeIcon"></i>
+                            <marquee scrollamount="5">
+                                直播为嘉宾的个人观点，仅供参考，请谨慎交易！
+                            </marquee>
+                        </p>
+
+
+                        <%--<div class="denglu">--%>
+                            <%--<c:if test="${loginedUserLogin.groupId == 1}">--%>
+                                <%--<a href="javascript:" class="loginA colorF fz16 bg12" id="g10" onclick="toShow('login', 'register');">登录</a>--%>
+                                <%--<a herf="javascript:" class="registerA colorF fz16" id="g11" onclick="toShow('register','login');">注册</a>--%>
+                            <%--</c:if>--%>
+                            <%--<c:if test="${loginedUserLogin.groupId != 1}">--%>
+                                <%--<a class="settingA colorF fz16">设置</a>--%>
+                                <%--<div class="LoginOut hide">--%>
+                                    <%--<a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register');">修改密码</a>--%>
+                                    <%--<a class="outBtn">退出登录</a>--%>
+                                <%--</div>--%>
+                            <%--</c:if>--%>
+                        <%--</div>--%>
+
+
+                    </div>
+
+
                     <div class="movie">
                         <div class="movieTop clearfix">
                             <div class="viewTime fl">
@@ -359,7 +388,7 @@
 
 
         <div class="contentRight fr posRel">
-            <div class="allUserView ">
+            <div class="allUserView pad10">
                 <div class="notice posRel hide">
                     <p class="trumpet fl"><img src="${staticHost }/images/notice.png"/></p>
                     <p class="msgTime fl"></p>
@@ -379,28 +408,54 @@
                             <c:if test="${loginedUserLogin.groupId != 1 && loginedUserLogin.groupId != 5}">
                                 <a onclick="movieHide()" class="movieHidebtn"></a>
                             </c:if>
-                            <p class="tishi">
-                                <i class="noticeIcon"></i>
-                                <marquee scrollamount="5">
-                                    直播为嘉宾的个人观点，仅供参考，请谨慎交易！
-                                </marquee>
-                            </p>
+                            <%--<p class="tishi">--%>
+                                <%--<i class="noticeIcon"></i>--%>
+                                <%--<marquee scrollamount="5">--%>
+                                    <%--直播为嘉宾的个人观点，仅供参考，请谨慎交易！--%>
+                                <%--</marquee>--%>
+                            <%--</p>--%>
+
+                            <div class="">
+                                <c:if test="${loginedUserLogin.groupId == 1}">
+                                    <a class="a1 service">
+                                        <img src="${staticHost }/images/a8.png" alt="">
+                                    </a>
+                                </c:if>
+
+                                <a class="a1" onclick="classShow()">
+                                    <img src="${staticHost }/images/a9.png" alt="">
+                                </a>
+
+                                <a class="a1" onclick="qqCustomer()">
+                                    <img src="${staticHost }/images/a7.png" alt="">
+                                </a>
+                                <a class="a1" onclick="qqCustomer()">
+                                    <img src="${staticHost }/images/a10.png" alt="">
+                                </a>
+
+
+
+
+
+                            </div>
+
+
                             <div class="msg" id="msgBox">
                                 <div class="load">
                                     <img src="${staticHost }/images/load.gif"/>
                                 </div>
                             </div>
                         </div>
-                        <div class="serviceList clearfix posRel">
+                        <div class="serviceList">
                             <div class="qqWra">
                                 <c:forEach var="as" begin="0" items="${assistant}">
                                     <a class="assistantQQ" onclick="qqCustomer()">
                                         <img class="headImg" src="${imagePath}ori/${as.userPhoto}" alt="">
                                         <span>${as.userNickName}</span>
-                                        <div class="bigImg hide">
-                                            <i></i>
-                                            <img src="${imagePath}ori/${as.userPhoto}" alt="">
-                                        </div>
+                                        <%--<div class="bigImg hide">--%>
+                                            <%--<i></i>--%>
+                                            <%--<img src="${imagePath}ori/${as.userPhoto}" alt="">--%>
+                                        <%--</div>--%>
                                     </a>
                                 </c:forEach>
                             </div>
@@ -411,8 +466,8 @@
                             <div class="inputTxt clearfix">
                                 <c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}">
                                     <div class="contactQQ">
-                                        <a id="goo26" href="javascript:"  onclick="qqCustomer()">智能跟单</a>
-                                        <a id="goo27" href="javascript:" onclick="qqCustomer()">账户诊断</a>
+                                        <%--<a id="goo26" href="javascript:"  onclick="qqCustomer()">智能跟单</a>--%>
+                                        <%--<a id="goo27" href="javascript:" onclick="qqCustomer()">账户诊断</a>--%>
                                             <%--<a id="goo28" href="javascript:" onclick="qqCustomer(${relation.userQq})">领取策略</a>--%>
                                     </div>
                                 </c:if>
@@ -470,11 +525,11 @@
     </div>
 </div>
 
-<div class="footer">
-    <div class="wrap ac mgAuto">
-        <span>直播为嘉宾的个人观点，仅供参考，请谨慎交易！ 版权：深圳市美易互动科技有限公司 投资有风险  入市需谨慎</span>
-    </div>
-</div>
+<%--<div class="footer">--%>
+    <%--<div class="wrap ac mgAuto">--%>
+        <%--<span>直播为嘉宾的个人观点，仅供参考，请谨慎交易！ 版权：深圳市美易互动科技有限公司 投资有风险  入市需谨慎</span>--%>
+    <%--</div>--%>
+<%--</div>--%>
 
 
 <div class="pop hide" id="pop">
@@ -494,7 +549,7 @@
     <div class="register popWrap mgAuto posRel ac">
         <form id="registerForm" method="post" action="/user/userRegistered">
             <img src="${staticHost }/images/register.jpg" alt="">
-            <a class="btn01" href="javascript:"  onclick="qqCustomer()">立即注册VIP</a>
+            <a class="btn01" href="javascript:"  onclick="qqCustomer()"></a>
         </form>
         <a class="close close2"></a>
     </div>
@@ -726,7 +781,7 @@
 <div class="tkTimePopMask hide">
     <div class="tkTime">
         <%--<h3>您已听课3分钟</h3>--%>
-        <a class="lxQQ" id="g6" href="javascript:" onclick="qqCustomer()">立即注册VIP</a>
+        <a class="lxQQ" id="g6" href="javascript:" onclick="qqCustomer()"></a>
         <a class="tkClose" href="javascript:"></a>
     </div>
 </div>
@@ -791,11 +846,11 @@
 </div>
 
 
-<c:if test="${loginedUserLogin.groupId == 1}">
-    <a class="kefu" onclick="topQQ()" href="javascript:">
-        <img src="${staticHost }/images/qqIcon.gif" alt="">
-    </a>
-</c:if>
+<%--<c:if test="${loginedUserLogin.groupId == 1}">--%>
+    <%--<a class="kefu" onclick="topQQ()" href="javascript:">--%>
+        <%--<img src="${staticHost }/images/qqIcon.gif" alt="">--%>
+    <%--</a>--%>
+<%--</c:if>--%>
 
 
 
@@ -817,24 +872,24 @@
 <script src="${staticHost}/js/chat/chat_base.js?version=${version}1"></script>
 <script src="${staticHost}/js/chat/chat.js?version=${version}"></script>
 <!-- baidu -->
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?a30a73c4b69a6450074e9dcb9cf4bf4d";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124641888-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<%--<script>--%>
+<%--var _hmt = _hmt || [];--%>
+<%--(function() {--%>
+  <%--var hm = document.createElement("script");--%>
+  <%--hm.src = "https://hm.baidu.com/hm.js?a30a73c4b69a6450074e9dcb9cf4bf4d";--%>
+  <%--var s = document.getElementsByTagName("script")[0]; --%>
+  <%--s.parentNode.insertBefore(hm, s);--%>
+<%--})();--%>
+<%--</script>--%>
+<%--<!-- Global site tag (gtag.js) - Google Analytics -->--%>
+<%--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124641888-1"></script>--%>
+<%--<script>--%>
+  <%--window.dataLayer = window.dataLayer || [];--%>
+  <%--function gtag(){dataLayer.push(arguments);}--%>
+  <%--gtag('js', new Date());--%>
 
-  gtag('config', 'UA-124641888-1');
-</script>
+  <%--gtag('config', 'UA-124641888-1');--%>
+<%--</script>--%>
 
 <script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=23590&id=dyyplayer"></script>
 <script type="text/javascript">
