@@ -4,9 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>【国际期货直播室】恒指期货直播室_股指期货直播间_黄金直播间-追梦人直播间</title>
-    <meta name="keywords" content="追梦人,追梦人直播间、国际黄金实时行情、国际原油期货、恒指期货开户、期货怎么炒、国际期货"/>
-    <meta name="description" content="追梦人-权威国际期货直播领导者，追梦人国际期货交易平台,特邀精英讲师团为投资者提供前沿的全球期货实时行情分析、恒生指数期货实战交流、股指期货实盘交易培训、指数期货直播、原油期货直播、黄金期货实时行情、每日美股行情走势等，打造您身边靠谱的国际期货交流平台。"/>
+    <title>众盈俱乐部 - 国际期货直播间_期货直播室_恒指期货直播室_股指期货直播室</title>
+    <meta name="keywords" content="众盈俱乐部,众盈国际期货直播室,国际期货直播间,恒指期货直播室,股指期货直播室,众盈恒指期货直播室,众盈股指期货直播室"/>
+    <meta name="description" content="众盈俱乐部为广大国际期货投资者提供专业的国际期货,恒指期货,股指期货在线直播喊单,众盈国际期货直播室深受广大国际期货投资者的喜爱,国际期货直播间、恒指期货直播室、股指期货直播室就选众盈恒指期货直播室,众盈股指期货直播室,想看专业的国际期货喊单直播,众盈期货俱乐部是不错的选择！"/>
     <link rel="shortcut icon" href="${staticHost }/images/favicon.png" type="image/x-icon"/>
     <jsp:include page="common/public.jsp"/>
     <script type="text/javascript">
@@ -483,13 +483,13 @@
                             </div>
                         </div>
                         <div class="toLogin posRel">
-                            <a href="javascript:" class="freeTipBox hide" onclick="qqCustomer()">
-                                <%--<div class="loginOrReg">--%>
-                                    <%--<a href="javascript:" class="registerBtn" onclick="qqCustomer()">--%>
-                                        <%--<img src="${staticHost }/images/time_out_01.jpg" alt="">--%>
-                                    <%--</a>--%>
-                                <%--</div>--%>
-                            </a>
+                           <%--  <a href="javascript:" class="freeTipBox hide" onclick="qqCustomer()">
+                                <div class="loginOrReg">
+                                    <a href="javascript:" class="registerBtn" onclick="qqCustomer()">
+                                        <img src="${staticHost }/images/time_out_01.jpg" alt="">
+                                    </a>
+                                </div>
+                            </a> --%>
                             <div class="videoBox" id="play-container" style="width:100%; height:100%">
                                 <div id="dyyplayer" style="width:100%;height:100%"></div>
                             </div>
@@ -627,11 +627,11 @@
     </div>
 </div>
 
-<div class="footer">
+<!-- <div class="footer">
     <div class="wrap ac mgAuto">
         <span>直播为嘉宾的个人观点，仅供参考，请谨慎交易！ 版权：深圳市美易互动科技有限公司 投资有风险  入市需谨慎</span>
     </div>
-</div>
+</div> -->
 
 
 <div class="pop hide" id="pop">
@@ -685,7 +685,7 @@
                                 <span class="inintPage-relation-name">${relation.userNickName}</span>
                             </div>
                             <div class="txt">
-                                <p>您好，欢迎您来到《追梦人直播间》国资背景期货公司合作方，希望我们的直播能给您带来便利！</p><br/>
+                                <p>您好，欢迎您来到《众盈俱乐部》国资背景期货公司合作方，希望我们的直播能给您带来便利！</p><br/>
                                 <p>【0元开户】请回复：1</p>
                                 <p>【领取课件】请回复：2</p>
                                 <p>【操作策略】请回复：3</p>
@@ -993,7 +993,7 @@
   <%--gtag('config', 'UA-124641888-1');--%>
 <%--</script>--%>
 
-<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=23590&id=dyyplayer"></script>
+<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=24138&id=dyyplayer"></script>
 <script type="text/javascript">
     // 弹出QQ弹框
 //    var defaultQQ = new Array('3005619188', '3005658628', '3005698870','3005623869');

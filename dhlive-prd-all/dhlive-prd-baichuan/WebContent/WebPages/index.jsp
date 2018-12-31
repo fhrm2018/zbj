@@ -4,9 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>【国际期货直播室】恒指期货直播室_股指期货直播间_黄金直播间-追梦人直播间</title>
-    <meta name="keywords" content="追梦人,追梦人直播间、国际黄金实时行情、国际原油期货、恒指期货开户、期货怎么炒、国际期货"/>
-    <meta name="description" content="追梦人-权威国际期货直播领导者，追梦人国际期货交易平台,特邀精英讲师团为投资者提供前沿的全球期货实时行情分析、恒生指数期货实战交流、股指期货实盘交易培训、指数期货直播、原油期货直播、黄金期货实时行情、每日美股行情走势等，打造您身边靠谱的国际期货交流平台。"/>
+    <title>恒指_美原油_eia_黄金_国内期货_国际期货喊单直播室 - 百川财富讲堂</title>
+    <meta name="keywords" content="百川财富讲堂,百川期货直播室,恒指期货直播室,国内期货直播室,美原油期货直播室,国际期货喊单直播室,eia直播室,黄金期货直播室,百川国际期货直播室"/>
+    <meta name="description" content="百川财富讲堂为您提供:国内期货直播室,恒指期货直播室,美原油期货直播室,eia直播室,黄金期货直播室等热门期货互动直播,百川财富讲堂是国际期货投资者值得信赖的期货投资交流社区,百川期货直播室提供国际期货原油黄金实盘喊单分析,视频直播解盘,交易分析!想要掌握完整的国际期货投资技巧,就来百川财富讲堂！"/>
     <link rel="shortcut icon" href="${staticHost }/images/favicon.png" type="image/x-icon"/>
     <jsp:include page="common/public.jsp"/>
     <script type="text/javascript">
@@ -583,7 +583,7 @@
                                 <span class="inintPage-relation-name">${relation.userNickName}</span>
                             </div>
                             <div class="txt">
-                                <p>您好，欢迎您来到《追梦人直播间》国资背景期货公司合作方，希望我们的直播能给您带来便利！</p><br/>
+                                <p>您好，欢迎您来到《百川财富讲堂》国资背景期货公司合作方，希望我们的直播能给您带来便利！</p><br/>
                                 <p>【0元开户】请回复：1</p>
                                 <p>【领取课件】请回复：2</p>
                                 <p>【操作策略】请回复：3</p>
@@ -891,7 +891,7 @@
   <%--gtag('config', 'UA-124641888-1');--%>
 <%--</script>--%>
 
-<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=23590&id=dyyplayer"></script>
+<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=24139&id=dyyplayer"></script>
 <script type="text/javascript">
     // 弹出QQ弹框
 //    var defaultQQ = new Array('3005619188', '3005658628', '3005698870','3005623869');
