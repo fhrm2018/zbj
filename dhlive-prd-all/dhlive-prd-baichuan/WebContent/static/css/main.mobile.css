@@ -94,10 +94,10 @@ html[xmlns] .clearfix {display: block;}
     background:rgba(0,0,0,0.4);
 }
 
-.header{height:4rem;line-height: 4rem;padding: 0 1rem;color:#fff;background-color:#370d0d;}
+.header{height:4rem;line-height: 4rem;padding: 0 1rem;color:#fff;background:url("../images/header.jpg") left top no-repeat;background-size: cover;}
 /*.content{min-width:1280px;max-width:1280px;min-height:1560px;width:1280px;height:1560px;}*/
 .content{min-width:1280px;width:99%;}
-.footer{position:fixed;bottom:10px;left:10px;right:10px;z-index: 18;border:1px solid #ac525d;border-radius:5px;box-shadow: 0 1px 2px rgba(57,32,3,0.35);background-color: #efefef;}
+.footer{position:fixed;bottom:10px;left:0px;right:0px;z-index: 18;border:1px solid #ac525d;box-shadow: 0 1px 2px rgba(57,32,3,0.35);background-color: #efefef;}
 .footer .mgAuto{height:30px;line-height:30px;background-color:#3D4A82;}
 
 /**content**************/
@@ -107,7 +107,10 @@ html[xmlns] .clearfix {display: block;}
 .logo{display: inline-block;margin-top: -0.5rem;vertical-align: middle;}
 .topLeft{padding-left:1rem;}
 .topLeft .allbutton{margin:1.2rem 1rem 0;float:left;}
-.topRight{}
+.topRight{position: absolute;right: 0;top: 0;}
+.topRight .loginA,.topRight .registerA{    display: inline-block;width: 6rem;height: 3rem;line-height: 3rem;background-color: #cd2f2f;  text-align: center;  margin-right: 10px;}
+.topRight .registerA{background-color: #556ca5;}
+
 .topRight .username{display:inline-block;color:#dcdce1;vertical-align: middle;}
 .topRight .username img{display:inline-block;width:4.5rem;padding-right:5px;}
 .topRight .message{width:3rem;height:3.6rem;}
@@ -140,7 +143,7 @@ html[xmlns] .clearfix {display: block;}
     font-size: 18px;
     background-color: #dc374b;
 }
-.loginOrReg  .allbutton4{background-color:#7686d1;color:#ffffff;}
+.loginOrReg  .allbutton4{background-color:#590d0d;color:#ffffff;}
 .loginOrReg  .allbutton4:after{display:none;}
 .allbutton:after{display:block;content:"";width:1px;height:22px;background-color:#6e7ba1;position:absolute;right:-10px;top:7px;cursor:pointer;}
 .allbutton:last-child:after{display:none;}
@@ -156,8 +159,10 @@ html[xmlns] .clearfix {display: block;}
 .toLogin .loginOrReg{}
 
 
-/*.contentRight{width:384px;  margin-right: 76px;}*/
-.contentRight{}
+
+.movieTop{color:#c7beb1;background-color: #2f0a0a;}
+    /*.contentRight{width:384px;  margin-right: 76px;}*/
+.contentRight{position: relative;}
 
 .chat{height:4rem;}
 
@@ -185,7 +190,7 @@ html[xmlns] .clearfix {display: block;}
 
 
 .contentRight .scrollWrap{overflow-y: auto;}
-.contentRight .msg{width: 100%;height:320px;/* padding:10px; */overflow-y: auto;box-sizing:border-box;background-color: #f7f9fc;}
+.contentRight .msg{width: 100%;height:320px;/* padding:10px; */overflow-y: auto;box-sizing:border-box;background:url("../images/content.png") left top no-repeat;}
 
 /*.msg .info{width:362px;}*/
 .msg .info{/* width:100%; */padding: 5px 10px 10px;/* overflow:  hidden; */}
@@ -202,7 +207,7 @@ html[xmlns] .clearfix {display: block;}
 .msg .info .msgName,.msg .info .msgTime{color:#caa32e;font-size:14px;}
 .msg .info .redFont{color:#e60012;}
 .msg .info .msgTime{top:6px;right: 14px;}
-.msg .info .msgInfo{display:inline-block;max-width:350px;word-wrap: break-word;margin-bottom: 5px;padding:2px 10px;line-height:22px;font-size:14px;color:#111111;box-sizing: border-box;background-color:#fefeff;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border-top-right-radius: 5px;box-shadow: 0 1px 2px rgba(57,32,3,0.35);vertical-align: middle;}
+.msg .info .msgInfo{display:inline-block;max-width:350px;word-wrap: break-word;margin-bottom: 5px;padding:2px 10px;line-height:22px;font-size:14px;color:#111111;box-sizing: border-box;vertical-align: middle;}
 .msg .info .msgInfo2{line-height:22px;}
 .msg .info .check{width:130px;height:24px; bottom: 5px; right: 31px;}
 .msg .info .check button{width:40px;height:24px;border-radius:5px;border:none;}
@@ -230,6 +235,20 @@ html[xmlns] .clearfix {display: block;}
 .serviceList >a:nth-child(4n){
     margin-right:0;
 }
+
+.kaihuBtn{
+    height:4rem;
+}
+.kaihuBtn a{
+    display:inline-block;
+    height:4rem;
+    margin-right: 10px;
+}
+.kaihuBtn a img{
+    display:block;
+    height:100%;
+}
+
 
 .lxqq{
     position: fixed;

@@ -137,26 +137,123 @@
         });
     </script>
 
-    <script>
-        var _hmt = _hmt || [];
-        (function () {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?9d52ab323a254f2be51fc439997a06ee";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
+    <%--<script>--%>
+        <%--var _hmt = _hmt || [];--%>
+        <%--(function () {--%>
+            <%--var hm = document.createElement("script");--%>
+            <%--hm.src = "https://hm.baidu.com/hm.js?9d52ab323a254f2be51fc439997a06ee";--%>
+            <%--var s = document.getElementsByTagName("script")[0];--%>
+            <%--s.parentNode.insertBefore(hm, s);--%>
+        <%--})();--%>
+    <%--</script>--%>
 </head>
 
 <body>
 
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SPHMPQ"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+<%--<!-- Google Tag Manager (noscript) -->--%>
+<%--<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SPHMPQ"--%>
+                  <%--height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>--%>
+<%--<!-- End Google Tag Manager (noscript) -->--%>
 
-<!-- 辅助变量 -->
+<%--<!-- 辅助变量 -->--%>
+<div class="header clearfix">
+    <div class="fl">
+        <a class="logo"><img src="../static/images/logo.png"></a>
+    </div>
 
+    <div class="kaihuBtn fr">
+        <a class="initPage-mqqwpa" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">
+            <img src="../static/images/a1.png" alt="">
+        </a>
+        <a class="initPage-mqqwpa" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">
+            <img src="../static/images/a4.png" alt="">
+        </a>
+    </div>
+
+    <%--<div class="fr topRight">--%>
+        <%--<c:if test="${loginedUserLogin.groupId == 1}">--%>
+            <%--<p class="username fz12" id="username">--%>
+                <%--<img src="../static/images/yk.png" alt=""><span class="inintPage-user-name">${loginedUserLogin.userNickName}</span>--%>
+            <%--</p>--%>
+        <%--</c:if>--%>
+
+        <%--<c:if test="${loginedUserLogin.groupId == 2}">--%>
+            <%--<p class="username fz12" id="username">--%>
+                <%--<img src="../static/images/VIP8.png" alt="">${loginedUserLogin.userNickName}--%>
+            <%--</p>--%>
+        <%--</c:if>--%>
+
+        <%--<c:if test="${loginedUserLogin.groupId == 3}">--%>
+            <%--<p class="username fz12" id="username">--%>
+                <%--<img src="../static/images/zl.png" alt="">${loginedUserLogin.userNickName}--%>
+            <%--</p>--%>
+        <%--</c:if>--%>
+
+        <%--<c:if test="${loginedUserLogin.groupId == 4}">--%>
+            <%--<p class="username fz12" id="username">--%>
+                <%--<img src="../static/images/VIP8.png" alt="">${loginedUserLogin.userNickName}--%>
+            <%--</p>--%>
+        <%--</c:if>--%>
+
+        <%--<c:if test="${loginedUserLogin.groupId == 5}">--%>
+            <%--<c:if test="${vip.userLevel == 1}">--%>
+                <%--<p class="username fz12" id="username">--%>
+                    <%--<img src="../static/images/VIP1.png" alt="">${loginedUserLogin.userNickName}--%>
+                <%--</p>--%>
+            <%--</c:if>--%>
+
+            <%--<c:if test="${vip.userLevel == 2}">--%>
+                <%--<p class="username fz12" id="username">--%>
+                    <%--<img src="../static/images/VIP2.png" alt="">${loginedUserLogin.userNickName}--%>
+                <%--</p>--%>
+            <%--</c:if>--%>
+
+            <%--<c:if test="${vip.userLevel == 3}">--%>
+                <%--<p class="username fz12" id="username">--%>
+                    <%--<img src="../static/images/VIP3.png" alt="">${loginedUserLogin.userNickName}--%>
+                <%--</p>--%>
+            <%--</c:if>--%>
+
+            <%--<c:if test="${vip.userLevel == 4}">--%>
+                <%--<p class="username fz12" id="username">--%>
+                    <%--<img src="../static/images/VIP4.png" alt="">${loginedUserLogin.userNickName}--%>
+                <%--</p>--%>
+            <%--</c:if>--%>
+
+            <%--<c:if test="${vip.userLevel == 5}">--%>
+                <%--<div class="username fz12" id="username">--%>
+                    <%--<img src="../static/images/VIP5.png" alt="">${loginedUserLogin.userNickName}--%>
+                <%--</div>--%>
+            <%--</c:if>--%>
+        <%--</c:if>--%>
+
+        <%--<c:if test="${loginedUserLogin.groupId == 1}">--%>
+            <%--<div class="menuIcon">--%>
+                <%--<a href="javascript:"><i></i></a>--%>
+                <%--<div class="menuBtn hide">--%>
+                    <%--<a class="loginA colorF fz16" onclick="toShow('login', 'register');">登录</a>--%>
+                    <%--<a class="registerA colorF fz16 initPage-mqqwpa" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">注册</a>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+        <%--</c:if>--%>
+
+        <%--<c:if test="${loginedUserLogin.groupId != 1}">--%>
+            <%--<p class="settingA colorF fz12">设置</p>--%>
+            <%--<div class="LoginOut hide" style="z-index: 999">--%>
+                <%--<a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register');">修改密码</a>--%>
+                <%--<a class="outBtn">退出登录</a>--%>
+            <%--</div>--%>
+        <%--</c:if>--%>
+    <%--</div>--%>
+
+
+    <%--<div class="rightNav posAbs">--%>
+    <%--<c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}">--%>
+    <%--<a onclick="qqCustomer(${relation.userQq})" class="teacher"><span class="colorF">老师</span></a>--%>
+    <%--<a class="service" onclick="qqCustomer(${relation.userQq})"><span class="colorF">客服</span></a>--%>
+    <%--</c:if>--%>
+    <%--</div>--%>
+</div>
 
 <div class="flexWrap flexAgCen">
     <div class="flexCon contentLeft">
@@ -185,105 +282,94 @@
     </div>
 </div>
 
-<div class="header clearfix">
-    <div class="fl">
-        <a class="logo"><img src="../static/images/logo.png"></a>
-    </div>
-    <div class="fr topRight">
-        <c:if test="${loginedUserLogin.groupId == 1}">
-            <p class="username fz12" id="username">
-                <img src="../static/images/yk.png" alt=""><span class="inintPage-user-name">${loginedUserLogin.userNickName}</span>
-            </p>
-        </c:if>
-
-        <c:if test="${loginedUserLogin.groupId == 2}">
-            <p class="username fz12" id="username">
-                <img src="../static/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
-            </p>
-        </c:if>
-
-        <c:if test="${loginedUserLogin.groupId == 3}">
-            <p class="username fz12" id="username">
-                <img src="../static/images/zl.png" alt="">${loginedUserLogin.userNickName}
-            </p>
-        </c:if>
-
-        <c:if test="${loginedUserLogin.groupId == 4}">
-            <p class="username fz12" id="username">
-                <img src="../static/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
-            </p>
-        </c:if>
-
-        <c:if test="${loginedUserLogin.groupId == 5}">
-            <c:if test="${vip.userLevel == 1}">
-                <p class="username fz12" id="username">
-                    <img src="../static/images/VIP1.png" alt="">${loginedUserLogin.userNickName}
-                </p>
-            </c:if>
-
-            <c:if test="${vip.userLevel == 2}">
-                <p class="username fz12" id="username">
-                    <img src="../static/images/VIP2.png" alt="">${loginedUserLogin.userNickName}
-                </p>
-            </c:if>
-
-            <c:if test="${vip.userLevel == 3}">
-                <p class="username fz12" id="username">
-                    <img src="../static/images/VIP3.png" alt="">${loginedUserLogin.userNickName}
-                </p>
-            </c:if>
-
-            <c:if test="${vip.userLevel == 4}">
-                <p class="username fz12" id="username">
-                    <img src="../static/images/VIP4.png" alt="">${loginedUserLogin.userNickName}
-                </p>
-            </c:if>
-
-            <c:if test="${vip.userLevel == 5}">
-                <div class="username fz12" id="username">
-                    <img src="../static/images/VIP5.png" alt="">${loginedUserLogin.userNickName}
-                </div>
-            </c:if>
-        </c:if>
-
-        <c:if test="${loginedUserLogin.groupId == 1}">
-            <div class="menuIcon">
-                <a href="javascript:"><i></i></a>
-                <div class="menuBtn hide">
-                    <a class="loginA colorF fz16" onclick="toShow('login', 'register');">登录</a>
-                    <a class="registerA colorF fz16 initPage-mqqwpa" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">注册</a>
-                </div>
-            </div>
-        </c:if>
-
-        <c:if test="${loginedUserLogin.groupId != 1}">
-            <p class="settingA colorF fz12">设置</p>
-            <div class="LoginOut hide" style="z-index: 999">
-                <a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register');">修改密码</a>
-                <a class="outBtn">退出登录</a>
-            </div>
-        </c:if>
-    </div>
-
-
-    <%--<div class="rightNav posAbs">--%>
-        <%--<c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}">--%>
-            <%--<a onclick="qqCustomer(${relation.userQq})" class="teacher"><span class="colorF">老师</span></a>--%>
-            <%--<a class="service" onclick="qqCustomer(${relation.userQq})"><span class="colorF">客服</span></a>--%>
-        <%--</c:if>--%>
-    <%--</div>--%>
-</div>
 
 <div class="flexWrap flexAgCen">
     <div class="flexCon contentRight wtBg">
         <div class="notice posRel">
             <marquee onmouseover="this.stop()" class="noticeMsg noticeList" onmouseout="this.start()" scrollamount="5" direction="left">直播为嘉宾的个人观点，仅供参考，请谨慎交易！</marquee>
         </div>
+
+        <div class="topRight">
+            <%--<c:if test="${loginedUserLogin.groupId == 1}">--%>
+                <%--<p class="username fz12" id="username">--%>
+                    <%--<img src="../static/images/yk.png" alt=""><span class="inintPage-user-name">${loginedUserLogin.userNickName}</span>--%>
+                <%--</p>--%>
+            <%--</c:if>--%>
+
+            <c:if test="${loginedUserLogin.groupId == 2}">
+                <p class="username fz12" id="username">
+                    <img src="../static/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
+                </p>
+            </c:if>
+
+            <c:if test="${loginedUserLogin.groupId == 3}">
+                <p class="username fz12" id="username">
+                    <img src="../static/images/zl.png" alt="">${loginedUserLogin.userNickName}
+                </p>
+            </c:if>
+
+            <c:if test="${loginedUserLogin.groupId == 4}">
+                <p class="username fz12" id="username">
+                    <img src="../static/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
+                </p>
+            </c:if>
+
+            <c:if test="${loginedUserLogin.groupId == 5}">
+                <c:if test="${vip.userLevel == 1}">
+                    <p class="username fz12" id="username">
+                        <img src="../static/images/VIP1.png" alt="">${loginedUserLogin.userNickName}
+                    </p>
+                </c:if>
+
+                <c:if test="${vip.userLevel == 2}">
+                    <p class="username fz12" id="username">
+                        <img src="../static/images/VIP2.png" alt="">${loginedUserLogin.userNickName}
+                    </p>
+                </c:if>
+
+                <c:if test="${vip.userLevel == 3}">
+                    <p class="username fz12" id="username">
+                        <img src="../static/images/VIP3.png" alt="">${loginedUserLogin.userNickName}
+                    </p>
+                </c:if>
+
+                <c:if test="${vip.userLevel == 4}">
+                    <p class="username fz12" id="username">
+                        <img src="../static/images/VIP4.png" alt="">${loginedUserLogin.userNickName}
+                    </p>
+                </c:if>
+
+                <c:if test="${vip.userLevel == 5}">
+                    <div class="username fz12" id="username">
+                        <img src="../static/images/VIP5.png" alt="">${loginedUserLogin.userNickName}
+                    </div>
+                </c:if>
+            </c:if>
+
+            <c:if test="${loginedUserLogin.groupId == 1}">
+
+                <a class="loginA colorF fz16" onclick="toShow('login', 'register');">登录</a>
+                <a class="registerA colorF fz16 initPage-mqqwpa" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">注册</a>
+
+            </c:if>
+
+            <c:if test="${loginedUserLogin.groupId != 1}">
+                <p class="settingA colorF fz12">设置</p>
+                <div class="LoginOut hide" style="z-index: 999">
+                    <a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register');">修改密码</a>
+                    <a class="outBtn">退出登录</a>
+                </div>
+            </c:if>
+        </div>
+
         <div class="msg" id="msgBox">
             <div class="load">
                 <img src="../static/images/load.gif"/>
             </div>
         </div>
+
+
+
     </div>
 </div>
 
@@ -345,11 +431,11 @@
 
 </div>
 
-<div class="lxqq">
-    <a class="initPage-mqqwpa" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">
-        <img src="../static/images/qqIcon.gif" alt="">
-    </a>
-</div>
+<%--<div class="lxqq">--%>
+    <%--<a class="initPage-mqqwpa" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">--%>
+        <%--<img src="../static/images/qqIcon.gif" alt="">--%>
+    <%--</a>--%>
+<%--</div>--%>
 
 
 <div class="worning hide"></div>

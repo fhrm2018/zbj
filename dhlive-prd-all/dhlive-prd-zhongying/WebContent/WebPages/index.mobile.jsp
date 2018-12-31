@@ -137,64 +137,36 @@
         });
     </script>
 
-    <script>
-        var _hmt = _hmt || [];
-        (function () {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?9d52ab323a254f2be51fc439997a06ee";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
+    <%--<script>--%>
+        <%--var _hmt = _hmt || [];--%>
+        <%--(function () {--%>
+            <%--var hm = document.createElement("script");--%>
+            <%--hm.src = "https://hm.baidu.com/hm.js?9d52ab323a254f2be51fc439997a06ee";--%>
+            <%--var s = document.getElementsByTagName("script")[0];--%>
+            <%--s.parentNode.insertBefore(hm, s);--%>
+        <%--})();--%>
+    <%--</script>--%>
 </head>
 
 <body>
 
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SPHMPQ"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+<%--<!-- Google Tag Manager (noscript) -->--%>
+<%--<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SPHMPQ"--%>
+                  <%--height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>--%>
+<%--<!-- End Google Tag Manager (noscript) -->--%>
 
 <!-- 辅助变量 -->
 
-
-<div class="flexWrap flexAgCen">
-    <div class="flexCon contentLeft">
-        <div class="movieTop clearfix">
-            <div class="viewTime fl">
-                <c:if test="${loginedUserLogin.groupId == 1}">
-                    <span class="remainderTime" id="remainderTime"></span>
-                </c:if>
-            </div>
-        </div>
-        <div class="movie">
-            <div class="toLogin videoBox flexWrap">
-                <div class="flexCon" id="play-container"><div id="dyyplayer" style="width:100%;height:100%"></div></div>
-            </div>
-            <div class="toLogin freeTipBox flexWrap flexAgCen hide">
-                <div class="flexCon posRel">
-                    <p class="colorF fz16 ac mt10">你当前为游客身份，免费时长已用完</p>
-                    <p class="colorF fz16 ac mt10">登录后可免费观看</p>
-                    <div class="loginOrReg ac mt10">
-                        <a class="allbutton allbutton4 ilblock mr20" onclick="toShow('login', 'register');">登录</a>
-                        <a class="allbutton allbutton4 ilblock initPage-mqqwpa" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">注册</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="header clearfix">
     <div class="fl">
-        <a class="logo"><img src="../static/images/logo.png"></a>
+        <a class="logo"><img src="../static/images/logo2.png"></a>
     </div>
     <div class="fr topRight">
-        <c:if test="${loginedUserLogin.groupId == 1}">
-            <p class="username fz12" id="username">
-                <img src="../static/images/yk.png" alt=""><span class="inintPage-user-name">${loginedUserLogin.userNickName}</span>
-            </p>
-        </c:if>
+        <%--<c:if test="${loginedUserLogin.groupId == 1}">--%>
+            <%--<p class="username fz12" id="username">--%>
+                <%--<img src="../static/images/yk.png" alt=""><span class="inintPage-user-name">${loginedUserLogin.userNickName}</span>--%>
+            <%--</p>--%>
+        <%--</c:if>--%>
 
         <c:if test="${loginedUserLogin.groupId == 2}">
             <p class="username fz12" id="username">
@@ -247,13 +219,8 @@
         </c:if>
 
         <c:if test="${loginedUserLogin.groupId == 1}">
-            <div class="menuIcon">
-                <a href="javascript:"><i></i></a>
-                <div class="menuBtn hide">
-                    <a class="loginA colorF fz16" onclick="toShow('login', 'register');">登录</a>
-                    <a class="registerA colorF fz16 initPage-mqqwpa" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">注册</a>
-                </div>
-            </div>
+            <a class="loginA colorF fz16" onclick="toShow('login', 'register');">登录</a>
+            <a class="registerA colorF fz16 initPage-mqqwpa" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">注册</a>
         </c:if>
 
         <c:if test="${loginedUserLogin.groupId != 1}">
@@ -267,11 +234,53 @@
 
 
     <%--<div class="rightNav posAbs">--%>
-        <%--<c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}">--%>
-            <%--<a onclick="qqCustomer(${relation.userQq})" class="teacher"><span class="colorF">老师</span></a>--%>
-            <%--<a class="service" onclick="qqCustomer(${relation.userQq})"><span class="colorF">客服</span></a>--%>
-        <%--</c:if>--%>
+    <%--<c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}">--%>
+    <%--<a onclick="qqCustomer(${relation.userQq})" class="teacher"><span class="colorF">老师</span></a>--%>
+    <%--<a class="service" onclick="qqCustomer(${relation.userQq})"><span class="colorF">客服</span></a>--%>
+    <%--</c:if>--%>
     <%--</div>--%>
+</div>
+
+
+<div class="flexWrap flexAgCen">
+    <div class="flexCon contentLeft">
+        <div class="movieTop clearfix">
+            <div class="viewTime fl">
+                <c:if test="${loginedUserLogin.groupId == 1}">
+                    <span class="remainderTime" id="remainderTime"></span>
+                </c:if>
+            </div>
+        </div>
+        <div class="movie">
+            <div class="toLogin videoBox flexWrap">
+                <div class="flexCon" id="play-container"><div id="dyyplayer" style="width:100%;height:100%"></div></div>
+            </div>
+            <div class="toLogin freeTipBox flexWrap flexAgCen hide">
+                <div class="flexCon posRel">
+                    <p class="colorF fz16 ac mt10">你当前为游客身份，免费时长已用完</p>
+                    <p class="colorF fz16 ac mt10">登录后可免费观看</p>
+                    <div class="loginOrReg ac mt10">
+                        <a class="allbutton allbutton4 ilblock mr20" onclick="toShow('login', 'register');">登录</a>
+                        <a class="allbutton allbutton4 ilblock initPage-mqqwpa" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">注册</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="sjwra">
+    <div class="sjanniu">
+        <span>聊天</span>
+        <a class="initPage-mqqwpa" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">立即开户</a>
+        <a class="initPage-mqqwpa" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">即时策略</a>
+        <a class="initPage-mqqwpa" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">嘉宾专线</a>
+    </div>
+    <a class="sjban initPage-mqqwpa" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">
+        <img src="../static/images/sj_ban.jpg" alt="">
+    </a>
+
 </div>
 
 <div class="flexWrap flexAgCen">
@@ -345,11 +354,11 @@
 
 </div>
 
-<div class="lxqq">
-    <a class="initPage-mqqwpa" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">
-        <img src="../static/images/qqIcon.gif" alt="">
-    </a>
-</div>
+<%--<div class="lxqq">--%>
+    <%--<a class="initPage-mqqwpa" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">--%>
+        <%--<img src="../static/images/qqIcon.gif" alt="">--%>
+    <%--</a>--%>
+<%--</div>--%>
 
 
 <div class="worning hide"></div>
