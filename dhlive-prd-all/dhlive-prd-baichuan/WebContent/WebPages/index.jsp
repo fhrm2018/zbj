@@ -162,16 +162,16 @@
             <%--<a style="display:none;" class="a1" target="_blank" href="http://www.ditan666.com/zm.html">--%>
                 <%--<img src="${staticHost }/images/a10.png" alt="">--%>
             <%--</a>--%>
-            <a class="a1" onclick="qqCustomer()">
+            <a class="a1" onclick="showQQ()">
                 <img src="${staticHost }/images/a1.png" alt="">
             </a>
-            <a class="a1" onclick="qqCustomer()">
+            <a class="a1" onclick="showQQ()">
                 <img src="${staticHost }/images/a4.png" alt="">
             </a>
-            <a class="a1" onclick="qqCustomer()">
+            <a class="a1" onclick="showQQ()">
                 <img src="${staticHost }/images/a5.png" alt="">
             </a>
-            <%--<a class="a1" onclick="qqCustomer()">--%>
+            <%--<a class="a1" onclick="showQQ()">--%>
                 <%--<img src="${staticHost }/images/a6.png" alt="">--%>
             <%--</a>--%>
 
@@ -357,7 +357,7 @@
                         <div class="toLogin posRel">
                             <div class="freeTipBox hide">
                                 <div class="loginOrReg">
-                                    <a href="javascript:" class="registerBtn" onclick="qqCustomer()">
+                                    <a href="javascript:" class="registerBtn" onclick="showQQ()">
                                         <img src="${staticHost }/images/time_out_01.jpg" alt="">
                                     </a>
                                 </div>
@@ -370,7 +370,7 @@
                     <div class="movieBot mt10">
                         <div id="relativediv">
                             <div class="bannerImg">
-                                <a href="javascript:" onclick="qqCustomer()">
+                                <a href="javascript:" onclick="showQQ()">
                                     <img src="${staticHost }/images/b1.jpg" alt="">
                                 </a>
                             </div>
@@ -426,10 +426,10 @@
                                     <img src="${staticHost }/images/a9.png" alt="">
                                 </a>
 
-                                <a class="a1" onclick="qqCustomer()">
+                                <a class="a1" onclick="showQQ()">
                                     <img src="${staticHost }/images/a7.png" alt="">
                                 </a>
-                                <a class="a1" onclick="qqCustomer()">
+                                <a class="a1" onclick="showQQ()">
                                     <img src="${staticHost }/images/a10.png" alt="">
                                 </a>
 
@@ -449,7 +449,7 @@
                         <div class="serviceList">
                             <div class="qqWra">
                                 <c:forEach var="as" begin="0" items="${assistant}">
-                                    <a class="assistantQQ" onclick="qqCustomer()">
+                                    <a class="assistantQQ" onclick="showQQ()">
                                         <img class="headImg" src="${imagePath}ori/${as.userPhoto}" alt="">
                                         <span>${as.userNickName}</span>
                                         <%--<div class="bigImg hide">--%>
@@ -466,9 +466,9 @@
                             <div class="inputTxt clearfix">
                                 <c:if test="${loginedUserLogin.groupId == 1 || loginedUserLogin.groupId == 5}">
                                     <div class="contactQQ">
-                                        <%--<a id="goo26" href="javascript:"  onclick="qqCustomer()">智能跟单</a>--%>
-                                        <%--<a id="goo27" href="javascript:" onclick="qqCustomer()">账户诊断</a>--%>
-                                            <%--<a id="goo28" href="javascript:" onclick="qqCustomer(${relation.userQq})">领取策略</a>--%>
+                                        <%--<a id="goo26" href="javascript:"  onclick="showQQ()">智能跟单</a>--%>
+                                        <%--<a id="goo27" href="javascript:" onclick="showQQ()">账户诊断</a>--%>
+                                            <%--<a id="goo28" href="javascript:" onclick="showQQ(${relation.userQq})">领取策略</a>--%>
                                     </div>
                                 </c:if>
 
@@ -539,7 +539,7 @@
                 <h2 class="tit fz20 ac">VIP登录</h2>
                 <input type="text" class="inp" placeholder="请输入帐号" name="userTel" id="loginPhone"/>
                 <input type="password" class="inp" placeholder="请输入密码" name="userPass" id="loginPwd"/>
-                <a href="javascript:" onclick="qqCustomer()">忘记密码</a>
+                <a href="javascript:" onclick="showQQ()">忘记密码</a>
                 <input type="submit" class="redBut mb10 mt20" id="login" value="登录"/>
                 <p class="errorMsg red3 fz20 hide"></p>
             </form>
@@ -549,7 +549,7 @@
     <div class="register popWrap mgAuto posRel ac">
         <form id="registerForm" method="post" action="/user/userRegistered">
             <img src="${staticHost }/images/register.jpg" alt="">
-            <a class="btn01" href="javascript:"  onclick="qqCustomer()"></a>
+            <a class="btn01" href="javascript:"  onclick="showQQ()"></a>
         </form>
         <a class="close close2"></a>
     </div>
@@ -770,7 +770,7 @@
 
 <%--<div class="popMask">--%>
     <%--<div class="popImg">--%>
-        <%--<a href="javascript:" id="g15" onclick="qqCustomer(${relation.userQq})">--%>
+        <%--<a href="javascript:" id="g15" onclick="showQQ(${relation.userQq})">--%>
             <%--<img src="../static/images/img.png" alt="">--%>
         <%--</a>--%>
         <%--<a class="closeImg" style="" href="javascript:"></a>--%>
@@ -781,7 +781,7 @@
 <div class="tkTimePopMask hide">
     <div class="tkTime">
         <%--<h3>您已听课3分钟</h3>--%>
-        <a class="lxQQ" id="g6" href="javascript:" onclick="qqCustomer()"></a>
+        <a class="lxQQ" id="g6" href="javascript:" onclick="showQQ()"></a>
         <a class="tkClose" href="javascript:"></a>
     </div>
 </div>
