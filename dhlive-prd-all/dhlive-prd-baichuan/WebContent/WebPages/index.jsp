@@ -276,8 +276,8 @@
             <c:if test="${loginedUserLogin.groupId != 1}">
                 <a class="settingA colorF fz16">设置</a>
                 <div class="LoginOut hide">
-                    <a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register');">修改密码</a>
-                    <a class="outBtn">退出登录</a>
+                    <a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register','login');">修改密码</a>
+                    <a class="outBtn">退出登录</a> 
                 </div>
             </c:if>
         </div>

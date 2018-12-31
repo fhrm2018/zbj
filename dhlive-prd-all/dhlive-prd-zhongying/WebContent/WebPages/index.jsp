@@ -148,147 +148,147 @@
     <%--<!-- 添加营销QQ -->--%>
     <%--<!-- WPA Button End -->--%>
 <%--</c:if>--%>
-<div class="header hide">
-    <div class="wrap mgAuto posRel">
-        <div class="topLeft fl">
-            <a class="logo"><img src="${staticHost }/images/logo.png"></a>
-            <%--<a class="a1 collectionBtn" id="Collection01" onclick="collection(document.title,window.location)">--%>
-                <%--<img src="../static/images/a7.png" alt="">--%>
+<%--<div class="header hide">--%>
+    <%--<div class="wrap mgAuto posRel">--%>
+        <%--<div class="topLeft fl">--%>
+            <%--<a class="logo"><img src="${staticHost }/images/logo.png"></a>--%>
+            <%--&lt;%&ndash;<a class="a1 collectionBtn" id="Collection01" onclick="collection(document.title,window.location)">&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<img src="../static/images/a7.png" alt="">&ndash;%&gt;--%>
+            <%--&lt;%&ndash;</a>&ndash;%&gt;--%>
+
+            <%--<a class="a1" onclick="classShow()">--%>
+                <%--<img src="${staticHost }/images/a9.png" alt="">--%>
+            <%--</a>--%>
+            <%--<a style="display:none;" class="a1" target="_blank" href="http://www.ditan666.com/zm.html">--%>
+                <%--<img src="${staticHost }/images/a10.png" alt="">--%>
+            <%--</a>--%>
+            <%--<a class="a1" onclick="qqCustomer()">--%>
+                <%--<img src="${staticHost }/images/a1.png" alt="">--%>
+            <%--</a>--%>
+            <%--<a class="a1" onclick="qqCustomer()">--%>
+                <%--<img src="${staticHost }/images/a4.png" alt="">--%>
+            <%--</a>--%>
+            <%--<a class="a1" onclick="qqCustomer()">--%>
+                <%--<img src="${staticHost }/images/a5.png" alt="">--%>
+            <%--</a>--%>
+            <%--<a class="a1" onclick="qqCustomer()">--%>
+                <%--<img src="${staticHost }/images/a6.png" alt="">--%>
             <%--</a>--%>
 
-            <a class="a1" onclick="classShow()">
-                <img src="${staticHost }/images/a9.png" alt="">
-            </a>
-            <a style="display:none;" class="a1" target="_blank" href="http://www.ditan666.com/zm.html">
-                <img src="${staticHost }/images/a10.png" alt="">
-            </a>
-            <a class="a1" onclick="qqCustomer()">
-                <img src="${staticHost }/images/a1.png" alt="">
-            </a>
-            <a class="a1" onclick="qqCustomer()">
-                <img src="${staticHost }/images/a4.png" alt="">
-            </a>
-            <a class="a1" onclick="qqCustomer()">
-                <img src="${staticHost }/images/a5.png" alt="">
-            </a>
-            <a class="a1" onclick="qqCustomer()">
-                <img src="${staticHost }/images/a6.png" alt="">
-            </a>
-
-            <a class="a1 downUrlBtn" onclick="downUrl()">
-                <img src="${staticHost }/images/a3.png" alt="">
-            </a>
-
-            <c:if test="${loginedUserLogin.groupId == 1}">
-                <a class="a1 service">
-                    <img src="${staticHost }/images/a8.png" alt="">
-                </a>
-            </c:if>
-
-            <%--<a class="a1" onclick="teacherJs()">--%>
-                <%--<img src="../static/images/a2.png" alt="">--%>
+            <%--<a class="a1 downUrlBtn" onclick="downUrl()">--%>
+                <%--<img src="${staticHost }/images/a3.png" alt="">--%>
             <%--</a>--%>
 
-
-        </div>
-        <div class="topRight">
             <%--<c:if test="${loginedUserLogin.groupId == 1}">--%>
+                <%--<a class="a1 service">--%>
+                    <%--<img src="${staticHost }/images/a8.png" alt="">--%>
+                <%--</a>--%>
+            <%--</c:if>--%>
+
+            <%--&lt;%&ndash;<a class="a1" onclick="teacherJs()">&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<img src="../static/images/a2.png" alt="">&ndash;%&gt;--%>
+            <%--&lt;%&ndash;</a>&ndash;%&gt;--%>
+
+
+        <%--</div>--%>
+        <%--<div class="topRight">--%>
+            <%--&lt;%&ndash;<c:if test="${loginedUserLogin.groupId == 1}">&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<span class="username colorF" id="username">&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<img src="../static/images/yk.png" alt="">${loginedUserLogin.userNickName}&ndash;%&gt;--%>
+                <%--&lt;%&ndash;</span>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;</c:if>&ndash;%&gt;--%>
+
+            <%--<c:if test="${loginedUserLogin.groupId == 2}">--%>
                 <%--<span class="username colorF" id="username">--%>
-                    <%--<img src="../static/images/yk.png" alt="">${loginedUserLogin.userNickName}--%>
+                    <%--<img src="${staticHost }/images/VIP8.png" alt="">${loginedUserLogin.userNickName}--%>
                 <%--</span>--%>
             <%--</c:if>--%>
 
-            <c:if test="${loginedUserLogin.groupId == 2}">
-                <span class="username colorF" id="username">
-                    <img src="${staticHost }/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
-                </span>
-            </c:if>
+            <%--<c:if test="${loginedUserLogin.groupId == 3}">--%>
+                <%--<span class="username colorF" id="username">--%>
+                    <%--<img src="${staticHost }/images/zl.png" alt="">${loginedUserLogin.userNickName}--%>
+                <%--</span>--%>
+            <%--</c:if>--%>
 
-            <c:if test="${loginedUserLogin.groupId == 3}">
-                <span class="username colorF" id="username">
-                    <img src="${staticHost }/images/zl.png" alt="">${loginedUserLogin.userNickName}
-                </span>
-            </c:if>
+            <%--<c:if test="${loginedUserLogin.groupId == 4}">--%>
+                <%--<span class="username colorF" id="username">--%>
+                    <%--<img src="${staticHost }/images/icon_teacher.png" alt="">${loginedUserLogin.userNickName}--%>
+                <%--</span>--%>
+            <%--</c:if>--%>
 
-            <c:if test="${loginedUserLogin.groupId == 4}">
-                <span class="username colorF" id="username">
-                    <img src="${staticHost }/images/icon_teacher.png" alt="">${loginedUserLogin.userNickName}
-                </span>
-            </c:if>
+            <%--<c:if test="${loginedUserLogin.groupId == 5}">--%>
+                <%--<c:if test="${vip.userLevel == 1}">--%>
+                    <%--<span class="username colorF" id="username">--%>
+                      <%--<img src="${staticHost }/images/VIP1.png" alt="">${loginedUserLogin.userNickName}--%>
+                    <%--</span>--%>
+                <%--</c:if>--%>
 
-            <c:if test="${loginedUserLogin.groupId == 5}">
-                <c:if test="${vip.userLevel == 1}">
-                    <span class="username colorF" id="username">
-                      <img src="${staticHost }/images/VIP1.png" alt="">${loginedUserLogin.userNickName}
-                    </span>
-                </c:if>
+                <%--<c:if test="${vip.userLevel == 2}">--%>
+                    <%--<span class="username colorF" id="username">--%>
+                      <%--<img src="${staticHost }/images/VIP2.png" alt="">${loginedUserLogin.userNickName}--%>
+                    <%--</span>--%>
+                <%--</c:if>--%>
 
-                <c:if test="${vip.userLevel == 2}">
-                    <span class="username colorF" id="username">
-                      <img src="${staticHost }/images/VIP2.png" alt="">${loginedUserLogin.userNickName}
-                    </span>
-                </c:if>
+                <%--<c:if test="${vip.userLevel == 3}">--%>
+                    <%--<span class="username colorF" id="username">--%>
+                      <%--<img src="${staticHost }/images/VIP3.png" alt="">${loginedUserLogin.userNickName}--%>
+                    <%--</span>--%>
+                <%--</c:if>--%>
 
-                <c:if test="${vip.userLevel == 3}">
-                    <span class="username colorF" id="username">
-                      <img src="${staticHost }/images/VIP3.png" alt="">${loginedUserLogin.userNickName}
-                    </span>
-                </c:if>
+                <%--<c:if test="${vip.userLevel == 4}">--%>
+                    <%--<span class="username colorF" id="username">--%>
+                      <%--<img src="${staticHost }/images/VIP4.png" alt="">${loginedUserLogin.userNickName}--%>
+                    <%--</span>--%>
+                <%--</c:if>--%>
 
-                <c:if test="${vip.userLevel == 4}">
-                    <span class="username colorF" id="username">
-                      <img src="${staticHost }/images/VIP4.png" alt="">${loginedUserLogin.userNickName}
-                    </span>
-                </c:if>
+                <%--<c:if test="${vip.userLevel == 5}">--%>
+                    <%--<span class="username colorF" id="username">--%>
+                      <%--<img src="${staticHost }/images/VIP5.png" alt="">${loginedUserLogin.userNickName}--%>
+                    <%--</span>--%>
+                <%--</c:if>--%>
 
-                <c:if test="${vip.userLevel == 5}">
-                    <span class="username colorF" id="username">
-                      <img src="${staticHost }/images/VIP5.png" alt="">${loginedUserLogin.userNickName}
-                    </span>
-                </c:if>
+                <%--<c:if test="${vip.userLevel == 6}">--%>
+                    <%--<span class="username colorF" id="username">--%>
+                      <%--<img src="${staticHost }/images/VIP6.png" alt="">${loginedUserLogin.userNickName}--%>
+                    <%--</span>--%>
+                <%--</c:if>--%>
 
-                <c:if test="${vip.userLevel == 6}">
-                    <span class="username colorF" id="username">
-                      <img src="${staticHost }/images/VIP6.png" alt="">${loginedUserLogin.userNickName}
-                    </span>
-                </c:if>
+                <%--<c:if test="${vip.userLevel == 7}">--%>
+                    <%--<span class="username colorF" id="username">--%>
+                      <%--<img src="${staticHost }/images/VIP7.png" alt="">${loginedUserLogin.userNickName}--%>
+                    <%--</span>--%>
+                <%--</c:if>--%>
 
-                <c:if test="${vip.userLevel == 7}">
-                    <span class="username colorF" id="username">
-                      <img src="${staticHost }/images/VIP7.png" alt="">${loginedUserLogin.userNickName}
-                    </span>
-                </c:if>
+                <%--<c:if test="${vip.userLevel == 8}">--%>
+                    <%--<span class="username colorF" id="username">--%>
+                      <%--<img src="${staticHost }/images/VIP8.png" alt="">${loginedUserLogin.userNickName}--%>
+                    <%--</span>--%>
+                <%--</c:if>--%>
+            <%--</c:if>--%>
 
-                <c:if test="${vip.userLevel == 8}">
-                    <span class="username colorF" id="username">
-                      <img src="${staticHost }/images/VIP8.png" alt="">${loginedUserLogin.userNickName}
-                    </span>
-                </c:if>
-            </c:if>
+            <%--<c:if test="${loginedUserLogin.groupId == 1}">--%>
+                <%--&lt;%&ndash;<span class="username colorF" id="username"></span>&ndash;%&gt;--%>
+                <%--<a href="javascript:" class="loginA colorF fz16 bg12" id="g10" onclick="toShow('login', 'register');">登录</a>--%>
+                <%--<a herf="javascript:" class="registerA colorF fz16" id="g11" onclick="toShow('register','login');">注册</a>--%>
+            <%--</c:if>--%>
 
-            <c:if test="${loginedUserLogin.groupId == 1}">
-                <%--<span class="username colorF" id="username"></span>--%>
-                <a href="javascript:" class="loginA colorF fz16 bg12" id="g10" onclick="toShow('login', 'register');">登录</a>
-                <a herf="javascript:" class="registerA colorF fz16" id="g11" onclick="toShow('register','login');">注册</a>
-            </c:if>
-
-            <c:if test="${loginedUserLogin.groupId != 1}">
-                <a class="settingA colorF fz16">设置</a>
-                <div class="LoginOut hide">
-                    <a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register');">修改密码</a>
-                    <a class="outBtn">退出登录</a>
-                </div>
-            </c:if>
-        </div>
-        <div class="rightNav posAbs">
-            <c:if test="${loginedUserLogin.groupId == 3 }">
-                <a class="waterF"><span class="colorF">水滴</span>
-                    <div class="newMsgtipDiv hide"><i class="newMsgtip"></i></div>
-                </a>
-            </c:if>
-        </div>
-    </div>
-</div>
+            <%--<c:if test="${loginedUserLogin.groupId != 1}">--%>
+                <%--<a class="settingA colorF fz16">设置</a>--%>
+                <%--<div class="LoginOut hide">--%>
+                    <%--<a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register','login');">修改密码</a>--%>
+                    <%--<a class="outBtn">退出登录</a>--%>
+                <%--</div>--%>
+            <%--</c:if>--%>
+        <%--</div>--%>
+        <%--<div class="rightNav posAbs">--%>
+            <%--<c:if test="${loginedUserLogin.groupId == 3 }">--%>
+                <%--<a class="waterF"><span class="colorF">水滴</span>--%>
+                    <%--<div class="newMsgtipDiv hide"><i class="newMsgtip"></i></div>--%>
+                <%--</a>--%>
+            <%--</c:if>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>
 <div class="content mgAuto">
     <div class="wrap clearfix">
         <div class="contentLeft fl">
@@ -423,7 +423,7 @@
                                     <c:if test="${loginedUserLogin.groupId != 1}">
                                         <a class="settingA colorF fz16">设置</a>
                                         <div class="LoginOut hide">
-                                            <a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register');">修改密码</a>
+                                            <a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register','login');">修改密码</a>
                                             <a class="outBtn">退出登录</a>
                                         </div>
                                     </c:if>
@@ -444,7 +444,7 @@
                             </a>
                             <a class="settingA colorF fz16"><span>设置</span></a>
                             <div class="LoginOut LoginOut2 hide">
-                                <a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register');">修改密码</a>
+                                <a class="passBtn" href="javascript:" onclick="toShow('modifyPass','register','login');">修改密码</a>
                                 <a class="outBtn" href="javascript:">退出登录</a>
                             </div>
 

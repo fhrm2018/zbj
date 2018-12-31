@@ -548,10 +548,11 @@ function createRightKey() {
 }
 
 /**展示窗体**/
-function toShow(name, zname) {
+function toShow(name, zname ,zname2) {
     $("#pop").hide();
     if (typeof(zname) != "undefined") {
         $("#pop").find("." + zname).hide();
+        $("#pop").find("." + zname2).hide();
     }
     var z_name = "." + name;
     var $login = $("#pop").find(z_name);
