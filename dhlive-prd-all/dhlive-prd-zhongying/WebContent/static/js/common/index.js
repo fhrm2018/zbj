@@ -626,6 +626,17 @@ function downUrl() {
     document.location.href = '/live/downURL';
 }
 
+// 老师介绍
+$('.lsBtn a').each(function(e){
+    $(this).click(function(){
+        $('.lsBtn a').removeClass('cur');
+        $(this).addClass('cur');
+        $('.lsText .lsTxt').hide();
+        $('.lsText .lsTxt').eq(e).show();
+    })
+});
+
+
 //收藏
 function collection(sTitle, sURL) {
     try {

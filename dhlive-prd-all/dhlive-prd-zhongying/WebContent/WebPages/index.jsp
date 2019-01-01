@@ -588,7 +588,7 @@
 
                                 <div class="emoticonIcon">
                                     <div class="expressionT posAbs hide"
-                                         style="top:-506px;left:0px; background-color: white; z-index: 99; box-shadow:0 1px 1px #ccc;">
+                                         style="top:-370px;left:0px; background-color: white; z-index: 99; box-shadow:0 1px 1px #ccc;">
                                         <div class="video-discuss-emotion" id="video-discuss-emotion">
                                             <div class="video-emotion-pane">
                                                 <ul id="emotionUL">
@@ -899,10 +899,40 @@
 </div>
 
 <div class="teacherJsMask hide">
+
+
     <div class="teacherJs">
-        <img src="${staticHost }/images/teacherJs.png" alt="">
+        <div class="lsBtn">
+            <a class="cur" href="javascript:">佳人<br/>老师</a>
+            <a href="javascript:">一凡<br/>老师</a>
+            <a href="javascript:">大明<br/>老师</a>
+            <a href="javascript:">无休<br/>老师</a>
+        </div>
+        <div class="lsText">
+            <div class="lsTxt">
+                <p>国家认证黄金高级分析师，十年投资经验，擅长于各技术指导的综合应用(布林带，MACD, MA均线，K线形态分析，  趋势分析，波浪理论，江恩理论等等)  有过硬的技术功底及长期期货，股票，贵金属操盘经验总结，并对日内行情波段操作颇有研究;  自创高胜算交易法则，以短线为主，中长线为辅的操作风格，时常能将危机化解于实战中，以此受到广大投资朋友的一致好评。</p>
+            </div>
+            <div class="lsTxt hide">
+                <p>高级分析师，拥有10年的国际投资机构从业经历，期货黄金分析师职业证书，投资建议经常发表于各大财经网站，深受投资者信赖，实战中以趋势投资为线，辅以时机的选择，着眼于事件本身的特质，形成一套独特的股票操作体系，擅长中短线结合与趋势。</p>
+            </div>
+            <div class="lsTxt hide">
+                <p>高级交易师。长达14年金融从业经历，涉及证券、外汇、期货领域。擅用指标及均线系统提高交易成功率。英国脱欧狙击英镑当日收益300%，一战成名，遵从趋势力量，注重仓位管理技巧。</p>
+            </div>
+            <div class="lsTxt hide">
+                <p>毕业于同济大学金融系，拥有黄金分析师一级证书，期货从业资格证。曾任多家知名投行，运用波浪理论以及多空动能转换实现高达一个月连赢的股指记录。创下收益高达750%，被业内封为“股指狙击手”。</p>
+            </div>
+        </div>
+
         <a class="teacherJsClose" href="javascript:"></a>
+
     </div>
+
+
+
+    <%--<div class="teacherJs">--%>
+        <%--<img src="${staticHost }/images/teacherJs.png" alt="">--%>
+        <%--<a class="teacherJsClose" href="javascript:"></a>--%>
+    <%--</div>--%>
 </div>
 
 <!-- 课程表 -->

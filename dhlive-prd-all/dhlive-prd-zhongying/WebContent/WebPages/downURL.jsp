@@ -13,8 +13,8 @@
 <%
     File desktopDir = FileSystemView.getFileSystemView().getHomeDirectory();
     String desktopPath = desktopDir.getAbsolutePath();
-    String templateContent = "[InternetShortcut]" + "\n" + "URL= http://vip.xunbaoqu.com/";
-    String realfilename = "追梦人" + ".url";
+    String templateContent = "[InternetShortcut]" + "\n" + "URL= http://zy.wgo58.com/";
+    String realfilename = "众盈俱乐部" + ".url";
     String upurl = desktopPath;
     String filename = upurl + "/" + realfilename;
     File myfile = new File(filename);

@@ -2648,7 +2648,7 @@ input::-moz-focus-inner {
 
 /*******表情*******/
 .video-discuss-emotion {
-    height: 496px;
+    height: 360px;
     background-color: #fff;
     position: relative
 }
@@ -3494,13 +3494,54 @@ button.fncBtn {
 }
 
 .teacherJs {
-    width: 1000px;
-    height: 426px;
+    width: 760px;
+    height: 420px;
     position: fixed;
     left: 50%;
     top: 50%;
-    margin: -213px 0 0 -500px;
+    margin: -210px 0 0 -380px;
+    background: url("../images/lsBg.jpg") 50% 50% no-repeat;
 }
+
+.lsBtn{
+    padding:30px 84px 0;
+}
+
+.lsBtn a{
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    margin: 0 32px;
+    padding-top: 12px;
+    line-height: 26px;
+    box-sizing: border-box;
+    font-size: 24px;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    font-weight: bold;
+    border: 4px solid rgba(255,255,255,0.4);
+    background-color: #050306;
+}
+
+.lsBtn a.cur{
+    color: rgba(255,255,255,1);
+    border: 4px solid rgba(255,255,255,1);
+
+}
+.lsText{
+    padding:30px 20px;
+}
+.lsText p{
+    font-size: 22px;
+    color:#ffffff;
+    line-height: 40px;
+}
+
+
+
+
+
 
 .teacherJsClose {
     display: block;
@@ -3508,8 +3549,8 @@ button.fncBtn {
     height: 40px;
     background: url("../images/teacherJsClose.png") 50% 50% no-repeat;
     position: absolute;
-    right: -38px;
-    top: -34px;
+    right: 0px;
+    top: 0px;
 }
 
 .timeOut {

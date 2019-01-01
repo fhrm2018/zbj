@@ -486,7 +486,7 @@
 
                                 <div class="emoticonIcon">
                                     <div class="expressionT posAbs hide"
-                                         style="top:-506px;left:0px; background-color: white; z-index: 99; box-shadow:0 1px 1px #ccc;">
+                                         style="top:-370px;left:0px; background-color: white; z-index: 99; box-shadow:0 1px 1px #ccc;">
                                         <div class="video-discuss-emotion" id="video-discuss-emotion">
                                             <div class="video-emotion-pane">
                                                 <ul id="emotionUL">
@@ -797,10 +797,36 @@
 </div>
 
 <div class="teacherJsMask hide">
+
     <div class="teacherJs">
-        <img src="${staticHost }/images/teacherJs.png" alt="">
+        <div class="lsBtn fl">
+            <a class="cur" href="javascript:">青云老师</a>
+            <a href="javascript:">子房老师</a>
+            <a href="javascript:">红叶老师</a>
+        </div>
+        <div class="lsText fl">
+            <div class="lsTxt">
+                <p>高级分析师，毕业于武汉大学金融学专业，拥有十多年证券.期货从业经验，实战经验丰富。多年来一直供职于专业投资机构，对市场走势十分敏感且具有较高实战分析能力与执行力。曾在2017面下半年恒指一个季度收益10倍以上，商品期货投资交易创造连续20个月持续盈利的佳绩。投资风格稳健，擅长基本面结合技术面做投资分析，精通均线理论.K线理论。实战中以趋势交易为主线，形成独特的交易体系。</p>
+            </div>
+            <div class="lsTxt hide">
+                <p>出生1987年，2010 年毕业于山东财经大学，2011年投身金融市场从事期货下单员工作，2012年在充分理解认识市场之后开始自主入市进行交易，系统的学习研究过高频交易，日内短线交易，以及趋势交易，熟悉各类交易指标，在2013年以改良ma均线得到了百分之两百六的收益，  后续对macd.boll等交易指标都有非常深入的研究，收益基本上能够稳定在两倍以上!从2017年起受到朋友邀请开始尝试金融分析师工作，先后取得黄金分析师资格，期货分析师资格，证券分析师资格证书!主要交易是以资金管理为核心，技术分析为载体，数据以及基本面为辅助的方式进行，擅长日内小波段布局，抢帽子的股指交易，交易风格偏向于短平快。</p>
+            </div>
+            <div class="lsTxt hide">
+                <p>黄金资深分析师，毕业于天津财经大学金融专业，2008年开始从事证券，股票，  基金，期货相关工作，拥有非常丰富的投资经验，特别对超短线交易有独特心得，曾在2017年上半年指导客户交易股指期货，三个月实现账户资金16倍的增产，深得投资者的追捧。多年对市场的解读，现已形成比较完善的交易系统，能稳定指导投资者在交易市场.上稳定盈利。</p>
+            </div>
+        </div>
+
         <a class="teacherJsClose" href="javascript:"></a>
+
     </div>
+
+
+
+    <%--<div class="teacherJs">--%>
+        <%--<img src="${staticHost }/images/teacherJs.png" alt="">--%>
+        <%--<a class="teacherJsClose" href="javascript:"></a>--%>
+    <%--</div>--%>
+
 </div>
 
 <!-- 课程表 -->
