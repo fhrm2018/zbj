@@ -355,13 +355,13 @@
                             </div>
                         </div>
                         <div class="toLogin posRel">
-                            <div class="freeTipBox hide">
+                            <%-- <div class="freeTipBox hide">
                                 <div class="loginOrReg">
                                     <a href="javascript:" class="registerBtn" onclick="showQQ()">
                                         <img src="${staticHost }/images/time_out_01.jpg" alt="">
                                     </a>
                                 </div>
-                            </div>
+                            </div> --%>
                             <div class="videoBox" id="play-container" style="width:100%; height:100%">
                                 <div id="dyyplayer" style="width:100%;height:100%"></div>
                             </div>
