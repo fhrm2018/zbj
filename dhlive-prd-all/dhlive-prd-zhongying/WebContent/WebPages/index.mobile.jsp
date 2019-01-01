@@ -5,9 +5,9 @@
 <html>
 <head>
 
-    <title>【国际期货直播室】恒指期货直播室_股指期货直播间_黄金直播间-追梦人直播间</title>
-    <meta name="keywords" content="追梦人,追梦人直播间、国际黄金实时行情、国际原油期货、恒指期货开户、期货怎么炒、国际期货"/>
-    <meta name="description" content="追梦人-权威国际期货直播领导者，追梦人国际期货交易平台,特邀精英讲师团为投资者提供前沿的全球期货实时行情分析、恒生指数期货实战交流、股指期货实盘交易培训、指数期货直播、原油期货直播、黄金期货实时行情、每日美股行情走势等，打造您身边靠谱的国际期货交流平台。"/>
+    <title>众盈俱乐部 - 国际期货直播间_期货直播室_恒指期货直播室_股指期货直播室</title>
+    <meta name="keywords" content="众盈俱乐部,众盈国际期货直播室,国际期货直播间,恒指期货直播室,股指期货直播室,众盈恒指期货直播室,众盈股指期货直播室"/>
+    <meta name="description" content="众盈俱乐部为广大国际期货投资者提供专业的国际期货,恒指期货,股指期货在线直播喊单,众盈国际期货直播室深受广大国际期货投资者的喜爱,国际期货直播间、恒指期货直播室、股指期货直播室就选众盈恒指期货直播室,众盈股指期货直播室,想看专业的国际期货喊单直播,众盈期货俱乐部是不错的选择！"/>
     <link rel="shortcut icon" href="/static/images/favicon.png" type="image/x-icon"/>
     <jsp:include page="common/public.mobile.jsp"/>
     <script type="text/javascript">
