@@ -531,12 +531,14 @@ input::-moz-focus-inner {
     margin-top: 6px;
 }
 
-.headBtns{
-    width:76%;
-}
+/*.headBtns{*/
+    /*width:76%;*/
+/*}*/
 .headBtns .a1{
-    width:7.5%;
-    margin-top:10px;
+    height:36px;
+}
+.headBtns .a1 img{
+    height:100%;
 }
 
 .topRight {

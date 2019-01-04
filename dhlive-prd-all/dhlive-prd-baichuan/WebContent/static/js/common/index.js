@@ -474,7 +474,7 @@ $(function () {
             // none(num2);
             $(".topLeft").attr('class', "topLeft fl");
             $(".collectionBtn").css('width', "auto");
-            $(".downUrlBtn").css('width', "auto");
+            // $(".downUrlBtn").css('width', "auto");
             $(".logo").removeClass("logo02");
 
             // $(".serviceList").attr('class', "serviceList clearfix posRel w1800");

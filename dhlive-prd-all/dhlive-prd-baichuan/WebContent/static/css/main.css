@@ -509,10 +509,10 @@ input::-moz-focus-inner {
 .headBtns{
     width:76%;
 }
-.headBtns .a1{
-    width:7.5%;
-    margin-top:10px;
-}
+/*.headBtns .a1{*/
+    /*width:7.5%;*/
+    /*margin-top:10px;*/
+/*}*/
 
 .topRight {
     height: 36px;
@@ -521,7 +521,7 @@ input::-moz-focus-inner {
 }
 
 .header .logo02 img{
-    width: 140px;
+    width: 240px;
     height: auto;
     margin-top: 12px;
 }
@@ -583,6 +583,8 @@ input::-moz-focus-inner {
 .contentLeft {
     width: 60%;
     font-size: 0;
+    border-right: 1px solid #000;
+    box-sizing: border-box;
 }
 
 .contentLeft .movie {
