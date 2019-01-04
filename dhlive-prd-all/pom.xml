@@ -18,5 +18,6 @@
 	<module>dhlive-prd-job</module>
 	<module>dhlive-prd-zhongying</module>
 	<module>dhlive-prd-baichuan</module>
+	<module>dhlive-prd-dream</module>
   </modules>
 </project>
