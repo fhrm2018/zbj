@@ -219,7 +219,7 @@ function getWaterGroup() {
                 record += '<div class="GroupingBtns hide">';
                 record += '<a data-id="' + data.data[i].waterGroupId + '" data-name="' + data.data[i].waterGroupName + '" onclick="edit(this)">修改</a>';
                 record += '<a data-id="' + data.data[i].waterGroupId + '" onclick="del(this)">删除</a>';
-                record += '</div></div></li>';
+                record += '</div></div><table class="user_list"><tbody></tbody></table></li>';
                 htmls += record;
             }
             $('.waterGroup').html(htmls);
@@ -276,7 +276,7 @@ function showGroup(obj) {
     jqxhr.done(function (data) {
         if (data.code == '1000') {
             console.log(data);
-            var $table = $('#yk-' + waterGroupId).find('table tobdy').eq(0);
+            var $table = $('#yk-' + waterGroupId).find('table tbody').eq(0);
             $table.empty();
             var htmls = '';
             for (var i = 0; i < data.data.length; i++) {
