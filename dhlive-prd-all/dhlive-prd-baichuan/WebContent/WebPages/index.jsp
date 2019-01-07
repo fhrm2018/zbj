@@ -153,7 +153,7 @@
         <div class="topLeft fl">
             <a class="logo"><img src="${staticHost }/images/logo.png"></a>
             <%--<a class="a1 collectionBtn" id="Collection01" onclick="collection(document.title,window.location)">--%>
-                <%--<img src="../static/images/a7.png" alt="">--%>
+                <%--<img src="${staticHost }/images/a7.png" alt="">--%>
             <%--</a>--%>
 
             <%--<a class="a1" onclick="classShow()">--%>
@@ -176,7 +176,7 @@
             <%--</a>--%>
 
             <a class="a1" onclick="teacherJs()">
-                <img src="../static/images/a2.png" alt="">
+                <img src="${staticHost }/images/a2.png" alt="">
             </a>
 
             <a class="a1 downUrlBtn" onclick="downUrl()">
@@ -195,7 +195,7 @@
         <div class="topRight fr">
             <%--<c:if test="${loginedUserLogin.groupId == 1}">--%>
                 <%--<span class="username colorF" id="username">--%>
-                    <%--<img src="../static/images/yk.png" alt="">${loginedUserLogin.userNickName}--%>
+                    <%--<img src="${staticHost }/images/yk.png" alt="">${loginedUserLogin.userNickName}--%>
                 <%--</span>--%>
             <%--</c:if>--%>
 
@@ -771,7 +771,7 @@
 <%--<div class="popMask">--%>
     <%--<div class="popImg">--%>
         <%--<a href="javascript:" id="g15" onclick="showQQ(${relation.userQq})">--%>
-            <%--<img src="../static/images/img.png" alt="">--%>
+            <%--<img src="${staticHost }/images/img.png" alt="">--%>
         <%--</a>--%>
         <%--<a class="closeImg" style="" href="javascript:"></a>--%>
     <%--</div>--%>

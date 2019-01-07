@@ -198,7 +198,7 @@
         <div class="topLeft fl">
             <a class="logo"><img src="${staticHost }/images/logo.png"></a>
             <%--<a class="a1 collectionBtn" id="Collection01" onclick="collection(document.title,window.location)">--%>
-                <%--<img src="../static/images/a7.png" alt="">--%>
+                <%--<img src="${staticHost }/images/a7.png" alt="">--%>
             <%--</a>--%>
 
             <a class="a1" onclick="classShow()">
@@ -228,7 +228,7 @@
             </c:if>
 
             <%--<a class="a1" onclick="teacherJs()">--%>
-                <%--<img src="../static/images/a2.png" alt="">--%>
+                <%--<img src="${staticHost }/images/a2.png" alt="">--%>
             <%--</a>--%>
 
 
@@ -236,7 +236,7 @@
         <div class="topRight fr">
             <%--<c:if test="${loginedUserLogin.groupId == 1}">--%>
                 <%--<span class="username colorF" id="username">--%>
-                    <%--<img src="../static/images/yk.png" alt="">${loginedUserLogin.userNickName}--%>
+                    <%--<img src="${staticHost }/images/yk.png" alt="">${loginedUserLogin.userNickName}--%>
                 <%--</span>--%>
             <%--</c:if>--%>
 
@@ -390,28 +390,28 @@
                                 <ul class="ls clearfix">
                                     <li>
                                         <a class="lsBtn" href="javascript:">
-                                            <img src="../static/images/ls1.jpg" alt="">
+                                            <img src="${staticHost }/images/ls1.jpg" alt="">
                                         </a>
                                         <div class="lsjj hide">
-                                            <img src="../static/images/ls1js.jpg" alt="">
+                                            <img src="${staticHost }/images/ls1js.jpg" alt="">
                                             <a class="lsClose" href="javascript:"></a>
                                         </div>
                                     </li>
                                     <li>
                                         <a class="lsBtn" href="javascript:">
-                                            <img src="../static/images/ls2.jpg" alt="">
+                                            <img src="${staticHost }/images/ls2.jpg" alt="">
                                         </a>
                                         <div class="lsjj hide">
-                                            <img src="../static/images/ls2js.jpg" alt="">
+                                            <img src="${staticHost }/images/ls2js.jpg" alt="">
                                             <a class="lsClose" href="javascript:"></a>
                                         </div>
                                     </li>
                                     <li>
                                         <a class="lsBtn" href="javascript:">
-                                            <img src="../static/images/ls3.jpg" alt="">
+                                            <img src="${staticHost }/images/ls3.jpg" alt="">
                                         </a>
                                         <div class="lsjj hide">
-                                            <img src="../static/images/ls3js.jpg" alt="">
+                                            <img src="${staticHost }/images/ls3js.jpg" alt="">
                                             <a class="lsClose" href="javascript:"></a>
                                         </div>
                                     </li>
@@ -794,7 +794,7 @@
 <%--<div class="popMask">--%>
     <%--<div class="popImg">--%>
         <%--<a href="javascript:" id="g15" onclick="qqCustomer(${relation.userQq})">--%>
-            <%--<img src="../static/images/img.png" alt="">--%>
+            <%--<img src="${staticHost }/images/img.png" alt="">--%>
         <%--</a>--%>
         <%--<a class="closeImg" style="" href="javascript:"></a>--%>
     <%--</div>--%>
