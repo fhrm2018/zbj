@@ -5,9 +5,9 @@
 <html>
 <head>
 
-    <title>【国际期货直播室】恒指期货直播室_股指期货直播间_黄金直播间-梦想金融直播间</title>
-    <meta name="keywords" content="梦想金融,梦想金融直播间、国际黄金实时行情、国际原油期货、恒指期货开户、期货怎么炒、国际期货"/>
-    <meta name="description" content="梦想金融-权威国际期货直播领导者，梦想金融国际期货交易平台,特邀精英讲师团为投资者提供前沿的全球期货实时行情分析、恒生指数期货实战交流、股指期货实盘交易培训、指数期货直播、原油期货直播、黄金期货实时行情、每日美股行情走势等，打造您身边靠谱的国际期货交流平台。"/>
+    <title>【期货直播室】_eia直播室|非农直播室|商品期货直播室|国际期货直播室 - 梦想金融直播室</title> 
+<meta name="keywords" content="期货直播室,梦想金融直播室,梦想金融国际期货直播室,梦想金融期货直播室,梦想直播室,eia直播室,非农直播室,商品期货直播室,国际期货直播室"> 
+<meta name="description" content="梦想金融直播室深受广大期货投资者喜爱,梦想期货直播间在线直播24小时实时eia、非农、国际期货、商品期货实时行情数据,帮助期货投资爱好者掌握完善的国际期货、国内期货投资知识体系.无论是想要观看国内期货还是国际期货直播喊单,梦想金融期货直播室始终是您最佳的选择！">
     <link rel="shortcut icon" href="${staticHost }/images/favicon.png" type="image/x-icon"/>
     <jsp:include page="common/public.jsp"/>
     <script type="text/javascript">
