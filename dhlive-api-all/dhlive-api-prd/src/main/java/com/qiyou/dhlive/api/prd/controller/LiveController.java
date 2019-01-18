@@ -46,6 +46,7 @@ import com.qiyou.dhlive.core.activity.outward.service.IActivityLuckyDrawWinnersS
 import com.qiyou.dhlive.core.base.outward.service.IBaseSysParamService;
 import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
 import com.qiyou.dhlive.core.live.outward.model.LiveC2CMessage;
+import com.qiyou.dhlive.core.live.outward.model.LiveInform;
 import com.qiyou.dhlive.core.live.outward.model.LiveRoom;
 import com.qiyou.dhlive.core.live.outward.model.MarketVisitCount;
 import com.qiyou.dhlive.core.live.outward.service.ILiveC2CMessageService;
@@ -139,6 +140,7 @@ public class LiveController {
     
     @Autowired
     private IMarketVisitCountService marketVisitCountService;
+    
 
     @Autowired
     @Qualifier("commonRedisManager")
@@ -160,6 +162,8 @@ public class LiveController {
         String state = this.baseSysParamService.getValueByKey("set_plan");
         model.addAttribute("state", state);
         model.addAttribute("plan",this.baseCacheService.getAllRoomPlan());
+        LiveInform informState = this.baseCacheService.getLiveInForm();
+        model.addAttribute("informState",informState);
 
         if (EmptyUtil.isEmpty(roomId)) {
             roomId = 4;

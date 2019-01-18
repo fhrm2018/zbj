@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiyou.dhlive.core.live.service.dao.ILiveInformMapper">
+    <resultMap id="BaseResultMap" type="com.qiyou.dhlive.core.live.outward.model.LiveInform">
+        <!--
+          WARNING - @mbggenerated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="inform_title" jdbcType="VARCHAR" property="informTitle"/>
+        <result column="inform_content" jdbcType="VARCHAR" property="informContent"/>
+        <result column="inform_state" jdbcType="INTEGER" property="informState"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+</mapper>

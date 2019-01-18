@@ -17,6 +17,8 @@ import com.google.common.collect.Ordering;
 import com.qiyou.dhlive.api.base.outward.service.IBaseCacheService;
 import com.qiyou.dhlive.api.base.outward.vo.UserInfoDTO;
 import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
+import com.qiyou.dhlive.core.live.outward.model.LiveInform;
+import com.qiyou.dhlive.core.live.outward.service.ILiveInformService;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoUser;
 import com.qiyou.dhlive.core.room.outward.model.RoomChatMessage;
@@ -70,6 +72,9 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	@Autowired
 	private IRoomAutoUserService roomAutoUserService;
 	
+	@Autowired
+	private ILiveInformService liveInformService;
+	
 	public static final String USER_INFO = "dhlive-basedata-userinfo-";
 	
 	public static final String USER_VIP = "dhlive-basedata-userinfo-vip-";
@@ -103,6 +108,8 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	public static final String USER_ONLINE_TIME = "dhlive-user-onlineTime";
 
 	private static final String ROOM_PLAN_LIST = "dhlive-basedata-roomPlanlist";
+	
+	private static final String LIVE_INFORM = "dhlive-basedata-liveInform";
 
 	@Override
 	public UserInfoDTO getUserInfo(Integer userId) {
@@ -548,6 +555,25 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
     	this.redisManager.deleteFromHashByStoreKeyAndMapKey(this.USER_ONLINE_TIME, userId.toString());
     	
     }
+
+	@Override
+	public LiveInform getLiveInForm() {
+		String json = this.redisManager.getStringValueByKey(LIVE_INFORM);
+		if(EmptyUtil.isEmpty(json))
+			return this.updateLiveInForm();
+		return JSON.parseObject(json,LiveInform.class);
+	}
+
+	@Override
+	public LiveInform updateLiveInForm() {
+		LiveInform f=new LiveInform();
+		f.setInformState(1);
+		f=this.liveInformService.findOneByCondition(new SearchCondition<LiveInform>(f));
+		if(EmptyUtil.isEmpty(f))
+			return null;
+		this.redisManager.saveString(LIVE_INFORM, JSON.toJSONString(f));
+		return f;
+	}
     
     
 }

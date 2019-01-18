@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.qiyou.dhlive.api.base.outward.vo.UserInfoDTO;
+import com.qiyou.dhlive.core.live.outward.model.LiveInform;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoUser;
 import com.qiyou.dhlive.core.room.outward.model.RoomChatMessage;
@@ -88,4 +89,9 @@ public interface IBaseCacheService {
 	
 	List<RoomPlan> updateAllRoomPlan();
 	
+	
+	LiveInform getLiveInForm();
+	
+	
+	LiveInform updateLiveInForm();
 }
