@@ -14,16 +14,15 @@
         //全局变量
         var roomId = '${room.roomId}',//聊天室ID
             chatRoomId = '${room.roomGroupId}',//聊天室ID
-            tempWatchTime = '${room.tempWatchTime}',
             isAdmin = 0,
-            lookTime=-1,
+            time = 1,
             activityConfigId = '${config.id}',
             activityCountdown = '${config.activityCountdown}',
             talkUserId = '',
             imgPath = '${imagePath}',
             chatImgs = new Array(),
             type_flag = 0,
-	    	url='${url}',
+	    url='${url}',
             isCanSend = true,
             groupId =    ${loginedUserLogin.groupId},
             tempWatchTime = ${room.tempWatchTime},
@@ -109,7 +108,7 @@
         	createNewGuest();
         	isInit = true;
         }
-		function visit(){
+	function visit(){
         	var jqxhr = $.ajax({
                 url: ctx + '/live/visit',
                 type: 'POST',
@@ -137,7 +136,7 @@
         	if(isInit){
         		initNewGuestPage();
         	}
-			visit();
+	visit();
         });
     </script>
 
