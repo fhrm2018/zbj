@@ -17,6 +17,7 @@ import com.qiyou.dhlive.prd.component.annotation.UnSecurity;
 import com.yaozhong.framework.base.common.utils.EmptyUtil;
 import com.yaozhong.framework.base.database.domain.page.PageResult;
 import com.yaozhong.framework.base.database.domain.page.PageSearch;
+import com.yaozhong.framework.base.database.domain.returns.BaseResult;
 import com.yaozhong.framework.base.database.domain.returns.DataResponse;
 import com.yaozhong.framework.base.database.domain.search.SearchCondition;
 import com.yaozhong.framework.web.annotation.session.NeedSession;
@@ -98,7 +99,10 @@ public class InformController {
 	  }
 	  LiveInform f=this.liveInformService.findById(id);
 	  f.setInformState(1);
-	  this.liveInformService.modifyEntity(f);
+	  BaseResult br = this.liveInformService.modifyEntity(f);
+	  if(br.isSuccess()) {
+		  
+	  }
 	  this.baseCacheService.updateLiveInForm();
 	  return new DataResponse();
 	}
@@ -110,7 +114,16 @@ public class InformController {
 	public DataResponse disabledInform(Integer id) {
 	  LiveInform params=this.liveInformService.findById(id);
 	  params.setInformState(0);
-	  this.liveInformService.modifyEntity(params);
+	  BaseResult br = this.liveInformService.modifyEntity(params);
+	  if(br.isSuccess()) {
+		  
+	  }
+	  try {
+		Thread.sleep(1000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	  this.baseCacheService.updateLiveInForm();
 	  return new DataResponse();
 	}

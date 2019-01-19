@@ -566,14 +566,16 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 
 	@Override
 	public LiveInform updateLiveInForm() {
+		String json = this.redisManager.getStringValueByKey(LIVE_INFORM);
+		if(EmptyUtil.isNotEmpty(json)) {
+			this.redisManager.delete(LIVE_INFORM);
+		}
 		LiveInform f=new LiveInform();
 		f.setInformState(1);
 		f=this.liveInformService.findOneByCondition(new SearchCondition<LiveInform>(f));
 		if(EmptyUtil.isEmpty(f)) {
-			String json = this.redisManager.getStringValueByKey(LIVE_INFORM);
-			if(EmptyUtil.isNotEmpty(json)) {
-				this.redisManager.delete(LIVE_INFORM);
-			}
+			System.out.println("22222");
+			this.redisManager.saveString(LIVE_INFORM, "");
 			return null;
 		}
 		this.redisManager.saveString(LIVE_INFORM, JSON.toJSONString(f));
