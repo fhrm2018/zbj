@@ -360,10 +360,23 @@
                             </div>
                         </div>
                         <div class="toLogin posRel">
-                            <a href="javascript:" class="freeTipBox hide" onclick="qqCustomer(${relation.userQq})"></a>
-                            <div class="videoBox" id="play-container" style="width:100%; height:100%">
-                                <div id="dyyplayer" style="width:100%;height:100%"></div>
-                            </div>
+							<c:choose>
+								<c:when test="${empty informState }">
+								    <a href="javascript:" class="freeTipBox hide" onclick="qqCustomer(${relation.userQq})"></a>
+		                            <div class="videoBox" id="play-container" style="width:100%; height:100%">
+		                                <div id="dyyplayer" style="width:100%;height:100%"></div>
+		                            </div>
+								</c:when>
+								<c:otherwise>
+                                    <div class="notice2">
+                                        <h4>${informState.informTitle }</h4>
+                                        <div class="notice2Txt">
+                                            <span>尊敬的客户：</span>
+                                            <span>${informState.informContent }</span>
+                                        </div>
+                                    </div>
+								</c:otherwise>
+							</c:choose>
                         </div>
                     </div>
                     <div class="movieBot mt10">
@@ -822,24 +835,24 @@
 <script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=23275&id=dyyplayer"></script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124639879-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<%--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124639879-1"></script>--%>
+<%--<script>--%>
+  <%--window.dataLayer = window.dataLayer || [];--%>
+  <%--function gtag(){dataLayer.push(arguments);}--%>
+  <%--gtag('js', new Date());--%>
 
-  gtag('config', 'UA-124639879-1');
-</script>
+  <%--gtag('config', 'UA-124639879-1');--%>
+<%--</script>--%>
 
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?199cc2ff5653c35f61b5321ddbda35d6";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+<%--<script>--%>
+<%--var _hmt = _hmt || [];--%>
+<%--(function() {--%>
+  <%--var hm = document.createElement("script");--%>
+  <%--hm.src = "https://hm.baidu.com/hm.js?199cc2ff5653c35f61b5321ddbda35d6";--%>
+  <%--var s = document.getElementsByTagName("script")[0]; --%>
+  <%--s.parentNode.insertBefore(hm, s);--%>
+<%--})();--%>
+<%--</script>--%>
 <script type="text/javascript">
     var defaultQQ = new Array(relation.userQq);
     console.log(defaultQQ);
