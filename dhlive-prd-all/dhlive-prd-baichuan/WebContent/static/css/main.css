@@ -3529,7 +3529,7 @@ button.fncBtn {
     color: #999999;
     background-color: #efecd1;
     text-align: center;
-    margin-bottom:50px;
+    margin-bottom:20px;
     position: relative;
 }
 .lsBtn a.cur{
@@ -3548,9 +3548,10 @@ button.fncBtn {
 /*}*/
 .lsText{
     width:520px;
-    padding:100px 0 0 0;
+    padding:110px 0 0 0;
 }
 .lsText p{
+    height:230px;
     font-size: 16px;
     color:#ffffff;
     line-height: 28px;
