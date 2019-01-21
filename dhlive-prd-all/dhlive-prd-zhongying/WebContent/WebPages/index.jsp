@@ -66,10 +66,6 @@
             userInfo.level = '${vip.userLevel}';
         }
         
-        function qqCustomer() {
-            $("body").find("iframe").eq(0).attr("src", "tencent://message/?uin=" + relation.userQq + "");
-        }
-        
         function createNewGuest(){
         	var jqxhr = $.ajax({
                 url: ctx + '/live/createNewUser',
@@ -312,13 +308,13 @@
                                     <a class="a1 downUrlBtn" onclick="downUrl()">
                                         <img src="${staticHost }/images/a3.png" alt="">
                                     </a>
-                                    <a class="a1" onclick="showQQ()">
+                                    <a class="a1" onclick="showQQ()" href="javascript:">
                                         <img src="${staticHost }/images/a1.png" alt="">
                                     </a>
-                                    <a class="a1" onclick="showQQ()">
+                                    <a class="a1" onclick="showQQ()" href="javascript:">
                                         <img src="${staticHost }/images/a4.png" alt="">
                                     </a>
-                                    <a class="a1" onclick="showQQ()">
+                                    <a class="a1" onclick="showQQ()" href="javascript:">
                                         <img src="${staticHost }/images/a5.png" alt="">
                                     </a>
                                     <a class="a1" onclick="classShow()">
@@ -554,7 +550,7 @@
                         <div class="serviceList clearfix posRel">
                             <div class="qqWra">
                                 <c:forEach var="as" begin="0" items="${assistant}">
-                                    <a class="assistantQQ" onclick="showQQ()">
+                                    <a class="assistantQQ" onclick="showQQ(${as.userQq})" href="javascript:">
                                         <img class="headImg" src="${imagePath}ori/${as.userPhoto}" alt="">
                                         <span>${as.userNickName}</span>
                                         <%--<div class="bigImg hide">--%>
@@ -1031,20 +1027,21 @@
     // 弹出QQ弹框
 //    var defaultQQ = new Array('3005619188', '3005658628', '3005698870','3005623869');
     var defaultQQ = new Array(relation.userQq);
-    function showQQ() {
+    function showQQ(qqParam) {
         var sUserAgent = navigator.userAgent;
         var isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows");
         var isMac = (navigator.platform == "Mac68K") || (navigator.platform == "MacPPC") || (navigator.platform == "Macintosh") || (navigator.platform == "MacIntel");
         var isUnix = (navigator.platform == "X11") && !isWin && !isMac;
         var userId = localStorage.getItem('i_user_id');
-        var qqId = localStorage.getItem('qqId');
-        var index = Math.floor(Math.random() * defaultQQ.length);
-        var qq = defaultQQ[index];
-        if (userId && qqId) {
-            qq = qqId
+        //var qqId = localStorage.getItem('qqId');
+        //var index = Math.floor(Math.random() * defaultQQ.length);
+        //var qq = defaultQQ[index];
+        if (qqParam) {
+            qq = qqParam
         } else {
-            localStorage.setItem('i_user_id', userInfo.id);
-            localStorage.setItem('qqId', qq);
+            //localStorage.setItem('i_user_id', userInfo.id);
+            //localStorage.setItem('qqId', qq);
+            qq=relation.userQq;
         }
         if (isWin) {
             window.open('tencent://message/?uin=' + qq, '_self', 'height=1, width=1,toolbar=no,scrollbars=no,menubar=no,status=no');
