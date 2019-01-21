@@ -27,7 +27,7 @@
     <div class="mainBox flexCon">
         <div class="mainSearch">
             <div style="right: 10px; top: 20px">
-                <button type="button" class="pageBtn addBtn">新增</button>
+                <button type="button" class="pageBtn addBtn hide">新增</button>
                 <button type="button" class="pageBtn refBtn">刷新</button>
             </div>
         </div>

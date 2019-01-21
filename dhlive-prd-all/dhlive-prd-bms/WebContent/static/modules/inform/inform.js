@@ -3,10 +3,7 @@ var getDataList;
 $(function () {
 	KindEditor.ready(function (K) {
         window.editor = K.create('#informContent', {
-            items: [
-                'source', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
-                'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
-                'insertunorderedlist', '|', 'emoticons', 'link', 'media', '|', 'image'],
+            items: [],
            // uploadJson: g_requestContextPath + '/live/inform/saveInform',
             allowFileManager: true,
             minWidth: '600px',
@@ -26,7 +23,13 @@ $(function () {
         var htmls = "";
         for (var i = 0; i < obj.length; i++) {
             var record = obj[i];
-            
+            var content = record.informContent;
+            	content = content.replace(/(\n)/g, "");  
+            	content = content.replace(/(\t)/g, "");  
+            	content = content.replace(/(\r)/g, "");  
+            	content = content.replace(/<\/?[^>]*>/g, "");  
+            	content = content.replace(/\s*/g, "");
+
             htmls += [
                 '<div class="tableContent tableCtHover mt5">',
                 '<div class="flexWrap">',
@@ -34,8 +37,8 @@ $(function () {
                 + record.createTime  + '</div></div>',
                 '<div class="flexWrap flexAgCen" style="width: 10%; text-align:center;  min-height: 70px;""> <div class="flexCon"> '
                 + record.informTitle  + '</div></div>',
-                '<div class="flexWrap flexAgCen" style="width: 40%; text-align:center;  min-height: 70px;""> <div class="flexCon"> '
-                + record.informContent  + '</div></div>',
+                '<div class="flexWrap flexAgCen" style="width: 40%; text-align:center;  min-height: 70px;overflow: hidden; text-overflow:ellipsis;  white-space: nowrap;""> <div class="flexCon"> '
+                + content  + '</div></div>',
                 '<div class="flexWrap flexAgCen" style="width: 10%; text-align:center;  min-height: 70px;""> <div class="flexCon"> '
                 + (record.informState==0?'已停止':'生效中') + '</div></div>',
                 '<div class="flexWrap flexAgCen"  style="width: 20%; text-align:center; "> <div class="flexCon">'
