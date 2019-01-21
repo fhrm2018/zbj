@@ -1003,24 +1003,15 @@
 <script src="${staticHost}/js/chat/chat_base.js?version=${version}1"></script>
 <script src="${staticHost}/js/chat/chat.js?version=${version}"></script>
 <!-- baidu -->
-<%--<script>--%>
-<%--var _hmt = _hmt || [];--%>
-<%--(function() {--%>
-  <%--var hm = document.createElement("script");--%>
-  <%--hm.src = "https://hm.baidu.com/hm.js?a30a73c4b69a6450074e9dcb9cf4bf4d";--%>
-  <%--var s = document.getElementsByTagName("script")[0]; --%>
-  <%--s.parentNode.insertBefore(hm, s);--%>
-<%--})();--%>
-<%--</script>--%>
-<%--<!-- Global site tag (gtag.js) - Google Analytics -->--%>
-<%--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124641888-1"></script>--%>
-<%--<script>--%>
-  <%--window.dataLayer = window.dataLayer || [];--%>
-  <%--function gtag(){dataLayer.push(arguments);}--%>
-  <%--gtag('js', new Date());--%>
-
-  <%--gtag('config', 'UA-124641888-1');--%>
-<%--</script>--%>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?41f72c1b01966d5f7bc6d456c72d66be";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 
 <script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=24138&id=dyyplayer"></script>
 <script type="text/javascript">
