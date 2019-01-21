@@ -1036,6 +1036,7 @@
         //var qqId = localStorage.getItem('qqId');
         //var index = Math.floor(Math.random() * defaultQQ.length);
         //var qq = defaultQQ[index];
+        var qq = defaultQQ;
         if (qqParam) {
             qq = qqParam
         } else {
