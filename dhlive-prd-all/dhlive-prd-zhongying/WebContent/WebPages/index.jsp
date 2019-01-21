@@ -119,6 +119,9 @@
                
            });
         }
+		function qqCustomer(qq) {
+		    $("body").find("iframe").eq(0).attr("src", "tencent://message/?uin=" + qq + "");
+		}
         $(function () {
         	function initNewGuestPage(){
         		$('.inintPage-relation-name').html(relation.userNickName);
