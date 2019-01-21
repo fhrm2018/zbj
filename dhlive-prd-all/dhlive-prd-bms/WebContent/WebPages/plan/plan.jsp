@@ -104,14 +104,9 @@
                 <span class="icon block"></span></a>
             </div>
         </div>
-
-        <div class="wtBg ptb10 ac">
-            <span class="formLabel ar mr10">编号</span>
-            <input type="hidden"  id="id" name="id"/>
-            <input type="text" class="serIpt" id="planNumber" name="planNumber"/>
-        </div>
         <div class="wtBg ptb10 ac">
             <span class="formLabel ar mr10">直播老师</span>
+            <input type="hidden"  id="id" name="id"/>
             <input type="text" class="serIpt" id="planTeacher" name="planTeacher"/>
         </div>
         <div class="wtBg ptb10 ac">

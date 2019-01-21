@@ -15,6 +15,7 @@ import com.qiyou.dhlive.prd.component.annotation.UnSecurity;
 import com.yaozhong.framework.base.common.utils.EmptyUtil;
 import com.yaozhong.framework.base.database.domain.page.PageResult;
 import com.yaozhong.framework.base.database.domain.page.PageSearch;
+import com.yaozhong.framework.base.database.domain.returns.BaseResult;
 import com.yaozhong.framework.base.database.domain.returns.DataResponse;
 import com.yaozhong.framework.base.database.domain.search.SearchCondition;
 import com.yaozhong.framework.web.annotation.session.NeedSession;
@@ -67,9 +68,6 @@ public class planController {
 	@RequestMapping("/savePlan")
 	@ResponseBody
 	public DataResponse savePlan(RoomPlan params) {
-		if (EmptyUtil.isEmpty(params.getPlanNumber())) {
-			return new DataResponse(1001, "请填写编号");
-		}
 		if (EmptyUtil.isEmpty(params.getPlanTeacher())) {
 			return new DataResponse(1001, "请填写直播老师");
 		}
@@ -77,7 +75,9 @@ public class planController {
 			return new DataResponse(1001, "请填写直播时间");
 		}
 		if (EmptyUtil.isEmpty(params.getId())) {
-			this.roomPlanService.save(params);
+			BaseResult br = this.roomPlanService.save(params);
+			params.setPlanNumber(Integer.parseInt(br.getData().toString()));
+			this.roomPlanService.modifyEntity(params);
 		} else {
 			this.roomPlanService.modifyEntity(params);
 		}
