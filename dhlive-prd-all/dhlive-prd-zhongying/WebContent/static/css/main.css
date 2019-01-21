@@ -1021,9 +1021,9 @@ input::-moz-focus-inner {
 /*}*/
 .serviceList .assistantQQ .headImg {
     display: block;
-    width: 90px;
-    height: 90px;
-    border-radius: 90px;
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
     overflow: hidden;
     margin:0 auto;
 }

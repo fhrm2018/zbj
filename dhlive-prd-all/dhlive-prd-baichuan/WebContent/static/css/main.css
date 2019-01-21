@@ -3536,16 +3536,16 @@ button.fncBtn {
     color:#ffffff;
    background-color: #c9040c;
 }
-/*.lsBtn a.cur:after{*/
-    /*content:'';*/
-    /*display:block;*/
-    /*width:15px;*/
-    /*height:50px;*/
-    /*background-color:#c9040c ;*/
-    /*position: absolute;*/
-    /*right:-15px;*/
-    /*top:15px;*/
-/*}*/
+.lsBtn a.cur:after{
+    content:'';
+    display:block;
+    width:15px;
+    height:50px;
+    background-color:#c9040c ;
+    position: absolute;
+    right:-15px;
+    top:0px;
+}
 .lsText{
     width:520px;
     padding:110px 0 0 0;
