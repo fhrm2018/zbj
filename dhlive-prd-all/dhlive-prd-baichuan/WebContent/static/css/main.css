@@ -1061,8 +1061,9 @@ input::-moz-focus-inner {
     padding: 2px;
     box-sizing: border-box;
     position: absolute;
-    left: -15px;
-    top: -90px;
+    left: -94px;
+    top: 50%;
+    margin-top: -40px;
     background-color: #ffffff;
 }
 
@@ -1070,13 +1071,13 @@ input::-moz-focus-inner {
     display: block;
     width: 0;
     height: 0;
-    border-top: 20px solid #fff;
-    border-left: 16px solid transparent;
-    border-right: 16px solid transparent;
+    border-width: 20px 0 20px 20px;
+    border-style: solid;
+    border-color: transparent transparent transparent #ffffff;
     position: absolute;
-    left: 50%;
-    margin-left: -16px;
-    bottom: -8px;
+    right: -12px;
+    top: 50%;
+    margin-top: -20px;
     z-index: 0;
 }
 

@@ -452,10 +452,10 @@
                                     <a class="assistantQQ" onclick="showQQ(${as.userQq})" href="javascript:">
                                         <img class="headImg" src="${imagePath}ori/${as.userPhoto}" alt="">
                                         <span>${as.userNickName}</span>
-                                        <%--<div class="bigImg hide">--%>
-                                            <%--<i></i>--%>
-                                            <%--<img src="${imagePath}ori/${as.userPhoto}" alt="">--%>
-                                        <%--</div>--%>
+                                        <div class="bigImg hide">
+                                            <i></i>
+                                            <img src="${imagePath}ori/${as.userPhoto}" alt="">
+                                        </div>
                                     </a>
                                 </c:forEach>
                             </div>

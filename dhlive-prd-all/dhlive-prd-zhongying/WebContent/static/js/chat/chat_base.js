@@ -2182,7 +2182,7 @@ function getRoomMsgHtml(msg, cmdJson) {
                 '<a style="cursor: pointer" data-uid="' + cmdJson.postUid + '" data-name="' + cmdJson.postNickName + '" onclick="atHe(this)">@他</a>',
                 '</div></div></div>',
 
-                (cmdJson.groupId == 3 || cmdJson.groupId == 4) ? '<div class="msgInfo zlBg">' : '<div class="msgInfo maxImg">',
+                (cmdJson.groupId == 3 || cmdJson.groupId == 4) ? '<div class="msgInfo zlBg maxImg">' : '<div class="msgInfo maxImg">',
 
                 convertMsgtoHtml(msg),
                 '</div>',
