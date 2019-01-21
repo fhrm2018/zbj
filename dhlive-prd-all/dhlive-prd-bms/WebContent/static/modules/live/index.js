@@ -12,7 +12,8 @@ $(function () {
                 '<div class="tableContent tableCtHover mt5">',
                 '<div class="flexWrap">',
                 '<div class="flexWrap flexAgCen" style="width: 16%; text-align:center;  min-height: 70px;""> <div class="flexCon"> '
-                + '<a class="a_style" data-id="' + record.roomId + '" onclick="toLiveRoomDetail(this)">' + record.roomName + '</a>' + '</div></div>',
+              //  + '<a class="a_style" data-id="' + record.roomId + '" onclick="toLiveRoomDetail(this)">' + record.roomName + '</a>' + '</div></div>',
+                 + record.roomName  + '</div></div>',
 
                 '<div class="flexWrap flexAgCen" style="width: 16%; text-align:center; "> <div class="flexCon"> '
                 + record.createTime + '</div></div>',
