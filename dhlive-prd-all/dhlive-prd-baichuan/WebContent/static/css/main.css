@@ -1005,13 +1005,13 @@ input::-moz-focus-inner {
 
 /*.serviceList a{display: block;float: left;width: 82px;text-align: center;margin: 0 5px 10px;border-bottom: 1px solid #FFFFFF;color: #ffffff;border-right: 1px solid #FFFFFF;border-radius: 5px;height: 32px;line-height: 32px;position:relative;cursor: pointer;background: #7686d1;}*/
 .serviceList a {
-    display:block;
+    display: block;
     width: 24px;
-    height: 120px;
+    height: 110px;
     text-align: center;
-    margin: 0 0 10px 0;
+    margin: 0 0 5px 0;
     color: #ffffff;
-    padding: 10px;
+    padding: 8px 10px;
     border-radius: 5px;
     position: relative;
     cursor: pointer;
@@ -1051,8 +1051,8 @@ input::-moz-focus-inner {
 .serviceList .assistantQQ span {
     display: inline-block;
     color: #ffffff;
-    font-size: 18px;
-    font-weight:bold;
+    font-size: 16px;
+    line-height: 20px;
 }
 
 .serviceList .assistantQQ .bigImg {
