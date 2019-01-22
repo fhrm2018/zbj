@@ -432,14 +432,14 @@
                                 <%--</marquee>--%>
                             <%--</p>--%>
 
-                            <div class="">
+                            <div class="newBtn">
                                 <c:if test="${loginedUserLogin.groupId == 1}">
-                                    <a class="a1 service">
+                                    <a href="javascript:" class="a1 service">
                                         <img src="${staticHost }/images/a8.png" alt="">
                                     </a>
                                 </c:if>
 
-                                <a class="a1" onclick="classShow()">
+                                <a  href="javascript:" class="a1" onclick="classShow()">
                                     <img src="${staticHost }/images/a9.png" alt="">
                                 </a>
 
