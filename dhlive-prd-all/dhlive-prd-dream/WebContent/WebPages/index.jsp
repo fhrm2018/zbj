@@ -371,16 +371,33 @@
                             </div>
                         </div>
                         <div class="toLogin posRel">
-                            <div class="freeTipBox hide">
-                                <div class="loginOrReg">
-                                    <a href="javascript:" class="registerBtn" onclick="qqCustomer()">
-                                        <img src="${staticHost }/images/time_out_01.jpg" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="videoBox" id="play-container" style="width:100%; height:100%">
-                                <div id="dyyplayer" style="width:100%;height:100%"></div>
-                            </div>
+
+
+
+                            <c:choose>
+                                <c:when test="${empty informState }">
+                                    <div class="freeTipBox hide">
+                                        <div class="loginOrReg">
+                                            <a href="javascript:" class="registerBtn" onclick="qqCustomer()">
+                                                <img src="${staticHost }/images/time_out_01.jpg" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="videoBox" id="play-container" style="width:100%; height:100%">
+                                        <div id="dyyplayer" style="width:100%;height:100%"></div>
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="notice2">
+                                        <h4>${informState.informTitle }</h4>
+                                        <div class="notice2Txt">
+                                            <span>尊敬的客户：</span>
+                                            <span>${informState.informContent }</span>
+                                        </div>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
+
                         </div>
                     </div>
                     <div class="movieBot mt10">

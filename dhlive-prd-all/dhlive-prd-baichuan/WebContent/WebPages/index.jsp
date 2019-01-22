@@ -355,16 +355,33 @@
                             </div>
                         </div>
                         <div class="toLogin posRel">
-                            <%-- <div class="freeTipBox hide">
-                                <div class="loginOrReg">
-                                    <a href="javascript:" class="registerBtn" onclick="showQQ()">
-                                        <img src="${staticHost }/images/time_out_01.jpg" alt="">
-                                    </a>
-                                </div>
-                            </div> --%>
-                            <div class="videoBox" id="play-container" style="width:100%; height:100%">
-                                <div id="dyyplayer" style="width:100%;height:100%"></div>
-                            </div>
+
+
+
+                            <c:choose>
+                                <c:when test="${empty informState }">
+                                    <div class="freeTipBox hide">
+                                        <div class="loginOrReg">
+                                            <a href="javascript:" class="registerBtn" onclick="showQQ()">
+                                                <img src="${staticHost }/images/time_out_01.jpg" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="videoBox" id="play-container" style="width:100%; height:100%">
+                                        <div id="dyyplayer" style="width:100%;height:100%"></div>
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="notice2">
+                                        <h4>${informState.informTitle }</h4>
+                                        <div class="notice2Txt">
+                                            <span>尊敬的客户：</span>
+                                            <span>${informState.informContent }</span>
+                                        </div>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
+
                         </div>
                     </div>
                     <div class="movieBot mt10">
@@ -432,10 +449,6 @@
                                 <a class="a1" onclick="showQQ()" href="javascript:">
                                     <img src="${staticHost }/images/a10.png" alt="">
                                 </a>
-
-
-
-
 
                             </div>
 
@@ -907,7 +920,7 @@ var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?e19a16bf18d5743ab0de9cbb4ca7c975";
-  var s = document.getElementsByTagName("script")[0]; 
+  var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>

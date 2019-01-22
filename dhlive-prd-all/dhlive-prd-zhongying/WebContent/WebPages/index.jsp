@@ -482,16 +482,29 @@
                             </div>
                         </div>
                         <div class="toLogin posRel">
-                           <%--  <a href="javascript:" class="freeTipBox hide" onclick="showQQ()">
-                                <div class="loginOrReg">
-                                    <a href="javascript:" class="registerBtn" onclick="showQQ()">
-                                        <img src="${staticHost }/images/time_out_01.jpg" alt="">
+
+
+                            <c:choose>
+                                <c:when test="${empty informState }">
+                                    <a href="javascript:" class="freeTipBox hide" onclick="showQQ()">
+                                        <div class="loginOrReg"></div>
                                     </a>
-                                </div>
-                            </a> --%>
-                            <div class="videoBox" id="play-container" style="width:100%; height:100%">
-                                <div id="dyyplayer" style="width:100%;height:100%"></div>
-                            </div>
+                                    <div class="videoBox" id="play-container" style="width:100%; height:100%">
+                                        <div id="dyyplayer" style="width:100%;height:100%"></div>
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="notice2">
+                                        <h4>${informState.informTitle }</h4>
+                                        <div class="notice2Txt">
+                                            <span>尊敬的客户：</span>
+                                            <span>${informState.informContent }</span>
+                                        </div>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
+
+
                         </div>
                     </div>
                     <div class="movieBot mt10">
@@ -1008,7 +1021,7 @@ var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?41f72c1b01966d5f7bc6d456c72d66be";
-  var s = document.getElementsByTagName("script")[0]; 
+  var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>

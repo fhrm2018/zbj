@@ -1704,7 +1704,7 @@ input::-moz-focus-inner {
 }
 
 .pop .close2 {
-    background: url(../images/close2.png) no-repeat;
+    background: url(../images/close3.png) no-repeat;
     width: 28px;
     height: 28px;
     position: absolute;
@@ -2605,6 +2605,39 @@ input::-moz-focus-inner {
     right: 0;
     top: 0;
 }
+
+
+/*******公告*******/
+
+.notice2{
+    width: 100%;
+    height: 100%;
+    background: url(../images/mx.jpg) 50% 50% no-repeat;
+    background-size: cover;
+    margin-top: -7px;
+}
+.notice2 h4{
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    color:#ffffff;
+    padding-top: 5%;
+    text-shadow: 0 5px 10px #612400;
+}
+.notice2 .notice2Txt{
+    width:80%;
+    margin:30px auto 0;
+}
+.notice2 .notice2Txt span{
+    display:block;
+    font-size: 24px;
+    color:#ffffff;
+    font-weight: bold;
+    line-height: 1.8;
+    text-shadow: 0 5px 10px #612400;
+}
+
+
 
 /*******课程安排*******/
 .coursePlay h3 {
