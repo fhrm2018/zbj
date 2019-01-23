@@ -1026,6 +1026,17 @@ var _hmt = _hmt || [];
 })();
 </script>
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131577641-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-131577641-1');
+</script>
+
+
 <script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=24138&id=dyyplayer"></script>
 <script type="text/javascript">
     // 弹出QQ弹框

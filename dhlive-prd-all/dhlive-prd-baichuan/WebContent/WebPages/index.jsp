@@ -361,11 +361,7 @@
                             <c:choose>
                                 <c:when test="${empty informState }">
                                     <div class="freeTipBox hide">
-                                        <div class="loginOrReg">
-                                            <a href="javascript:" class="registerBtn" onclick="showQQ()">
-                                                <img src="${staticHost }/images/time_out_01.jpg" alt="">
-                                            </a>
-                                        </div>
+                                        <div class="loginOrReg"></div>
                                     </div>
                                     <div class="videoBox" id="play-container" style="width:100%; height:100%">
                                         <div id="dyyplayer" style="width:100%;height:100%"></div>
@@ -924,6 +920,17 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131570962-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-131570962-1');
+</script>
+
 
 <script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=24139&id=dyyplayer"></script>
 <script type="text/javascript">
