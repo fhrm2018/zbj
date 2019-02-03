@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="dhlive-api-base-outward" />
+        <module name="dhlive-api-base-service" />
+        <module name="dhlive-api-prd" />
+        <module name="dhlive-core-activity-outward" />
+        <module name="dhlive-core-activity-service" />
+        <module name="dhlive-core-base-outward" />
+        <module name="dhlive-core-base-service" />
+        <module name="dhlive-core-bms-outward" />
+        <module name="dhlive-core-bms-service" />
+        <module name="dhlive-core-live-outward" />
+        <module name="dhlive-core-live-service" />
+        <module name="dhlive-core-room-outward" />
+        <module name="dhlive-core-room-service" />
+        <module name="dhlive-core-user-outward" />
+        <module name="dhlive-core-user-service" />
+        <module name="dhlive-prd-baichuan" />
+        <module name="dhlive-prd-bms" />
+        <module name="dhlive-prd-cron" />
+        <module name="dhlive-prd-dh" />
+        <module name="dhlive-prd-dream" />
+        <module name="dhlive-prd-fy" />
+        <module name="dhlive-prd-job" />
+        <module name="dhlive-prd-min" />
+        <module name="dhlive-prd-qymt" />
+        <module name="dhlive-prd-zhizunge" />
+        <module name="dhlive-prd-zhongying" />
+        <module name="dhlive-prd-zmr" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="dhlive-all" target="1.8" />
+      <module name="dhlive-api-all" target="1.8" />
+      <module name="dhlive-api-base" target="1.8" />
+      <module name="dhlive-api-base-outward" target="1.8" />
+      <module name="dhlive-api-base-service" target="1.8" />
+      <module name="dhlive-api-prd" target="1.8" />
+      <module name="dhlive-core-activity" target="1.8" />
+      <module name="dhlive-core-activity-outward" target="1.8" />
+      <module name="dhlive-core-activity-service" target="1.8" />
+      <module name="dhlive-core-all" target="1.8" />
+      <module name="dhlive-core-base" target="1.8" />
+      <module name="dhlive-core-base-outward" target="1.8" />
+      <module name="dhlive-core-base-service" target="1.8" />
+      <module name="dhlive-core-bms" target="1.8" />
+      <module name="dhlive-core-bms-outward" target="1.8" />
+      <module name="dhlive-core-bms-service" target="1.8" />
+      <module name="dhlive-core-live" target="1.8" />
+      <module name="dhlive-core-live-outward" target="1.8" />
+      <module name="dhlive-core-live-service" target="1.8" />
+      <module name="dhlive-core-room" target="1.8" />
+      <module name="dhlive-core-room-outward" target="1.8" />
+      <module name="dhlive-core-room-service" target="1.8" />
+      <module name="dhlive-core-user" target="1.8" />
+      <module name="dhlive-core-user-outward" target="1.8" />
+      <module name="dhlive-core-user-service" target="1.8" />
+      <module name="dhlive-prd-all" target="1.8" />
+      <module name="dhlive-prd-baichuan" target="1.8" />
+      <module name="dhlive-prd-bms" target="1.8" />
+      <module name="dhlive-prd-cron" target="1.8" />
+      <module name="dhlive-prd-dh" target="1.8" />
+      <module name="dhlive-prd-dream" target="1.8" />
+      <module name="dhlive-prd-fy" target="1.8" />
+      <module name="dhlive-prd-job" target="1.8" />
+      <module name="dhlive-prd-min" target="1.8" />
+      <module name="dhlive-prd-qymt" target="1.8" />
+      <module name="dhlive-prd-zhizunge" target="1.8" />
+      <module name="dhlive-prd-zhongying" target="1.8" />
+      <module name="dhlive-prd-zmr" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
