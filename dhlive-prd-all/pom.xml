@@ -19,5 +19,6 @@
 	<module>dhlive-prd-zhongying</module>
 	<module>dhlive-prd-baichuan</module>
 	<module>dhlive-prd-dream</module>
+	<module>dhlive-prd-zhizunge</module>
   </modules>
 </project>

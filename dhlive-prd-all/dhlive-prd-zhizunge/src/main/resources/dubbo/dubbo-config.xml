@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- 提供方应用信息，用于计算依赖关系 -->
+	<dubbo:application name="${dubbo.application.name}" />
+	<!-- 配置注册中心 -->
+    <dubbo:registry  address="${dubbo.registry.address}" client="${dubbo.registry.client}"/>
+    <!-- 客户端连接超时时间以及连接超时后的重试次数 -->
+    <dubbo:consumer timeout="${dubbo.consumer.timeout}" check="false"/>
+</beans>
