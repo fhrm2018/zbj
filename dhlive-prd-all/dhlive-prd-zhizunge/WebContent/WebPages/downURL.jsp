@@ -14,7 +14,7 @@
     File desktopDir = FileSystemView.getFileSystemView().getHomeDirectory();
     String desktopPath = desktopDir.getAbsolutePath();
     String templateContent = "[InternetShortcut]" + "\n" + "URL= http://live.viptaojin.com/";
-    String realfilename = "百川财富讲堂" + ".url";
+    String realfilename = "至尊阁财富讲堂" + ".url";
     String upurl = desktopPath;
     String filename = upurl + "/" + realfilename;
     File myfile = new File(filename);

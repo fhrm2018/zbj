@@ -4,9 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>恒指_美原油_eia_黄金_国内期货_国际期货喊单直播室 - 百川财富讲堂</title>
-    <meta name="keywords" content="百川财富讲堂,百川期货直播室,恒指期货直播室,国内期货直播室,美原油期货直播室,国际期货喊单直播室,eia直播室,黄金期货直播室,百川国际期货直播室"/>
-    <meta name="description" content="百川财富讲堂为您提供:国内期货直播室,恒指期货直播室,美原油期货直播室,eia直播室,黄金期货直播室等热门期货互动直播,百川财富讲堂是国际期货投资者值得信赖的期货投资交流社区,百川期货直播室提供国际期货原油黄金实盘喊单分析,视频直播解盘,交易分析!想要掌握完整的国际期货投资技巧,就来百川财富讲堂！"/>
+    <title>恒指_美原油_eia_黄金_国内期货_国际期货喊单直播室 - 至尊阁财富讲堂</title>
+    <meta name="keywords" content="至尊阁财富讲堂,至尊阁期货直播室,恒指期货直播室,国内期货直播室,美原油期货直播室,国际期货喊单直播室,eia直播室,黄金期货直播室,至尊阁国际期货直播室"/>
+    <meta name="description" content="至尊阁财富讲堂为您提供:国内期货直播室,恒指期货直播室,美原油期货直播室,eia直播室,黄金期货直播室等热门期货互动直播,至尊阁财富讲堂是国际期货投资者值得信赖的期货投资交流社区,至尊阁期货直播室提供国际期货原油黄金实盘喊单分析,视频直播解盘,交易分析!想要掌握完整的国际期货投资技巧,就来至尊阁财富讲堂！"/>
     <link rel="shortcut icon" href="${staticHost }/images/favicon.png" type="image/x-icon"/>
     <jsp:include page="common/public.jsp"/>
     <script type="text/javascript">
@@ -601,7 +601,7 @@
                                 <span class="inintPage-relation-name">${relation.userNickName}</span>
                             </div>
                             <div class="txt">
-                                <p>您好，欢迎您来到《百川财富讲堂》国资背景期货公司合作方，希望我们的直播能给您带来便利！</p><br/>
+                                <p>您好，欢迎您来到《至尊阁财富讲堂》国资背景期货公司合作方，希望我们的直播能给您带来便利！</p><br/>
                                 <p>【0元开户】请回复：1</p>
                                 <p>【领取课件】请回复：2</p>
                                 <p>【操作策略】请回复：3</p>
