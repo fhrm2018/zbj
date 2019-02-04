@@ -358,26 +358,26 @@
                         </div>
                         <div class="toLogin posRel">
 
-                            <%--<c:choose>--%>
-                                <%--<c:when test="${empty informState }">--%>
-                                    <%--<a href="javascript:" class="freeTipBox hide" onclick="showQQ()">--%>
-                                        <%--<div class="loginOrReg"></div>--%>
-                                    <%--</a>--%>
-                                    <%--<div class="videoBox" id="play-container" style="width:100%; height:100%">--%>
-                                        <%--<div id="dyyplayer" style="width:100%;height:100%"></div>--%>
-                                    <%--</div>--%>
-                                <%--</c:when>--%>
-                                <%--<c:otherwise>--%>
-                                    <%--<div class="notice2">--%>
-                                        <%--<h4>${informState.informTitle }</h4>--%>
-                                        <%--<div class="notice2Txt">--%>
-                                            <%--<span>尊敬的客户：</span>--%>
-                                            <%--<span>${informState.informContent }</span>--%>
-                                        <%--</div>--%>
-                                    <%--</div>--%>
-                                <%--</c:otherwise>--%>
-                            <%--</c:choose>--%>
-
+                            <c:choose>
+                               <c:when test="${empty informState }">
+                                    <a href="javascript:" class="freeTipBox hide" onclick="showQQ()">
+                                        <div class="loginOrReg"></div>
+                                    </a>
+                                    <div class="videoBox" id="play-container" style="width:100%; height:100%">
+                                        <div id="dyyplayer" style="width:100%;height:100%"></div>
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="notice2">
+                                        <h4>${informState.informTitle }</h4>
+                                        <div class="notice2Txt">
+                                            <span>尊敬的客户：</span>
+                                            <span>${informState.informContent }</span>
+                                        </div>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
+ 
 
                             <a href="javascript:" class="freeTipBox hide" onclick="showQQ()">
                                 <div class="loginOrReg"></div>
