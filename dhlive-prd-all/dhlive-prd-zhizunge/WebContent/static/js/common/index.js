@@ -486,8 +486,8 @@ $(function () {
         // var serviceListHeight = $('.contentRight .serviceList').outerHeight(true);
         var messageBoxHeight = $('.contentRight .messageBox').outerHeight(true);
         var tishiHeight = $('.tishi').outerHeight(true);
-        var videoHeight = winHeight - 40 - 150 - 60 - 46 - 80;        // 40 footer; 150 banner margin; 60 header margin; 46 viewTime;
-        var contentRightMsg = winHeight - 60 - messageBoxHeight - 40 - 30 - tishiHeight;
+        var videoHeight = winHeight - 40 - 150 - 60 - 46 - 90;        // 40 footer; 150 banner margin; 60 header margin; 46 viewTime;
+        var contentRightMsg = winHeight - 60 - messageBoxHeight - 40 - 76 - tishiHeight;
         var newLeft = winHeight - 60 - 40;
 
         if (winHeight < 800) {
