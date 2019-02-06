@@ -5,10 +5,10 @@
 <html>
 <head>
 
-    <title>恒指_美原油_eia_黄金_国内期货_国际期货喊单直播室 - 至尊阁财富讲堂</title>
-    <meta name="keywords" content="至尊阁财富讲堂,至尊阁期货直播室,恒指期货直播室,国内期货直播室,美原油期货直播室,国际期货喊单直播室,eia直播室,黄金期货直播室,至尊阁国际期货直播室"/>
-    <meta name="description" content="至尊阁财富讲堂为您提供:国内期货直播室,恒指期货直播室,美原油期货直播室,eia直播室,黄金期货直播室等热门期货互动直播,至尊阁财富讲堂是国际期货投资者值得信赖的期货投资交流社区,至尊阁期货直播室提供国际期货原油黄金实盘喊单分析,视频直播解盘,交易分析!想要掌握完整的国际期货投资技巧,就来至尊阁财富讲堂！"/>
-    <link rel="shortcut icon" href="/static/images/favicon.png" type="image/x-icon"/>
+    <title>至尊阁直播室 - 期货在线直播_期货投资咨询_期市在线_国际期货直播</title> 
+	<meta name="keywords" content=" 至尊阁,至尊阁期货直播室,国际期货直播间,期货在线直播,期货投资咨询,期市在线,国际期货直播"> 
+	<meta name="description" content=" 至尊阁直播室为广大国际期货投资者提供专业的国际期货直播间,期货在线直播,期货投资咨询,期市在线,国际期货直播,至尊阁期货直播室深受广大国际期货投资者的喜爱,国际期货直播间、恒指期货直播室、股指期货直播室就选至尊阁期货直播室,想看专业的期货喊单直播,至尊阁直播间是不错的选择！">
+	<link rel="shortcut icon" href="/static/images/favicon.png" type="image/x-icon"/>
     <jsp:include page="common/public.mobile.jsp"/>
     <script type="text/javascript">
         //全局变量
@@ -20,7 +20,7 @@
             activityConfigId = '${config.id}',
             activityCountdown = '${config.activityCountdown}',
 	   		imgPath = '${imagePath}',
-	url='${url}',
+			url='${url}',
             talkUserId = '',
             type_flag = 0,
             isOver = ${isOver},
