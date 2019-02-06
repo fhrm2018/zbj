@@ -450,7 +450,7 @@
 <script src="${staticHost}/js/common/jquery.endless-scroll-1.3.js"></script>
 <script src="${staticHost}/js/consult/consult.js?version=${version}"></script>
 <script src="${staticHost}/js/common/interval.js?version=${version}"></script>
-<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=24139&id=dyyplayer"></script>
+<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=24205&id=dyyplayer"></script>
 <script type="text/javascript">
     /* if(isOver == 0){
         var playerVar = new dyyPlayer({

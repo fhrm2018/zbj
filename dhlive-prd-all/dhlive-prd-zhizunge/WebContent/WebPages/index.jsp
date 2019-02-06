@@ -946,7 +946,7 @@ var _hmt = _hmt || [];
 </script>
 
 
-<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=24139&id=dyyplayer"></script>
+<script type="text/javascript" src="https://cdn.58jinrongyun.com/helper/room_player_s.js?r=24205&id=dyyplayer"></script>
 <script type="text/javascript">
     // 弹出QQ弹框
 //    var defaultQQ = new Array('3005619188', '3005658628', '3005698870','3005623869');
