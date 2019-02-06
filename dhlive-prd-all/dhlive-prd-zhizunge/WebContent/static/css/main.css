@@ -735,6 +735,7 @@ input::-moz-focus-inner {
 
 
 .scrollWrap .newBtn{
+    display: inline-block;
     position: relative;
     z-index: 999;
 }
@@ -3564,7 +3565,7 @@ button.fncBtn {
     width: 120px;
     height: 44px;
     line-height: 44px;
-    margin: 0 26px 20px;
+    margin: 0 10px 20px;
     font-size: 24px;
     float:left;
     color: rgba(161,25,25,1);
@@ -3596,7 +3597,7 @@ button.fncBtn {
     font-size: 22px;
     color:#c5594a;
     line-height: 34px;
-    padding:15px;
+    padding:15px 10px;
 }
 
 

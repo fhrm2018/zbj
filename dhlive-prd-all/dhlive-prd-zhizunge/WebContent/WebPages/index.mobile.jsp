@@ -162,9 +162,9 @@
     </div>
 
     <div class="kaihuBtn fr">
-        <a class="initPage-mqqwpa" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">
-            <img src="../static/images/a1.png" alt="">
-        </a>
+        <%--<a class="initPage-mqqwpa" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">--%>
+            <%--<img src="../static/images/a1.png" alt="">--%>
+        <%--</a>--%>
         <a class="initPage-mqqwpa" href="mqqwpa://im/chat?chat_type=wpa&uin=${relation.userQq}&version=1&src_type=web&web_src=oicqzone.com">
             <img src="../static/images/a4.png" alt="">
         </a>
