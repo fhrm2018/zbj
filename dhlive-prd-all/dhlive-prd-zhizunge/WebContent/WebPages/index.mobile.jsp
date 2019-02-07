@@ -137,23 +137,31 @@
         });
     </script>
 
-    <%--<script>--%>
-        <%--var _hmt = _hmt || [];--%>
-        <%--(function () {--%>
-            <%--var hm = document.createElement("script");--%>
-            <%--hm.src = "https://hm.baidu.com/hm.js?9d52ab323a254f2be51fc439997a06ee";--%>
-            <%--var s = document.getElementsByTagName("script")[0];--%>
-            <%--s.parentNode.insertBefore(hm, s);--%>
-        <%--})();--%>
-    <%--</script>--%>
+    <%--baidu--%>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?27159d51b8523c0c95a2b52c4f36b043";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
 </head>
 
 <body>
 
-<%--<!-- Google Tag Manager (noscript) -->--%>
-<%--<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SPHMPQ"--%>
-                  <%--height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>--%>
-<%--<!-- End Google Tag Manager (noscript) -->--%>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-134066990-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-134066990-1');
+</script>
+
 
 <%--<!-- 辅助变量 -->--%>
 <div class="header clearfix">
