@@ -458,7 +458,7 @@ $(function () {
             // $(".headBtns .downUrlBtn").css('width', "10.5%");
             $(".logo").addClass("logo02");
 
-            // $(".serviceList").attr('class', "serviceList clearfix posRel w1400");
+            $(".serviceList").attr('class', "serviceList clearfix posRel w1400");
             $(".rq_ewm2").show();
             $(".rq_ewm").hide();
             $(".popularGuest h3").hide();
@@ -466,7 +466,7 @@ $(function () {
             // none(num1);
         } else if (screenWidth <= 1700) {
             // none(3);
-            // $(".serviceList").attr('class', "serviceList clearfix posRel w1700");
+            $(".serviceList").attr('class', "serviceList clearfix posRel w1700");
             $(".rq_ewm2").show();
             $(".rq_ewm").hide();
             $(".popularGuest h3").hide();
@@ -477,7 +477,7 @@ $(function () {
             // $(".downUrlBtn").css('width', "auto");
             $(".logo").removeClass("logo02");
 
-            // $(".serviceList").attr('class', "serviceList clearfix posRel w1800");
+            $(".serviceList").attr('class', "serviceList clearfix posRel w1800");
             $(".rq_ewm").show();
             $(".rq_ewm2").hide();
         }

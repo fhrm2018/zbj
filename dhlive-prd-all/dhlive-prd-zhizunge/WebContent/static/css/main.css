@@ -2235,19 +2235,20 @@ input::-moz-focus-inner {
 .w1700 a {
     float: none;
     display: inline-block;
-    width: 18.4%;
+    width: 17.6%;
 }
 .w1700 .assistantQQ span{
     font-size:16px;
 }
 
 .w1400 a {
-    width: 18%;
+    width: 22%;
 }
 .w1400 .assistantQQ .headImg{
     margin-right:0;
 }
 .w1400 .assistantQQ span{
+
 }
 
 
@@ -2259,7 +2260,7 @@ input::-moz-focus-inner {
 .w1800 a {
     float: none;
     display: inline-block;
-    width: 18.4%;
+    width: 17.8%;
 }
 
 .changeBgWra {
