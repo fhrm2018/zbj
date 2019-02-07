@@ -1008,7 +1008,8 @@ input::-moz-focus-inner {
 }
 
 .serviceList .qqWra {
-    margin:0 10px;
+    font-size: 0;
+    /*margin:0 10px;*/
     border-radius:5px;
 }
 
@@ -1017,7 +1018,7 @@ input::-moz-focus-inner {
     display: inline-block;
     width: 130px;
     text-align: center;
-    margin: 0 1% 1% 0;
+    margin: 0 15px 10px 0;
     color: #fff5c2;
     border-radius: 5px;
     height: 40px;
@@ -1226,7 +1227,7 @@ input::-moz-focus-inner {
 .contentRight .messageBox {
     width: 100%;
     /*height: 146px;*/
-    padding: 10px;
+    padding: 10px 10px 10px 0;
     box-sizing: border-box;
     /*background-color: #ffffff;*/
 }
@@ -6205,6 +6206,16 @@ button.swiper-pagination-bullet {
 .class_inside .kcap{
     padding: 110px 50px 0;
 }
+.class_inside .kcap .scrollBarAuto{
+    height:384px;
+    overflow: auto;
+}
+.class_inside .kcap .scrollBarAuto2{
+    height:384px;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    overflow: auto;
+}
 .class_inside .kcap table{
     width:100%;
     text-align: center;
@@ -6214,7 +6225,7 @@ button.swiper-pagination-bullet {
     border-bottom:1px solid #ebeaea;
 }
 .class_inside .kcap table th{
-    width:50%;
+    /*width:50%;*/
     color:#f0f0f0;
     font-size: 16px;
     padding: 10px 0;
@@ -6230,7 +6241,7 @@ button.swiper-pagination-bullet {
 }
 
 .class_inside .kcap2 table th{
-    width:30%;
+    /*width:30%;*/
 }
 .class_inside .kcap2 table td:nth-child(n){
     border-right:1px solid #ebeaea;

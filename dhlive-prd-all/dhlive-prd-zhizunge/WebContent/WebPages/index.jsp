@@ -377,15 +377,6 @@
                                     </div>
                                 </c:otherwise>
                             </c:choose>
- 
-
-                            <a href="javascript:" class="freeTipBox hide" onclick="showQQ()">
-                                <div class="loginOrReg"></div>
-                            </a>
-
-                            <div class="videoBox" id="play-container" style="width:100%; height:100%">
-                                <div id="dyyplayer" style="width:100%;height:100%"></div>
-                            </div>
 
                         </div>
                     </div>
@@ -865,34 +856,44 @@
             <div class="kcap kcap2">
                 <table>
                     <tr>
-                        <th>直播时间</th>
-                        <th>特邀嘉宾</th>
-                        <th>课程介绍</th>
+                        <th width="40%">直播时间</th>
+                        <th width="30%">特邀嘉宾</th>
+                        <th width="30%">课程介绍</th>
                     </tr>
-                <c:forEach items="${plan}" var="pln">
-                    <tr>
-                    	<td>${pln.planTime}</td>
-                        <td>${pln.planTeacher}</td>
-                        <td>${pln.planIntroduce}</td>
-                    </tr>
-                </c:forEach>
                 </table>
+
+                <div class="scrollBarAuto">
+                    <table>
+                        <c:forEach items="${plan}" var="pln">
+                            <tr>
+                                <td width="40%">${pln.planTime}</td>
+                                <td width="30%">${pln.planTeacher}</td>
+                                <td width="30%">${pln.planIntroduce}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </div>
             </div>
         </c:if>
         <c:if test="${state == 2}">
             <div class="kcap">
                 <table>
                     <tr>
-                        <th>直播时间（周一至周五）</th>
-                        <th>特邀嘉宾</th>
+                        <th width="50%">直播时间（周一至周五）</th>
+                        <th width="50%">特邀嘉宾</th>
                     </tr>
-                <c:forEach items="${plan}" var="pln">
-                    <tr>
-                        <td>${pln.planTime}</td>
-                        <td>${pln.planTeacher}</td>
-                    </tr>
-                </c:forEach>
                 </table>
+
+                <div class="scrollBarAuto2">
+                    <table>
+                        <c:forEach items="${plan}" var="pln">
+                            <tr>
+                                <td width="50%">${pln.planTime}</td>
+                                <td width="50%">${pln.planTeacher}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </div>
             </div>
          </c:if>
     </div>
@@ -926,23 +927,24 @@
 <script src="${staticHost}/js/chat/chat.js?version=${version}"></script>
 <!-- baidu -->
 <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?e19a16bf18d5743ab0de9cbb4ca7c975";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?27159d51b8523c0c95a2b52c4f36b043";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
 </script>
 
+
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131570962-1"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-134066990-1"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', 'UA-131570962-1');
+    gtag('config', 'UA-134066990-1');
 </script>
 
 
