@@ -806,7 +806,8 @@ input::-moz-focus-inner {
 
 .msg .info .msgLine {
     display: inline-block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    vertical-align: middle;
 }
 
 .msg .info .op {
@@ -868,7 +869,9 @@ input::-moz-focus-inner {
 }
 
 .msg .info .msgName.redFont {
+    font-weight:bold;
     color:#d8190f;
+    background-color: #fff5c2;
 }
 
 /*.msg .info .msgName.greenFont {*/
@@ -895,7 +898,7 @@ input::-moz-focus-inner {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     border-top-right-radius: 10px;
-    padding: 2px 8px;
+    padding: 4px 8px;
     position: relative;
     /*background-color: #e9e9ec;*/
     vertical-align: middle;
@@ -915,7 +918,7 @@ input::-moz-focus-inner {
 }
 .msg .info .zlBg{
     background-color:#f1f0b8;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
 }
 
 /*.msg .info .msgInfo:before{display: block;content: "";width: 0;height: 0;border-top: 8px solid transparent;border-right: 10px solid #e9edf8;border-bottom: 8px solid transparent;position: absolute;left: -6px; top: 50%; margin-top: -8px;}*/
