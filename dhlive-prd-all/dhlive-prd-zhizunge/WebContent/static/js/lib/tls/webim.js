@@ -1844,7 +1844,10 @@ var webim = { // namespace object webim
         "[火箭2]": 29 ,
         "[火箭3]": 30,
         "[晚安]": 31,
-        "[冲啊]": 32,
+        "[火箭4]": 32,
+        "[瀑布2]": 33,
+        "[发财1]": 34,
+        "[冲啊]": 35,
 
 
 
@@ -1903,7 +1906,10 @@ var webim = { // namespace object webim
         "29": ["[火箭2]", imgPath +'icon/hj2.gif'],
         "30": ["[火箭3]", imgPath +'icon/huojian.gif'],
         "31": ["[晚安]", imgPath +'icon/wanan.gif'],
-        "32": ["[冲啊]", imgPath +'icon/chong.gif'],
+        "32": ["[火箭4]", imgPath +'icon/huojian4.gif'],
+        "33": ["[瀑布2]", imgPath +'icon/pubu2.gif'],
+        "34": ["[发财1]", imgPath +'icon/facai1.gif'],
+        "35": ["[冲啊]", imgPath +'icon/chong.gif'],
         // "30": ["[晚安]", imgPath +'icon/wanan.gif'],
         // "31": ["[晚安]", imgPath +'icon/zaijian.gif'],
 

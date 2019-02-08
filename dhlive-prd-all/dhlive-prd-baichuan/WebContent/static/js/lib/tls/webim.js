@@ -1910,6 +1910,7 @@ var webim = { // namespace object webim
         "33": ["[瀑布2]", imgPath +'icon/pubu2.gif'],
         "34": ["[发财1]", imgPath +'icon/facai1.gif'],
         "35": ["[冲啊]", imgPath +'icon/chong.gif'],
+        
         // "30": ["[晚安]", imgPath +'icon/wanan.gif'],
         // "31": ["[晚安]", imgPath +'icon/zaijian.gif'],
 
