@@ -79,7 +79,9 @@ function checkCanWatch() {
                     clearInterval(currTime);
                 }
             } else if (data.code == 1002) {
-                document.getElementById('remainderTime').innerHTML = " ";
+            	$('.freeTipBox').addClass('hide');
+            	$('.videoBox').removeClass('hide');
+               $('.remainderTime').addClass('hide');
                 clearInterval(currTime);
             }
         }

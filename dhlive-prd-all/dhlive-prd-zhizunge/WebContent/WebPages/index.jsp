@@ -349,7 +349,15 @@
                         <div class="movieTop clearfix">
                             <div class="viewTime fl">
                                 <span class="refresh movieTopIcon"></span>
-                                <span class="remainderTime" id="remainderTime"></span>
+                                <c:choose>
+                                	<c:when test="${empty vip }">
+                                		<span class="remainderTime" id="remainderTime"></span>
+                                	</c:when>
+                                	<c:otherwise>
+                                		<span class="remainderTime <c:if test="${vip.tempWatchTime==-1 }">hide</c:if>" id="remainderTime"></span>
+                                	</c:otherwise>
+                                </c:choose>
+                                
                             </div>
                             <div class="share fr">
                                 <span class="eye movieTopIcon"></span>
