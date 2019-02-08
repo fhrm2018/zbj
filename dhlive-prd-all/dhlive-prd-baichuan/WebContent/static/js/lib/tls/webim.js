@@ -1844,6 +1844,10 @@ var webim = { // namespace object webim
         "[火箭2]": 29 ,
         "[火箭3]": 30,
         "[晚安]": 31,
+        "[火箭4]": 32,
+        "[瀑布2]": 33,
+        "[发财1]": 34,
+        "[冲啊]": 35,
 
 
 
@@ -1883,7 +1887,7 @@ var webim = { // namespace object webim
         "9": ["[好]", imgPath +'icon/hao.gif'],
         // "10": ["[火箭1]", imgPath +'icon/hj1.gif'],
         // "11": ["[火箭2]", imgPath +'icon/hj2.gif'],
-        "12": ["[蓝天花]", imgPath +'icon/hua.gif'],
+        "12": ["[老师花]", imgPath +'icon/hua.gif'],
         "13": ["[ok1]", imgPath +'icon/ok.gif'],
         "14": ["[ok2]", imgPath +'icon/ok2.gif'],
         "15": ["[赚钱了]", imgPath +'icon/zql.gif'],
@@ -1902,7 +1906,10 @@ var webim = { // namespace object webim
         "29": ["[火箭2]", imgPath +'icon/hj2.gif'],
         "30": ["[火箭3]", imgPath +'icon/huojian.gif'],
         "31": ["[晚安]", imgPath +'icon/wanan.gif'],
-        // "29": ["[晚上好]", imgPath +'icon/wan.gif'],
+        "32": ["[火箭4]", imgPath +'icon/huojian4.gif'],
+        "33": ["[瀑布2]", imgPath +'icon/pubu2.gif'],
+        "34": ["[发财1]", imgPath +'icon/facai1.gif'],
+        "35": ["[冲啊]", imgPath +'icon/chong.gif'],
         // "30": ["[晚安]", imgPath +'icon/wanan.gif'],
         // "31": ["[晚安]", imgPath +'icon/zaijian.gif'],
 
