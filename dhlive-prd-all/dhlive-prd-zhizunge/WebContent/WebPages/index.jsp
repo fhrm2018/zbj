@@ -914,9 +914,7 @@
     <%--</a>--%>
 <%--</c:if>--%>
 
-<div class="footer">
-    <p class="copy_tips">版权：深圳市美易互动科技有限公司 投资有风险 入市需谨慎</p>
-</div>
+
 
 <iframe id="ifqq1" style="display:none;" src=""></iframe>
 

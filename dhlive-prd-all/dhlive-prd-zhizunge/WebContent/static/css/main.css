@@ -347,13 +347,12 @@ input::-moz-focus-inner {
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: #1d1d1d;
 }
 
 .footer .copy_tips {
     display: block;
     text-align: center;
-    color: #444444;
+    color: #0d1229;
     font-size: 14px;
     height: 40px;
     line-height: 40px;
