@@ -106,6 +106,18 @@ public class CronController {
             this.userInfoService.modifyEntity(u);
             this.baseCacheService.updateUserInfo(Integer.parseInt(str[1]));
         }
+        
+        
+        Set<String> zlOnline=redisManager.getMapKeyFromMapByStoreKey(RedisKeyConstant.ZL_ONLINE_IDS);
+        
+        for(String key:zlOnline) {
+        	List<String> times=redisManager.getValuesFromMapByStoreKeyAndMapKey(RedisKeyConstant.ZL_ONLINE_IDS, key);
+        	Long online = System.currentTimeMillis()-Long.decode(times.get(0));
+        	if(online>=60000) {
+        		redisManager.deleteFromHashByStoreKeyAndMapKey(RedisKeyConstant.ZL_ONLINE_IDS, key);
+        	}
+        }
+        
         baseLog.info(LogFormatUtil.getActionFormat("定时任务清理下线游客结束"));
     }
 

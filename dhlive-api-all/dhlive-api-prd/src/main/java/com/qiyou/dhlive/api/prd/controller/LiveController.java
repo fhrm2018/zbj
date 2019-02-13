@@ -793,6 +793,9 @@ public class LiveController {
     	if(EmptyUtil.isEmpty(userSession)) {
     		return new DataResponse();
     	}
+    	if(userSession.getGroupId().intValue()==3) {
+    		redisManager.saveHash(RedisKeyConstant.ZL_ONLINE_IDS, userSession.getUserId().toString(), System.currentTimeMillis()+"");
+    	}
     	if(userSession.getGroupId().equals(3)||userSession.getGroupId().equals(4)) {
 	    	if(EmptyUtil.isEmpty(flag)) {
 	    		return new DataResponse();

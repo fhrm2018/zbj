@@ -50,5 +50,8 @@ public class RedisKeyConstant {
     public static final String ACTIVITY_CONFIG = "dhlive-cachedata-activity-config-";
 
     public static final String ACTIVITY_rotary_Table = "dhlive-cachedata-activity-rotary-table-";
+    
+    public static final String ZL_ONLINE_IDS = "dhlive-cachedata-zl-online-ids";
+
 
 }
