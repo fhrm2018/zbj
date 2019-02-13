@@ -100,7 +100,7 @@ public class WaterServiceImpl implements IWaterService {
 			}
 			UserManageInfo myKefu = null;
 			Set<String> onlineZl=this.redisManager.getMapKeyFromMapByStoreKey(RedisKeyConstant.ZL_ONLINE_IDS);
-			if(EmptyUtil.isEmpty(onlineZl)) {
+			if(EmptyUtil.isEmpty(onlineZl)||onlineZl.size()==0) {
 				myKefu=dutyList.get(auto_kefu_index);
 			}else {
 				while(true) {
@@ -117,10 +117,10 @@ public class WaterServiceImpl implements IWaterService {
 						}
 					}
 					if(res) {
-						myKefu= dutyList.get(auto_kefu_index);
 						break;
 					}
 				}
+				myKefu=dutyList.get(auto_kefu_index);
 			}
 			
 			auto_kefu_index++;
@@ -166,7 +166,7 @@ public class WaterServiceImpl implements IWaterService {
 //			UserManageInfo myKefu = kefuList.get(auto_kefu_index);
 			UserManageInfo myKefu = null;
 			Set<String> onlineZl=this.redisManager.getMapKeyFromMapByStoreKey(RedisKeyConstant.ZL_ONLINE_IDS);
-			if(EmptyUtil.isEmpty(onlineZl)) {
+			if(onlineZl.isEmpty()) {
 				myKefu=kefuList.get(auto_kefu_index);
 			}else {
 				while(true) {
@@ -183,10 +183,10 @@ public class WaterServiceImpl implements IWaterService {
 						}
 					}
 					if(res) {
-						myKefu= kefuList.get(auto_kefu_index);
 						break;
 					}
 				}
+				myKefu=kefuList.get(auto_kefu_index);
 			}
 			auto_kefu_index++;
 			
