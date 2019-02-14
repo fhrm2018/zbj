@@ -1,21 +1,17 @@
+var watchTime = '';
 if (userInfo.groupId == 1 || userInfo.groupId == 5) {
 	 // 截止时间转换成秒
     function countTime() {
-    	if(lookTime == -1){
-    		var watchTimeCache = cookieFunction.get('watchTime');
-        	if(watchTimeCache){
-        		lookTime = parseInt(tempWatchTime) - parseInt(watchTimeCache);
-        	}else{
-        		lookTime = parseInt(tempWatchTime);
-        	}
+    	if(watchTime == ''){
+    		watchTime = parseInt(tempWatchTime);
     	}
-    	lookTime--;
+    	watchTime--;
         var d, h, m, s, str;
-        if (lookTime > 0) {
-            d = Math.floor(lookTime / 60 / 60 / 24);
-            h = Math.floor(lookTime / 60 / 60 % 24);
-            m = Math.floor(lookTime / 60 % 60);
-            s = Math.floor(lookTime % 60);
+        if (lookedTime > 0) {
+            d = Math.floor(watchTime / 60 / 60 / 24);
+            h = Math.floor(watchTime / 60 / 60 % 24);
+            m = Math.floor(watchTime / 60 % 60);
+            s = Math.floor(watchTime % 60);
             str = '剩余观看时长：' + d + ' 天 ' + h + ' 小时 ' + m + ' 分 ' + s + ' 秒，登录后免费观看';
           //将倒计时赋值到div中
             document.getElementById('remainderTime').innerHTML = str;
@@ -36,22 +32,10 @@ if (userInfo.groupId == 1 || userInfo.groupId == 5) {
         }
         
     }
-    
-    function saveWatchTimeCookie(seconds){
-    	var watchTimeCache = cookieFunction.get('watchTime');
-    	if(!watchTimeCache){
-    		watchTimeCache = 0;
-    	}
-    	cookieFunction.set('watchTime',parseInt(watchTimeCache) + seconds );
-    }
 
     var currTime = setInterval(function () {
         countTime();
     }, 1000);
-    
-    var currTime = setInterval(function () {
-    	saveWatchTimeCookie(10);
-    }, 10000);
 }
 
 function checkCanWatch() {
@@ -63,7 +47,9 @@ function checkCanWatch() {
         },
         success: function (data) {
             if (data.code == 1000) {
-                //time = data.data;
+            	if(watchTime == '' && data.data != ''){
+            		watchTime = parseInt(data.data);
+            	}	
             } else if (data.code == 1001) {
             	if (userInfo.groupId == 1) {
                     $('.freeTipBox').removeClass('hide');
@@ -81,7 +67,7 @@ function checkCanWatch() {
             } else if (data.code == 1002) {
             	$('.freeTipBox').addClass('hide');
             	$('.videoBox').removeClass('hide');
-               $('.remainderTime').addClass('hide');
+                $('.remainderTime').addClass('hide');
                 clearInterval(currTime);
             }
         }
