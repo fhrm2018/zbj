@@ -1,4 +1,4 @@
-var watchTime = '';
+var watchTime = '',javaWatchTime = '';
 if (userInfo.groupId == 1 || userInfo.groupId == 5) {
 	 // 截止时间转换成秒
     function countTime() {
@@ -47,8 +47,9 @@ function checkCanWatch() {
         },
         success: function (data) {
             if (data.code == 1000) {
-            	if(watchTime == '' && data.data != ''){
+            	if(javaWatchTime == '' && data.data != ''){
             		watchTime = parseInt(data.data);
+            		javaWatchTime = parseInt(data.data);
             	}	
             } else if (data.code == 1001) {
             	if (userInfo.groupId == 1) {
