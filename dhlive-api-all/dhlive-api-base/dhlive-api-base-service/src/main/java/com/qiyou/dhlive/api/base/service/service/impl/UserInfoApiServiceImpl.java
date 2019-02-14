@@ -48,6 +48,7 @@ import com.yaozhong.framework.base.common.utils.MyBeanUtils;
 import com.yaozhong.framework.base.database.domain.page.PageResult;
 import com.yaozhong.framework.base.database.domain.page.PageSearch;
 import com.yaozhong.framework.base.database.domain.page.builders.PageResultBuilder;
+import com.yaozhong.framework.base.database.domain.returns.BaseResult;
 import com.yaozhong.framework.base.database.domain.returns.DataResponse;
 import com.yaozhong.framework.base.database.domain.search.SearchCondition;
 import com.yaozhong.framework.base.database.redis.RedisManager;
@@ -226,7 +227,10 @@ public class UserInfoApiServiceImpl implements IUserInfoApiService {
             if (EmptyUtil.isEmpty(params.getUserPass())) {
                 params.setUserPass(null);
             }
-            this.userVipInfoService.modifyEntity(params);
+            BaseResult br= this.userVipInfoService.modifyEntity(params);
+            if(br.isSuccess()) {
+       		  
+       	  	}
             params = this.userVipInfoService.findById(params.getUserId());
             this.redisManager.saveString(RedisKeyConstant.VIP + params.getUserId(), new Gson().toJson(params));
         }
