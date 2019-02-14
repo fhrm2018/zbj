@@ -7,7 +7,7 @@ if (userInfo.groupId == 1 || userInfo.groupId == 5) {
     	}
     	watchTime--;
         var d, h, m, s, str;
-        if (lookedTime > 0) {
+        if (watchTime > 0) {
             d = Math.floor(watchTime / 60 / 60 / 24);
             h = Math.floor(watchTime / 60 / 60 % 24);
             m = Math.floor(watchTime / 60 % 60);
