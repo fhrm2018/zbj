@@ -5,7 +5,7 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form
     font: 14px/170% Microsoft Yahei, Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
     color: #333;
 }
-  
+
 body {
     line-height: 1.5;
     color: #333;
@@ -468,7 +468,7 @@ input::-moz-focus-inner {
 }
 
 /*.topRight .registerA {*/
-    /*border-left: 1px solid #6e7ba1;*/
+/*border-left: 1px solid #6e7ba1;*/
 /*}*/
 
 .redDot {
@@ -515,8 +515,8 @@ input::-moz-focus-inner {
     width:76%;
 }
 /*.headBtns .a1{*/
-    /*width:7.5%;*/
-    /*margin-top:10px;*/
+/*width:7.5%;*/
+/*margin-top:10px;*/
 /*}*/
 
 .topRight {
@@ -526,9 +526,9 @@ input::-moz-focus-inner {
 }
 
 /*.header .logo02 img{*/
-    /*width: 240px;*/
-    /*height: auto;*/
-    /*margin-top: 12px;*/
+/*width: 240px;*/
+/*height: auto;*/
+/*margin-top: 12px;*/
 /*}*/
 
 .allbutton:first-child, .allbutton2 {
@@ -800,7 +800,7 @@ input::-moz-focus-inner {
 
 
 
-    /*.msg .info{width:362px;}*/
+/*.msg .info{width:362px;}*/
 .msg .info {
     width: 94%; /* padding:5px 0; */
 }
@@ -876,7 +876,7 @@ input::-moz-focus-inner {
 }
 
 /*.msg .info .msgName.greenFont {*/
-    /*background-color: #4152b0;*/
+/*background-color: #4152b0;*/
 /*}*/
 
 .msg .info .msgName.orangeFont {
@@ -1138,17 +1138,17 @@ input::-moz-focus-inner {
 }
 
 /*.contactQQ a:first-child {*/
-    /*color: #755d09;*/
-    /*border: none;*/
-    /*letter-spacing: 1px;*/
-    /*font-weight: bold;*/
-    /*background-color: #ffd02b;*/
+/*color: #755d09;*/
+/*border: none;*/
+/*letter-spacing: 1px;*/
+/*font-weight: bold;*/
+/*background-color: #ffd02b;*/
 
-    /*animation: btnBg 1s infinite linear;*/
-    /*animation: btnBg 1s infinite linear;*/
-    /*-moz-animation: btnBg 1s infinite linear; !* Firefox *!*/
-    /*-webkit-animation: btnBg 1s infinite linear; !* Safari and Chrome *!*/
-    /*-o-animation: btnBg 1s infinite linear; !* Opera *!*/
+/*animation: btnBg 1s infinite linear;*/
+/*animation: btnBg 1s infinite linear;*/
+/*-moz-animation: btnBg 1s infinite linear; !* Firefox *!*/
+/*-webkit-animation: btnBg 1s infinite linear; !* Safari and Chrome *!*/
+/*-o-animation: btnBg 1s infinite linear; !* Opera *!*/
 /*}*/
 
 @keyframes btnBg {
@@ -2506,12 +2506,12 @@ input::-moz-focus-inner {
     bottom: 150px;
 }
 .prizeName p{
-     width:320px;
-     height:44px;
-     line-height:44px;
-     font-size:18px;
-     padding-left:46px;
-     color:#ffffff;
+    width:320px;
+    height:44px;
+    line-height:44px;
+    font-size:18px;
+    padding-left:46px;
+    color:#ffffff;
 }
 .prizeName p span{
     font-weight:bold;
@@ -3554,7 +3554,7 @@ button.fncBtn {
 .teacherJs {
     width: 760px;
     height: 420px;
-    padding:36px 30px;
+    padding: 36px 10px;
     box-sizing: border-box;
     position: fixed;
     left: 50%;
@@ -3568,32 +3568,33 @@ button.fncBtn {
 }
 .lsBtn a {
     display: block;
-    width: 120px;
+    width: 100px;
     height: 44px;
     line-height: 44px;
     margin: 0 10px 20px;
-    font-size: 24px;
+    font-size: 20px;
     float:left;
-    color: rgba(161,25,25,1);
+    color: rgba(161,25,25,0.5);
+    font-weight: bold;
     background: url("../images/ls02.jpg") 50% 50% no-repeat;
-    box-shadow: 6px 6px 10px rgba(63,43,24,0.5);
+    box-shadow: 2px 2px 4px rgba(63,43,24,0.5);
     text-align: center;
     position: relative;
 }
 .lsBtn a.cur{
-    color: rgba(161,25,25,0.5);
-    box-shadow: 6px 6px 10px rgba(63,43,24,1);
+    color: rgba(161,25,25,0.8);
+    box-shadow: 2px 2px 4px  rgba(63,43,24,1);
     background: url("../images/ls01.jpg") 50% 50% no-repeat;
 }
 /*.lsBtn a.cur:after{*/
-    /*content:'';*/
-    /*display:block;*/
-    /*width:15px;*/
-    /*height:50px;*/
-    /*background-color:#c9040c ;*/
-    /*position: absolute;*/
-    /*right:-15px;*/
-    /*top:0px;*/
+/*content:'';*/
+/*display:block;*/
+/*width:15px;*/
+/*height:50px;*/
+/*background-color:#c9040c ;*/
+/*position: absolute;*/
+/*right:-15px;*/
+/*top:0px;*/
 /*}*/
 .lsText{
 
@@ -4124,7 +4125,7 @@ button.fncBtn {
     height: 30px;
     background: url(../images/timeClose2.png) 50% 50% no-repeat;
     position: absolute;
-    right: 20px;  
+    right: 20px;
     top: 0;
 }
 
