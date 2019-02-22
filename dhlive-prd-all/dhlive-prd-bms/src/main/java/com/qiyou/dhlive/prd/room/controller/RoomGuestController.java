@@ -93,7 +93,7 @@ public class RoomGuestController {
 		if(EmptyUtil.isNotEmpty(dateList)) {
 			SearchCondition<RoomGuestCount> condition=new SearchCondition<RoomGuestCount>(new RoomGuestCount());
 			Map<String,List<Object>> inMap=Maps.newLinkedHashMap();
-			inMap.put("sendDate", dateList);
+			inMap.put("guestDate", dateList);
 			inMap.put("userId", userIdList);
 			condition.setInConditions(inMap);
 			countList = this.roomGuestCountService.findByCondition(condition);
@@ -196,8 +196,9 @@ public class RoomGuestController {
 				con1.setRangeConditions(ranges1);
 	    		online = this.roomGuestCountService.findOneByCondition(con1);
 	    		if(EmptyUtil.isEmpty(online)) {
+	    			online=new RoomGuestCount();
 	    			online.setUserId(m.getUserId());
-	    			online.setGuestDate(endDate);
+	    			online.setGuestDate(beginDate);
 	    			online.setGuestCount(count.intValue());
 	    			online.setCreateTime(new Date());
 	    			this.roomGuestCountService.save(online);

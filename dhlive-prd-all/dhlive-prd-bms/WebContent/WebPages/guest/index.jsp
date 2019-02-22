@@ -80,7 +80,7 @@
 
 </body>
 <script src="${pageContext.request.contextPath}/static/js/lib/artDialog/dialog-min.js"></script>
-<script src="${pageContext.request.contextPath}/static/modules/online/count.js"></script>
+<script src="${pageContext.request.contextPath}/static/modules/guest/count.js"></script>
 <script type="text/javascript">
 	var width='${width}';
 </script>

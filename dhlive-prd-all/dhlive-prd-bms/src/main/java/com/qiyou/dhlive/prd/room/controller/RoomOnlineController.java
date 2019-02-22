@@ -87,7 +87,7 @@ public class RoomOnlineController {
 		if(EmptyUtil.isNotEmpty(dateList)) {
 			SearchCondition<RoomOnlineCount> condition=new SearchCondition<RoomOnlineCount>(new RoomOnlineCount());
 			Map<String,List<Object>> inMap=Maps.newLinkedHashMap();
-			inMap.put("sendDate", dateList);
+			inMap.put("onlineDate", dateList);
 			inMap.put("userId", userIdList);
 			condition.setInConditions(inMap);
 			countList = this.roomOnlineCountService.findByCondition(condition);
