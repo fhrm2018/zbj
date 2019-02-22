@@ -1,114 +1,85 @@
 var getDataList;
+var getChatList;
 $(function () {
     var $tableForm = $('#tableForm');
     var prame = {};
     // 列表
     var fnData = function (obj, pageIndex, recordsNum, pages) {
         var htmls = "";
+        
         for (var i = 0; i < obj.length; i++) {
+        	
             var record = obj[i];
-            htmls += [
-                '<div class="tableContent tableCtHover mt5">',
-                '<div class="flexWrap">',
-                '<div class="flexWrap flexAgCen" style="width: 10%; text-align:center;  min-height: 70px;""> <div class="flexCon"> '
-                + record.userNickName + '</div></div>',
-
-
-                '<div class="flexWrap flexAgCen"  style="width: 5%; text-align:center;"> <div class="flexCon"> '
-                + record.userLevel + '</div></div>',
-
-                '<div class="flexWrap flexAgCen"  style="width: 10%; text-align:center;"> <div class="flexCon"> '
-                + record.userTel + '</div></div>',
-
-
-                '<div class="flexWrap flexAgCen"  style="width: 15%; text-align:center; "> <div class="flexCon">'
-                + record.createTime + '</div></div>',
-
-                '<div class="flexWrap flexAgCen"  style="width: 15%; text-align:center; "> <div class="flexCon">'
-                + record.lastLoginTime + '</div></div>',
-
-                '<div class="flexWrap flexAgCen"  style="width: 10%; text-align:center; "> <div class="flexCon">'
-                + '-' + '</div></div>',
-
-                '<div class="flexWrap flexAgCen"  style="width: 10%; text-align:center; "> <div class="flexCon">'
-                + record.lookTime + '</div></div>',
-                
-                '<div class="flexWrap flexAgCen"  style="width: 10%; text-align:center; "> <div class="flexCon">'
-                + record.createUserName + '</div></div>',
-
-                '<div class="flexWrap flexAgCen"  style="width: 10%; text-align:center; "> <div class="flexCon">'
-                + isUndefined(record.lastLoginIp) + '</div></div>',
-
-                '<div class="flexWrap flexAgCen"  style="width: 10%; text-align:center; "> <div class="flexCon">'
-                + op(record.groupId, record.userId, record.isGag, record.isBlack) + '</div></div>',
-
-                '</div>', '</div>'].join('');
-        }
+            var html="";
+    		for(var j =0;j<record.data.length;j++){
+    		   var data = record.data[j]
+    		   html+= '<div class="flexWrap flexAgCen" style="width: '+width+'%; text-align:center; "> <div class="flexCon"> '+ data + '</div></div>';
+    		 }
+                     htmls +=
+                '<div class="tableContent tableCtHover mt5">'
+                +'<div class="flexWrap">'
+               +'<div class="flexWrap flexAgCen" style="width: 15%; text-align:center;  min-height: 70px;""> <div class="flexCon"> '
+                + record.date + '</div></div>'
+               +html
+               + '</div>'+'</div>';
+              
+                 }     
         return htmls;
+       
+        
     };
-
+    
+    
+    
+   
     var getSearchForm = function () {
-        prame = getJsonParam("searchBox");
+        prame = getJsonParam("tableForm");
         console.log(prame);
     }
 
     // 列表数据
     getDataList = function () {
         $.ajaxGetData({
-            "ajaxUrl": g_requestContextPath + "/user/getVipUserList",
+            "ajaxUrl": g_requestContextPath + "/roomGuest/guestCount",
             "fnData": fnData,
             "postData": prame,
             "headtype": 1
         });
     };
+   
     getDataList();
+ 
 
-    //查询vip客户
-    $('#searchBtn').on('click', function () {
+   
+	
+    $('.backBtn').on('click', function () {
+        window.location.href=g_requestContextPath+"/roomGuest";
+    });
+
+    
+    //查询记录
+    $('#submitBtn').on('click', function () {
+
         getSearchForm();
         getDataList();
-        closePopForm('#searchWin');
+       // openPopForm('#addWin');
         return false;
     });
 
-    //打开查询vip客户窗口
+ /*   //打开查询vip客户窗口
     $('.searchBtn').on('click', function () {
         openPopForm('#searchWin');
-    });
+       
+    });  
 
-    //打开添加vip客户窗口
+    打开添加vip客户窗口
     $('.addBtn').on('click', function () {
-        openPopForm('#addWin');
-        $('#groupId').val();
-        $('.groupName').html('所有');
-        $('#roomId').val();
-        $('.roomName').html('所有');
-        $('.userSpecialty').addClass('hide');
-    });
+    	    
+    	                openPopForm('#addWin');
+    	               
+    	});  */
 
-    /**
-     * 增加vip客户表单提交
-     */
-    $tableForm.validate({
-        submitHandler: function () {
-            formSubmit("#submitBtn", true, "保存中...");
-            var options = {
-                success: function (data) {
-                    if (data.code == '1000') {
-                        window.location.href = g_requestContextPath + "/user/vipUser";
-                    } else {
-                        popLayer(data.message);
-                    }
-                    formSubmit("#submitBtn", false, "保存");
-                },
-                error: function (data) {
-                    popLayer(stringMsg.serverErr);
-                    formSubmit("#submitBtn", false, "保存");
-                }
-            };
-            $tableForm.ajaxSubmit(options);
-        }
-    });
+   
 
     //刷新列表
     $('.refBtn').on('click', function () {
@@ -164,6 +135,8 @@ $(function () {
     });
 
 });
+
+
 
 function op(groupId, userId, isGag, isBlack) {
     var op = '<a class="a_style" data-id="' + userId + '" data-gid="' + groupId + '" onclick="editVipUserWin(this)">修改</a> ';

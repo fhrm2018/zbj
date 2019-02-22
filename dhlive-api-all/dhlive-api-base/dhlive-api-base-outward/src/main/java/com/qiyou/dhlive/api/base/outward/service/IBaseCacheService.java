@@ -83,6 +83,24 @@ public interface IBaseCacheService {
 	Set<String> getAllOnlineUser();
 	
 	void removeUserOnlineTime(Integer userId);
+	
+	
+	int getVipUserOnlineTime(Integer userId);
+	
+	void updateVipUserOnlineTime(Integer userId,int times);
+	
+	Set<String> getAllOnlineVipUser();
+	
+	void removeVipUserOnlineTime(Integer userId);
+	
+	
+	int getZlUserOnlineTime(Integer userId);
+	
+	void updateZlUserOnlineTime(Integer userId,int times);
+	
+	Set<String> getAllOnlineZlUser();
+	
+	void removeZlUserOnlineTime(Integer userId);
 
 	
 	List<RoomPlan> getAllRoomPlan();

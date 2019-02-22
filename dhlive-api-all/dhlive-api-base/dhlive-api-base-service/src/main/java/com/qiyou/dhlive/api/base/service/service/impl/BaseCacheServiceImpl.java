@@ -75,37 +75,41 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	@Autowired
 	private ILiveInformService liveInformService;
 	
-	public static final String USER_INFO = "dhlive-basedata-userinfo-";
+	private static final String USER_INFO = "dhlive-basedata-userinfo-";
 	
-	public static final String USER_VIP = "dhlive-basedata-userinfo-vip-";
+	private static final String USER_VIP = "dhlive-basedata-userinfo-vip-";
 	
-	public static final String USER_MANAGER = "dhlive-basedata-userinfo-manager-";
+	private static final String USER_MANAGER = "dhlive-basedata-userinfo-manager-";
 	
-	public static final String NEWUSER_LIST = "dhlive-basedata-newuserlist";
+	//private static final String NEWUSER_LIST = "dhlive-basedata-newuserlist";
 	
-	public static final String MANAGER_LIST = "dhlive-basedata-managelist";
+	private static final String MANAGER_LIST = "dhlive-basedata-managelist";
 	
-	public static final String DUTYMANAGER_LIST = "dhlive-basedata-dutymanagelist";
+	private static final String DUTYMANAGER_LIST = "dhlive-basedata-dutymanagelist";
 	
-	public static final String DUTY_USER_LIST = "dhlive-basedata-dutyuserlist";
+	//private static final String DUTY_USER_LIST = "dhlive-basedata-dutyuserlist";
 	
-	public static final String RELATION = "dhlive-cachedata-room-relation-";
+	private static final String RELATION = "dhlive-cachedata-room-relation-";
 	
-	public static final String DAY_RELATION = "dhlive-cachedata-dayrelation-";
+	private static final String DAY_RELATION = "dhlive-cachedata-dayrelation-";
 
-	public static final String MESSAGE_LIST = "dhlive-basedata-messagelist";
+	private static final String MESSAGE_LIST = "dhlive-basedata-messagelist";
 	
-	public static final String AUTO_MESSAGE_LIST = "dhlive-basedata-automessagelist";
+	private static final String AUTO_MESSAGE_LIST = "dhlive-basedata-automessagelist";
 	
-	public static final String AUTO_PERSON_COUNT = "dhlive-basedata-autopersoncount";
+	private static final String AUTO_PERSON_COUNT = "dhlive-basedata-autopersoncount";
 	
-	public static final String AUTO_SENDUSER_COUNT = "dhlive-basedata-autosendUserCount";
+	private static final String AUTO_SENDUSER_COUNT = "dhlive-basedata-autosendUserCount";
 	
-	public static final String AUTO_SENDUSER_LIST = "dhlive-basedata-autosendUserList";
+	private static final String AUTO_SENDUSER_LIST = "dhlive-basedata-autosendUserList";
 	
-	public static final String SAVE_USERKEFU_LIST = "dhlive-userrelation-waitsavekefulist";
+	private static final String SAVE_USERKEFU_LIST = "dhlive-userrelation-waitsavekefulist";
 
-	public static final String USER_ONLINE_TIME = "dhlive-user-onlineTime";
+	private static final String USER_ONLINE_TIME = "dhlive-user-onlineTime";
+	
+	private static final String USER_VIP_ONLINE_TIME = "dhlive-vip-user-onlineTime";
+	
+	private static final String USER_ZL_ONLINE_TIME = "dhlive-zl-user-onlineTime";
 
 	private static final String ROOM_PLAN_LIST = "dhlive-basedata-roomPlanlist";
 	
@@ -123,7 +127,6 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	
 	@Override
 	public UserInfoDTO updateUserInfo(Integer userId) {
-		// TODO Auto-generated method stub
 		if(EmptyUtil.isEmpty(userId)) {
 			return null;
 		}
@@ -150,7 +153,6 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	
 	@Override
 	public UserInfoDTO updateUserVip(Integer userId) {
-		// TODO Auto-generated method stub
 		if(EmptyUtil.isEmpty(userId)) {
 			return null;
 		}
@@ -176,7 +178,6 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	
 	@Override
 	public UserInfoDTO updateUserManager(Integer userId) {
-		// TODO Auto-generated method stub
 		if(EmptyUtil.isEmpty(userId)) {
 			return null;
 		}
@@ -192,8 +193,7 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 	
 	@Override
 	public UserInfoDTO createNewGuestUser(String ipAddress, String utmSource) {
-		// TODO Auto-generated method stub
-		List<String> listJson = redisManager.getMapValueFromMapByStoreKey(NEWUSER_LIST);
+		//List<String> listJson = redisManager.getMapValueFromMapByStoreKey(NEWUSER_LIST);
 		return null;
 	}
 	
@@ -223,6 +223,7 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 		return data;
 	}
 	
+	@Override
 	public List<RoomChatMessage> getChatMessageByUser(Integer roomId){
 		String dataJson = redisManager.getStringValueByKey(MESSAGE_LIST+roomId);
 		if(EmptyUtil.isEmpty(dataJson)) {
@@ -232,6 +233,7 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 		return data;
 	}
 	
+	@Override
 	public List<RoomChatMessage> updateChatMessageByUser(Integer roomId){
 		List<String> listJson = redisManager.getMapValueFromMapByStoreKey(RedisKeyConstant.MESSAGE_INFO);
         List<RoomChatMessage> result = new ArrayList<RoomChatMessage>();
@@ -379,7 +381,6 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 
 	@Override
 	public String updateYkKefuIdByDay(Integer userId, String day, Integer kefuId) {
-		// TODO Auto-generated method stub
 		redisManager.saveStringBySeconds(DAY_RELATION+day+"-"+userId, kefuId+"", 60*60*24);
 		return kefuId+"";
 	}
@@ -473,7 +474,7 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 		return null;
 	}
 	
-	
+	@Override
 	public List<RoomAutoUser> getAllRoomAutoUserList(){
 		String json=this.redisManager.getStringValueByKey(AUTO_SENDUSER_LIST);
 		if(EmptyUtil.isEmpty(json)) {
@@ -482,6 +483,7 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 		return JSON.parseArray(json,RoomAutoUser.class);
 	}
 	
+	@Override
 	public List<RoomAutoUser> updateAllRoomAutoUser(){
 		SearchCondition<RoomAutoUser> condition=new SearchCondition<RoomAutoUser>(new RoomAutoUser());
 		List<RoomAutoUser> userList=this.roomAutoUserService.findByCondition(condition);
@@ -489,23 +491,26 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
 		return userList;
 	}
 	
+	@Override
 	public void updateYoukeKefuList(UserRelation relation) {
 		List<String> list=Lists.newArrayList();
 		list.add(JSON.toJSONString(relation));
 		this.redisManager.saveList(SAVE_USERKEFU_LIST, list);
 	}
 	
+	@Override
 	public List<String> getYoukeKefuList() {
 		List<String> list=this.redisManager.getValuesFromListByStoreKey(SAVE_USERKEFU_LIST, -500, -1);
 		return list;
 	}
 	
+	@Override
 	public void removeYoukeKefuList(String value) {
 		this.redisManager.deleteFromListByByStoreKeyAndValue(SAVE_USERKEFU_LIST, value);
 	}
 	
 	
-    public String getRandomString(long length) {
+    private String getRandomString(long length) {
         String val = "";
         Random random = new Random();
         //参数length，表示生成几位随机数
@@ -523,22 +528,30 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
         return val;
     }
 
-    
+    @Override
     public int getUserOnlineTime(Integer userId) {
-    	List<String> times=this.redisManager.getValuesFromMapByStoreKeyAndMapKey(this.USER_ONLINE_TIME, userId.toString());
+    	List<String> times=this.redisManager.getValuesFromMapByStoreKeyAndMapKey(USER_ONLINE_TIME, userId.toString());
     	if(EmptyUtil.isEmpty(times))
     		return 0;
+    	
+    	if(times.get(0)==null) {
+    		return 0;
+    	}
+    	if(("null").equals(times.get(0))) {
+    		return 0;
+    	}
     	return Integer.parseInt(times.get(0));
     }
     
-    
+    @Override
     public Set<String> getAllOnlineUser(){
     	Set<String> userIds=this.redisManager.getMapKeyFromMapByStoreKey(USER_ONLINE_TIME);
     	return userIds;
     }
     
+    @Override
     public void updateUserOnlineTime(Integer userId,int times) {
-    	List<String> timesList=this.redisManager.getValuesFromMapByStoreKeyAndMapKey(this.USER_ONLINE_TIME, userId.toString());
+    	List<String> timesList=this.redisManager.getValuesFromMapByStoreKeyAndMapKey(USER_ONLINE_TIME, userId.toString());
     	if(EmptyUtil.isEmpty(timesList)) {
     		this.redisManager.saveHash(USER_ONLINE_TIME, userId.toString(), String.valueOf(times));
     	}else {
@@ -551,8 +564,91 @@ public class BaseCacheServiceImpl implements IBaseCacheService {
     		
     }
     
+    @Override
     public void removeUserOnlineTime(Integer userId) {
-    	this.redisManager.deleteFromHashByStoreKeyAndMapKey(this.USER_ONLINE_TIME, userId.toString());
+    	this.redisManager.deleteFromHashByStoreKeyAndMapKey(USER_ONLINE_TIME, userId.toString());
+    	
+    }
+    
+    @Override
+    public int getVipUserOnlineTime(Integer userId) {
+    	List<String> times=this.redisManager.getValuesFromMapByStoreKeyAndMapKey(USER_VIP_ONLINE_TIME, userId.toString());
+    	if(EmptyUtil.isEmpty(times))
+    		return 0;
+        if(times.get(0)==null) {
+    		return 0;
+    	}
+        if(("null").equals(times.get(0))) {
+    		return 0;
+    	}
+    	return Integer.parseInt(times.get(0));
+    }
+    
+    @Override
+    public Set<String> getAllOnlineVipUser(){
+    	Set<String> userIds=this.redisManager.getMapKeyFromMapByStoreKey(USER_VIP_ONLINE_TIME);
+    	return userIds;
+    }
+    
+    @Override
+    public void updateVipUserOnlineTime(Integer userId,int times) {
+    	List<String> timesList=this.redisManager.getValuesFromMapByStoreKeyAndMapKey(USER_VIP_ONLINE_TIME, userId.toString());
+    	if(EmptyUtil.isEmpty(timesList)) {
+    		this.redisManager.saveHash(USER_VIP_ONLINE_TIME, userId.toString(), String.valueOf(times));
+    	}else {
+    		if(EmptyUtil.isNotEmpty(timesList.get(0))&&!"null".equalsIgnoreCase(timesList.get(0))) {
+    			this.redisManager.saveHash(USER_VIP_ONLINE_TIME, userId.toString(), String.valueOf(times+Integer.parseInt(timesList.get(0))));
+    		}else {
+    			this.redisManager.saveHash(USER_VIP_ONLINE_TIME, userId.toString(), String.valueOf(times));
+    		}
+    	}
+    		
+    }
+    
+    @Override
+    public void removeVipUserOnlineTime(Integer userId) {
+    	this.redisManager.deleteFromHashByStoreKeyAndMapKey(USER_VIP_ONLINE_TIME, userId.toString());
+    	
+    }
+    
+    @Override
+    public int getZlUserOnlineTime(Integer userId) {
+    	List<String> times=this.redisManager.getValuesFromMapByStoreKeyAndMapKey(USER_ZL_ONLINE_TIME, userId.toString());
+    	if(EmptyUtil.isEmpty(times))
+    		return 0;
+    	if(times.get(0)==null) {
+    		return 0;
+    	}
+    	if(("null").equals(times.get(0))) {
+    		return 0;
+    	}
+    	return Integer.parseInt(times.get(0));
+    }
+    
+    @Override
+    public Set<String> getAllOnlineZlUser(){
+    	Set<String> userIds=this.redisManager.getMapKeyFromMapByStoreKey(USER_ZL_ONLINE_TIME);
+    	return userIds;
+    }
+    
+    @Override
+    public void updateZlUserOnlineTime(Integer userId,int times) {
+    	List<String> timesList=this.redisManager.getValuesFromMapByStoreKeyAndMapKey(USER_ZL_ONLINE_TIME, userId.toString());
+    	if(EmptyUtil.isEmpty(timesList)) {
+    		this.redisManager.saveHash(USER_ZL_ONLINE_TIME, userId.toString(), String.valueOf(times));
+    	}else {
+    		if(EmptyUtil.isNotEmpty(timesList.get(0))&&!"null".equalsIgnoreCase(timesList.get(0))) {
+    			this.redisManager.saveHash(USER_ZL_ONLINE_TIME, userId.toString(), String.valueOf(times+Integer.parseInt(timesList.get(0))));
+    		}else {
+    			this.redisManager.saveHash(USER_ZL_ONLINE_TIME, userId.toString(), String.valueOf(times));
+    		}
+    	}
+    		
+    }
+    
+    @Override
+    public void removeZlUserOnlineTime(Integer userId) {
+    	this.redisManager.deleteFromHashByStoreKeyAndMapKey(USER_ZL_ONLINE_TIME, userId.toString());
     	
     }
 

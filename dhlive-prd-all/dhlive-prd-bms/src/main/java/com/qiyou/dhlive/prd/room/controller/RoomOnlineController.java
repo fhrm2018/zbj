@@ -14,8 +14,9 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.qiyou.dhlive.api.base.outward.service.IBaseCacheService;
 import com.qiyou.dhlive.core.room.outward.model.RoomMsgCount;
-import com.qiyou.dhlive.core.room.outward.service.IRoomMsgCountService;
-import com.qiyou.dhlive.core.room.outward.vo.RoomMsgCountVO;
+import com.qiyou.dhlive.core.room.outward.model.RoomOnlineCount;
+import com.qiyou.dhlive.core.room.outward.service.IRoomOnlineCountService;
+import com.qiyou.dhlive.core.room.outward.vo.RoomOnlineCountVO;
 import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
 import com.qiyou.dhlive.prd.component.annotation.UnSecurity;
 import com.qiyou.dhlive.prd.component.session.EmployeeSession;
@@ -29,11 +30,11 @@ import com.yaozhong.framework.base.database.domain.search.SearchCondition;
 import com.yaozhong.framework.web.annotation.session.NeedSession;
 
 @Controller
-@RequestMapping(value = "roomMsg")
-public class RoomMsgController {
+@RequestMapping(value = "roomOnline")
+public class RoomOnlineController {
 
 	@Autowired
-	private IRoomMsgCountService roomMsgCountService;
+	private IRoomOnlineCountService roomOnlineCountService;
 	
 	@Autowired
 	private IBaseCacheService baseCacheService;
@@ -58,25 +59,25 @@ public class RoomMsgController {
 		model.addAttribute("width", width);
 		model.addAttribute("beginDate", DateUtil.DateToString(DateUtil.addDay(date, -7), DateStyle.YYYY_MM_DD));
 		model.addAttribute("endDate", DateUtil.DateToString(date, DateStyle.YYYY_MM_DD));
-		return "count/index";
+		return "online/index";
 	}
 	
 	
 	@NeedSession
 	@UnSecurity
-	@RequestMapping("/msgCount")
+	@RequestMapping("/onlineCount")
 	@ResponseBody
-	public DataResponse getPageDate(PageSearch ps,RoomMsgCountVO vo) {
+	public DataResponse getPageDate(PageSearch ps,RoomOnlineCountVO vo) {
 		int index = (ps.getPage()-1)*15;
 		vo.setIndex(index);
-		List<RoomMsgCount> list = this.roomMsgCountService.findBySearch(vo);
-		Long count = this.roomMsgCountService.countBySearch(vo);
+		List<RoomOnlineCount> list = this.roomOnlineCountService.findBySearch(vo);
+		Long count = this.roomOnlineCountService.countBySearch(vo);
 		List<Object> dateList = Lists.newArrayList();
-		for(RoomMsgCount c:list) {
-			dateList.add(c.getSendDate());
+		for(RoomOnlineCount c:list) {
+			dateList.add(c.getOnlineDate());
 		}
 		List<Object> userIdList=Lists.newArrayList();
-		List<RoomMsgCount> countList=Lists.newArrayList();
+		List<RoomOnlineCount> countList=Lists.newArrayList();
 		List<UserManageInfo> userManageList=this.baseCacheService.getManageUserList(4);
 		for(UserManageInfo m:userManageList) {
 			if(m.getGroupId().intValue()==3) {
@@ -84,38 +85,38 @@ public class RoomMsgController {
 			}
 		}
 		if(EmptyUtil.isNotEmpty(dateList)) {
-			SearchCondition<RoomMsgCount> condition=new SearchCondition<RoomMsgCount>(new RoomMsgCount());
+			SearchCondition<RoomOnlineCount> condition=new SearchCondition<RoomOnlineCount>(new RoomOnlineCount());
 			Map<String,List<Object>> inMap=Maps.newLinkedHashMap();
 			inMap.put("sendDate", dateList);
 			inMap.put("userId", userIdList);
 			condition.setInConditions(inMap);
-			countList = this.roomMsgCountService.findByCondition(condition);
+			countList = this.roomOnlineCountService.findByCondition(condition);
 		}
-		Map<String,List<RoomMsgCount>> convertListToMap=Maps.newHashMap();
-		for(RoomMsgCount rc:countList) {
-			if(EmptyUtil.isEmpty(convertListToMap.get(DateUtil.DateToString(rc.getSendDate(), DateStyle.YYYY_MM_DD)))){
-				List<RoomMsgCount> clist=Lists.newArrayList();
+		Map<String,List<RoomOnlineCount>> convertListToMap=Maps.newHashMap();
+		for(RoomOnlineCount rc:countList) {
+			if(EmptyUtil.isEmpty(convertListToMap.get(DateUtil.DateToString(rc.getOnlineDate(), DateStyle.YYYY_MM_DD)))){
+				List<RoomOnlineCount> clist=Lists.newArrayList();
 				clist.add(rc);
-				convertListToMap.put(DateUtil.DateToString(rc.getSendDate(), DateStyle.YYYY_MM_DD),clist);
+				convertListToMap.put(DateUtil.DateToString(rc.getOnlineDate(), DateStyle.YYYY_MM_DD),clist);
 			}else {
-				List<RoomMsgCount> clist=convertListToMap.get(DateUtil.DateToString(rc.getSendDate(), DateStyle.YYYY_MM_DD));
+				List<RoomOnlineCount> clist=convertListToMap.get(DateUtil.DateToString(rc.getOnlineDate(), DateStyle.YYYY_MM_DD));
 				clist.add(rc);
 			}
 		}
 		
 		List<Map<String,Object>> rows=Lists.newArrayList();
 		
-		for(RoomMsgCount c:list) {
+		for(RoomOnlineCount c:list) {
 			Map<String,Object> data=Maps.newHashMap();
-			String key=DateUtil.DateToString(c.getSendDate(), DateStyle.YYYY_MM_DD);
+			String key=DateUtil.DateToString(c.getOnlineDate(), DateStyle.YYYY_MM_DD);
 			data.put("date", key);
 			List<Object> dataList=Lists.newArrayList();
 			for(Object o : userIdList) {
 				Integer userId=Integer.valueOf(o.toString());
 				int i=0;
-				for(RoomMsgCount mc:convertListToMap.get(key)) {
+				for(RoomOnlineCount mc:convertListToMap.get(key)) {
 					if(userId.equals(mc.getUserId())) {
-						i=mc.getSendCount();
+						i=mc.getOnlineTime();
 						break;
 					}
 				}

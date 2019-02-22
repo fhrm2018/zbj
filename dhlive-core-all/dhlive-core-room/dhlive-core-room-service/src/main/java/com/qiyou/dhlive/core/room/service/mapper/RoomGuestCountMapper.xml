@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiyou.dhlive.core.room.service.dao.RoomGuestCountMapper">
+    <resultMap id="BaseResultMap" type="com.qiyou.dhlive.core.room.outward.model.RoomGuestCount">
+        <!--
+          WARNING - @mbggenerated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="online_time" jdbcType="INTEGER" property="onlineTime"/>
+        <result column="guest_date" jdbcType="DATE" property="onlineDate"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    
+    <select id="findBySearch" resultType="com.qiyou.dhlive.core.room.outward.model.RoomGuestCount" parameterType="com.qiyou.dhlive.core.room.outward.vo.RoomGuestCountVO">
+    	select guest_date as guestDate from room_guest_count
+    	where 1=1
+    	<if test="beginDate != null">
+    		<![CDATA[and DATE_FORMAT(guest_date,'%Y-%m-%d') >=DATE_FORMAT(#{beginDate},'%Y-%m-%d')]]>
+    	</if>
+    	<if test="endDate != null">
+    		<![CDATA[and DATE_FORMAT(guest_date,'%Y-%m-%d') <=DATE_FORMAT(#{endDate},'%Y-%m-%d')]]>
+    	</if>
+    	 group by guest_date order by guest_date
+    	 limit #{index},15
+    </select>
+    
+    <select id="countBySearch" resultType="Long" parameterType="com.qiyou.dhlive.core.room.outward.vo.RoomGuestCountVO">
+    	SELECT count(*) from (	
+    	select guest_date from room_guest_count 
+    	where 1=1
+    	<if test="beginDate != null">
+    		<![CDATA[and DATE_FORMAT(guest_date,'%Y-%m-%d') >=DATE_FORMAT(#{beginDate},'%Y-%m-%d')]]>
+    	</if>
+    	<if test="endDate != null">
+    		<![CDATA[and DATE_FORMAT(guest_date,'%Y-%m-%d') <=DATE_FORMAT(#{endDate},'%Y-%m-%d')]]>
+    	</if>
+    	group by guest_date
+    	)t
+    </select>
+</mapper>

@@ -65,13 +65,12 @@
 
             <div class="tableTitle flexWrap ac">
                 <div style="width: 10%">昵称</div>
-                <div style="width: 5%">角色</div>
                 <div style="width: 5%">等级</div>
                 <div style="width: 10%">手机号</div>
-                <div style="width: 10%">用户所属</div>
                 <div style="width: 15%">创建时间</div>
                 <div style="width: 15%">最后登录时间</div>
                 <div style="width: 10%">访问次数</div>
+                <div style="width: 10%">观看时长</div>
                 <div style="width: 10%">创建人</div>
                 <div style="width: 10%">ip</div>
                 <div style="width: 10%">操作</div>

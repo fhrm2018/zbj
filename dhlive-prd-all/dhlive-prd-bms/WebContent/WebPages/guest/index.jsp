@@ -15,13 +15,13 @@
 <div class="mainTitle">
 <div class="titleContent">
         <span class="lgLine ilblock ovfHid ml20 verMid"></span> <span
-            class="verMid ml10 colorF">互动统计</span>
+            class="verMid ml10 colorF">水滴分配数</span>
     </div>
     <jsp:include page="../common/userSet.jsp"/>
 </div>
 <div class="mainArea flexWrap posRel">
     <jsp:include page="../common/nav.jsp">
-        <jsp:param value="互动统计" name="name"/>
+        <jsp:param value="水滴分配数" name="name"/>
         <jsp:param value="助理管理" name="pName"/>
     </jsp:include>
     <div class="mainBox flexCon">
@@ -80,7 +80,7 @@
 
 </body>
 <script src="${pageContext.request.contextPath}/static/js/lib/artDialog/dialog-min.js"></script>
-<script src="${pageContext.request.contextPath}/static/modules/count/count.js"></script>
+<script src="${pageContext.request.contextPath}/static/modules/online/count.js"></script>
 <script type="text/javascript">
 	var width='${width}';
 </script>

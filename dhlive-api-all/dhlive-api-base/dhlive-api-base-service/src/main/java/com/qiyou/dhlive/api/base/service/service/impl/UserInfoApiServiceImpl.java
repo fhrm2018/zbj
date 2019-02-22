@@ -131,7 +131,7 @@ public class UserInfoApiServiceImpl implements IUserInfoApiService {
     @Override
     public DataResponse getVipUserList(PageSearch pageSearch, UserVipInfo params) {
     	UserVipInfo conParam = new UserVipInfo();
-    	
+    	conParam.setCreateUserId(params.getCreateUserId());
     	if(EmptyUtil.isNotEmpty(params.getUserTel())) {
     		conParam.setUserTel(params.getUserTel());;
         }

@@ -27,18 +27,25 @@ import com.qiyou.dhlive.core.live.outward.service.ILiveRoomService;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoMsg;
 import com.qiyou.dhlive.core.room.outward.model.RoomAutoUser;
 import com.qiyou.dhlive.core.room.outward.model.RoomChatMessage;
+import com.qiyou.dhlive.core.room.outward.model.RoomGuestCount;
 import com.qiyou.dhlive.core.room.outward.model.RoomMsgCount;
+import com.qiyou.dhlive.core.room.outward.model.RoomOnlineCount;
 import com.qiyou.dhlive.core.room.outward.service.IRoomChatMessageService;
+import com.qiyou.dhlive.core.room.outward.service.IRoomGuestCountService;
 import com.qiyou.dhlive.core.room.outward.service.IRoomMsgCountService;
+import com.qiyou.dhlive.core.room.outward.service.IRoomOnlineCountService;
 import com.qiyou.dhlive.core.user.outward.model.UserInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
 import com.qiyou.dhlive.core.user.outward.model.UserRelation;
+import com.qiyou.dhlive.core.user.outward.model.UserVipInfo;
 import com.qiyou.dhlive.core.user.outward.service.IUserInfoService;
 import com.qiyou.dhlive.core.user.outward.service.IUserRelationService;
+import com.qiyou.dhlive.core.user.outward.service.IUserVipInfoService;
 import com.yaozhong.framework.base.common.utils.DateStyle;
 import com.yaozhong.framework.base.common.utils.DateUtil;
 import com.yaozhong.framework.base.common.utils.EmptyUtil;
 import com.yaozhong.framework.base.common.utils.LogFormatUtil;
+import com.yaozhong.framework.base.database.domain.returns.BaseResult;
 import com.yaozhong.framework.base.database.domain.search.RangeCondition;
 import com.yaozhong.framework.base.database.domain.search.RangeConditionType;
 import com.yaozhong.framework.base.database.domain.search.SearchCondition;
@@ -75,10 +82,20 @@ public class CronController {
     private IUserInfoService userInfoService;
     
     @Autowired
+    private IUserVipInfoService userVipInfoService;
+    
+    @Autowired
     private IRoomMsgCountService roomMsgCountService;
     
     @Autowired
+    private IRoomOnlineCountService roomOnlineCountService;
+    
+    @Autowired
     private IBaseOptLogService baseOptLogService;
+    
+    @Autowired
+    private IRoomGuestCountService roomGuestCountService;
+    
 
     //游客定时任务
     @Scheduled(cron = "0/15 * *  * * ? ")   //每15秒执行一次
@@ -106,6 +123,7 @@ public class CronController {
             this.userInfoService.modifyEntity(u);
             this.baseCacheService.updateUserInfo(Integer.parseInt(str[1]));
         }
+        
         
         
         Set<String> zlOnline=redisManager.getMapKeyFromMapByStoreKey(RedisKeyConstant.ZL_ONLINE_IDS);
@@ -149,10 +167,25 @@ public class CronController {
             if (onLine > 10000) {
                 redisManager.deleteFromHashByStoreKeyAndMapKey(RedisKeyConstant.VIP_IDS, str[1]);
             }
+            this.baseCacheService.updateVipUserOnlineTime(Integer.parseInt(str[1]),(int)(onLine/1000));
         }
         baseLog.info(LogFormatUtil.getActionFormat("定时任务清理下线VIP结束"));
     }
 
+    @Scheduled(cron = "0/15 * *  * * ? ")   //每15秒执行一次
+    public void clearZLOutLineUserCron() {
+        baseLog.info(LogFormatUtil.getActionFormat("定时任务清理下线VIP开始"));
+        List<String> listJson = redisManager.getMapValueFromMapByStoreKey(RedisKeyConstant.ZL_IDS);
+        for (int i = 0; i < listJson.size(); i++) {
+            String str[] = listJson.get(i).split("-");
+            Long onLine = new Date().getTime() - Long.parseLong(str[0]);
+            if (onLine > 10000) {
+                redisManager.deleteFromHashByStoreKeyAndMapKey(RedisKeyConstant.ZL_IDS, str[1]);
+            }
+            this.baseCacheService.updateZlUserOnlineTime(Integer.parseInt(str[1]),(int)(onLine/1000));
+        }
+        baseLog.info(LogFormatUtil.getActionFormat("定时任务清理下线ZL结束"));
+    }
     
     @Scheduled(cron = "0 0/25 * * * ? ") 
     public void addAutoPersonCountFirst() {
@@ -391,6 +424,36 @@ public class CronController {
     	}
     }
     
+    @Scheduled(cron = "0 0/1 * * * ? ")
+    public void saveVipUserOnlineTime() {
+    	Set<String> list=this.baseCacheService.getAllOnlineVipUser();
+    	for(String key:list) {
+    		UserInfoDTO user=this.baseCacheService.getUserVip(Integer.parseInt(key));
+    		if(EmptyUtil.isEmpty(user)) {
+    			continue;
+    		}
+    		int times=this.baseCacheService.getVipUserOnlineTime(user.getUserId());
+    		
+    		if(times<=0) {
+    			continue;
+    		}
+    		baseCacheService.removeVipUserOnlineTime(user.getUserId());
+    		UserVipInfo userInfo=new UserVipInfo();
+    		userInfo.setUserId(user.getUserId());
+    		if(EmptyUtil.isEmpty(user.getLookTime())) {
+    			userInfo.setLookTime(times);
+    		}else {
+    			userInfo.setLookTime(user.getLookTime().intValue()+times);
+    		}
+    		BaseResult br = this.userVipInfoService.modifyEntity(userInfo);
+    		if(br.isSuccess()) {
+    			
+    		}
+    		this.baseCacheService.updateUserVip(user.getUserId());
+    	}
+    }
+    
+    
     @Scheduled(cron = "0 0/20 * * * ? ")
     public void saveMsgCount() {
     	String beginStr=DateUtil.DateToString(new Date(), DateStyle.YYYY_MM_DD)+" 00:00:00";
@@ -475,5 +538,84 @@ public class CronController {
     		
     	}
     	
+    }
+    
+    @Scheduled(cron = "0 0/1 * * * ? ")
+    public void saveOnLineTimeCount() {
+    	String beginStr=DateUtil.DateToString(new Date(), DateStyle.YYYY_MM_DD)+" 00:00:00";
+    	Date beginDate=DateUtil.StringToDate(beginStr, DateStyle.YYYY_MM_DD_HH_MM_SS);
+    	Date endDate = DateUtil.addDay(beginDate, 1);
+    	
+    	List<UserManageInfo> manageList=baseCacheService.getManageUserList(4);
+    	
+    	for(UserManageInfo m:manageList) {
+    		if(m.getGroupId().intValue()!=3)
+    			continue;
+    		int times=this.baseCacheService.getZlUserOnlineTime(m.getUserId());
+    		RoomOnlineCount online=new RoomOnlineCount();
+    		online.setUserId(m.getUserId());
+    		SearchCondition<RoomOnlineCount> con=new SearchCondition<RoomOnlineCount>(online);
+			List<RangeCondition> ranges=Lists.newArrayList();
+			ranges.add(new RangeCondition("onlineDate", beginDate, RangeConditionType.GreaterThanOrEqual));
+			ranges.add(new RangeCondition("onlineDate", endDate, RangeConditionType.LessThan));
+			con.setRangeConditions(ranges);
+    		online = this.roomOnlineCountService.findOneByCondition(con);
+    		if(EmptyUtil.isEmpty(online)) {
+    			online=new RoomOnlineCount();
+    			online.setUserId(m.getUserId());
+    			online.setOnlineDate(beginDate);
+    			online.setOnlineTime(times);
+    			online.setCreateTime(new Date());
+    			this.roomOnlineCountService.save(online);
+    		}else {
+    			online.setOnlineTime(online.getOnlineTime().intValue()+times);
+    			this.roomOnlineCountService.modifyEntity(online);
+    		}
+    		baseCacheService.removeZlUserOnlineTime(m.getUserId());
+    	}
+    }
+    
+    @Scheduled(cron = "0 0/1 * * * ? ")
+    public void saveGuestCount() {
+    	String beginStr=DateUtil.DateToString(new Date(), DateStyle.YYYY_MM_DD)+" 00:00:00";
+    	Date  beginDate=DateUtil.StringToDate(beginStr, DateStyle.YYYY_MM_DD_HH_MM_SS);
+    	Date endDate = DateUtil.addDay(beginDate, 1);
+    	
+    	List<UserManageInfo> manageList=baseCacheService.getManageUserList(4);
+    	
+    	for(UserManageInfo m:manageList) {
+    		if(m.getGroupId().intValue()!=3)
+    			continue;
+    		
+    		UserRelation ur=new UserRelation();
+    		ur.setRelationUserId(m.getUserId());
+    		SearchCondition<UserRelation> con=new SearchCondition<UserRelation>(ur);
+			List<RangeCondition> ranges=Lists.newArrayList();
+			ranges.add(new RangeCondition("createTime", beginDate, RangeConditionType.GreaterThanOrEqual));
+			ranges.add(new RangeCondition("createTime", endDate, RangeConditionType.LessThan));
+			con.setRangeConditions(ranges);
+			Long count = this.userRelationService.countByCondition(con);
+			
+			RoomGuestCount online=new RoomGuestCount();
+    		online.setUserId(m.getUserId());
+    		SearchCondition<RoomGuestCount> con1=new SearchCondition<RoomGuestCount>(online);
+			List<RangeCondition> ranges1=Lists.newArrayList();
+			ranges1.add(new RangeCondition("guestDate", beginDate, RangeConditionType.GreaterThanOrEqual));
+			ranges1.add(new RangeCondition("guestDate", endDate, RangeConditionType.LessThan));
+			con1.setRangeConditions(ranges1);
+    		online = this.roomGuestCountService.findOneByCondition(con1);
+    		if(EmptyUtil.isEmpty(online)) {
+    			online=new RoomGuestCount();
+    			online.setUserId(m.getUserId());
+    			online.setGuestDate(beginDate);
+    			online.setGuestCount(count.intValue());
+    			online.setCreateTime(new Date());
+    			this.roomGuestCountService.save(online);
+    		}else {
+    			online.setGuestCount(count.intValue());
+    			this.roomGuestCountService.modifyEntity(online);
+    		}
+    		
+    	}
     }
 }

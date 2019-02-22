@@ -24,6 +24,7 @@ import com.qiyou.dhlive.core.base.outward.model.BaseOptLog;
 import com.qiyou.dhlive.core.base.outward.service.IBaseOptLogService;
 import com.qiyou.dhlive.core.base.service.constant.RedisKeyConstant;
 import com.qiyou.dhlive.core.bms.outward.model.BmsEmployeeInfo;
+import com.qiyou.dhlive.core.bms.outward.service.IBmsEmployeeInfoService;
 import com.qiyou.dhlive.core.live.outward.model.LiveRoom;
 import com.qiyou.dhlive.core.user.outward.model.UserGroup;
 import com.qiyou.dhlive.core.user.outward.model.UserInfo;
@@ -65,6 +66,9 @@ public class UserController {
     
     @Autowired
     private IBaseCacheService baseCacheService;
+    
+    @Autowired
+    private IBmsEmployeeInfoService bmsEmployeeInfoService;
     
     @Autowired
     @Qualifier("commonRedisManager")
@@ -218,7 +222,7 @@ public class UserController {
     @ResponseBody
     public DataResponse getVipUserList(PageSearch pageSearch, UserVipInfo params) {
         EmployeeSession eSession = EmployeeSession.getEmployeeSession();
-        if (!eSession.getRoleId().equals("1")) {
+        if (eSession.getRoleId().equals("2")) {
             params.setCreateUserId(eSession.getEmployeeId());
         }
         return this.userInfoApiService.getVipUserList(pageSearch, params);
