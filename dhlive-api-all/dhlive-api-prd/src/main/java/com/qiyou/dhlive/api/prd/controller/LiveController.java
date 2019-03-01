@@ -247,7 +247,7 @@ public class LiveController {
 			            }
 	            	}
 		          //从缓存拉取助理关系, 判断是否存在已经关联的助理, 如果没有进行关联(60s会失效)
-		            UserManageInfo onLineZL =waterService.initYkKefu(session.getUserId());
+		            UserManageInfo onLineZL =waterService.initYkKefu(session.getUserId(),false);
 		            model.addAttribute("relation", onLineZL);
 		            model.addAttribute("user", user);
 	            }
@@ -383,7 +383,7 @@ public class LiveController {
         userIdCookie.setPath("/");
         userIdCookie.setMaxAge(60 * 60 * 24 * 365);
         response.addCookie(userIdCookie);
-        UserManageInfo onLineZL =waterService.initYkKefu(user.getUserId());
+        UserManageInfo onLineZL =waterService.initYkKefu(user.getUserId(),true);
         Map<String,Object> map=Maps.newHashMap();
         map.put("user", user);
         map.put("onLineZL", onLineZL);

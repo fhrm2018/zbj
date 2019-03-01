@@ -19,6 +19,7 @@ import com.qiyou.dhlive.core.user.outward.service.IUserRelationService;
 import com.yaozhong.framework.base.common.utils.DateUtil;
 import com.yaozhong.framework.base.common.utils.DateWeek;
 import com.yaozhong.framework.base.common.utils.EmptyUtil;
+import com.yaozhong.framework.base.database.domain.search.SearchCondition;
 import com.yaozhong.framework.base.database.redis.RedisManager;
 
 @Service
@@ -81,7 +82,7 @@ public class WaterServiceImpl implements IWaterService {
 	}
 	
 	@Override
-	public UserManageInfo initYkKefu(Integer userId) {
+	public UserManageInfo initYkKefu(Integer userId,boolean isNew) {
 		String dutyWay = this.baseSysParamService.getValueByKey("duty_way");
 		if(EmptyUtil.isEmpty(dutyWay)) {
 			dutyWay = "auto";
@@ -145,6 +146,23 @@ public class WaterServiceImpl implements IWaterService {
 					return myKefu;
 				}else {
 					myKefuId = "";
+				}
+			}else {
+				if(!isNew) {
+					UserRelation ur=new UserRelation();
+					ur.setUserId(userId);
+					ur.setStatus(0);
+					ur=this.userRelationService.findOneByCondition(new SearchCondition<UserRelation>(ur));
+					if(EmptyUtil.isNotEmpty(ur)) {
+						myKefuId = ur.getRelationUserId().toString();
+						UserManageInfo myKefu = getKefuFromList(myKefuId,kefuList);
+						if(EmptyUtil.isNotEmpty(myKefu)) {
+							this.baseCacheService.updateYkKefuId(userId,myKefu.getUserId());
+							return myKefu;
+						}else {
+							myKefuId = "";
+						}
+					}
 				}
 			}
 			if(kefuList.size()==0) {

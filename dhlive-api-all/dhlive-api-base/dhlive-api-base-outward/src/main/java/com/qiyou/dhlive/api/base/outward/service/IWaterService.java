@@ -4,7 +4,7 @@ import com.qiyou.dhlive.core.user.outward.model.UserManageInfo;
 
 public interface IWaterService {
 	
-	UserManageInfo initYkKefu(Integer userId); 
+	UserManageInfo initYkKefu(Integer userId,boolean isNew); 
 	
 	UserManageInfo initVipKefu(Integer userId); 
 

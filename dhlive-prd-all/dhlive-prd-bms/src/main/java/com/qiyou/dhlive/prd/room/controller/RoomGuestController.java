@@ -180,6 +180,7 @@ public class RoomGuestController {
 	    		
 	    		UserRelation ur=new UserRelation();
 	    		ur.setRelationUserId(m.getUserId());
+	    		ur.setStatus(0);
 	    		SearchCondition<UserRelation> con=new SearchCondition<UserRelation>(ur);
 				List<RangeCondition> ranges=Lists.newArrayList();
 				ranges.add(new RangeCondition("createTime", beginDate, RangeConditionType.GreaterThanOrEqual));
