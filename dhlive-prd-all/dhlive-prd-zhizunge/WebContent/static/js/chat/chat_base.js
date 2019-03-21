@@ -753,6 +753,11 @@ function onSendMsg() {
     
     var $smallGroupType = $('#smallGroupType') ;
     if(isAdmin == '1' && $smallGroupType && $smallGroupType.prop("checked")){//如果启用小号群发
+    	var reg = /^[0-9]*$/;
+    	if(!reg.test(msgtosend)){
+    		alert("小号群发只能发送内容为数字的消息");
+    		return false;
+    	}
     	var smallList = [];
     	$("#small").find("option").each(function(){
     		var smallData = {};
@@ -2084,6 +2089,8 @@ function getHeaderHtml(groupId, level, small) {
             htmls = '<span class="ac vip7"></span>';
         } else if (level == 8) {
             htmls = '<span class="ac vip8"></span>';
+        }else{
+        	htmls = '<span class="ac yk"></span>';
         }
 	}
 	if(htmls == ''){
