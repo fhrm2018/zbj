@@ -232,7 +232,7 @@
             <div tabindex="0" class="serSelect fl posRel mr10">
                 <div class="text posRel wtBg plr10 serIpt levelName" style="line-height: 23px;">VIP 2（地主）</div>
                 <ul tabindex="0" class="posAbs wtBg ovfHid serIpt">
-                	<li data-value="-1">VIP 0</li>
+                	<li data-value="-1">游客</li>
                     <li data-value="1">VIP 1</li>
                     <li data-value="2">VIP 2</li>
                     <li data-value="3">VIP 3</li>
