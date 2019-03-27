@@ -12,7 +12,7 @@ $(function () {
             $(".tkTimePopMask").removeClass('hide');
         }, 180000)
     }
-
+    checkCanWatch();
     //vip每一分钟请求后台判断是否被拉黑状态，模拟单点登陆
     if (userInfo.groupId == 1) {
         setInterval(function () {
