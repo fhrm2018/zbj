@@ -66,7 +66,7 @@
 <!-- 查询窗口 -->
 <div id="searchWin" class="popForm popFormWide wtBg posFixed hide">
     <form id="searchBox" action="${pageContext.request.contextPath}/user/getTouristsUserList" method="post">
-        <input type="hidden" id="type" name="type" value="0"/>
+       <!--  <input type="hidden" id="type" name="type" value="0"/> -->
         <div class="title flexWrap ">
             <div class="flexCon fz16 liveTitle">查询IP</div>
             <div class="pt5"><a href="" onclick="closePopForm(this);return !1;" class="close block">
